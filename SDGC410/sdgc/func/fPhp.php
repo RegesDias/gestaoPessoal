@@ -39,14 +39,16 @@ $DBtestePort = '32796';
        $passwd = 'j_password=ti@suporte';  
     //Conexão externa ajax
     if ($localBack != true){
-       $gurl = "http://10.40.10.236:8080/api/rest/";
+      // $gurl = "http://10.40.10.236:8080/api/rest/";
+       $gurl = "https://sdgc.com.br/api/rest/";
        $ajurl = "https://sdgc.com.br/api/rest/";
     }else{
        $ajurl = "http://10.40.10.".$ip.":8080/api/rest/";
        $gurl = $ajurl;
     }
     if ($localEndereco != true){
-       $eurl = "http://10.40.10.236:32778/address/rest/";
+       //$eurl = "http://10.40.10.236:32778/address/rest/";
+       $eurl = "https://sdgc.com.br/address/rest/";
        $aeurl = "https://sdgc.com.br/address/rest/";
     }else{
        $eurl = "http://10.40.10.".$ip.":8080/address/rest/";
@@ -105,7 +107,7 @@ function getRest($pf, $data = null, $adress= null) {
         $q = curl_escape($curl, $campos);
         $url = $url . '/' . $q;
     }
-    //echo_p($url);
+    echo_p($url);
     $options = array(
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_URL => $url,

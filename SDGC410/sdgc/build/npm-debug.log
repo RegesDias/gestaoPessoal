@@ -1,0 +1,1183 @@
+98049 info linkStuff ansi-regex@2.1.1
+98050 silly linkStuff ansi-regex@2.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98051 verbose linkBins ansi-regex@2.1.1
+98052 verbose linkMans ansi-regex@2.1.1
+98053 silly build ansi-styles@2.2.1
+98054 info linkStuff ansi-styles@2.2.1
+98055 silly linkStuff ansi-styles@2.2.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98056 verbose linkBins ansi-styles@2.2.1
+98057 verbose linkMans ansi-styles@2.2.1
+98058 silly build ansi-wrap@0.1.0
+98059 info linkStuff ansi-wrap@0.1.0
+98060 silly linkStuff ansi-wrap@0.1.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98061 verbose linkBins ansi-wrap@0.1.0
+98062 verbose linkMans ansi-wrap@0.1.0
+98063 silly build ansi-gray@0.1.1
+98064 info linkStuff ansi-gray@0.1.1
+98065 silly linkStuff ansi-gray@0.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98066 verbose linkBins ansi-gray@0.1.1
+98067 verbose linkMans ansi-gray@0.1.1
+98068 silly build underscore.string@2.4.0
+98069 info linkStuff underscore.string@2.4.0
+98070 silly linkStuff underscore.string@2.4.0 has /var/www/html/sdgc/node_modules/argparse/node_modules as its parent node_modules
+98071 verbose linkBins underscore.string@2.4.0
+98072 verbose linkMans underscore.string@2.4.0
+98073 silly build arr-flatten@1.1.0
+98074 info linkStuff arr-flatten@1.1.0
+98075 silly linkStuff arr-flatten@1.1.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98076 verbose linkBins arr-flatten@1.1.0
+98077 verbose linkMans arr-flatten@1.1.0
+98078 silly build arr-diff@2.0.0
+98079 info linkStuff arr-diff@2.0.0
+98080 silly linkStuff arr-diff@2.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98081 verbose linkBins arr-diff@2.0.0
+98082 verbose linkMans arr-diff@2.0.0
+98083 silly build array-differ@1.0.0
+98084 info linkStuff array-differ@1.0.0
+98085 silly linkStuff array-differ@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98086 verbose linkBins array-differ@1.0.0
+98087 verbose linkMans array-differ@1.0.0
+98088 silly build array-filter@0.0.1
+98089 info linkStuff array-filter@0.0.1
+98090 silly linkStuff array-filter@0.0.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98091 verbose linkBins array-filter@0.0.1
+98092 verbose linkMans array-filter@0.0.1
+98093 silly build array-find-index@1.0.2
+98094 info linkStuff array-find-index@1.0.2
+98095 silly linkStuff array-find-index@1.0.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98096 verbose linkBins array-find-index@1.0.2
+98097 verbose linkMans array-find-index@1.0.2
+98098 silly build array-flatten@1.1.1
+98099 info linkStuff array-flatten@1.1.1
+98100 silly linkStuff array-flatten@1.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98101 verbose linkBins array-flatten@1.1.1
+98102 verbose linkMans array-flatten@1.1.1
+98103 silly build array-map@0.0.0
+98104 info linkStuff array-map@0.0.0
+98105 silly linkStuff array-map@0.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98106 verbose linkBins array-map@0.0.0
+98107 verbose linkMans array-map@0.0.0
+98108 silly build array-reduce@0.0.0
+98109 info linkStuff array-reduce@0.0.0
+98110 silly linkStuff array-reduce@0.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98111 verbose linkBins array-reduce@0.0.0
+98112 verbose linkMans array-reduce@0.0.0
+98113 silly build array-uniq@1.0.3
+98114 info linkStuff array-uniq@1.0.3
+98115 silly linkStuff array-uniq@1.0.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98116 verbose linkBins array-uniq@1.0.3
+98117 verbose linkMans array-uniq@1.0.3
+98118 silly build array-unique@0.2.1
+98119 info linkStuff array-unique@0.2.1
+98120 silly linkStuff array-unique@0.2.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98121 verbose linkBins array-unique@0.2.1
+98122 verbose linkMans array-unique@0.2.1
+98123 silly build asap@2.0.6
+98124 info linkStuff asap@2.0.6
+98125 silly linkStuff asap@2.0.6 has /var/www/html/sdgc/node_modules as its parent node_modules
+98126 verbose linkBins asap@2.0.6
+98127 verbose linkMans asap@2.0.6
+98128 silly build asn1@0.1.11
+98129 info linkStuff asn1@0.1.11
+98130 silly linkStuff asn1@0.1.11 has /var/www/html/sdgc/node_modules as its parent node_modules
+98131 verbose linkBins asn1@0.1.11
+98132 verbose linkMans asn1@0.1.11
+98133 silly build assert-plus@0.1.5
+98134 info linkStuff assert-plus@0.1.5
+98135 silly linkStuff assert-plus@0.1.5 has /var/www/html/sdgc/node_modules as its parent node_modules
+98136 verbose linkBins assert-plus@0.1.5
+98137 verbose linkMans assert-plus@0.1.5
+98138 silly build inherits@2.0.1
+98139 info linkStuff inherits@2.0.1
+98140 silly linkStuff inherits@2.0.1 has /var/www/html/sdgc/node_modules/assert/node_modules as its parent node_modules
+98141 verbose linkBins inherits@2.0.1
+98142 verbose linkMans inherits@2.0.1
+98143 silly build util@0.10.3
+98144 info linkStuff util@0.10.3
+98145 silly linkStuff util@0.10.3 has /var/www/html/sdgc/node_modules/assert/node_modules as its parent node_modules
+98146 verbose linkBins util@0.10.3
+98147 verbose linkMans util@0.10.3
+98148 silly build assert@1.4.1
+98149 info linkStuff assert@1.4.1
+98150 silly linkStuff assert@1.4.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98151 verbose linkBins assert@1.4.1
+98152 verbose linkMans assert@1.4.1
+98153 silly build async@0.1.22
+98154 info linkStuff async@0.1.22
+98155 silly linkStuff async@0.1.22 has /var/www/html/sdgc/node_modules as its parent node_modules
+98156 verbose linkBins async@0.1.22
+98157 verbose linkMans async@0.1.22
+98158 silly build async-each-series@1.1.0
+98159 info linkStuff async-each-series@1.1.0
+98160 silly linkStuff async-each-series@1.1.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98161 verbose linkBins async-each-series@1.1.0
+98162 verbose linkMans async-each-series@1.1.0
+98163 silly build asynckit@0.4.0
+98164 info linkStuff asynckit@0.4.0
+98165 silly linkStuff asynckit@0.4.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98166 verbose linkBins asynckit@0.4.0
+98167 verbose linkMans asynckit@0.4.0
+98168 silly build atob@1.1.3
+98169 info linkStuff atob@1.1.3
+98170 silly linkStuff atob@1.1.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98171 verbose linkBins atob@1.1.3
+98172 verbose link bins [ { atob: 'bin/atob.js' },
+98172 verbose link bins   '/var/www/html/sdgc/node_modules/.bin',
+98172 verbose link bins   false ]
+98173 verbose linkMans atob@1.1.3
+98174 silly gentlyRm /var/www/html/sdgc/node_modules/.bin/atob is being purged
+98175 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/.bin/atob
+98176 silly build aws-sign2@0.5.0
+98177 info linkStuff aws-sign2@0.5.0
+98178 silly linkStuff aws-sign2@0.5.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98179 verbose linkBins aws-sign2@0.5.0
+98180 verbose linkMans aws-sign2@0.5.0
+98181 silly build aws4@1.8.0
+98182 info linkStuff aws4@1.8.0
+98183 silly linkStuff aws4@1.8.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98184 verbose linkBins aws4@1.8.0
+98185 verbose linkMans aws4@1.8.0
+98186 silly build babylon@6.18.0
+98187 info linkStuff babylon@6.18.0
+98188 silly linkStuff babylon@6.18.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98189 verbose linkBins babylon@6.18.0
+98190 verbose link bins [ { babylon: './bin/babylon.js' },
+98190 verbose link bins   '/var/www/html/sdgc/node_modules/.bin',
+98190 verbose link bins   false ]
+98191 verbose linkMans babylon@6.18.0
+98192 silly gentlyRm /var/www/html/sdgc/node_modules/.bin/babylon is being purged
+98193 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/.bin/babylon
+98194 silly build balanced-match@1.0.0
+98195 info linkStuff balanced-match@1.0.0
+98196 silly linkStuff balanced-match@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98197 verbose linkBins balanced-match@1.0.0
+98198 verbose linkMans balanced-match@1.0.0
+98199 silly build base64-js@1.3.0
+98200 info linkStuff base64-js@1.3.0
+98201 silly linkStuff base64-js@1.3.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98202 verbose linkBins base64-js@1.3.0
+98203 verbose linkMans base64-js@1.3.0
+98204 silly build safe-buffer@5.1.1
+98205 info linkStuff safe-buffer@5.1.1
+98206 silly linkStuff safe-buffer@5.1.1 has /var/www/html/sdgc/node_modules/basic-auth/node_modules as its parent node_modules
+98207 verbose linkBins safe-buffer@5.1.1
+98208 verbose linkMans safe-buffer@5.1.1
+98209 silly build basic-auth@2.0.0
+98210 info linkStuff basic-auth@2.0.0
+98211 silly linkStuff basic-auth@2.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98212 verbose linkBins basic-auth@2.0.0
+98213 verbose linkMans basic-auth@2.0.0
+98214 silly build beeper@1.1.1
+98215 info linkStuff beeper@1.1.1
+98216 silly linkStuff beeper@1.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98217 verbose linkBins beeper@1.1.1
+98218 verbose linkMans beeper@1.1.1
+98219 silly build binary-search@1.3.4
+98220 info linkStuff binary-search@1.3.4
+98221 silly linkStuff binary-search@1.3.4 has /var/www/html/sdgc/node_modules as its parent node_modules
+98222 verbose linkBins binary-search@1.3.4
+98223 verbose linkMans binary-search@1.3.4
+98224 silly build bluebird@2.11.0
+98225 info linkStuff bluebird@2.11.0
+98226 silly linkStuff bluebird@2.11.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98227 verbose linkBins bluebird@2.11.0
+98228 verbose linkMans bluebird@2.11.0
+98229 silly build bn.js@4.11.8
+98230 info linkStuff bn.js@4.11.8
+98231 silly linkStuff bn.js@4.11.8 has /var/www/html/sdgc/node_modules as its parent node_modules
+98232 verbose linkBins bn.js@4.11.8
+98233 verbose linkMans bn.js@4.11.8
+98234 silly build brorand@1.1.0
+98235 info linkStuff brorand@1.1.0
+98236 silly linkStuff brorand@1.1.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98237 verbose linkBins brorand@1.1.0
+98238 verbose linkMans brorand@1.1.0
+98239 silly build resolve@1.1.7
+98240 info linkStuff resolve@1.1.7
+98241 silly linkStuff resolve@1.1.7 has /var/www/html/sdgc/node_modules/browser-resolve/node_modules as its parent node_modules
+98242 verbose linkBins resolve@1.1.7
+98243 verbose linkMans resolve@1.1.7
+98244 silly build browser-resolve@1.11.3
+98245 info linkStuff browser-resolve@1.11.3
+98246 silly linkStuff browser-resolve@1.11.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98247 verbose linkBins browser-resolve@1.11.3
+98248 verbose linkMans browser-resolve@1.11.3
+98249 silly build buffer-alloc-unsafe@1.1.0
+98250 info linkStuff buffer-alloc-unsafe@1.1.0
+98251 silly linkStuff buffer-alloc-unsafe@1.1.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98252 verbose linkBins buffer-alloc-unsafe@1.1.0
+98253 verbose linkMans buffer-alloc-unsafe@1.1.0
+98254 silly build buffer-crc32@0.2.13
+98255 info linkStuff buffer-crc32@0.2.13
+98256 silly linkStuff buffer-crc32@0.2.13 has /var/www/html/sdgc/node_modules as its parent node_modules
+98257 verbose linkBins buffer-crc32@0.2.13
+98258 verbose linkMans buffer-crc32@0.2.13
+98259 silly build buffer-fill@1.0.0
+98260 info linkStuff buffer-fill@1.0.0
+98261 silly linkStuff buffer-fill@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98262 verbose linkBins buffer-fill@1.0.0
+98263 verbose linkMans buffer-fill@1.0.0
+98264 silly build buffer-alloc@1.2.0
+98265 info linkStuff buffer-alloc@1.2.0
+98266 silly linkStuff buffer-alloc@1.2.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98267 verbose linkBins buffer-alloc@1.2.0
+98268 verbose linkMans buffer-alloc@1.2.0
+98269 silly build buffer-from@1.1.1
+98270 info linkStuff buffer-from@1.1.1
+98271 silly linkStuff buffer-from@1.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98272 verbose linkBins buffer-from@1.1.1
+98273 verbose linkMans buffer-from@1.1.1
+98274 silly build buffer-xor@1.0.3
+98275 info linkStuff buffer-xor@1.0.3
+98276 silly linkStuff buffer-xor@1.0.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98277 verbose linkBins buffer-xor@1.0.3
+98278 verbose linkMans buffer-xor@1.0.3
+98279 silly build builtin-modules@1.1.1
+98280 info linkStuff builtin-modules@1.1.1
+98281 silly linkStuff builtin-modules@1.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98282 verbose linkBins builtin-modules@1.1.1
+98283 verbose linkMans builtin-modules@1.1.1
+98284 silly build builtin-status-codes@3.0.0
+98285 info linkStuff builtin-status-codes@3.0.0
+98286 silly linkStuff builtin-status-codes@3.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98287 verbose linkBins builtin-status-codes@3.0.0
+98288 verbose linkMans builtin-status-codes@3.0.0
+98289 silly build bytes@3.0.0
+98290 info linkStuff bytes@3.0.0
+98291 silly linkStuff bytes@3.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98292 verbose linkBins bytes@3.0.0
+98293 verbose linkMans bytes@3.0.0
+98294 silly build cached-path-relative@1.0.1
+98295 info linkStuff cached-path-relative@1.0.1
+98296 silly linkStuff cached-path-relative@1.0.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98297 verbose linkBins cached-path-relative@1.0.1
+98298 verbose linkMans cached-path-relative@1.0.1
+98299 silly build camelcase@2.1.1
+98300 info linkStuff camelcase@2.1.1
+98301 silly linkStuff camelcase@2.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98302 verbose linkBins camelcase@2.1.1
+98303 verbose linkMans camelcase@2.1.1
+98304 silly build capture-stack-trace@1.0.0
+98305 info linkStuff capture-stack-trace@1.0.0
+98306 silly linkStuff capture-stack-trace@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98307 verbose linkBins capture-stack-trace@1.0.0
+98308 verbose linkMans capture-stack-trace@1.0.0
+98309 silly build caseless@0.12.0
+98310 info linkStuff caseless@0.12.0
+98311 silly linkStuff caseless@0.12.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98312 verbose linkBins caseless@0.12.0
+98313 verbose linkMans caseless@0.12.0
+98314 silly build object-assign@3.0.0
+98315 info linkStuff object-assign@3.0.0
+98316 silly linkStuff object-assign@3.0.0 has /var/www/html/sdgc/node_modules/caw/node_modules as its parent node_modules
+98317 verbose linkBins object-assign@3.0.0
+98318 verbose linkMans object-assign@3.0.0
+98319 silly build charm@0.1.2
+98320 info linkStuff charm@0.1.2
+98321 silly linkStuff charm@0.1.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98322 verbose linkBins charm@0.1.2
+98323 verbose linkMans charm@0.1.2
+98324 silly build lodash@2.4.2
+98325 info linkStuff lodash@2.4.2
+98326 silly linkStuff lodash@2.4.2 has /var/www/html/sdgc/node_modules/cheerio/node_modules as its parent node_modules
+98327 verbose linkBins lodash@2.4.2
+98328 verbose linkMans lodash@2.4.2
+98329 silly build classie@1.0.0
+98330 info linkStuff classie@1.0.0
+98331 silly linkStuff classie@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98332 verbose linkBins classie@1.0.0
+98333 verbose linkMans classie@1.0.0
+98334 silly build source-map@0.4.4
+98335 info linkStuff source-map@0.4.4
+98336 silly linkStuff source-map@0.4.4 has /var/www/html/sdgc/node_modules/clean-css/node_modules as its parent node_modules
+98337 verbose linkBins source-map@0.4.4
+98338 verbose linkMans source-map@0.4.4
+98339 silly build colors@1.0.3
+98340 info linkStuff colors@1.0.3
+98341 silly linkStuff colors@1.0.3 has /var/www/html/sdgc/node_modules/cli-table/node_modules as its parent node_modules
+98342 verbose linkBins colors@1.0.3
+98343 verbose linkMans colors@1.0.3
+98344 silly build cli-table@0.3.1
+98345 info linkStuff cli-table@0.3.1
+98346 silly linkStuff cli-table@0.3.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98347 verbose linkBins cli-table@0.3.1
+98348 verbose linkMans cli-table@0.3.1
+98349 silly build clone@1.0.4
+98350 info linkStuff clone@1.0.4
+98351 silly linkStuff clone@1.0.4 has /var/www/html/sdgc/node_modules as its parent node_modules
+98352 verbose linkBins clone@1.0.4
+98353 verbose linkMans clone@1.0.4
+98354 silly build clone-stats@0.0.1
+98355 info linkStuff clone-stats@0.0.1
+98356 silly linkStuff clone-stats@0.0.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98357 verbose linkBins clone-stats@0.0.1
+98358 verbose linkMans clone-stats@0.0.1
+98359 silly build co@3.1.0
+98360 info linkStuff co@3.1.0
+98361 silly linkStuff co@3.1.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98362 verbose linkBins co@3.1.0
+98363 verbose linkMans co@3.1.0
+98364 silly build coffee-script@1.3.3
+98365 info linkStuff coffee-script@1.3.3
+98366 silly linkStuff coffee-script@1.3.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98367 verbose linkBins coffee-script@1.3.3
+98368 verbose link bins [ { coffee: './bin/coffee', cake: './bin/cake' },
+98368 verbose link bins   '/var/www/html/sdgc/node_modules/.bin',
+98368 verbose link bins   false ]
+98369 verbose linkMans coffee-script@1.3.3
+98370 silly gentlyRm /var/www/html/sdgc/node_modules/.bin/coffee is being purged
+98371 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/.bin/coffee
+98372 silly gentlyRm /var/www/html/sdgc/node_modules/.bin/cake is being purged
+98373 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/.bin/cake
+98374 silly build color-support@1.1.3
+98375 info linkStuff color-support@1.1.3
+98376 silly linkStuff color-support@1.1.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98377 verbose linkBins color-support@1.1.3
+98378 verbose link bins [ { 'color-support': 'bin.js' },
+98378 verbose link bins   '/var/www/html/sdgc/node_modules/.bin',
+98378 verbose link bins   false ]
+98379 verbose linkMans color-support@1.1.3
+98380 silly gentlyRm /var/www/html/sdgc/node_modules/.bin/color-support is being purged
+98381 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/.bin/color-support
+98382 silly build colors@0.6.2
+98383 info linkStuff colors@0.6.2
+98384 silly linkStuff colors@0.6.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98385 verbose linkBins colors@0.6.2
+98386 verbose linkMans colors@0.6.2
+98387 silly build commander@2.17.1
+98388 info linkStuff commander@2.17.1
+98389 silly linkStuff commander@2.17.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98390 verbose linkBins commander@2.17.1
+98391 verbose linkMans commander@2.17.1
+98392 silly build concat-map@0.0.1
+98393 info linkStuff concat-map@0.0.1
+98394 silly linkStuff concat-map@0.0.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98395 verbose linkBins concat-map@0.0.1
+98396 verbose linkMans concat-map@0.0.1
+98397 silly build brace-expansion@1.1.11
+98398 info linkStuff brace-expansion@1.1.11
+98399 silly linkStuff brace-expansion@1.1.11 has /var/www/html/sdgc/node_modules as its parent node_modules
+98400 verbose linkBins brace-expansion@1.1.11
+98401 verbose linkMans brace-expansion@1.1.11
+98402 silly build minimatch@2.0.10
+98403 info linkStuff minimatch@2.0.10
+98404 silly linkStuff minimatch@2.0.10 has /var/www/html/sdgc/node_modules/bootlint/node_modules as its parent node_modules
+98405 verbose linkBins minimatch@2.0.10
+98406 verbose linkMans minimatch@2.0.10
+98407 silly build console-stream@0.1.1
+98408 info linkStuff console-stream@0.1.1
+98409 silly linkStuff console-stream@0.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98410 verbose linkBins console-stream@0.1.1
+98411 verbose linkMans console-stream@0.1.1
+98412 silly build constants-browserify@1.0.0
+98413 info linkStuff constants-browserify@1.0.0
+98414 silly linkStuff constants-browserify@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98415 verbose linkBins constants-browserify@1.0.0
+98416 verbose linkMans constants-browserify@1.0.0
+98417 silly build content-disposition@0.5.2
+98418 info linkStuff content-disposition@0.5.2
+98419 silly linkStuff content-disposition@0.5.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98420 verbose linkBins content-disposition@0.5.2
+98421 verbose linkMans content-disposition@0.5.2
+98422 silly build content-type@1.0.4
+98423 info linkStuff content-type@1.0.4
+98424 silly linkStuff content-type@1.0.4 has /var/www/html/sdgc/node_modules as its parent node_modules
+98425 verbose linkBins content-type@1.0.4
+98426 verbose linkMans content-type@1.0.4
+98427 silly build convert-source-map@1.1.3
+98428 info linkStuff convert-source-map@1.1.3
+98429 silly linkStuff convert-source-map@1.1.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98430 verbose linkBins convert-source-map@1.1.3
+98431 verbose linkMans convert-source-map@1.1.3
+98432 silly build cookie@0.3.1
+98433 info linkStuff cookie@0.3.1
+98434 silly linkStuff cookie@0.3.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98435 verbose linkBins cookie@0.3.1
+98436 verbose linkMans cookie@0.3.1
+98437 silly build cookie-signature@1.0.6
+98438 info linkStuff cookie-signature@1.0.6
+98439 silly linkStuff cookie-signature@1.0.6 has /var/www/html/sdgc/node_modules as its parent node_modules
+98440 verbose linkBins cookie-signature@1.0.6
+98441 verbose linkMans cookie-signature@1.0.6
+98442 silly build core-js@2.5.7
+98443 info linkStuff core-js@2.5.7
+98444 silly linkStuff core-js@2.5.7 has /var/www/html/sdgc/node_modules as its parent node_modules
+98445 verbose linkBins core-js@2.5.7
+98446 verbose linkMans core-js@2.5.7
+98447 silly build core-util-is@1.0.2
+98448 info linkStuff core-util-is@1.0.2
+98449 silly linkStuff core-util-is@1.0.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98450 verbose linkBins core-util-is@1.0.2
+98451 verbose linkMans core-util-is@1.0.2
+98452 silly build create-error-class@3.0.2
+98453 info linkStuff create-error-class@3.0.2
+98454 silly linkStuff create-error-class@3.0.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98455 verbose linkBins create-error-class@3.0.2
+98456 verbose linkMans create-error-class@3.0.2
+98457 silly build source-map@0.1.43
+98458 info linkStuff source-map@0.1.43
+98459 silly linkStuff source-map@0.1.43 has /var/www/html/sdgc/node_modules/css/node_modules as its parent node_modules
+98460 verbose linkBins source-map@0.1.43
+98461 verbose linkMans source-map@0.1.43
+98462 silly build cssjanus@1.3.0
+98463 info linkStuff cssjanus@1.3.0
+98464 silly linkStuff cssjanus@1.3.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98465 verbose linkBins cssjanus@1.3.0
+98466 verbose linkMans cssjanus@1.3.0
+98467 silly build CSSwhat@0.4.7
+98468 info linkStuff CSSwhat@0.4.7
+98469 silly linkStuff CSSwhat@0.4.7 has /var/www/html/sdgc/node_modules as its parent node_modules
+98470 verbose linkBins CSSwhat@0.4.7
+98471 verbose linkMans CSSwhat@0.4.7
+98472 silly build ctype@0.5.3
+98473 info linkStuff ctype@0.5.3
+98474 silly linkStuff ctype@0.5.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98475 verbose linkBins ctype@0.5.3
+98476 verbose linkMans ctype@0.5.3
+98477 silly build currently-unhandled@0.4.1
+98478 info linkStuff currently-unhandled@0.4.1
+98479 silly linkStuff currently-unhandled@0.4.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98480 verbose linkBins currently-unhandled@0.4.1
+98481 verbose linkMans currently-unhandled@0.4.1
+98482 silly build cycle@1.0.3
+98483 info linkStuff cycle@1.0.3
+98484 silly linkStuff cycle@1.0.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98485 verbose linkBins cycle@1.0.3
+98486 verbose linkMans cycle@1.0.3
+98487 silly build assert-plus@1.0.0
+98488 info linkStuff assert-plus@1.0.0
+98489 silly linkStuff assert-plus@1.0.0 has /var/www/html/sdgc/node_modules/dashdash/node_modules as its parent node_modules
+98490 verbose linkBins assert-plus@1.0.0
+98491 verbose linkMans assert-plus@1.0.0
+98492 silly build dashdash@1.14.1
+98493 info linkStuff dashdash@1.14.1
+98494 silly linkStuff dashdash@1.14.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98495 verbose linkBins dashdash@1.14.1
+98496 verbose linkMans dashdash@1.14.1
+98497 silly build date-now@0.1.4
+98498 info linkStuff date-now@0.1.4
+98499 silly linkStuff date-now@0.1.4 has /var/www/html/sdgc/node_modules as its parent node_modules
+98500 verbose linkBins date-now@0.1.4
+98501 verbose linkMans date-now@0.1.4
+98502 silly build console-browserify@1.1.0
+98503 info linkStuff console-browserify@1.1.0
+98504 silly linkStuff console-browserify@1.1.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98505 verbose linkBins console-browserify@1.1.0
+98506 verbose linkMans console-browserify@1.1.0
+98507 silly build dateformat@1.0.2-1.2.3
+98508 info linkStuff dateformat@1.0.2-1.2.3
+98509 silly linkStuff dateformat@1.0.2-1.2.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98510 verbose linkBins dateformat@1.0.2-1.2.3
+98511 verbose linkMans dateformat@1.0.2-1.2.3
+98512 silly build decamelize@1.2.0
+98513 info linkStuff decamelize@1.2.0
+98514 silly linkStuff decamelize@1.2.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98515 verbose linkBins decamelize@1.2.0
+98516 verbose linkMans decamelize@1.2.0
+98517 silly build clone@0.2.0
+98518 info linkStuff clone@0.2.0
+98519 silly linkStuff clone@0.2.0 has /var/www/html/sdgc/node_modules/decompress-tar/node_modules as its parent node_modules
+98520 verbose linkBins clone@0.2.0
+98521 verbose linkMans clone@0.2.0
+98522 silly build isarray@0.0.1
+98523 info linkStuff isarray@0.0.1
+98524 silly linkStuff isarray@0.0.1 has /var/www/html/sdgc/node_modules/decompress-tar/node_modules as its parent node_modules
+98525 verbose linkBins isarray@0.0.1
+98526 verbose linkMans isarray@0.0.1
+98527 silly build object-assign@2.1.1
+98528 info linkStuff object-assign@2.1.1
+98529 silly linkStuff object-assign@2.1.1 has /var/www/html/sdgc/node_modules/decompress-tar/node_modules as its parent node_modules
+98530 verbose linkBins object-assign@2.1.1
+98531 verbose linkMans object-assign@2.1.1
+98532 silly build string_decoder@0.10.31
+98533 info linkStuff string_decoder@0.10.31
+98534 silly linkStuff string_decoder@0.10.31 has /var/www/html/sdgc/node_modules/decompress-tar/node_modules as its parent node_modules
+98535 verbose linkBins string_decoder@0.10.31
+98536 verbose linkMans string_decoder@0.10.31
+98537 silly build vinyl@0.4.6
+98538 info linkStuff vinyl@0.4.6
+98539 silly linkStuff vinyl@0.4.6 has /var/www/html/sdgc/node_modules/decompress-tar/node_modules as its parent node_modules
+98540 verbose linkBins vinyl@0.4.6
+98541 verbose linkMans vinyl@0.4.6
+98542 silly build clone@0.2.0
+98543 info linkStuff clone@0.2.0
+98544 silly linkStuff clone@0.2.0 has /var/www/html/sdgc/node_modules/decompress-tarbz2/node_modules as its parent node_modules
+98545 verbose linkBins clone@0.2.0
+98546 verbose linkMans clone@0.2.0
+98547 silly build isarray@0.0.1
+98548 info linkStuff isarray@0.0.1
+98549 silly linkStuff isarray@0.0.1 has /var/www/html/sdgc/node_modules/decompress-tarbz2/node_modules as its parent node_modules
+98550 verbose linkBins isarray@0.0.1
+98551 verbose linkMans isarray@0.0.1
+98552 silly build object-assign@2.1.1
+98553 info linkStuff object-assign@2.1.1
+98554 silly linkStuff object-assign@2.1.1 has /var/www/html/sdgc/node_modules/decompress-tarbz2/node_modules as its parent node_modules
+98555 verbose linkBins object-assign@2.1.1
+98556 verbose linkMans object-assign@2.1.1
+98557 silly build string_decoder@0.10.31
+98558 info linkStuff string_decoder@0.10.31
+98559 silly linkStuff string_decoder@0.10.31 has /var/www/html/sdgc/node_modules/decompress-tarbz2/node_modules as its parent node_modules
+98560 verbose linkBins string_decoder@0.10.31
+98561 verbose linkMans string_decoder@0.10.31
+98562 silly build vinyl@0.4.6
+98563 info linkStuff vinyl@0.4.6
+98564 silly linkStuff vinyl@0.4.6 has /var/www/html/sdgc/node_modules/decompress-tarbz2/node_modules as its parent node_modules
+98565 verbose linkBins vinyl@0.4.6
+98566 verbose linkMans vinyl@0.4.6
+98567 silly build clone@0.2.0
+98568 info linkStuff clone@0.2.0
+98569 silly linkStuff clone@0.2.0 has /var/www/html/sdgc/node_modules/decompress-targz/node_modules as its parent node_modules
+98570 verbose linkBins clone@0.2.0
+98571 verbose linkMans clone@0.2.0
+98572 silly build isarray@0.0.1
+98573 info linkStuff isarray@0.0.1
+98574 silly linkStuff isarray@0.0.1 has /var/www/html/sdgc/node_modules/decompress-targz/node_modules as its parent node_modules
+98575 verbose linkBins isarray@0.0.1
+98576 verbose linkMans isarray@0.0.1
+98577 silly build object-assign@2.1.1
+98578 info linkStuff object-assign@2.1.1
+98579 silly linkStuff object-assign@2.1.1 has /var/www/html/sdgc/node_modules/decompress-targz/node_modules as its parent node_modules
+98580 verbose linkBins object-assign@2.1.1
+98581 verbose linkMans object-assign@2.1.1
+98582 silly build string_decoder@0.10.31
+98583 info linkStuff string_decoder@0.10.31
+98584 silly linkStuff string_decoder@0.10.31 has /var/www/html/sdgc/node_modules/decompress-targz/node_modules as its parent node_modules
+98585 verbose linkBins string_decoder@0.10.31
+98586 verbose linkMans string_decoder@0.10.31
+98587 silly build vinyl@0.4.6
+98588 info linkStuff vinyl@0.4.6
+98589 silly linkStuff vinyl@0.4.6 has /var/www/html/sdgc/node_modules/decompress-targz/node_modules as its parent node_modules
+98590 verbose linkBins vinyl@0.4.6
+98591 verbose linkMans vinyl@0.4.6
+98592 silly build deep-equal@0.0.0
+98593 info linkStuff deep-equal@0.0.0
+98594 silly linkStuff deep-equal@0.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98595 verbose linkBins deep-equal@0.0.0
+98596 verbose linkMans deep-equal@0.0.0
+98597 silly build deep-extend@0.6.0
+98598 info linkStuff deep-extend@0.6.0
+98599 silly linkStuff deep-extend@0.6.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98600 verbose linkBins deep-extend@0.6.0
+98601 verbose linkMans deep-extend@0.6.0
+98602 silly build defined@1.0.0
+98603 info linkStuff defined@1.0.0
+98604 silly linkStuff defined@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98605 verbose linkBins defined@1.0.0
+98606 verbose linkMans defined@1.0.0
+98607 silly build delayed-stream@0.0.5
+98608 info linkStuff delayed-stream@0.0.5
+98609 silly linkStuff delayed-stream@0.0.5 has /var/www/html/sdgc/node_modules as its parent node_modules
+98610 verbose linkBins delayed-stream@0.0.5
+98611 verbose linkMans delayed-stream@0.0.5
+98612 silly build combined-stream@0.0.7
+98613 info linkStuff combined-stream@0.0.7
+98614 silly linkStuff combined-stream@0.0.7 has /var/www/html/sdgc/node_modules as its parent node_modules
+98615 verbose linkBins combined-stream@0.0.7
+98616 verbose linkMans combined-stream@0.0.7
+98617 silly build depd@1.1.2
+98618 info linkStuff depd@1.1.2
+98619 silly linkStuff depd@1.1.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98620 verbose linkBins depd@1.1.2
+98621 verbose linkMans depd@1.1.2
+98622 silly build destroy@1.0.4
+98623 info linkStuff destroy@1.0.4
+98624 silly linkStuff destroy@1.0.4 has /var/www/html/sdgc/node_modules as its parent node_modules
+98625 verbose linkBins destroy@1.0.4
+98626 verbose linkMans destroy@1.0.4
+98627 silly build domelementtype@1.1.3
+98628 info linkStuff domelementtype@1.1.3
+98629 silly linkStuff domelementtype@1.1.3 has /var/www/html/sdgc/node_modules/dom-serializer/node_modules as its parent node_modules
+98630 verbose linkBins domelementtype@1.1.3
+98631 verbose linkMans domelementtype@1.1.3
+98632 silly build domain-browser@1.2.0
+98633 info linkStuff domain-browser@1.2.0
+98634 silly linkStuff domain-browser@1.2.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98635 verbose linkBins domain-browser@1.2.0
+98636 verbose linkMans domain-browser@1.2.0
+98637 silly build domelementtype@1.3.0
+98638 info linkStuff domelementtype@1.3.0
+98639 silly linkStuff domelementtype@1.3.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98640 verbose linkBins domelementtype@1.3.0
+98641 verbose linkMans domelementtype@1.3.0
+98642 silly build domhandler@2.3.0
+98643 info linkStuff domhandler@2.3.0
+98644 silly linkStuff domhandler@2.3.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98645 verbose linkBins domhandler@2.3.0
+98646 verbose linkMans domhandler@2.3.0
+98647 silly build domutils@1.4.3
+98648 info linkStuff domutils@1.4.3
+98649 silly linkStuff domutils@1.4.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98650 verbose linkBins domutils@1.4.3
+98651 verbose linkMans domutils@1.4.3
+98652 silly build CSSselect@0.4.1
+98653 info linkStuff CSSselect@0.4.1
+98654 silly linkStuff CSSselect@0.4.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98655 verbose linkBins CSSselect@0.4.1
+98656 verbose linkMans CSSselect@0.4.1
+98657 silly build ee-first@1.1.1
+98658 info linkStuff ee-first@1.1.1
+98659 silly linkStuff ee-first@1.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98660 verbose linkBins ee-first@1.1.1
+98661 verbose linkMans ee-first@1.1.1
+98662 silly build encodeurl@1.0.2
+98663 info linkStuff encodeurl@1.0.2
+98664 silly linkStuff encodeurl@1.0.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98665 verbose linkBins encodeurl@1.0.2
+98666 verbose linkMans encodeurl@1.0.2
+98667 silly build entities@1.1.1
+98668 info linkStuff entities@1.1.1
+98669 silly linkStuff entities@1.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98670 verbose linkBins entities@1.1.1
+98671 verbose linkMans entities@1.1.1
+98672 silly build dom-serializer@0.0.1
+98673 info linkStuff dom-serializer@0.0.1
+98674 silly linkStuff dom-serializer@0.0.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98675 verbose linkBins dom-serializer@0.0.1
+98676 verbose linkMans dom-serializer@0.0.1
+98677 silly build escape-html@1.0.3
+98678 info linkStuff escape-html@1.0.3
+98679 silly linkStuff escape-html@1.0.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98680 verbose linkBins escape-html@1.0.3
+98681 verbose linkMans escape-html@1.0.3
+98682 silly build escape-string-regexp@1.0.5
+98683 info linkStuff escape-string-regexp@1.0.5
+98684 silly linkStuff escape-string-regexp@1.0.5 has /var/www/html/sdgc/node_modules as its parent node_modules
+98685 verbose linkBins escape-string-regexp@1.0.5
+98686 verbose linkMans escape-string-regexp@1.0.5
+98687 silly build esprima@1.0.4
+98688 info linkStuff esprima@1.0.4
+98689 silly linkStuff esprima@1.0.4 has /var/www/html/sdgc/node_modules as its parent node_modules
+98690 verbose linkBins esprima@1.0.4
+98691 verbose link bins [ { esparse: './bin/esparse.js',
+98691 verbose link bins     esvalidate: './bin/esvalidate.js' },
+98691 verbose link bins   '/var/www/html/sdgc/node_modules/.bin',
+98691 verbose link bins   false ]
+98692 verbose linkMans esprima@1.0.4
+98693 silly gentlyRm /var/www/html/sdgc/node_modules/.bin/esparse is being purged
+98694 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/.bin/esparse
+98695 silly gentlyRm /var/www/html/sdgc/node_modules/.bin/esvalidate is being purged
+98696 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/.bin/esvalidate
+98697 silly build estraverse@4.2.0
+98698 info linkStuff estraverse@4.2.0
+98699 silly linkStuff estraverse@4.2.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98700 verbose linkBins estraverse@4.2.0
+98701 verbose linkMans estraverse@4.2.0
+98702 silly build etag@1.8.1
+98703 info linkStuff etag@1.8.1
+98704 silly linkStuff etag@1.8.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98705 verbose linkBins etag@1.8.1
+98706 verbose linkMans etag@1.8.1
+98707 silly build eve-raphael@0.5.0
+98708 info linkStuff eve-raphael@0.5.0
+98709 silly linkStuff eve-raphael@0.5.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98710 verbose linkBins eve-raphael@0.5.0
+98711 verbose linkMans eve-raphael@0.5.0
+98712 silly build eventemitter2@0.4.14
+98713 info linkStuff eventemitter2@0.4.14
+98714 silly linkStuff eventemitter2@0.4.14 has /var/www/html/sdgc/node_modules as its parent node_modules
+98715 verbose linkBins eventemitter2@0.4.14
+98716 verbose linkMans eventemitter2@0.4.14
+98717 silly build events@2.1.0
+98718 info linkStuff events@2.1.0
+98719 silly linkStuff events@2.1.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98720 verbose linkBins events@2.1.0
+98721 verbose linkMans events@2.1.0
+98722 silly build exit@0.1.2
+98723 info linkStuff exit@0.1.2
+98724 silly linkStuff exit@0.1.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98725 verbose linkBins exit@0.1.2
+98726 verbose linkMans exit@0.1.2
+98727 silly build iconv-lite@0.4.19
+98728 info linkStuff iconv-lite@0.4.19
+98729 silly linkStuff iconv-lite@0.4.19 has /var/www/html/sdgc/node_modules/express/node_modules as its parent node_modules
+98730 verbose linkBins iconv-lite@0.4.19
+98731 verbose linkMans iconv-lite@0.4.19
+98732 silly build qs@6.5.1
+98733 info linkStuff qs@6.5.1
+98734 silly linkStuff qs@6.5.1 has /var/www/html/sdgc/node_modules/express/node_modules as its parent node_modules
+98735 verbose linkBins qs@6.5.1
+98736 verbose linkMans qs@6.5.1
+98737 silly build depd@1.1.1
+98738 info linkStuff depd@1.1.1
+98739 silly linkStuff depd@1.1.1 has /var/www/html/sdgc/node_modules/express/node_modules/raw-body/node_modules as its parent node_modules
+98740 verbose linkBins depd@1.1.1
+98741 verbose linkMans depd@1.1.1
+98742 silly build setprototypeof@1.0.3
+98743 info linkStuff setprototypeof@1.0.3
+98744 silly linkStuff setprototypeof@1.0.3 has /var/www/html/sdgc/node_modules/express/node_modules/raw-body/node_modules as its parent node_modules
+98745 verbose linkBins setprototypeof@1.0.3
+98746 verbose linkMans setprototypeof@1.0.3
+98747 silly build safe-buffer@5.1.1
+98748 info linkStuff safe-buffer@5.1.1
+98749 silly linkStuff safe-buffer@5.1.1 has /var/www/html/sdgc/node_modules/express/node_modules as its parent node_modules
+98750 verbose linkBins safe-buffer@5.1.1
+98751 verbose linkMans safe-buffer@5.1.1
+98752 silly build statuses@1.4.0
+98753 info linkStuff statuses@1.4.0
+98754 silly linkStuff statuses@1.4.0 has /var/www/html/sdgc/node_modules/express/node_modules as its parent node_modules
+98755 verbose linkBins statuses@1.4.0
+98756 verbose linkMans statuses@1.4.0
+98757 silly build extend@3.0.2
+98758 info linkStuff extend@3.0.2
+98759 silly linkStuff extend@3.0.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98760 verbose linkBins extend@3.0.2
+98761 verbose linkMans extend@3.0.2
+98762 silly build is-extglob@1.0.0
+98763 info linkStuff is-extglob@1.0.0
+98764 silly linkStuff is-extglob@1.0.0 has /var/www/html/sdgc/node_modules/extglob/node_modules as its parent node_modules
+98765 verbose linkBins is-extglob@1.0.0
+98766 verbose linkMans is-extglob@1.0.0
+98767 silly build extglob@0.3.2
+98768 info linkStuff extglob@0.3.2
+98769 silly linkStuff extglob@0.3.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98770 verbose linkBins extglob@0.3.2
+98771 verbose linkMans extglob@0.3.2
+98772 silly build extsprintf@1.3.0
+98773 info linkStuff extsprintf@1.3.0
+98774 silly linkStuff extsprintf@1.3.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98775 verbose linkBins extsprintf@1.3.0
+98776 verbose linkMans extsprintf@1.3.0
+98777 silly build eyes@0.1.8
+98778 info linkStuff eyes@0.1.8
+98779 silly linkStuff eyes@0.1.8 has /var/www/html/sdgc/node_modules as its parent node_modules
+98780 verbose linkBins eyes@0.1.8
+98781 verbose linkMans eyes@0.1.8
+98782 silly build faye-websocket@0.4.4
+98783 info linkStuff faye-websocket@0.4.4
+98784 silly linkStuff faye-websocket@0.4.4 has /var/www/html/sdgc/node_modules as its parent node_modules
+98785 verbose linkBins faye-websocket@0.4.4
+98786 verbose linkMans faye-websocket@0.4.4
+98787 silly build file-type@3.9.0
+98788 info linkStuff file-type@3.9.0
+98789 silly linkStuff file-type@3.9.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98790 verbose linkBins file-type@3.9.0
+98791 verbose linkMans file-type@3.9.0
+98792 silly build archive-type@3.2.0
+98793 info linkStuff archive-type@3.2.0
+98794 silly linkStuff archive-type@3.2.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98795 verbose linkBins archive-type@3.2.0
+98796 verbose linkMans archive-type@3.2.0
+98797 silly build filename-regex@2.0.1
+98798 info linkStuff filename-regex@2.0.1
+98799 silly linkStuff filename-regex@2.0.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98800 verbose linkBins filename-regex@2.0.1
+98801 verbose linkMans filename-regex@2.0.1
+98802 silly build filename-reserved-regex@1.0.0
+98803 info linkStuff filename-reserved-regex@1.0.0
+98804 silly linkStuff filename-reserved-regex@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98805 verbose linkBins filename-reserved-regex@1.0.0
+98806 verbose linkMans filename-reserved-regex@1.0.0
+98807 silly build filesize@3.6.1
+98808 info linkStuff filesize@3.6.1
+98809 silly linkStuff filesize@3.6.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98810 verbose linkBins filesize@3.6.1
+98811 verbose linkMans filesize@3.6.1
+98812 silly build statuses@1.4.0
+98813 info linkStuff statuses@1.4.0
+98814 silly linkStuff statuses@1.4.0 has /var/www/html/sdgc/node_modules/finalhandler/node_modules as its parent node_modules
+98815 verbose linkBins statuses@1.4.0
+98816 verbose linkMans statuses@1.4.0
+98817 silly build lodash@2.4.2
+98818 info linkStuff lodash@2.4.2
+98819 silly linkStuff lodash@2.4.2 has /var/www/html/sdgc/node_modules/findup-sync/node_modules as its parent node_modules
+98820 verbose linkBins lodash@2.4.2
+98821 verbose linkMans lodash@2.4.2
+98822 silly build first-chunk-stream@1.0.0
+98823 info linkStuff first-chunk-stream@1.0.0
+98824 silly linkStuff first-chunk-stream@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98825 verbose linkBins first-chunk-stream@1.0.0
+98826 verbose linkMans first-chunk-stream@1.0.0
+98827 silly build for-in@1.0.2
+98828 info linkStuff for-in@1.0.2
+98829 silly linkStuff for-in@1.0.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98830 verbose linkBins for-in@1.0.2
+98831 verbose linkMans for-in@1.0.2
+98832 silly build for-own@0.1.5
+98833 info linkStuff for-own@0.1.5
+98834 silly linkStuff for-own@0.1.5 has /var/www/html/sdgc/node_modules as its parent node_modules
+98835 verbose linkBins for-own@0.1.5
+98836 verbose linkMans for-own@0.1.5
+98837 silly build forever-agent@0.5.2
+98838 info linkStuff forever-agent@0.5.2
+98839 silly linkStuff forever-agent@0.5.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98840 verbose linkBins forever-agent@0.5.2
+98841 verbose linkMans forever-agent@0.5.2
+98842 silly build async@0.9.2
+98843 info linkStuff async@0.9.2
+98844 silly linkStuff async@0.9.2 has /var/www/html/sdgc/node_modules/form-data/node_modules as its parent node_modules
+98845 verbose linkBins async@0.9.2
+98846 verbose linkMans async@0.9.2
+98847 silly build mime@1.2.11
+98848 info linkStuff mime@1.2.11
+98849 silly linkStuff mime@1.2.11 has /var/www/html/sdgc/node_modules/form-data/node_modules as its parent node_modules
+98850 verbose linkBins mime@1.2.11
+98851 verbose linkMans mime@1.2.11
+98852 silly build form-data@0.1.4
+98853 info linkStuff form-data@0.1.4
+98854 silly linkStuff form-data@0.1.4 has /var/www/html/sdgc/node_modules as its parent node_modules
+98855 verbose linkBins form-data@0.1.4
+98856 verbose linkMans form-data@0.1.4
+98857 silly build forwarded@0.1.2
+98858 info linkStuff forwarded@0.1.2
+98859 silly linkStuff forwarded@0.1.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98860 verbose linkBins forwarded@0.1.2
+98861 verbose linkMans forwarded@0.1.2
+98862 silly build fresh@0.5.2
+98863 info linkStuff fresh@0.5.2
+98864 silly linkStuff fresh@0.5.2 has /var/www/html/sdgc/node_modules as its parent node_modules
+98865 verbose linkBins fresh@0.5.2
+98866 verbose linkMans fresh@0.5.2
+98867 silly build fs-constants@1.0.0
+98868 info linkStuff fs-constants@1.0.0
+98869 silly linkStuff fs-constants@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98870 verbose linkBins fs-constants@1.0.0
+98871 verbose linkMans fs-constants@1.0.0
+98872 silly build fs.realpath@1.0.0
+98873 info linkStuff fs.realpath@1.0.0
+98874 silly linkStuff fs.realpath@1.0.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98875 verbose linkBins fs.realpath@1.0.0
+98876 verbose linkMans fs.realpath@1.0.0
+98877 silly build function-bind@1.1.1
+98878 info linkStuff function-bind@1.1.1
+98879 silly linkStuff function-bind@1.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98880 verbose linkBins function-bind@1.1.1
+98881 verbose linkMans function-bind@1.1.1
+98882 silly build get-assigned-identifiers@1.2.0
+98883 info linkStuff get-assigned-identifiers@1.2.0
+98884 silly linkStuff get-assigned-identifiers@1.2.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98885 verbose linkBins get-assigned-identifiers@1.2.0
+98886 verbose linkMans get-assigned-identifiers@1.2.0
+98887 silly build get-stdin@4.0.1
+98888 info linkStuff get-stdin@4.0.1
+98889 silly linkStuff get-stdin@4.0.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98890 verbose linkBins get-stdin@4.0.1
+98891 verbose linkMans get-stdin@4.0.1
+98892 silly build getobject@0.1.0
+98893 info linkStuff getobject@0.1.0
+98894 silly linkStuff getobject@0.1.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98895 verbose linkBins getobject@0.1.0
+98896 verbose linkMans getobject@0.1.0
+98897 silly build assert-plus@1.0.0
+98898 info linkStuff assert-plus@1.0.0
+98899 silly linkStuff assert-plus@1.0.0 has /var/www/html/sdgc/node_modules/getpass/node_modules as its parent node_modules
+98900 verbose linkBins assert-plus@1.0.0
+98901 verbose linkMans assert-plus@1.0.0
+98902 silly build getpass@0.1.7
+98903 info linkStuff getpass@0.1.7
+98904 silly linkStuff getpass@0.1.7 has /var/www/html/sdgc/node_modules as its parent node_modules
+98905 verbose linkBins getpass@0.1.7
+98906 verbose linkMans getpass@0.1.7
+98907 silly build is-extglob@1.0.0
+98908 info linkStuff is-extglob@1.0.0
+98909 silly linkStuff is-extglob@1.0.0 has /var/www/html/sdgc/node_modules/glob-base/node_modules as its parent node_modules
+98910 verbose linkBins is-extglob@1.0.0
+98911 verbose linkMans is-extglob@1.0.0
+98912 silly build is-glob@2.0.1
+98913 info linkStuff is-glob@2.0.1
+98914 silly linkStuff is-glob@2.0.1 has /var/www/html/sdgc/node_modules/glob-base/node_modules as its parent node_modules
+98915 verbose linkBins is-glob@2.0.1
+98916 verbose linkMans is-glob@2.0.1
+98917 silly build glob-parent@2.0.0
+98918 info linkStuff glob-parent@2.0.0
+98919 silly linkStuff glob-parent@2.0.0 has /var/www/html/sdgc/node_modules/glob-base/node_modules as its parent node_modules
+98920 verbose linkBins glob-parent@2.0.0
+98921 verbose linkMans glob-parent@2.0.0
+98922 silly build glob-base@0.3.0
+98923 info linkStuff glob-base@0.3.0
+98924 silly linkStuff glob-base@0.3.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+98925 verbose linkBins glob-base@0.3.0
+98926 verbose linkMans glob-base@0.3.0
+98927 silly build isarray@0.0.1
+98928 info linkStuff isarray@0.0.1
+98929 silly linkStuff isarray@0.0.1 has /var/www/html/sdgc/node_modules/glob-stream/node_modules as its parent node_modules
+98930 verbose linkBins isarray@0.0.1
+98931 verbose linkMans isarray@0.0.1
+98932 silly build string_decoder@0.10.31
+98933 info linkStuff string_decoder@0.10.31
+98934 silly linkStuff string_decoder@0.10.31 has /var/www/html/sdgc/node_modules/glob-stream/node_modules as its parent node_modules
+98935 verbose linkBins string_decoder@0.10.31
+98936 verbose linkMans string_decoder@0.10.31
+98937 silly build inherits@1.0.2
+98938 info linkStuff inherits@1.0.2
+98939 silly linkStuff inherits@1.0.2 has /var/www/html/sdgc/node_modules/globule/node_modules as its parent node_modules
+98940 verbose linkBins inherits@1.0.2
+98941 verbose linkMans inherits@1.0.2
+98942 silly build lodash@1.0.2
+98943 info linkStuff lodash@1.0.2
+98944 silly linkStuff lodash@1.0.2 has /var/www/html/sdgc/node_modules/globule/node_modules as its parent node_modules
+98945 verbose linkBins lodash@1.0.2
+98946 verbose linkMans lodash@1.0.2
+98947 silly build graceful-fs@1.2.3
+98948 info linkStuff graceful-fs@1.2.3
+98949 silly linkStuff graceful-fs@1.2.3 has /var/www/html/sdgc/node_modules as its parent node_modules
+98950 verbose linkBins graceful-fs@1.2.3
+98951 verbose linkMans graceful-fs@1.2.3
+98952 silly build graceful-readlink@1.0.1
+98953 info linkStuff graceful-readlink@1.0.1
+98954 silly linkStuff graceful-readlink@1.0.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+98955 verbose linkBins graceful-readlink@1.0.1
+98956 verbose linkMans graceful-readlink@1.0.1
+98957 silly build commander@2.8.1
+98958 info linkStuff commander@2.8.1
+98959 silly linkStuff commander@2.8.1 has /var/www/html/sdgc/node_modules/clean-css/node_modules as its parent node_modules
+98960 verbose linkBins commander@2.8.1
+98961 verbose linkMans commander@2.8.1
+98962 silly build clean-css@3.4.28
+98963 info linkStuff clean-css@3.4.28
+98964 silly linkStuff clean-css@3.4.28 has /var/www/html/sdgc/node_modules as its parent node_modules
+98965 verbose linkBins clean-css@3.4.28
+98966 verbose link bins [ { cleancss: './bin/cleancss' },
+98966 verbose link bins   '/var/www/html/sdgc/node_modules/.bin',
+98966 verbose link bins   false ]
+98967 verbose linkMans clean-css@3.4.28
+98968 silly gentlyRm /var/www/html/sdgc/node_modules/.bin/cleancss is being purged
+98969 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/.bin/cleancss
+98970 silly build lodash@3.10.1
+98971 info linkStuff lodash@3.10.1
+98972 silly linkStuff lodash@3.10.1 has /var/www/html/sdgc/node_modules/grunt-contrib-csslint/node_modules as its parent node_modules
+98973 verbose linkBins lodash@3.10.1
+98974 verbose linkMans lodash@3.10.1
+98975 silly build ansi-regex@0.2.1
+98976 info linkStuff ansi-regex@0.2.1
+98977 silly linkStuff ansi-regex@0.2.1 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+98978 verbose linkBins ansi-regex@0.2.1
+98979 verbose linkMans ansi-regex@0.2.1
+98980 silly build ansi-styles@1.1.0
+98981 info linkStuff ansi-styles@1.1.0
+98982 silly linkStuff ansi-styles@1.1.0 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+98983 verbose linkBins ansi-styles@1.1.0
+98984 verbose linkMans ansi-styles@1.1.0
+98985 silly build async@0.2.10
+98986 info linkStuff async@0.2.10
+98987 silly linkStuff async@0.2.10 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+98988 verbose linkBins async@0.2.10
+98989 verbose linkMans async@0.2.10
+98990 silly build commander@2.2.0
+98991 info linkStuff commander@2.2.0
+98992 silly linkStuff commander@2.2.0 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+98993 verbose linkBins commander@2.2.0
+98994 verbose linkMans commander@2.2.0
+98995 silly build clean-css@2.2.23
+98996 info linkStuff clean-css@2.2.23
+98997 silly linkStuff clean-css@2.2.23 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+98998 verbose linkBins clean-css@2.2.23
+98999 verbose link bins [ { cleancss: './bin/cleancss' },
+98999 verbose link bins   '/var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin',
+98999 verbose link bins   false ]
+99000 verbose linkMans clean-css@2.2.23
+99001 silly gentlyRm /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin/cleancss is being purged
+99002 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin/cleancss
+99003 silly build has-ansi@0.1.0
+99004 info linkStuff has-ansi@0.1.0
+99005 silly linkStuff has-ansi@0.1.0 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+99006 verbose linkBins has-ansi@0.1.0
+99007 verbose link bins [ { 'has-ansi': 'cli.js' },
+99007 verbose link bins   '/var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin',
+99007 verbose link bins   false ]
+99008 verbose linkMans has-ansi@0.1.0
+99009 silly gentlyRm /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin/has-ansi is being purged
+99010 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin/has-ansi
+99011 silly build lodash@2.4.2
+99012 info linkStuff lodash@2.4.2
+99013 silly linkStuff lodash@2.4.2 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+99014 verbose linkBins lodash@2.4.2
+99015 verbose linkMans lodash@2.4.2
+99016 silly build ansi-styles@1.0.0
+99017 info linkStuff ansi-styles@1.0.0
+99018 silly linkStuff ansi-styles@1.0.0 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/maxmin/node_modules as its parent node_modules
+99019 verbose linkBins ansi-styles@1.0.0
+99020 verbose linkMans ansi-styles@1.0.0
+99021 silly build strip-ansi@0.1.1
+99022 info linkStuff strip-ansi@0.1.1
+99023 silly linkStuff strip-ansi@0.1.1 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/maxmin/node_modules as its parent node_modules
+99024 verbose linkBins strip-ansi@0.1.1
+99025 verbose link bins [ { 'strip-ansi': 'cli.js' },
+99025 verbose link bins   '/var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/maxmin/node_modules/.bin',
+99025 verbose link bins   false ]
+99026 verbose linkMans strip-ansi@0.1.1
+99027 silly gentlyRm /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/maxmin/node_modules/.bin/strip-ansi is being purged
+99028 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/maxmin/node_modules/.bin/strip-ansi
+99029 silly build mime@1.2.11
+99030 info linkStuff mime@1.2.11
+99031 silly linkStuff mime@1.2.11 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+99032 verbose linkBins mime@1.2.11
+99033 verbose linkMans mime@1.2.11
+99034 silly build pretty-bytes@0.1.2
+99035 info linkStuff pretty-bytes@0.1.2
+99036 silly linkStuff pretty-bytes@0.1.2 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+99037 verbose linkBins pretty-bytes@0.1.2
+99038 verbose link bins [ { 'pretty-bytes': 'cli.js' },
+99038 verbose link bins   '/var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin',
+99038 verbose link bins   false ]
+99039 verbose linkMans pretty-bytes@0.1.2
+99040 silly gentlyRm /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin/pretty-bytes is being purged
+99041 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin/pretty-bytes
+99042 silly build source-map@0.1.43
+99043 info linkStuff source-map@0.1.43
+99044 silly linkStuff source-map@0.1.43 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+99045 verbose linkBins source-map@0.1.43
+99046 verbose linkMans source-map@0.1.43
+99047 silly build strip-ansi@0.3.0
+99048 info linkStuff strip-ansi@0.3.0
+99049 silly linkStuff strip-ansi@0.3.0 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+99050 verbose linkBins strip-ansi@0.3.0
+99051 verbose link bins [ { 'strip-ansi': 'cli.js' },
+99051 verbose link bins   '/var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin',
+99051 verbose link bins   false ]
+99052 verbose linkMans strip-ansi@0.3.0
+99053 silly gentlyRm /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin/strip-ansi is being purged
+99054 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin/strip-ansi
+99055 silly build supports-color@0.2.0
+99056 info linkStuff supports-color@0.2.0
+99057 silly linkStuff supports-color@0.2.0 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+99058 verbose linkBins supports-color@0.2.0
+99059 verbose link bins [ { 'supports-color': 'cli.js' },
+99059 verbose link bins   '/var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin',
+99059 verbose link bins   false ]
+99060 verbose linkMans supports-color@0.2.0
+99061 silly gentlyRm /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin/supports-color is being purged
+99062 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules/.bin/supports-color
+99063 silly build chalk@0.5.1
+99064 info linkStuff chalk@0.5.1
+99065 silly linkStuff chalk@0.5.1 has /var/www/html/sdgc/node_modules/grunt-contrib-less/node_modules as its parent node_modules
+99066 verbose linkBins chalk@0.5.1
+99067 verbose linkMans chalk@0.5.1
+99068 silly build ansi-regex@0.2.1
+99069 info linkStuff ansi-regex@0.2.1
+99070 silly linkStuff ansi-regex@0.2.1 has /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules as its parent node_modules
+99071 verbose linkBins ansi-regex@0.2.1
+99072 verbose linkMans ansi-regex@0.2.1
+99073 silly build ansi-styles@1.1.0
+99074 info linkStuff ansi-styles@1.1.0
+99075 silly linkStuff ansi-styles@1.1.0 has /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules as its parent node_modules
+99076 verbose linkBins ansi-styles@1.1.0
+99077 verbose linkMans ansi-styles@1.1.0
+99078 silly build has-ansi@0.1.0
+99079 info linkStuff has-ansi@0.1.0
+99080 silly linkStuff has-ansi@0.1.0 has /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules as its parent node_modules
+99081 verbose linkBins has-ansi@0.1.0
+99082 verbose link bins [ { 'has-ansi': 'cli.js' },
+99082 verbose link bins   '/var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules/.bin',
+99082 verbose link bins   false ]
+99083 verbose linkMans has-ansi@0.1.0
+99084 silly gentlyRm /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules/.bin/has-ansi is being purged
+99085 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules/.bin/has-ansi
+99086 silly build lodash@2.4.2
+99087 info linkStuff lodash@2.4.2
+99088 silly linkStuff lodash@2.4.2 has /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules as its parent node_modules
+99089 verbose linkBins lodash@2.4.2
+99090 verbose linkMans lodash@2.4.2
+99091 silly build strip-ansi@0.3.0
+99092 info linkStuff strip-ansi@0.3.0
+99093 silly linkStuff strip-ansi@0.3.0 has /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules as its parent node_modules
+99094 verbose linkBins strip-ansi@0.3.0
+99095 verbose link bins [ { 'strip-ansi': 'cli.js' },
+99095 verbose link bins   '/var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules/.bin',
+99095 verbose link bins   false ]
+99096 verbose linkMans strip-ansi@0.3.0
+99097 silly gentlyRm /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules/.bin/strip-ansi is being purged
+99098 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules/.bin/strip-ansi
+99099 silly build supports-color@0.2.0
+99100 info linkStuff supports-color@0.2.0
+99101 silly linkStuff supports-color@0.2.0 has /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules as its parent node_modules
+99102 verbose linkBins supports-color@0.2.0
+99103 verbose link bins [ { 'supports-color': 'cli.js' },
+99103 verbose link bins   '/var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules/.bin',
+99103 verbose link bins   false ]
+99104 verbose linkMans supports-color@0.2.0
+99105 silly gentlyRm /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules/.bin/supports-color is being purged
+99106 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules/.bin/supports-color
+99107 silly build chalk@0.5.1
+99108 info linkStuff chalk@0.5.1
+99109 silly linkStuff chalk@0.5.1 has /var/www/html/sdgc/node_modules/grunt-contrib-uglify/node_modules as its parent node_modules
+99110 verbose linkBins chalk@0.5.1
+99111 verbose linkMans chalk@0.5.1
+99112 silly build async@0.2.10
+99113 info linkStuff async@0.2.10
+99114 silly linkStuff async@0.2.10 has /var/www/html/sdgc/node_modules/grunt-contrib-watch/node_modules as its parent node_modules
+99115 verbose linkBins async@0.2.10
+99116 verbose linkMans async@0.2.10
+99117 silly build lodash@2.4.2
+99118 info linkStuff lodash@2.4.2
+99119 silly linkStuff lodash@2.4.2 has /var/www/html/sdgc/node_modules/grunt-contrib-watch/node_modules as its parent node_modules
+99120 verbose linkBins lodash@2.4.2
+99121 verbose linkMans lodash@2.4.2
+99122 silly build grunt-cssjanus@0.2.4
+99123 info linkStuff grunt-cssjanus@0.2.4
+99124 silly linkStuff grunt-cssjanus@0.2.4 has /var/www/html/sdgc/node_modules as its parent node_modules
+99125 verbose linkBins grunt-cssjanus@0.2.4
+99126 verbose linkMans grunt-cssjanus@0.2.4
+99127 silly build async@1.5.2
+99128 info linkStuff async@1.5.2
+99129 silly linkStuff async@1.5.2 has /var/www/html/sdgc/node_modules/grunt-image/node_modules as its parent node_modules
+99130 verbose linkBins async@1.5.2
+99131 verbose linkMans async@1.5.2
+99132 silly build grunt-includes@0.4.5
+99133 info linkStuff grunt-includes@0.4.5
+99134 silly linkStuff grunt-includes@0.4.5 has /var/www/html/sdgc/node_modules as its parent node_modules
+99135 verbose linkBins grunt-includes@0.4.5
+99136 verbose linkMans grunt-includes@0.4.5
+99137 silly build lodash@4.6.1
+99138 info linkStuff lodash@4.6.1
+99139 silly linkStuff lodash@4.6.1 has /var/www/html/sdgc/node_modules/grunt-jscs/node_modules as its parent node_modules
+99140 verbose linkBins lodash@4.6.1
+99141 verbose linkMans lodash@4.6.1
+99142 silly build lodash@2.4.2
+99143 info linkStuff lodash@2.4.2
+99144 silly linkStuff lodash@2.4.2 has /var/www/html/sdgc/node_modules/grunt-legacy-log-utils/node_modules as its parent node_modules
+99145 verbose linkBins lodash@2.4.2
+99146 verbose linkMans lodash@2.4.2
+99147 silly build underscore.string@2.3.3
+99148 info linkStuff underscore.string@2.3.3
+99149 silly linkStuff underscore.string@2.3.3 has /var/www/html/sdgc/node_modules/grunt-legacy-log-utils/node_modules as its parent node_modules
+99150 verbose linkBins underscore.string@2.3.3
+99151 verbose linkMans underscore.string@2.3.3
+99152 silly build grunt-legacy-log-utils@0.1.1
+99153 info linkStuff grunt-legacy-log-utils@0.1.1
+99154 silly linkStuff grunt-legacy-log-utils@0.1.1 has /var/www/html/sdgc/node_modules as its parent node_modules
+99155 verbose linkBins grunt-legacy-log-utils@0.1.1
+99156 verbose linkMans grunt-legacy-log-utils@0.1.1
+99157 silly build lodash@2.4.2
+99158 info linkStuff lodash@2.4.2
+99159 silly linkStuff lodash@2.4.2 has /var/www/html/sdgc/node_modules/grunt-legacy-log/node_modules as its parent node_modules
+99160 verbose linkBins lodash@2.4.2
+99161 verbose linkMans lodash@2.4.2
+99162 silly build underscore.string@2.3.3
+99163 info linkStuff underscore.string@2.3.3
+99164 silly linkStuff underscore.string@2.3.3 has /var/www/html/sdgc/node_modules/grunt-legacy-log/node_modules as its parent node_modules
+99165 verbose linkBins underscore.string@2.3.3
+99166 verbose linkMans underscore.string@2.3.3
+99167 silly build semver@5.5.0
+99168 info linkStuff semver@5.5.0
+99169 silly linkStuff semver@5.5.0 has /var/www/html/sdgc/node_modules/grunt-notify/node_modules as its parent node_modules
+99170 verbose linkBins semver@5.5.0
+99171 verbose link bins [ { semver: './bin/semver' },
+99171 verbose link bins   '/var/www/html/sdgc/node_modules/grunt-notify/node_modules/.bin',
+99171 verbose link bins   false ]
+99172 verbose linkMans semver@5.5.0
+99173 silly gentlyRm /var/www/html/sdgc/node_modules/grunt-notify/node_modules/.bin/semver is being purged
+99174 verbose gentlyRm don't care about contents; nuking /var/www/html/sdgc/node_modules/grunt-notify/node_modules/.bin/semver
+99175 silly build grunt-text-replace@0.4.0
+99176 info linkStuff grunt-text-replace@0.4.0
+99177 silly linkStuff grunt-text-replace@0.4.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+99178 verbose linkBins grunt-text-replace@0.4.0
+99179 verbose linkMans grunt-text-replace@0.4.0
+99180 silly build inherits@1.0.2
+99181 info linkStuff inherits@1.0.2
+99182 silly linkStuff inherits@1.0.2 has /var/www/html/sdgc/node_modules/grunt/node_modules as its parent node_modules
+99183 verbose linkBins inherits@1.0.2
+99184 verbose linkMans inherits@1.0.2
+99185 silly build gulp-rename@1.4.0
+99186 info linkStuff gulp-rename@1.4.0
+99187 silly linkStuff gulp-rename@1.4.0 has /var/www/html/sdgc/node_modules as its parent node_modules
+99188 verbose linkBins gulp-rename@1.4.0
+99189 verbose linkMans gulp-rename@1.4.0
+99190 silly build graceful-fs@4.1.11
+99191 info linkStuff graceful-fs@4.1.11
+99192 silly linkStuff graceful-fs@4.1.11 has /var/www/html/sdgc/node_modules/gulp-sourcemaps/node_modules as its parent node_modules
+99193 verbose linkBins graceful-fs@4.1.11
+99194 verbose linkMans graceful-fs@4.1.11
+99195 silly build dateformat@2.2.0
+99196 info linkStuff dateformat@2.2.0
+99197 silly linkStuff dateformat@2.2.0 has /var/www/html/sdgc/node_modules/gulp-util/node_modules as its parent node_modules
+99198 verbose linkBins dateformat@
