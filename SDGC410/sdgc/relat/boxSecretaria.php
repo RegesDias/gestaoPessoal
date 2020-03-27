@@ -7,7 +7,6 @@
 
                 </select>
             </div>
-        
+       <?php require_once '../javascript/fBoxSecretariaSetor.php'; ?>
     </div>
 </div>
-<?php require_once 'javascript/fBoxSecretariaSetor.php';

@@ -24,6 +24,7 @@
         $respGet[pgLotacaoSub] = $respGet[pg];
         $respGet[pgServidor] = $respGet[pg];
     }
+    $respGet[acao]='limparSessao';
     if($respGet[acao]=='limparSessao'){
         $_SESSION[lotacaoVariavel] = Null; 
         $_SESSION[lotacaoSubVariavel] = Null;
@@ -59,20 +60,6 @@
         }
         $msnTexto = "ao alterar variavel. ".$executar['msn'];       
     }
-    //lotacaoVariavel
-    if($respGet[acao]=='selecionarSecretaria'){
-        if(isset($respGet[idSecretaria])){
-            $_SESSION[idLotacao] = $respGet[idSecretaria];
-        }
-        $lv = array($_SESSION[idLotacao]);
-        $_SESSION[lotacaoSubVariavel]= Null; 
-        $_SESSION[servidorVariavel]= Null; 
-        $_SESSION[nomeVariavel]= Null; 
-        $respGet[pgLotacao] = 1;
-        $_SESSION[lotacaoVariavel] = getRest('variaveis/getListaVariaveisLotacao',$lv);
-        $_SESSION[lotacaoSub] = getRest('lotacao/getListaLotacaoSubUsuario',$lv);
-    }
-    
     //Setor----------->
     //fecharVariavelSetor
   
@@ -193,21 +180,6 @@
             }
             $msnTexto = "ao alterar variavel. ".$executar['msn'];
     }
-    //setorVariavel
-    //------------------------------------------------->
-
-    //----------
-    if($respGet[acao]=='selecionarSetor'){
-        $lvs = array($_SESSION[idLotacao],$respGet[idVariavelDesc]);
-        $_SESSION[nomeVariavel]=$respGet[nomeVariavelDesc];
-        $_SESSION[nomeLotacaoSub] = Null;
-        $_SESSION[servidorVariavel] = Null;
-        $respGet[pgLotacaoSub] = 1;
-        $_SESSION[lotacaoSubVariavel] = getRest('variaveis/getListaVariaveisLotacaoSub',$lvs);
-        $respGet[acao] =  'buscarVariavelLotacao';
-        $_SESSION[idVariavelDesc] = $respGet[idVariavelDesc];
-    }
-    
     //servidor----------->---
     //Alterar Status Aprovar Variavel Servidor
     if($respGet[acao]=='aprovarVariavelServidor'){
@@ -255,24 +227,6 @@
         $msnTexto = "ao alterar variavel. ".$executar['msn'];
     }
     //servidoresVariavel
-    if($respGet[acao]=='servidoresVariavel'){
-        if($respGet[idLotacaoSub] != ""){$_SESSION[idLotacaoSub] = $respGet[idLotacaoSub];}
-        if($respGet[idVariavelDesc] != ""){$_SESSION[idVariavelDesc] = $respGet[idVariavelDesc];}
-        if($respGet[nomeLotacaoSub] != ""){$_SESSION[nomeLotacaoSub] = $respGet[nomeLotacaoSub];}
-        $sv = array($_SESSION[idLotacaoSub],$_SESSION[idVariavelDesc]);
-        $_SESSION[servidorVariavel] = getRest('variaveis/getListaVariaveisPorSetorPorVariavelDesc',$sv);
-        $i=0;
-        $f=0;
-        foreach ($_SESSION[servidorVariavel] as $t){
-            if($_SESSION[servidorVariavel][$i][status] == 'Aprovado'){
-                $f++;
-            }
-            $i++;
-        }
-        $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado]=$f;
-        $respGet[acao]='buscarVariavelLotacaoSub';
-        $respGet[pgServidor] = 1;
-    }
     if($respGet[acao]=='buscarVariavelServidor'){
         if(is_numeric($respGet[nomeMatriculaPessoa]) == true ){
             $matricula = $respGet[nomeMatriculaPessoa];
@@ -330,16 +284,16 @@
          <div class="box">
             <div class="box-header">
                 <div class="box-body no-padding">
-                    <form action="index.php" method="<?=$method?>" name="formTemplate">   
+                    <form>   
                         <div id="carregaLot-variaveis">
-                        <?php //require_once 'relat/boxSecretaria.php';?>
+                            <?php require_once '../relat/boxSecretaria.php';?>
                         </div>
                         <div class="box-footer pull-right">
-                            <input type="hidden" name="pg" value="1"/>
-                            <input type="hidden" name="pst" value="<?=$pst?>"/>
-                            <input type="hidden" name="arq" value="<?=$arq?>"/>
                             <input type="hidden" name="acao" value="selecionarSecretaria"/>
-                            <button type="submit" class="btn btn-primary">Abrir</button>
+                            <!--<button type="submit" class="btn btn-primary">Abrir</button>-->
+                         <button class="btn btn-primary" onclick="buscaVVariavel('selecionarSecretaria',$('#secretariaID').val())" type="button">
+                            <i class="fa fa-search"></i> Abrir
+                        </button>
                         </div>
                     </form>
                 </div>
@@ -347,535 +301,54 @@
         </div>
     </div>
 </div>
-<?php if(count($_SESSION[lotacaoVariavel])>0){?>
- <div class="box">
-    <div class="box-header">
-        <h3 class="box-title">
-            Variável
-        </h3>
-        <div class="box-tools">
-            <?php if(count($_SESSION[lotacaoVariavel]) == 1){?>
-                 <form action="index.php" method="<?=$method?>" class="inline">
-                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                    <input type="hidden" name="acao" value="selecionarSecretaria"/>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-mail-reply"></i></button>
-                </form>
-            <?php }else{ ?>
-                <form action="index.php" method="<?=$method?>" class="inline">
-                    <div class="input-group input-group-sm" style="width: 200px;">
-                      <input type="hidden" name="pst" value="<?=$pst?>"/>
-                      <input type="hidden" name="arq" value="<?=$arq?>"/>
-                      <select name='nomeVariavelDesc'class="form-control select2" id='ocorrencia' style="width: 100%;">
-                        <?php foreach ($_SESSION["variavelPerfil"] as $ArrEspPlan){
-                            ?>
-                          <option value="<?=$ArrEspPlan['nome']?>"><?=$ArrEspPlan['nome']?></option>
-                          <?php }?>
-                      </select>
-                      <div class="input-group-btn">
-                          <input type="hidden" name="acao" value="buscarVariavelLotacao"/>
-                          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                </form>
-            <?php }?>
-        </div>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body no-padding">
-      <table class="table table-condensed">
-        <tr>
-          <th>Ação</th>
-          <th>Validação</th>
-          <th>Status</th>
-          <th>Variáveis</th>
-          <th>Processo</th>
-          <th style="width: 40px"></th>
-        </tr>
-        <?php foreach (paginaAtual($_SESSION[lotacaoVariavel],$respGet[pgLotacao]) as $ArrEsp){?>
-            <tr>
-               <td>
-                    <form action="index.php" method="<?=$method?>" class="inline">
-                            <input type="hidden" name="pst" value="<?=$pst?>"/>
-                            <input type="hidden" name="arq" value="<?=$arq?>"/>
-                            <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
-                            <input type="hidden" name="nomeVariavelDesc" value="<?=$ArrEsp[variaveisDesc]?>"/>
-                            <input type="hidden" name="acao" value="selecionarSetor"/>
-                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </form>
-                   <?php
-                   $ArrEsp[codValidacao] = bin2hex(mhash(MHASH_ADLER32, $ArrEsp[codValidacao]));
-                   if($ArrEsp[status] == 1){
-                       $lableStatus = "label label-success";
-                       $lableNome = "Fechado";
-                       $MsnNome = "Aberto";
-                       $barraPercent = "progress-bar progress-bar-success";
-                       $numeroPercent = "badge bg-green";
-                       $lableBtn = "btn btn-success";
-                       $btnTipo = "fa fa-lock";
-                    }else{
-                       $lableStatus = "label label-warning";
-                       $lableNome = "Aberto";
-                       $MsnNome = "Fechado";
-                       $barraPercent = "progress-bar progress-bar-yellow";
-                       $numeroPercent = "badge bg-yellow-active";
-                       $lableBtn = "btn btn-warning";
-                       $btnTipo = "fa fa-unlock-alt";
-                     }
-                   if($btnFecharLotacao == true){?>
-                        <button class="<?=$lableBtn?>" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" ><i class="<?=$btnTipo?>"></i></button>
-
-                        <div class="modal fade" id="fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
-                          <div class="modal-dialog modal-md">
-                            <div class="modal-content">
-                              <div class="modal-body">
-                                    <p>O status da variável <?=$ArrEsp[variaveisDesc]?> vai ser alterado para <?=$MsnNome?>. Deseja realmente fazer esta ação?</p>
-                              </div>
-                              <div class="modal-footer">
-                                    <form action="index.php" method="<?=$method?>" class="inline">
-                                            <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                            <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                            <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
-                                            <input type="hidden" name="nomeVariavelDesc" value="<?=$ArrEsp[variaveisDesc]?>"/>
-                                            <input type="hidden" name="acao" value="fecharVariavelSecretaria"/>
-                                            <button class="btn btn-primary">Confirmar</button>
-                                    </form>
-                                    <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <form action="index.php" method="<?=$method?>" class="inline">
-                                <input type="hidden" name="vpst" value="<?=$pst?>" />
-                                <input type="hidden" name="varq" value="<?=$arq?>" />
-                                <input type="hidden" name="codValidacao" value="<?=$ArrEsp[codValidacao]?>" />
-                                <input type="hidden" name="pst" value="print"/>
-                                <input type="hidden" name="arq" value="info"/>
-                                <input type="hidden" name="id" value="<?=$_SESSION['funcionalBusca']['id']?>"/>
-                                <input type="hidden" name="pg" value="<?=$respGet[pgLotacao]?>"/>
-                                <input type="hidden" name="acao" value="fichaFuncional"/>
-                                <input type="hidden" name="idLotacao" value="<?=$_SESSION[idLotacao]?>"/>
-                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
-                                <input type="hidden" name="nomeVariavelDesc" value="<?=$ArrEsp[variaveisDesc]?>"/>
-                                <input type="hidden" name="acao" value="relatVariavelLotacao"/>
-                                <button class="btn btn-primary"><i class="fa fa-print"></i></button>
-                        </form>
-                       <?php if($btnTipo == "fa fa-lock"){?>
-                        <form action="index.php" method="<?=$method?>" class="inline">
-                                <input type="hidden" name="vpst" value="<?=$pst?>" />
-                                <input type="hidden" name="varq" value="<?=$arq?>" />
-                                <input type="hidden" name="codValidacao" value="<?=$ArrEsp[codValidacao]?>" />
-                                <input type="hidden" name="pst" value="print"/>
-                                <input type="hidden" name="arq" value="info"/>
-                                <input type="hidden" name="id" value="<?=$_SESSION['funcionalBusca']['id']?>"/>
-                                <input type="hidden" name="pg" value="<?=$respGet[pgLotacao]?>"/>
-                                <input type="hidden" name="acao" value="fichaFuncional"/>
-                                <input type="hidden" name="idLotacao" value="<?=$_SESSION[idLotacao]?>"/>
-                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
-                                <input type="hidden" name="nomeVariavelDesc" value="<?=$ArrEsp[variaveisDesc]?>"/>
-                                <input type="hidden" name="acao" value="relatFechamentoVariavel"/>
-                                <button class="btn btn-github"><i class="fa fa-stack-overflow"></i></button>
-                        </form>
-                    <?php }}
-                   
-                       ?>
-               </td>
-               <td><?=$ArrEsp[codValidacao]?></td>
-               <td><span class="<?=$lableStatus?>"><?=$lableNome?></span></td>
-             <td><?=$ArrEsp[variaveisDesc]?></td>
-             <td>
-               <div class="progress progress-xs progress-striped active">
-                 <div class="<?=$barraPercent?>" style="width: <?=$ArrEsp[porcentagem]?>%"></div>
-               </div>
-             </td>
-             <td><span class="<?=$numeroPercent?>"><?=$ArrEsp[porcentagem]?>%</span></td>
-           </tr>         
-       <?php }?>
-      </table>
-        <?=controleDePagina($_SESSION[lotacaoVariavel],$respGet[pgLotacao],"pgLotacao");?> 
-    </div>
-    <!-- /.box-body -->
-  <!-- /.box -->
-</div><br>
-<?php }?>
-<?php if(count($_SESSION[lotacaoSubVariavel])>0){?>
- <div class="row">
-        <div class="col-xs-12">
-          <div class="box box-danger">
-            <div class="box-header">
-              <h3 class="box-title">Setor</h3>
-
-              <div class="box-tools">
-            <?php if(count($_SESSION[lotacaoSubVariavel]) == 1){?>
-                 <form action="index.php" method="<?=$method?>" class="inline">
-                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                    <input type="hidden" name="idVariavelDesc" value="<?=$_SESSION[idVariavelDesc]?>"/>
-                    <input type="hidden" name="acao" value="selecionarSetor"/>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-mail-reply"></i></button>
-                </form>
-            <?php }else{ ?>
-                <form action="index.php" method="<?=$method?>" class="inline">
-                    <div class="input-group input-group-sm" style="width: 200px;">
-                      <input type="hidden" name="pst" value="<?=$pst?>"/>
-                      <input type="hidden" name="arq" value="<?=$arq?>"/>
-                      <select name='nomeLotacaoSub'class="form-control select2" id='ocorrencia' style="width: 100%;">
-                        <?php foreach ($_SESSION["lotacaoSub"] as $ArrEspPlan){
-                            ?>
-                          <option value="<?=$ArrEspPlan['nome']?>"><?=$ArrEspPlan['nome']?></option>
-                          <?php }?>
-                      </select>
-                      <!--<input type="text" name="variaveisDesc" class="form-control pull-right" placeholder="Search">-->
-                      <div class="input-group-btn">
-                          <input type="hidden" name="acao" value="buscarVariavelLotacaoSub"/>
-                          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                        <!--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
-                      </div>
-                    </div>
-                </form>
-            <?php }?>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <table class="table table-hover">
-                <tr>
-                  <th>SETOR</th>
-                  <th>Aprovados</th>
-                  <th>Data</th>
-                  <th>Status</th>
-                  <th>Ação</th>
-                </tr>
-                <?php 
-                    foreach (paginaAtual($_SESSION[lotacaoSubVariavel],$respGet[pgLotacaoSub]) as $ArrEspp){
-                        $id = str_replace(".", "", $ArrEspp[idLotacaoSub]);
-                        if($ArrEspp[status] == 1){
-                            $lableBtn = "btn btn-success";
-                            $lableNome = "Fechado";
-                            $MsnNome = "Aberto";
-                            $lableStatus = "label label-success";
-                            $disable = "disabled='disabled'";
-                            $btnTipo ="fa fa-lock"; ?>
-                        <?php }else{
-                            $lableBtn = "btn btn-warning";
-                            $lableNome = "Aberto";
-                            $MsnNome = "Fechado";
-                            $lableStatus = "label label-warning";
-                            $disable = "";
-                            $btnTipo ="fa fa-unlock-alt"; 
-                            ?>
-                        <?php }
-                        if(1 == $_SESSION['lotacaoSubFechado']){
-                            $disableLotacaoFechado = "disabled='disabled'";
-                        }else{
-                            $disableLotacaoFechado = "";
-                        }   
-                        
-                        ?> 
-                    <tr>
-                      <td><?=$ArrEspp[nomeLotacaoSub]?></td>
-                      <td><?=$ArrEspp[quantidadeAprovado]?></td>
-                      <td><?=$ArrEspp[dataLancamento]?></td>
-                      <td><span class="<?=$lableStatus?>"><?=$lableNome?></span></td>
-                      <td>
-                            <form action="index.php" method="<?=$method?>" class="inline">
-                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                    <input type="hidden" name="idVariavelDesc" value="<?=$ArrEspp[idVariavelDesc]?>"/>
-                                    <input type="hidden" name="idLotacaoSub" value="<?=$ArrEspp[idLotacaoSub]?>"/>
-                                    <input type="hidden" name="nomeLotacaoSub" value="<?=$ArrEspp[nomeLotacaoSub]?>"/>
-                                    <input type="hidden" name="acao" value="servidoresVariavel"/>
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                            </form>
-                            <button <?=$disableLotacaoFechado?> class="<?=$lableBtn?>" data-toggle="modal" data-target="#fecha<?=$id?>"><i class="<?=$btnTipo?>"></i></button>
-                            <div class="modal fade" id="fecha<?=$id?>" role="dialog">
-                              <div class="modal-dialog modal-md">
-                                <div class="modal-content">
-                                  <div class="modal-body">
-                                        <p>O status da variável <?=$ArrEsp[variaveisDesc]?> do setor <?=$ArrEspp[nomeLotacaoSub]?> vai ser alterado para <?=$MsnNome?>. Deseja realmente fazer esta ação?</p>
-                                  </div>
-                                  <div class="modal-footer">
-                                        <form action="index.php" method="<?=$method?>" class="inline">
-                                                <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                                <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEspp[idVariavelDesc]?>"/>
-                                                <input type="hidden" name="idLotacaoSub" value="<?=$ArrEspp[idLotacaoSub]?>"/>
-                                                <input type="hidden" name="nomeLotacaoSub" value="<?=$ArrEspp[nomeLotacaoSub]?>"/>
-                                                <input type="hidden" name="pgLotacaoSub" value="<?=$respGet[pgLotacaoSub]?>"/>
-                                                <input type="hidden" name="acao" value="fecharVariavelSetor"/>
-                                                <button class="btn btn-primary">Confirmar</button>
-                                        </form>
-                                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <?php if($btnFecharLotacaoSub == true){?>
-                            <button title="Troca o status de todos os lançamentos para Aprovado" type="submit" <?=$disable?>  class="btn btn-success" data-toggle="modal" data-target="#aprovar<?=$id?>"><i class="fa fa-check-circle"></i></button>
-                            <div class="modal fade" id="aprovar<?=$id?>" role="dialog">
-                              <div class="modal-dialog modal-md">
-                                <div class="modal-content">
-                                  <div class="modal-body">
-                                        <p> Aprovar todas as variáveis <?=$ArrEsp[variaveisDesc]?> do setor <?=$ArrEspp[nomeLotacaoSub]?>. Deseja realmente fazer esta ação?</p>
-                                  </div>
-                                  <div class="modal-footer">
-                                        <form action="index.php" method="<?=$method?>" class="inline">
-                                                <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                                <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEspp[idVariavelDesc]?>"/>
-                                                <input type="hidden" name="idLotacaoSub" value="<?=$ArrEspp[idLotacaoSub]?>"/>
-                                                <input type="hidden" name="nomeLotacaoSub" value="<?=$ArrEspp[nomeLotacaoSub]?>"/>
-                                                <input type="hidden" name="pgLotacaoSub" value="<?=$respGet[pgLotacaoSub]?>"/>
-                                                <input type="hidden" name="acao" value="aprovarVariavelSetor"/>
-                                                <button class="btn btn-primary">Confirmar</button>
-                                        </form>
-                                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <?php }?>
-                            <button title="Troca o status de tosdo os lançamentos para Negado" type="submit" <?=$disable?>  class="btn btn-danger" data-toggle="modal" data-target="#reprovar<?=$id?>"><i class="fa fa-ban"></i></button>
-                            <div class="modal fade" id="reprovar<?=$id?>" role="dialog">
-                              <div class="modal-dialog modal-md">
-                                <div class="modal-content">
-                                  <div class="modal-body">
-                                        <p> Reprovar todas as variáveis <?=$ArrEsp[variaveisDesc]?> do setor <?=$ArrEspp[nomeLotacaoSub]?>. Deseja realmente fazer esta ação?</p>
-                                  </div>
-                                  <div class="modal-footer">
-                                        <form action="index.php" method="<?=$method?>" class="inline">
-                                                <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                                <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEspp[idVariavelDesc]?>"/>
-                                                <input type="hidden" name="idLotacaoSub" value="<?=$ArrEspp[idLotacaoSub]?>"/>
-                                                <input type="hidden" name="nomeLotacaoSub" value="<?=$ArrEspp[nomeLotacaoSub]?>"/>
-                                                <input type="hidden" name="pgLotacaoSub" value="<?=$respGet[pgLotacaoSub]?>"/>
-                                                <input type="hidden" name="acao" value="negarVariavelSetor"/>
-                                                <button class="btn btn-primary">Confirmar</button>
-                                        </form>
-                                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <button title="Troca o status de todos os lançamentos para Lançado" type="submit" <?=$disable?>  class="btn btn-primary" data-toggle="modal" data-target="#lancar<?=$id?>"><i class="fa fa-sort-amount-desc"></i></button>
-                            <div class="modal fade" id="lancar<?=$id?>" role="dialog">
-                              <div class="modal-dialog modal-md">
-                                <div class="modal-content">
-                                  <div class="modal-body">
-                                        <p> Liberar todas as variáveis <?=$ArrEsp[variaveisDesc]?> do setor <?=$ArrEspp[nomeLotacaoSub]?> para modificação. Deseja realmente fazer esta ação?</p>
-                                  </div>
-                                  <div class="modal-footer">
-                                        <form action="index.php" method="<?=$method?>" class="inline">
-                                                <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                                <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEspp[idVariavelDesc]?>"/>
-                                                <input type="hidden" name="idLotacaoSub" value="<?=$ArrEspp[idLotacaoSub]?>"/>
-                                                <input type="hidden" name="nomeLotacaoSub" value="<?=$ArrEspp[nomeLotacaoSub]?>"/>
-                                                <input type="hidden" name="pgLotacaoSub" value="<?=$respGet[pgLotacaoSub]?>"/>
-                                                <input type="hidden" name="acao" value="lançarVariavelSetor"/>
-                                                <button class="btn btn-primary">Confirmar</button>
-                                        </form>
-                                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <button title="Remove todos os lançamentos" type="submit" <?=$disable?>  class="btn btn-default" data-toggle="modal" data-target="#remover<?=$id?>"><i class="fa fa-close"></i></button>
-                            <div class="modal fade" id="remover<?=$id?>" role="dialog">
-                              <div class="modal-dialog modal-md">
-                                <div class="modal-content">
-                                  <div class="modal-body">
-                                        <p> Remover todas as variáveis <?=$ArrEsp[variaveisDesc]?> do setor <?=$ArrEspp[nomeLotacaoSub]?>. Deseja realmente fazer esta ação?</p>
-                                  </div>
-                                  <div class="modal-footer">
-                                        <form action="index.php" method="<?=$method?>" class="inline">
-                                                <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                                <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEspp[idVariavelDesc]?>"/>
-                                                <input type="hidden" name="idLotacaoSub" value="<?=$ArrEspp[idLotacaoSub]?>"/>
-                                                <input type="hidden" name="nomeLotacaoSub" value="<?=$ArrEspp[nomeLotacaoSub]?>"/>
-                                                <input type="hidden" name="pgLotacaoSub" value="<?=$respGet[pgLotacaoSub]?>"/>
-                                                <input type="hidden" name="acao" value="excluirVariavelSetor"/>
-                                                <button class="btn btn-primary">Confirmar</button>
-                                        </form>
-                                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                             <form action="index.php" method="<?=$method?>" class="inline">
-                                     <input type="hidden" name="vpst" value="<?=$pst?>" />
-                                     <input type="hidden" name="varq" value="<?=$arq?>" />
-                                     <input type="hidden" name="pst" value="print"/>
-                                     <input type="hidden" name="arq" value="info"/>
-                                     <input type="hidden" name="pg" value="<?=$respGet[pgLotacaoSub]?>"/>
-                                     <input type="hidden" name="acao" value="fichaFuncional"/>
-                                     <input type="hidden" name="idLotacaoSub" value="<?=$ArrEspp[idLotacaoSub]?>"/>
-                                     <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
-                                     <input type="hidden" name="acao" value="relatFechamentoVariavelSub"/>
-                                     <button class="btn btn-primary" title="Imprimir" ><i class="fa fa-print"></i></button>
-                             </form>
-                      </td>
-                    </tr>                
-                <?php }?>
-              </table>
-            </div>
-            <!-- /.box-body -->
-           <?=controleDePagina($_SESSION[lotacaoSubVariavel],$respGet[pgLotacaoSub],"pgLotacaoSub");?> 
-          </div>
-          <!-- /.box -->
-        </div>
+<div id="buscaVVariavel">
 </div>
+
+<div id="buscaVSetor">
+</div>
+
+<div id="buscaVServidor">
+</div>
+<?php
+    $dados = array('acao', 'idSecretaria');
+    postRestAjax('buscaVVariavel','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados); 
+    
+    //setor
+    $dados = array('acao', 'idVariavelDesc','variaveisDesc');
+    postRestAjax('buscaVSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados);
+    
+    $dados = array('acao', 'idVariavelDesc','variaveisDesc','pgLotacaoSub');
+    postRestAjax('buscaVServidorNegar','buscaVSetor','folhaOn/buscaVVariavel.php',$dados); 
+    
+    
+    
+    //servidor
+    $dados = array('acao','idVariavelDesc','idLotacaoSub','nomeLotacaoSub');
+    postRestAjax('buscaVServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados); 
+?>
+<script>
+       $("#myModal").on("show", function() {    // wire up the OK button to dismiss the modal when shown
+           $("#myModal a.btn").on("click", function(e) {
+               console.log("button pressed");   // just as an example...
+               $("#myModal").modal('hide');     // dismiss the dialog
+           });
+       });
+
+       $("#myModal").on("hide", function() {    // remove the event listeners when the dialog is dismissed
+           $("#myModal a.btn").off("click");
+       });
+
+       $("#myModal").on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
+           $("#myModal").remove();
+       });
+
+       $("#myModal").modal({                    // wire up the actual modal functionality and show the dialog
+           "backdrop"  : "static",
+           "keyboard"  : true,
+           "show"      : true                     // ensure the modal is shown immediately
+       });
+</script>
+<?php if($respGet[acao] !='limparSessao'){?>
+    <!--    Faz a pagina descer ate este ponto-->
+    <a id='descer'></a>
 <?php }?>
-<?php if(count($_SESSION[servidorVariavel])>0){?>
-     <div class="row">
-        <div class="col-xs-12">
-          <div class="box box-danger">
-            <div class="box-header">
-              <h3 class="box-title">Servidor</h3>
-              <div class="box-tools">
-                <?php if(($respGet[nomeMatriculaPessoa])!=""){?>
-                     <form action="index.php" method="<?=$method?>" class="inline">
-                        <input type="hidden" name="pst" value="<?=$pst?>"/>
-                        <input type="hidden" name="arq" value="<?=$arq?>"/>
-                        <input type="hidden" name="idVariavelDesc" value="<?=$_SESSION[idVariavelDesc]?>"/>
-                        <input type="hidden" name="acao" value="servidoresVariavel"/>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-mail-reply"></i></button>
-                    </form>
-                <?php }else{ ?>
-                    <form action="index.php" method="<?=$method?>" class="inline">
-                        <div class="input-group input-group-sm" style="width: 200px;">
-                          <input type="hidden" name="pst" value="<?=$pst?>"/>
-                          <input type="hidden" name="arq" value="<?=$arq?>"/>
-                          <input type="text" name="nomeMatriculaPessoa" class="form-control pull-right" placeholder="Procurar...">
-                          <div class="input-group-btn">
-                              <input type="hidden" name="acao" value="buscarVariavelServidor"/>
-                              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                            <!--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
-                          </div>
-                        </div>
-                    </form>
-                <?php }?>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <table class="table table-hover">
-                <tr>
-                  <th>Matrícula</th>
-                  <th>Nome</th>
-                  <th>Quantidade/Valor</th>
-                  <th>Data</th>
-                  <th>Status</th>
-                  <th>Ação</th>
-                </tr>
-                <?php foreach (paginaAtual($_SESSION[servidorVariavel],$respGet[pgServidor]) as $ArrEspServidor){
-                    $lable = statusVariaveis($ArrEspServidor[status]);
-                    if(1== $_SESSION['setorFechado']){
-                        $disablelotacaoSubFechado = "disabled='disabled'";
-                    }
-                    ?>
-                    <tr>
-                      <td><?=$ArrEspServidor[matricula]?></td>
-                      <td><?=$ArrEspServidor[nome]?></td>
-                       <td><?=$ArrEspServidor[quantidadeValor]?></td>
-                      <td><?=dataHoraBr($ArrEspServidor[data])?></td>
-                      <td><span class="<?=$lable?>"><?=$ArrEspServidor[status]?></span></td>
-                      <td>
-                            <form action="index.php" method="<?=$method?>" class="inline">
-                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                    <input type="hidden" name="idVariavel" value="<?=$ArrEspServidor[idVariavel]?>"/>
-                                    <input type="hidden" name="idVariavelDesc" value="<?=$respGet[idVariavelDesc]?>"/>
-                                    <input type="hidden" name="nomeMatriculaPessoa" value="<?=$respGet[nomeMatriculaPessoa]?>"/>
-                                    <input type="hidden" name="idLotacaoSub" value="<?=$respGet[idLotacaoSub]?>"/>
-                                    <input type="hidden" name="nomeLotacaoSub" value="<?=$respGet[nomeLotacaoSub]?>"/>
-                                    <input type="hidden" name="pgServidor" value="<?=$respGet[pgServidor]?>"/>
-                                    <input type="hidden" name="acao" value="aprovarVariavelServidor"/>
-                                    <button title="Aprovar lançamento" <?=$disablelotacaoSubFechado?> type="submit" class="btn btn-success"><i class="fa fa-check-circle"></i></button>
-                            </form>
-                            <form action="index.php" method="<?=$method?>" class="inline">
-                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                    <input type="hidden" name="idVariavel" value="<?=$ArrEspServidor[idVariavel]?>"/>
-                                    <input type="hidden" name="idVariavelDesc" value="<?=$respGet[idVariavelDesc]?>"/>
-                                    <input type="hidden" name="nomeMatriculaPessoa" value="<?=$respGet[nomeMatriculaPessoa]?>"/>
-                                    <input type="hidden" name="idLotacaoSub" value="<?=$respGet[idLotacaoSub]?>"/>
-                                    <input type="hidden" name="nomeLotacaoSub" value="<?=$respGet[nomeLotacaoSub]?>"/>
-                                    <input type="hidden" name="pgServidor" value="<?=$respGet[pgServidor]?>"/>
-                                    <input type="hidden" name="acao" value="negarVariavelServidor"/>
-                                    <button title="Negar lançamento" <?=$disablelotacaoSubFechado?> type="submit" class="btn btn-danger"><i class="fa fa-ban"></i></button>
-                            </form>
-                            <form action="index.php" method="<?=$method?>" class="inline">
-                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                    <input type="hidden" name="idVariavel" value="<?=$ArrEspServidor[idVariavel]?>"/>
-                                    <input type="hidden" name="idVariavelDesc" value="<?=$respGet[idVariavelDesc]?>"/>
-                                    <input type="hidden" name="nomeMatriculaPessoa" value="<?=$respGet[nomeMatriculaPessoa]?>"/>
-                                    <input type="hidden" name="idLotacaoSub" value="<?=$respGet[idLotacaoSub]?>"/>
-                                    <input type="hidden" name="nomeLotacaoSub" value="<?=$respGet[nomeLotacaoSub]?>"/>
-                                    <input type="hidden" name="pgServidor" value="<?=$respGet[pgServidor]?>"/>
-                                    <input type="hidden" name="acao" value="lancarVariavelServidor"/>
-                                    <button title="Liberar lançamento para alteração" <?=$disablelotacaoSubFechado?> type="submit" class="btn btn-primary"><i class="fa fa-sort-amount-desc"></i></button>
-                            </form>
-                            <form action="index.php" method="<?=$method?>" class="inline">
-                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                    <input type="hidden" name="idVariavel" value="<?=$ArrEspServidor[idVariavel]?>"/>
-                                    <input type="hidden" name="idVariavelDesc" value="<?=$respGet[idVariavelDesc]?>"/>
-                                    <input type="hidden" name="nomeMatriculaPessoa" value="<?=$respGet[nomeMatriculaPessoa]?>"/>
-                                    <input type="hidden" name="idLotacaoSub" value="<?=$respGet[idLotacaoSub]?>"/>
-                                    <input type="hidden" name="nomeLotacaoSub" value="<?=$respGet[nomeLotacaoSub]?>"/>
-                                    <input type="hidden" name="pgServidor" value="<?=$respGet[pgServidor]?>"/>
-                                    <input type="hidden" name="acao" value="variavelRemover"/>
-                                    <button title="Apagar Lançamento" <?=$disablelotacaoSubFechado?> type="submit" class="btn btn-default"><i class="fa fa-close"></i></button>
-                            </form>
-                      </td>
-                    </tr>
-                <?php }?>
-              </table>
-            </div>
-            <!-- /.box-body -->
-            <?=controleDePagina($_SESSION[servidorVariavel],$respGet[pgServidor],"pgServidor");?> 
-          </div>
-          <!-- /.box -->
-        </div>
-      </div>
-<?php }
-    if((count($_SESSION[servidorVariavel]) == 0) AND (isset($respGet[idLotacaoSub])) AND ($respGet[acao] == 'servidoresVariavel')){?>
-            <div class="box-body">
-              <div class="alert alert-info alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-check-circle"></i> Atenção!</h4>
-                 Não foram encontrados lançamentos. 
-              </div>
-                </div>
-<?php }?>
-    <script>
-        $("#myModal").on("show", function() {    // wire up the OK button to dismiss the modal when shown
-            $("#myModal a.btn").on("click", function(e) {
-                console.log("button pressed");   // just as an example...
-                $("#myModal").modal('hide');     // dismiss the dialog
-            });
-        });
-
-        $("#myModal").on("hide", function() {    // remove the event listeners when the dialog is dismissed
-            $("#myModal a.btn").off("click");
-        });
-
-        $("#myModal").on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
-            $("#myModal").remove();
-        });
-
-        $("#myModal").modal({                    // wire up the actual modal functionality and show the dialog
-            "backdrop"  : "static",
-            "keyboard"  : true,
-            "show"      : true                     // ensure the modal is shown immediately
-        });
-    </script>
-    <?php if($respGet[acao] !='limparSessao'){?>
-        <!--    Faz a pagina descer ate este ponto-->
-        <a id='descer'></a>
-    <?php }?>

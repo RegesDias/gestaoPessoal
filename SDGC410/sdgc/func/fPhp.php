@@ -17,6 +17,7 @@ $versaoSDGC = '4.1.0';
 $localBack = false;
 $localEndereco = false;
 $DBteste = false;
+$rodarLocal = true;
 $DBtestePort = '32796';
 //---DEFINIÇÃO DE PARAMETROS PARA TESTE DO SISTEMA
 //raphael
@@ -56,6 +57,13 @@ $DBtestePort = '32796';
         $eurl = "http://10.40.10.236:".$DBtestePort."/address/rest/";
         $gurl = "http://10.40.10.236:".$DBtestePort."/api/rest/";
     }
+    if ($rodarLocal == true){
+        $eurl = "http://127.0.0.1:8080/address/rest/";
+        $gurl = "http://127.0.0.1:8080/api/rest/";
+        $ajurl = "http://127.0.0.1:8080/api/rest/";
+        $aeurl = "http://127.0.0.1:8080/address/rest/"; 
+    }
+    
 //---VERSÃO ------------
    $gappv = 'fc86c6d3bfdfe121791b280f2d87dd49';
 //---Metodo de envio-----
@@ -125,8 +133,9 @@ function getRest($pf, $data = null, $adress= null) {
         header('Location: login.php');
     }
     curl_close($curl);
-    return json_decode($resp, true);
-
+    $r = json_decode($resp, true);
+    //print_p($r);
+    return $r;
 }
 
 function postRest($url, $data) {

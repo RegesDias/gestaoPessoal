@@ -17,6 +17,7 @@
             $listaNomes = getRest('pessoa/getListaPessoa/');
             $_SESSION["nomePessoas"] = $listaNomes;
             $_SESSION['foto'] = exibeFoto($_SESSION['user']['cpf']);
+            print_p($_SESSION['user']['cpf']);
             //liberar menus Left/
                 $_SESSION["menuLeft"]=getRest('userMenu/getListaUserMenuLeft/');
             //liberar menus
