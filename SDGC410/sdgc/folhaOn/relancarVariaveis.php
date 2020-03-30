@@ -41,6 +41,15 @@
 <?php
     $dados = array('acao', 'idSecretaria');
     postRestAjax('relancarVFolha','relancarVFolha','folhaOn/relancarVFolha.php',$dados); 
+    
+    $dados = array('acao', 'nomeLotacaoSub');
+    postRestAjax('buscarRVFolha','relancarVFolha','folhaOn/relancarVFolha.php',$dados); 
+    
+    $dados = array('acao','pg','idLotacaoSub','idUserLogin','ver');
+    postRestAjax('rRelancarV','rRelancarV','print/info.php',$dados);
+//pg
+    $dados = array('acao', 'pg');
+    postRestAjax('pgLotacao','relancarVFolha','folhaOn/relancarVFolha.php',$dados); 
 ?>
     <script>
     new Morris.Line({

@@ -64,6 +64,7 @@
         <div class="col-md-12">
         <div class="box">
             <div class="box-body">
+                <?=controleDePagina($_SESSION[lotacaoVariavel] ,$respGet[pgLotacao],"pgLotacao");?> 
                     <div class="box box-success">
                       <div class="box-header">
                         <i class="fa fa-comments-o"></i>
@@ -71,32 +72,23 @@
                         <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
                           <div class="btn-group" data-toggle="btn-toggle">
                                 <?php if(count($_SESSION[lotacaoVariavel]) == 1){?>
-                                     <form action="index.php" method="<?=$method?>" class="inline">
-                                        <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                        <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                        <input type="hidden" name="idVariavelDesc" value="<?=$_SESSION[idVariavelDesc]?>"/>
-                                        <input type="hidden" name="acao" value="selecionarSecretaria"/>
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-mail-reply"></i></button>
-                                    </form>
+                                        <button class="btn btn-primary" onclick="relancarVFolha('selecionarSecretaria',$('#secretariaID').val())" type="button">
+                                            <i class="fa fa-mail-reply"></i>
+                                        </button>
                                 <?php }else{ ?>
-                                    <form action="index.php" method="<?=$method?>" class="inline">
                                         <div class="input-group input-group-sm" style="width: 200px;">
-                                          <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                          <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                          <select name='nomeLotacaoSub'class="form-control select2" id='ocorrencia' style="width: 100%;">
+                                          <select name='nomeLotacaoSub' id='nomeLotacaoSub' class="form-control select2" style="width: 100%;">
                                             <?php foreach ($_SESSION["lotacaoSub"] as $ArrEspPlan){
                                                 ?>
                                               <option value="<?=$ArrEspPlan['nome']?>"><?=$ArrEspPlan['nome']?></option>
                                               <?php }?>
                                           </select>
-                                          <!--<input type="text" name="variaveisDesc" class="form-control pull-right" placeholder="Search">-->
                                           <div class="input-group-btn">
-                                              <input type="hidden" name="acao" value="buscarVariavelLotacaoSub"/>
-                                              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                            <!--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
+                                            <button class="btn btn-default" onclick="buscarRVFolha('buscarVariavelLotacaoSub',$('#nomeLotacaoSub').val())" type="button">
+                                                <i class="fa fa-search"></i>
+                                            </button>
                                           </div>
                                         </div>
-                                    </form>
                                 <?php }?>
                           </div>
                         </div>
@@ -135,18 +127,15 @@
                             </p>
 
                             <div class="pull-right">
-                                <form action="index.php" method="<?=$method?>" class="inline">
-                                        <input type="hidden" name="vpst" value="<?=$pst?>" />
-                                        <input type="hidden" name="varq" value="<?=$arq?>" />
-                                        <input type="hidden" name="pst" value="print"/>
-                                        <input type="hidden" name="arq" value="info"/>
                                         <input type="hidden" name="pg" value="<?=$respGet[pgLotacao]?>"/>
-                                        <input type="hidden" name="acao" value="fichaFuncional"/>
                                         <input type="hidden" name="idLotacaoSub" value="<?=$ArrEsp[idLotacaoSub]?>"/>
                                         <input type="hidden" name="idUserLogin" value="<?=$ArrEsp[idUserLogin]?>"/>
                                         <input type="hidden" name="acao" value="relatorioVariavelCarregadas"/>
-                                        <button <?=$dsb?> class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
-                                </form>
+                                        <!--<button <?=$dsb?> class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>-->
+                                        
+                                        <button <?=$dsb?> class="btn btn-primary" onclick="rRelancarV('relatorioVariavelCarregadas','<?=$respGet[pgLotacao]?>','<?=$ArrEsp[idLotacaoSub]?>','<?=$ArrEsp[idUserLogin]?>')" type="button">
+                                            <i class="fa fa-print"></i> Imprimir
+                                        </button>
                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#substituir<?=$id?>"><i class="fa fa-save"></i> Salvar</button>
                                 <div class="modal fade" id="substituir<?=$id?>" role="dialog">
                                   <div class="modal-dialog modal-md">
