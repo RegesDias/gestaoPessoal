@@ -47,10 +47,25 @@
     
     $dados = array('acao','pg','idLotacaoSub','idUserLogin','ver');
     postRestAjax('rRelancarV','rRelancarV','print/info.php',$dados);
-//pg
+    
+    //salvar
+    $dados = array('acao','pg','idLotacaoSub', 'idUserLogin');
+    $funcao = array('fecharModal');
+    postRestAjax('RVSalvarFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php',$dados,$b,$s, $funcao);
+    
+    //lançar
+    $dados = array('acao','pg','idLotacaoSub', 'idUserLogin');
+    $funcao = array('fecharModal');
+    postRestAjax('RVLancarFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php',$dados,$b,$s, $funcao);
+    
+    //pg
     $dados = array('acao', 'pg');
     postRestAjax('pgLotacao','relancarVFolha','folhaOn/relancarVFolha.php',$dados); 
 ?>
+<input type="hidden" name="acao" value="substituirVariaveis"/>
+<input type="hidden" name="pgLotacao" value="<?=$respGet[pgLotacao]?>"/>
+<input type="hidden" name="idLotacaoSub" value="<?=$ArrEsp[idLotacaoSub]?>"/>
+<input type="hidden" name="idUserLogin" value="<?=$ArrEsp[idUserLogin]?>"/>
     <script>
     new Morris.Line({
             // ID of the element in which to draw the chart.

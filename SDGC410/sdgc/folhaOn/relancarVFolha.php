@@ -144,15 +144,9 @@
                                             <p> Este procedimento ira <b>substituir</b> sua base de lancamentos atuais, este procedimento pode ser desfeito. Deseja realmente fazer esta ação?</p>
                                       </div>
                                       <div class="modal-footer">
-                                            <form action="index.php" method="<?=$method?>" class="inline">
-                                                    <input type="hidden" name="pgLotacao" value="<?=$respGet[pgLotacao]?>"/>
-                                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                                    <input type="hidden" name="idLotacaoSub" value="<?=$ArrEsp[idLotacaoSub]?>"/>
-                                                    <input type="hidden" name="idUserLogin" value="<?=$ArrEsp[idUserLogin]?>"/>
-                                                    <input type="hidden" name="acao" value="substituirVariaveis"/>
-                                                    <button class="btn btn-primary">Confirmar</button>
-                                            </form>
+                                            <button class="btn btn-primary" onclick="RVSalvarFolha('substituirVariaveis','<?=$respGet[pgLotacao]?>','<?=$ArrEsp[idLotacaoSub]?>','<?=$ArrEsp[idUserLogin]?>')" type="button">
+                                                Confirmar
+                                            </button>
                                             <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
                                       </div>
                                     </div>
@@ -166,15 +160,16 @@
                                            <p> Este procedimento ira <b>lançar</b> as variaveis que estão salvas. Deseja realmente fazer esta ação?</p>
                                       </div>
                                       <div class="modal-footer">
-                                            <form action="index.php" method="<?=$method?>" class="inline">
-                                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
+                                            <!--<form action="index.php" method="<?=$method?>" class="inline">-->
                                                     <input type="hidden" name="pgLotacao" value="<?=$respGet[pgLotacao]?>"/>
                                                     <input type="hidden" name="idLotacaoSub" value="<?=$ArrEsp[idLotacaoSub]?>"/>
                                                     <input type="hidden" name="idUserLogin" value="<?=$ArrEsp[idUserLogin]?>"/>
                                                     <input type="hidden" name="acao" value="carregarVariaveis"/>
-                                                    <button class="btn btn-primary">Confirmar</button>
-                                            </form>
+                                                    <!--<button class="btn btn-primary">Confirmar</button>-->
+<!--                                            </form>-->
+                                            <button class="btn btn-primary" onclick="RVLancarFolha('carregarVariaveis','<?=$respGet[pgLotacao]?>','<?=$ArrEsp[idLotacaoSub]?>','<?=$ArrEsp[idUserLogin]?>')" type="button">
+                                                Confirmar
+                                            </button>
                                             <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
                                       </div>
                                     </div>

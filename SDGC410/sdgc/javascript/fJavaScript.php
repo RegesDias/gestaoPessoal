@@ -98,10 +98,11 @@ function alterarPadraoDataLancamento(valor){
 }
 
 function fecharModal() {
-    //$(".modal-backdrop fade in");
     while (document.getElementsByClassName('modal-backdrop fade in')[0]) {
         document.getElementsByClassName('modal-backdrop fade in')[0].remove();
     }
+   // document.getElementsByClassName('modal-open')[0].str.replace("modal-open", "");
+    fecharModalClassRemove();
 }
 
 $(document).ready(function(){
@@ -128,4 +129,9 @@ $(document).ready(function(){
 });
 
     
+</script>
+<script>
+    function fecharModalClassRemove(){
+        $("#bobyPrincipal").removeClass("modal-open");
+    }
 </script>

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once 'incl/head.php';?>
-    <body class="hold-transition <?=$_SESSION['leftmenu']?> <?=$_SESSION['rightmenu']?> skin-blue sidebar-mini "  oncontextmenu="return false" ondragstart="return false" onMouseOver="window.status='..message perso .. '; return true;">
+    <body id='bobyPrincipal' class="hold-transition <?=$_SESSION['leftmenu']?> <?=$_SESSION['rightmenu']?> skin-blue sidebar-mini "  oncontextmenu="return false" ondragstart="return false" onMouseOver="window.status='..message perso .. '; return true;">
          <?php 
             require_once 'javascript/fJavaScript.php';
             require_once 'javascript/fAjax.php';
