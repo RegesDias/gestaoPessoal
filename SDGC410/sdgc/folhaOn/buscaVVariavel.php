@@ -18,6 +18,17 @@ if($respGet[acao]=='selecionarSecretaria'){
     $_SESSION[lotacaoVariavel] = getRest('variaveis/getListaVariaveisLotacao',$lv);
     $_SESSION[lotacaoSub] = getRest('lotacao/getListaLotacaoSubUsuario',$lv);
 }
+if($respGet[acao]=='selecionar'){
+    $Array = $_SESSION[lotacaoVariavel];
+    $p =  array_search($respGet[nomeVariavelDesc], array_column($Array, 'variaveisDesc')).'<br />';
+    $p = intval($p);
+    $_SESSION[lotacaoVariavel] = array($Array[$p]);
+    if($_SESSION[lotacaoVariavel][0][status] == 1){
+        $_SESSION['lotacaoSubFechado'] = 1;
+    }else{
+        $_SESSION['lotacaoSubFechado'] = 0;
+    }
+}
 if(count($_SESSION[lotacaoVariavel])>0){?>
  <div class="box">
     <div class="box-header">
@@ -26,29 +37,27 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
         </h3>
         <div class="box-tools">
             <?php if(count($_SESSION[lotacaoVariavel]) == 1){?>
-                 <form action="index.php" method="<?=$method?>" class="inline">
-                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                    <input type="hidden" name="arq" value="<?=$arq?>"/>
+<!--                <form action="index.php" method="<?=$method?>" class="inline">-->
                     <input type="hidden" name="acao" value="selecionarSecretaria"/>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-mail-reply"></i></button>
-                </form>
+                    <!--<button type="submit" class="btn btn-primary"><i class="fa fa-mail-reply"></i></button>-->
+<!--                </form>-->
+                <button class="btn btn-primary" onclick="buscaVVariavel('selecionarSecretaria',$('#secretariaID').val())" type="button">
+                    <i class="fa fa-mail-reply"></i>
+                </button>
             <?php }else{ ?>
-                <form action="index.php" method="<?=$method?>" class="inline">
-                    <div class="input-group input-group-sm" style="width: 200px;">
-                      <input type="hidden" name="pst" value="<?=$pst?>"/>
-                      <input type="hidden" name="arq" value="<?=$arq?>"/>
-                      <select name='nomeVariavelDesc'class="form-control select2" id='ocorrencia' style="width: 100%;">
-                        <?php foreach ($_SESSION["variavelPerfil"] as $ArrEspPlan){
-                            ?>
-                          <option value="<?=$ArrEspPlan['nome']?>"><?=$ArrEspPlan['nome']?></option>
-                          <?php }?>
-                      </select>
-                      <div class="input-group-btn">
-                          <input type="hidden" name="acao" value="buscarVariavelLotacao"/>
-                          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                </form>
+                <div class="input-group input-group-sm" style="width: 200px;">
+                  <select name='nomeVariavelDesc'class="form-control select2" id='nomeVariavelDesc' style="width: 100%;">
+                    <?php foreach ($_SESSION["variavelPerfil"] as $ArrEspPlan){
+                        ?>
+                      <option value="<?=$ArrEspPlan['nome']?>"><?=$ArrEspPlan['nome']?></option>
+                      <?php }?>
+                  </select>
+                  <div class="input-group-btn">
+                      <button class="btn btn-default" onclick="buscarVariavelNome('buscarVariavelLotacao',$('#nomeVariavelDesc').val())" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                  </div>
+                </div>
             <?php }?>
         </div>
     </div>
@@ -66,7 +75,7 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
         <?php foreach (paginaAtual($_SESSION[lotacaoVariavel],$respGet[pgLotacao]) as $ArrEsp){?>
             <tr>
                <td>
-                    <button class="btn btn-default" onclick="buscaVSetor('selecionarSetor','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+                    <button class="btn btn-default" onclick="buscaVSetor('selecionar','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
                         <i class="fa fa-search"></i>
                     </button>
                    <?php

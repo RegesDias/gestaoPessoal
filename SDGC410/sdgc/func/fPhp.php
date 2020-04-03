@@ -204,11 +204,17 @@ function acoesAjax($array){
 }
 
 function funcaoesAjax($array){
-    foreach ($array as $key) {
-       $return[] = $key;
-    } 
-    $return[] = '';
-    return $return;
+    $r=$array[0];
+    $rt = strpos($r,'(');
+    if((count($array)== 1)and($rt > 0)){
+        return $r;
+    }else{
+        foreach ($array as $key) {
+           $return[] = $key;
+        }
+        $return[] = '';
+        return implode("();",$return);
+    }
 }
 function postRestAjax($nome, $cargEm, $cargArq ,$dados=null, $beforeSend=null, $success=null, $funcao=null){
     $varIn = implode(",", cpAjaxRecebe($dados));
@@ -244,7 +250,7 @@ function postRestAjax($nome, $cargEm, $cargArq ,$dados=null, $beforeSend=null, $
                             
                             <?=$success?>
                             //chamar Funcao
-                                <?=implode("();", funcaoesAjax($funcao))?>
+                                <?=funcaoesAjax($funcao)?>
                         }
                     });
         }

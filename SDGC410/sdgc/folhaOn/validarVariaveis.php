@@ -245,17 +245,6 @@
 
         
     } 
-    if($respGet[acao]=='buscarVariavelLotacao'){
-        $Array = $_SESSION[lotacaoVariavel];
-        $p =  array_search($respGet[nomeVariavelDesc], array_column($Array, 'variaveisDesc')).'<br />';
-        $p = intval($p);
-        $_SESSION[lotacaoVariavel] = array($Array[$p]);
-        if($_SESSION[lotacaoVariavel][0][status] == 1){
-            $_SESSION['lotacaoSubFechado'] = 1;
-        }else{
-            $_SESSION['lotacaoSubFechado'] = 0;
-        }
-    }
     if($respGet[acao]=='buscarVariavelLotacaoSub'){
         $Array = $_SESSION[lotacaoSubVariavel];
         $p =  array_search($respGet[nomeLotacaoSub], array_column($Array, 'nomeLotacaoSub')).'<br />';
@@ -310,16 +299,20 @@
 <div id="buscaVServidor">
 </div>
 <?php
+    //variaveis
     $dados = array('acao', 'idSecretaria');
     postRestAjax('buscaVVariavel','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados); 
     
+    $dados = array('acao', 'nomeVariavelDesc');
+    postRestAjax('buscarVariavelNome','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados); 
+    
     //setor
-    $dados = array('acao', 'idVariavelDesc','variaveisDesc');
-    postRestAjax('buscaVSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados);
+    $dados = array('acao', 'idVariavelDesc','nomeVariavelDesc');
+    $funcao = array('buscarVariavelNome(acao,nomeVariavelDesc);');
+    postRestAjax('buscaVSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados,'','', $funcao);
     
     $dados = array('acao', 'idVariavelDesc','variaveisDesc','pgLotacaoSub');
     postRestAjax('buscaVServidorNegar','buscaVSetor','folhaOn/buscaVVariavel.php',$dados); 
-    
     
     
     //servidor
