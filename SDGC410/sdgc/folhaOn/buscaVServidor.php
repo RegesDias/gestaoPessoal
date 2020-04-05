@@ -5,7 +5,7 @@
     $pst = 'folhaOn';
     $arq = 'validarVariaveis';
     print_p($respGet);
-if($respGet[acao]=='servidoresVariavel'){
+if($respGet[acao]=='selecionarSetor'){
     if($respGet[idLotacaoSub] != ""){$_SESSION[idLotacaoSub] = $respGet[idLotacaoSub];}
     if($respGet[idVariavelDesc] != ""){$_SESSION[idVariavelDesc] = $respGet[idVariavelDesc];}
     if($respGet[nomeLotacaoSub] != ""){$_SESSION[nomeLotacaoSub] = $respGet[nomeLotacaoSub];}

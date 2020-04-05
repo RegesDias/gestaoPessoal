@@ -245,17 +245,6 @@
 
         
     } 
-    if($respGet[acao]=='buscarVariavelLotacaoSub'){
-        $Array = $_SESSION[lotacaoSubVariavel];
-        $p =  array_search($respGet[nomeLotacaoSub], array_column($Array, 'nomeLotacaoSub')).'<br />';
-        $p = intval($p);
-        $_SESSION[lotacaoSubVariavel] = array($Array[$p]);
-        if($_SESSION[lotacaoSubVariavel][0][status] == 1){
-            $_SESSION['setorFechado'] = 1;
-        }else{
-            $_SESSION['setorFechado'] = 0;
-        }
-    }
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 ?>
 <h1 id="idTituloValidar">
@@ -301,15 +290,31 @@
 <?php
     //variaveis
     $dados = array('acao', 'idSecretaria');
-    postRestAjax('buscaVVariavel','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados); 
+    $b1 = array('buscaVSetor','addClass','hidden');
+    $b2 = array('buscaVServidor','addClass','hidden');
+    $beforeSend= array ($b1,$b2);
+    postRestAjax('buscaVVariavel','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados,$beforeSend); 
     
     $dados = array('acao', 'nomeVariavelDesc');
-    postRestAjax('buscarVariavelNome','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados); 
+    $b1 = array('buscaVSetor','removeClass','hidden');
+    $b2 = array('buscaVServidor','removeClass','hidden');
+    $beforeSend= array ($b1,$b2);
+    postRestAjax('buscarVariavelNome','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados,$beforeSend); 
     
     //setor
     $dados = array('acao', 'idVariavelDesc','nomeVariavelDesc');
+    $b1 = array('buscaVSetor','removeClass','hidden');
+    $b2 = array('buscaVServidor','addClass','hidden');
+    $beforeSend= array ($b1,$b2);
     $funcao = array('buscarVariavelNome(acao,nomeVariavelDesc);');
-    postRestAjax('buscaVSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados,'','', $funcao);
+    postRestAjax('buscaVSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados,$beforeSend,'', $funcao);
+    
+    //busca
+    $dados = array('acao', 'nomeLotacaoSub');
+    $b1 = array('buscaVSetor','removeClass','hidden');
+    $b2 = array('buscaVServidor','addClass','hidden');
+    $beforeSend= array ($b1,$b2);
+    postRestAjax('buscarSetorNome','buscaVSetor','folhaOn/buscaVSetor.php',$dados,$beforeSend); 
     
     $dados = array('acao', 'idVariavelDesc','variaveisDesc','pgLotacaoSub');
     postRestAjax('buscaVServidorNegar','buscaVSetor','folhaOn/buscaVVariavel.php',$dados); 
@@ -317,7 +322,8 @@
     
     //servidor
     $dados = array('acao','idVariavelDesc','idLotacaoSub','nomeLotacaoSub');
-    postRestAjax('buscaVServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados); 
+    $funcao = array('buscarSetorNome(acao,nomeLotacaoSub); $("#buscaVServidor").removeClass("hidden");');
+    postRestAjax('buscaVServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados,'','',$funcao); 
 ?>
 <script>
        $("#myModal").on("show", function() {    // wire up the OK button to dismiss the modal when shown

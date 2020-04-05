@@ -53,7 +53,7 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
                       <?php }?>
                   </select>
                   <div class="input-group-btn">
-                      <button class="btn btn-default" onclick="buscarVariavelNome('buscarVariavelLotacao',$('#nomeVariavelDesc').val())" type="button">
+                      <button class="btn btn-default" onclick="buscarVariavelNome('selecionar',$('#nomeVariavelDesc').val())" type="button">
                             <i class="fa fa-search"></i>
                       </button>
                   </div>

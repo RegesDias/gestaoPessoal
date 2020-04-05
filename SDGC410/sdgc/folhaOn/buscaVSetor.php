@@ -15,6 +15,17 @@ if($respGet[acao]=='selecionar'){
     $respGet[acao] =  'buscarVariavelLotacao';
     $_SESSION[idVariavelDesc] = $respGet[idVariavelDesc];
 }
+    if($respGet[acao]=='selecionarSetor'){
+        $Array = $_SESSION[lotacaoSubVariavel];
+        $p =  array_search($respGet[nomeLotacaoSub], array_column($Array, 'nomeLotacaoSub')).'<br />';
+        $p = intval($p);
+        $_SESSION[lotacaoSubVariavel] = array($Array[$p]);
+        if($_SESSION[lotacaoSubVariavel][0][status] == 1){
+            $_SESSION['setorFechado'] = 1;
+        }else{
+            $_SESSION['setorFechado'] = 0;
+        }
+    }
 if(count($_SESSION[lotacaoSubVariavel])>0){?>
  <div class="row">
         <div class="col-xs-12">
@@ -24,32 +35,28 @@ if(count($_SESSION[lotacaoSubVariavel])>0){?>
 
               <div class="box-tools">
             <?php if(count($_SESSION[lotacaoSubVariavel]) == 1){?>
-                 <form action="index.php" method="<?=$method?>" class="inline">
-                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                    <input type="hidden" name="arq" value="<?=$arq?>"/>
+<!--                 <form action="index.php" method="<?=$method?>" class="inline">
                     <input type="hidden" name="idVariavelDesc" value="<?=$_SESSION[idVariavelDesc]?>"/>
                     <input type="hidden" name="acao" value="selecionarSetor"/>
                     <button type="submit" class="btn btn-primary"><i class="fa fa-mail-reply"></i></button>
-                </form>
+                </form>-->
+                <button class="btn btn-primary" onclick="buscaVSetor('selecionar','<?=$_SESSION[idVariavelDesc]?>')" type="button">
+                    <i class="fa fa-mail-reply"></i>
+                </button>
             <?php }else{ ?>
-                <form action="index.php" method="<?=$method?>" class="inline">
-                    <div class="input-group input-group-sm" style="width: 200px;">
-                      <input type="hidden" name="pst" value="<?=$pst?>"/>
-                      <input type="hidden" name="arq" value="<?=$arq?>"/>
-                      <select name='nomeLotacaoSub'class="form-control select2" id='ocorrencia' style="width: 100%;">
-                        <?php foreach ($_SESSION["lotacaoSub"] as $ArrEspPlan){
-                            ?>
-                          <option value="<?=$ArrEspPlan['nome']?>"><?=$ArrEspPlan['nome']?></option>
-                          <?php }?>
-                      </select>
-                      <!--<input type="text" name="variaveisDesc" class="form-control pull-right" placeholder="Search">-->
-                      <div class="input-group-btn">
-                          <input type="hidden" name="acao" value="buscarVariavelLotacaoSub"/>
-                          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                        <!--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
-                      </div>
-                    </div>
-                </form>
+                <div class="input-group input-group-sm" style="width: 200px;">
+                <select name='nomeLotacaoSub'class="form-control select2" id='nomeLotacaoSub' style="width: 100%;">
+                  <?php foreach ($_SESSION["lotacaoSub"] as $ArrEspPlan){
+                      ?>
+                    <option value="<?=$ArrEspPlan['nome']?>"><?=$ArrEspPlan['nome']?></option>
+                    <?php }?>
+                </select>
+                  <div class="input-group-btn">
+                      <button class="btn btn-default" onclick="buscarSetorNome('selecionarSetor',$('#nomeLotacaoSub').val())" type="button">
+                            <i class="fa fa-search"></i>
+                      </button>
+                  </div>
+                </div>
             <?php }?>
               </div>
             </div>
@@ -95,7 +102,7 @@ if(count($_SESSION[lotacaoSubVariavel])>0){?>
                       <td><?=$ArrEspp[dataLancamento]?></td>
                       <td><span class="<?=$lableStatus?>"><?=$lableNome?></span></td>
                       <td>
-                            <button class="btn btn-default" onclick="buscaVServidor('servidoresVariavel','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>')" type="button">
+                            <button class="btn btn-default" onclick="buscaVServidor('selecionarSetor','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>')" type="button">
                                 <i class="fa fa-search"></i>
                             </button>
                             <button <?=$disableLotacaoFechado?> class="<?=$lableBtn?>" data-toggle="modal" data-target="#fecha<?=$id?>"><i class="<?=$btnTipo?>"></i></button>
@@ -155,14 +162,6 @@ if(count($_SESSION[lotacaoSubVariavel])>0){?>
                                         <p> Reprovar todas as variáveis <?=$ArrEsp[variaveisDesc]?> do setor <?=$ArrEspp[nomeLotacaoSub]?>. Deseja realmente fazer esta ação?</p>
                                   </div>
                                   <div class="modal-footer">
-<!--                                        <form action="index.php" method="<?=$method?>" class="inline">
-                                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEspp[idVariavelDesc]?>"/>
-                                                <input type="hidden" name="idLotacaoSub" value="<?=$ArrEspp[idLotacaoSub]?>"/>
-                                                <input type="hidden" name="nomeLotacaoSub" value="<?=$ArrEspp[nomeLotacaoSub]?>"/>
-                                                <input type="hidden" name="pgLotacaoSub" value="<?=$respGet[pgLotacaoSub]?>"/>
-                                                <input type="hidden" name="acao" value="negarVariavelSetor"/>
-                                                <button class="btn btn-primary">Confirmar</button>
-                                        </form>-->
                                         <button class="btn btn-primary" onclick="buscaVServidorNegar('servidoresVariavel','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>','<?=$respGet[pgLotacaoSub]?>')" type="button">
                                             Confirmar
                                         </button>
