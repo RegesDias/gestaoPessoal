@@ -37,10 +37,6 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
         </h3>
         <div class="box-tools">
             <?php if(count($_SESSION[lotacaoVariavel]) == 1){?>
-<!--                <form action="index.php" method="<?=$method?>" class="inline">-->
-                    <input type="hidden" name="acao" value="selecionarSecretaria"/>
-                    <!--<button type="submit" class="btn btn-primary"><i class="fa fa-mail-reply"></i></button>-->
-<!--                </form>-->
                 <button class="btn btn-primary" onclick="buscaVVariavel('selecionarSecretaria',$('#secretariaID').val())" type="button">
                     <i class="fa fa-mail-reply"></i>
                 </button>

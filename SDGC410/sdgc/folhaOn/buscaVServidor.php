@@ -5,24 +5,108 @@
     $pst = 'folhaOn';
     $arq = 'validarVariaveis';
     print_p($respGet);
-if($respGet[acao]=='selecionarSetor'){
-    if($respGet[idLotacaoSub] != ""){$_SESSION[idLotacaoSub] = $respGet[idLotacaoSub];}
-    if($respGet[idVariavelDesc] != ""){$_SESSION[idVariavelDesc] = $respGet[idVariavelDesc];}
-    if($respGet[nomeLotacaoSub] != ""){$_SESSION[nomeLotacaoSub] = $respGet[nomeLotacaoSub];}
-    $sv = array($_SESSION[idLotacaoSub],$_SESSION[idVariavelDesc]);
-    $_SESSION[servidorVariavel] = getRest('variaveis/getListaVariaveisPorSetorPorVariavelDesc',$sv);
-    $i=0;
-    $f=0;
-    foreach ($_SESSION[servidorVariavel] as $t){
-        if($_SESSION[servidorVariavel][$i][status] == 'Aprovado'){
-            $f++;
-        }
-        $i++;
+    //servidor----------->---
+    //Alterar Status Aprovar Variavel Servidor
+    if ($respGet['acao'] == "variavelRemover") {
+            $variavel = array('idVariavel'=>$respGet['idVariavel']);
+            $v = array($variavel);
+            $executar = postRest('variaveis/postVariaveisExcluir',$v);
+            if (count($_SESSION[lotacaoSubVariavel]) == 1){
+               if(($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
+                    $Array = $_SESSION[servidorVariavel];
+                    $p =  array_search($respGet[idVariavel], array_column($Array, 'idVariavel')).'<br />';
+                    $p = intval($p);
+                    unset($Array[$p]);
+                    sort($Array);         
+                    $_SESSION[servidorVariavel] =$Array;
+                }
+            }else{
+                $respGet[acao]='selecionarSetor'; 
+            }
+            $msnTexto = "ao alterar variavel. ".$executar['msn'];
     }
-    $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado]=$f;
-    $respGet[acao]='buscarVariavelLotacaoSub';
-    $respGet[pgServidor] = 1;
-}
+    if($respGet[acao]=='aprovarVariavelServidor'){
+        $v = array('id'=>$respGet[idVariavel]);
+        $aVariaveis = array($v);
+        $executar = postRest('variaveis/postAprovarVariaveisPorId',$aVariaveis);
+        if(isset($respGet[nomeMatriculaPessoa])){
+            $respGet[acao]='buscarVariavelServidor';
+        }else{
+            $respGet[acao]='selecionarSetor';
+        }
+        if($_SESSION[servidorVariavel][0][status] == 'Negado'){
+            $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] = $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] + 1;
+        }
+        $msnTexto = "ao alterar variavel. ".$executar['msn'];
+    }
+    //Alterar Status Negar Variavel Servidor
+    if($respGet[acao]=='negarVariavelServidor'){
+        $v = array('id'=>$respGet[idVariavel]);
+        $aVariaveis = array($v);
+        $executar = postRest('variaveis/postNegarVariaveisPorId',$aVariaveis);
+        if(isset($respGet[nomeMatriculaPessoa])){
+            $respGet[acao]='buscarVariavelServidor';
+        }else{
+            $respGet[acao]='selecionarSetor';
+        }
+        if($_SESSION[servidorVariavel][0][status] == 'Aprovado'){
+            $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] = $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] - 1;
+        }
+        $msnTexto = "ao alterar variavel. ".$executar['msn'];
+    }
+    //Alterar Status Lançar Variavel Servidor
+    if($respGet[acao]=='lancarVariavelServidor'){
+        $v = array('id'=>$respGet[idVariavel]);
+        $aVariaveis = array($v);
+        $executar = postRest('variaveis/postLancarVariaveisPorId',$aVariaveis);
+        if(isset($respGet[nomeMatriculaPessoa])){
+            $respGet[acao]='buscarVariavelServidor';
+        }else{
+            $respGet[acao]='selecionarSetor';
+        }
+        if($_SESSION[servidorVariavel][0][status] == 'Aprovado'){
+            $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] = $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] - 1;
+        }
+        $msnTexto = "ao alterar variavel. ".$executar['msn'];
+    }
+    //selecionarSetor
+    if($respGet[acao]=='buscarVariavelServidor'){
+        if(is_numeric($respGet[nomeMatriculaPessoa]) == true ){
+            $matricula = $respGet[nomeMatriculaPessoa];
+            $respGet[nomeMatriculaPessoa] = '';
+        }
+        $sv = array($_SESSION[idLotacaoSub],$_SESSION[idVariavelDesc],$respGet[nomeMatriculaPessoa],$matricula);
+        $encontrados = getRest('variaveis/getListaVariaveisPorSetorPorVariavelDescPorNomePorMatricula',$sv);
+        if (count($encontrados) >= 1){
+            $executar['info'] = 200;
+            $_SESSION[servidorVariavel] = $encontrados;
+            $msnTexto = "ao buscar servidor. ";
+        }else{
+            $executar['info'] = 400;
+            $msnTexto = "! Servidor não encontrado. ";
+        }
+
+        
+    }
+    if($respGet[acao]=='selecionarSetor'){
+        if($respGet[idLotacaoSub] != ""){$_SESSION[idLotacaoSub] = $respGet[idLotacaoSub];}
+        if($respGet[idVariavelDesc] != ""){$_SESSION[idVariavelDesc] = $respGet[idVariavelDesc];}
+        if($respGet[nomeLotacaoSub] != ""){$_SESSION[nomeLotacaoSub] = $respGet[nomeLotacaoSub];}
+        $sv = array($_SESSION[idLotacaoSub],$_SESSION[idVariavelDesc]);
+        $_SESSION[servidorVariavel] = getRest('variaveis/getListaVariaveisPorSetorPorVariavelDesc',$sv);
+        $i=0;
+        $f=0;
+        foreach ($_SESSION[servidorVariavel] as $t){
+            if($_SESSION[servidorVariavel][$i][status] == 'Aprovado'){
+                $f++;
+            }
+            $i++;
+        }
+        $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado]=$f;
+        $respGet[acao]='buscarVariavelLotacaoSub';
+        $respGet[pgServidor] = 1;
+    }
+    exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 if(count($_SESSION[servidorVariavel])>0){?>
      <div class="row">
         <div class="col-xs-12">
@@ -31,26 +115,21 @@ if(count($_SESSION[servidorVariavel])>0){?>
               <h3 class="box-title">Servidor</h3>
               <div class="box-tools">
                 <?php if(($respGet[nomeMatriculaPessoa])!=""){?>
-                     <form action="index.php" method="<?=$method?>" class="inline">
-                        <input type="hidden" name="pst" value="<?=$pst?>"/>
-                        <input type="hidden" name="arq" value="<?=$arq?>"/>
-                        <input type="hidden" name="idVariavelDesc" value="<?=$_SESSION[idVariavelDesc]?>"/>
-                        <input type="hidden" name="acao" value="servidoresVariavel"/>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-mail-reply"></i></button>
-                    </form>
+                    <input type="hidden" name="idVariavelDesc" value="<?=$_SESSION[idVariavelDesc]?>"/>
+                    <input type="hidden" name="acao" value="selecionarSetor"/>
+                    <button class="btn btn-primary" onclick="buscaVServidor('selecionarSetor','<?=$_SESSION[idVariavelDesc]?>')" type="button">
+                        <i class="fa fa-mail-reply"></i>
+                    </button>
                 <?php }else{ ?>
-                    <form action="index.php" method="<?=$method?>" class="inline">
                         <div class="input-group input-group-sm" style="width: 200px;">
-                          <input type="hidden" name="pst" value="<?=$pst?>"/>
-                          <input type="hidden" name="arq" value="<?=$arq?>"/>
-                          <input type="text" name="nomeMatriculaPessoa" class="form-control pull-right" placeholder="Procurar...">
+                          <input type="text" name="nomeMatriculaPessoa" id="nomeMatriculaPessoa" class="form-control pull-right" placeholder="Procurar...">
                           <div class="input-group-btn">
-                              <input type="hidden" name="acao" value="buscarVariavelServidor"/>
-                              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                            <!--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
+                              <button class="btn btn-default" onclick="buscarServidorNomeMatricula('buscarVariavelServidor',$('#nomeMatriculaPessoa').val())" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
                           </div>
                         </div>
-                    </form>
+
                 <?php }?>
               </div>
             </div>
@@ -78,43 +157,20 @@ if(count($_SESSION[servidorVariavel])>0){?>
                       <td><?=dataHoraBr($ArrEspServidor[data])?></td>
                       <td><span class="<?=$lable?>"><?=$ArrEspServidor[status]?></span></td>
                       <td>
-                            <form action="index.php" method="<?=$method?>" class="inline">
-                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                    <input type="hidden" name="idVariavel" value="<?=$ArrEspServidor[idVariavel]?>"/>
-                                    <input type="hidden" name="idVariavelDesc" value="<?=$respGet[idVariavelDesc]?>"/>
-                                    <input type="hidden" name="nomeMatriculaPessoa" value="<?=$respGet[nomeMatriculaPessoa]?>"/>
-                                    <input type="hidden" name="idLotacaoSub" value="<?=$respGet[idLotacaoSub]?>"/>
-                                    <input type="hidden" name="nomeLotacaoSub" value="<?=$respGet[nomeLotacaoSub]?>"/>
-                                    <input type="hidden" name="pgServidor" value="<?=$respGet[pgServidor]?>"/>
-                                    <input type="hidden" name="acao" value="aprovarVariavelServidor"/>
-                                    <button title="Aprovar lançamento" <?=$disablelotacaoSubFechado?> type="submit" class="btn btn-success"><i class="fa fa-check-circle"></i></button>
-                            </form>
-                            <form action="index.php" method="<?=$method?>" class="inline">
-                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                    <input type="hidden" name="idVariavel" value="<?=$ArrEspServidor[idVariavel]?>"/>
-                                    <input type="hidden" name="idVariavelDesc" value="<?=$respGet[idVariavelDesc]?>"/>
-                                    <input type="hidden" name="nomeMatriculaPessoa" value="<?=$respGet[nomeMatriculaPessoa]?>"/>
-                                    <input type="hidden" name="idLotacaoSub" value="<?=$respGet[idLotacaoSub]?>"/>
-                                    <input type="hidden" name="nomeLotacaoSub" value="<?=$respGet[nomeLotacaoSub]?>"/>
-                                    <input type="hidden" name="pgServidor" value="<?=$respGet[pgServidor]?>"/>
-                                    <input type="hidden" name="acao" value="negarVariavelServidor"/>
-                                    <button title="Negar lançamento" <?=$disablelotacaoSubFechado?> type="submit" class="btn btn-danger"><i class="fa fa-ban"></i></button>
-                            </form>
-                            <form action="index.php" method="<?=$method?>" class="inline">
-                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                    <input type="hidden" name="idVariavel" value="<?=$ArrEspServidor[idVariavel]?>"/>
-                                    <input type="hidden" name="idVariavelDesc" value="<?=$respGet[idVariavelDesc]?>"/>
-                                    <input type="hidden" name="nomeMatriculaPessoa" value="<?=$respGet[nomeMatriculaPessoa]?>"/>
-                                    <input type="hidden" name="idLotacaoSub" value="<?=$respGet[idLotacaoSub]?>"/>
-                                    <input type="hidden" name="nomeLotacaoSub" value="<?=$respGet[nomeLotacaoSub]?>"/>
-                                    <input type="hidden" name="pgServidor" value="<?=$respGet[pgServidor]?>"/>
-                                    <input type="hidden" name="acao" value="lancarVariavelServidor"/>
-                                    <button title="Liberar lançamento para alteração" <?=$disablelotacaoSubFechado?> type="submit" class="btn btn-primary"><i class="fa fa-sort-amount-desc"></i></button>
-                            </form>
-                            <form action="index.php" method="<?=$method?>" class="inline">
+                            <button title="Aprovar lançamento" <?=$disablelotacaoSubFechado?> class="btn btn-success" onclick="acaoServidor('aprovarVariavelServidor','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>')" type="button">
+                                <i class="fa fa-check-circle"></i>
+                            </button>
+                            <button title="Negar lançamento" <?=$disablelotacaoSubFechado?> class="btn btn-danger" onclick="acaoServidor('negarVariavelServidor','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>')" type="button">
+                                <i class="fa fa-ban"></i>
+                            </button>
+                            <button title="Aprovar Liberar lançamento para alteração" <?=$disablelotacaoSubFechado?> class="btn btn-primary" onclick="acaoServidor('lancarVariavelServidor','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>')" type="button">
+                                <i class="fa fa-sort-amount-desc"></i>
+                            </button>
+                            <button title="Apagar Lançamento" <?=$disablelotacaoSubFechado?> class="btn btn-default" onclick="acaoServidor('variavelRemover','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>')" type="button">
+                                <i class="fa fa-close"></i>
+                            </button>
+
+<!--                            <form action="index.php" method="<?=$method?>" class="inline">
                                     <input type="hidden" name="pst" value="<?=$pst?>"/>
                                     <input type="hidden" name="arq" value="<?=$arq?>"/>
                                     <input type="hidden" name="idVariavel" value="<?=$ArrEspServidor[idVariavel]?>"/>
@@ -124,8 +180,10 @@ if(count($_SESSION[servidorVariavel])>0){?>
                                     <input type="hidden" name="nomeLotacaoSub" value="<?=$respGet[nomeLotacaoSub]?>"/>
                                     <input type="hidden" name="pgServidor" value="<?=$respGet[pgServidor]?>"/>
                                     <input type="hidden" name="acao" value="variavelRemover"/>
-                                    <button title="Apagar Lançamento" <?=$disablelotacaoSubFechado?> type="submit" class="btn btn-default"><i class="fa fa-close"></i></button>
-                            </form>
+                                    <button title="Apagar Lançamento" <?=$disablelotacaoSubFechado?> type="submit" class="btn btn-default">
+                                        <i class="fa fa-close"></i>
+                                    </button>
+                            </form>-->
                       </td>
                     </tr>
                 <?php }?>
@@ -138,7 +196,7 @@ if(count($_SESSION[servidorVariavel])>0){?>
         </div>
       </div>
 <?php }
-    if((count($_SESSION[servidorVariavel]) == 0) AND (isset($respGet[idLotacaoSub])) AND ($respGet[acao] == 'servidoresVariavel')){?>
+    if((count($_SESSION[servidorVariavel]) == 0) AND (isset($respGet[idLotacaoSub])) AND ($respGet[acao] == 'selecionarSetor')){?>
             <div class="box-body">
               <div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

@@ -162,90 +162,7 @@
         $msnTexto = "ao alterar variavel. ".$executar['msn'];
     }
     //remover variavel servidor
-    if ($respGet['acao'] == "variavelRemover") {
-            $variavel = array('idVariavel'=>$respGet['idVariavel']);
-            $v = array($variavel);
-            $executar = postRest('variaveis/postVariaveisExcluir',$v);
-            if (count($_SESSION[lotacaoSubVariavel]) == 1){
-               if(($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-                    $Array = $_SESSION[servidorVariavel];
-                    $p =  array_search($respGet[idVariavel], array_column($Array, 'idVariavel')).'<br />';
-                    $p = intval($p);
-                    unset($Array[$p]);
-                    sort($Array);         
-                    $_SESSION[servidorVariavel] =$Array;
-                }
-            }else{
-                $respGet[acao]='selecionarSetor'; 
-            }
-            $msnTexto = "ao alterar variavel. ".$executar['msn'];
-    }
-    //servidor----------->---
-    //Alterar Status Aprovar Variavel Servidor
-    if($respGet[acao]=='aprovarVariavelServidor'){
-        $v = array('id'=>$respGet[idVariavel]);
-        $aVariaveis = array($v);
-        $executar = postRest('variaveis/postAprovarVariaveisPorId',$aVariaveis);
-        if(isset($respGet[nomeMatriculaPessoa])){
-            $respGet[acao]='buscarVariavelServidor';
-        }else{
-            $respGet[acao]='servidoresVariavel';
-        }
-        if($_SESSION[servidorVariavel][0][status] == 'Negado'){
-            $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] = $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] + 1;
-        }
-        $msnTexto = "ao alterar variavel. ".$executar['msn'];
-    }
-    //Alterar Status Negar Variavel Servidor
-    if($respGet[acao]=='negarVariavelServidor'){
-        $v = array('id'=>$respGet[idVariavel]);
-        $aVariaveis = array($v);
-        $executar = postRest('variaveis/postNegarVariaveisPorId',$aVariaveis);
-        if(isset($respGet[nomeMatriculaPessoa])){
-            $respGet[acao]='buscarVariavelServidor';
-        }else{
-            $respGet[acao]='servidoresVariavel';
-        }
-        if($_SESSION[servidorVariavel][0][status] == 'Aprovado'){
-            $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] = $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] - 1;
-        }
-        $msnTexto = "ao alterar variavel. ".$executar['msn'];
-    }
-    //Alterar Status Lançar Variavel Servidor
-    if($respGet[acao]=='lancarVariavelServidor'){
-        $v = array('id'=>$respGet[idVariavel]);
-        $aVariaveis = array($v);
-        $executar = postRest('variaveis/postLancarVariaveisPorId',$aVariaveis);
-        if(isset($respGet[nomeMatriculaPessoa])){
-            $respGet[acao]='buscarVariavelServidor';
-        }else{
-            $respGet[acao]='servidoresVariavel';
-        }
-        if($_SESSION[servidorVariavel][0][status] == 'Aprovado'){
-            $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] = $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] - 1;
-        }
-        $msnTexto = "ao alterar variavel. ".$executar['msn'];
-    }
-    //servidoresVariavel
-    if($respGet[acao]=='buscarVariavelServidor'){
-        if(is_numeric($respGet[nomeMatriculaPessoa]) == true ){
-            $matricula = $respGet[nomeMatriculaPessoa];
-            $respGet[nomeMatriculaPessoa] = '';
-        }
-        $sv = array($_SESSION[idLotacaoSub],$_SESSION[idVariavelDesc],$respGet[nomeMatriculaPessoa],$matricula);
-        $encontrados = getRest('variaveis/getListaVariaveisPorSetorPorVariavelDescPorNomePorMatricula',$sv);
-        if (count($encontrados) >= 1){
-            $executar['info'] = 200;
-            $_SESSION[servidorVariavel] = $encontrados;
-            $msnTexto = "ao buscar servidor. ";
-        }else{
-            $executar['info'] = 400;
-            $msnTexto = "! Servidor não encontrado. ";
-        }
-
-        
-    } 
-    exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
+exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 ?>
 <h1 id="idTituloValidar">
     Validar 
@@ -297,7 +214,7 @@
     
     $dados = array('acao', 'nomeVariavelDesc');
     $b1 = array('buscaVSetor','removeClass','hidden');
-    $b2 = array('buscaVServidor','removeClass','hidden');
+    $b2 = array('buscaVServidor','addClass','hidden');
     $beforeSend= array ($b1,$b2);
     postRestAjax('buscarVariavelNome','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados,$beforeSend); 
     
@@ -319,11 +236,18 @@
     $dados = array('acao', 'idVariavelDesc','variaveisDesc','pgLotacaoSub');
     postRestAjax('buscaVServidorNegar','buscaVSetor','folhaOn/buscaVVariavel.php',$dados); 
     
-    
-    //servidor
+    //servidor--------------------------------------------->
     $dados = array('acao','idVariavelDesc','idLotacaoSub','nomeLotacaoSub');
     $funcao = array('buscarSetorNome(acao,nomeLotacaoSub); $("#buscaVServidor").removeClass("hidden");');
-    postRestAjax('buscaVServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados,'','',$funcao); 
+    postRestAjax('buscaVServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados,'','',$funcao);
+    
+    //buscar
+    $dados = array('acao','nomeMatriculaPessoa');
+    postRestAjax('buscarServidorNomeMatricula','buscaVServidor','folhaOn/buscaVServidor.php',$dados); 
+    
+    //acao
+    $dados = array('acao','idVariavel','idVariavelDesc','nomeMatriculaPessoa','idLotacaoSub','nomeLotacaoSub','pgServidor');
+    postRestAjax('acaoServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados); 
 ?>
 <script>
        $("#myModal").on("show", function() {    // wire up the OK button to dismiss the modal when shown
