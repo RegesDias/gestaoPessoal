@@ -60,107 +60,7 @@
         }
         $msnTexto = "ao alterar variavel. ".$executar['msn'];       
     }
-    //Setor----------->
-    //fecharVariavelSetor
-  
-    //Fechar Variavel Setor
-    if($respGet[acao]=='fecharVariavelSetor'){
-        $v = array('idVariavelDesc'=>$respGet[idVariavelDesc],'idLotacaoSub'=>$respGet[idLotacaoSub]);
-        $aVariaveis = array($v);
-        $executar = postRest('variaveis/postFecharVariaveisLotacaoSub',$aVariaveis);
-        if (count($_SESSION[lotacaoSubVariavel]) == 1){
-            if(($_SESSION[lotacaoSubVariavel][0][status] == 1) AND ($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-                $_SESSION[lotacaoSubVariavel][0][status] = 0;
-                $i=0;
-                $_SESSION['setorFechado'] = 0;
-            }elseif(($_SESSION[lotacaoSubVariavel][0][status] == 0) AND ($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-                $_SESSION[lotacaoSubVariavel][0][status] = 1;
-                $i=0;
-                $_SESSION['setorFechado'] = 1;
-            }
-        }else{
-            $respGet[acao]='selecionarSetor'; 
-        }
-        $Porcentagem = array('idLotacao'=>$_SESSION[idLotacao],'idVariavelDesc'=>$respGet[idVariavelDesc]);
-        $busca = getRest('variaveis/getPorcentagemPorIdLotacaoIdVariavelDesc',$Porcentagem);
-        $_SESSION[lotacaoVariavel][0][porcentagem] = $busca[0][porcentagem];
-        $msnTexto = "ao alterar variavel. ".$executar['msn'];
-    }
-    
-    //Aprovar Variavel Setor
-    if($respGet[acao]=='aprovarVariavelSetor'){
-        $v = array('idVariavelDesc'=>$respGet[idVariavelDesc],'idLotacaoSub'=>$respGet[idLotacaoSub]);
-        $aVariaveis = array($v);
-        $executar = postRest('variaveis/postAprovarVariaveisSetorId',$aVariaveis);
-        if (count($_SESSION[lotacaoSubVariavel]) == 1){
-            if(($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-                $i = 0;
-                foreach ($_SESSION[servidorVariavel] as $t){
-                    $_SESSION[servidorVariavel][$i][status] = 'Aprovado';
-                    $i++;
-                }
-                $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] = $i;
-            }
-        }else{
-            $respGet[acao]='selecionarSetor'; 
-        }
-        $msnTexto = "ao alterar variavel. ".$executar['msn'];
-    }
-    //Negar Variavel Setor
-    if($respGet[acao]=='negarVariavelSetor'){
-        $v = array('idVariavelDesc'=>$respGet[idVariavelDesc],'idLotacaoSub'=>$respGet[idLotacaoSub]);
-        $aVariaveis = array($v);
-        $executar = postRest('variaveis/postNegarVariaveisSetorId',$aVariaveis);
-        if (count($_SESSION[lotacaoSubVariavel]) == 1){
-            if(($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-                $i = 0;
-                foreach ($_SESSION[servidorVariavel] as $t){
-                    $_SESSION[servidorVariavel][$i][status] = 'Negado';
-                    $i++;
-                }
-                $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado]=0;
-            }
-        }else{
-            $respGet[acao]='selecionarSetor'; 
-        }
-        $msnTexto = "ao alterar variavel. ".$executar['msn'];
-    }
-    //Lançar Variavel Setor
-    if($respGet[acao]=='lançarVariavelSetor'){
-        $v = array('idVariavelDesc'=>$respGet[idVariavelDesc],'idLotacaoSub'=>$respGet[idLotacaoSub]);
-        $aVariaveis = array($v);
-        $executar = postRest('variaveis/postLancarVariaveisSetorId',$aVariaveis);
-        if (count($_SESSION[lotacaoSubVariavel]) == 1){
-            if(($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-                $i = 0;
-                foreach ($_SESSION[servidorVariavel] as $t){
-                    $_SESSION[servidorVariavel][$i][status] = 'Lançado';
-                    $i++;
-                }
-                $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado]=0;
-            }
-        }else{
-            $respGet[acao]='selecionarSetor'; 
-        }
-        $msnTexto = "ao alterar variavel. ".$executar['msn'];
-    }
-    //Excluir Variavel Setor
-    if($respGet[acao]=='excluirVariavelSetor'){
-        $v = array('idVariavelDesc'=>$respGet[idVariavelDesc],'idLotacaoSub'=>$respGet[idLotacaoSub]);
-        $aVariaveis = array($v);
-        $executar = postRest('variaveis/postExcluirVariaveisSetorId',$aVariaveis);
-        if (count($_SESSION[lotacaoSubVariavel]) == 1){
-            //ver
-            if(($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-                $i = 0;
-                $_SESSION[servidorVariavel] = NULL;
-                $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado]=0;
-            }
-        }else{
-            $respGet[acao]='selecionarSetor'; 
-        }
-        $msnTexto = "ao alterar variavel. ".$executar['msn'];
-    }
+
     //remover variavel servidor
 exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 ?>
@@ -218,13 +118,18 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $beforeSend= array ($b1,$b2);
     postRestAjax('buscarVariavelNome','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados,$beforeSend); 
     
-    //setor
+    //setor------------------------------------->
     $dados = array('acao', 'idVariavelDesc','nomeVariavelDesc');
     $b1 = array('buscaVSetor','removeClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
     $beforeSend= array ($b1,$b2);
     $funcao = array('buscarVariavelNome(acao,nomeVariavelDesc);');
     postRestAjax('buscaVSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados,$beforeSend,'', $funcao);
+    
+    //acaoEmlote
+    $dados = array('acao','idVariavelDesc','idLotacaoSub', 'nomeLotacaoSub','pgLotacaoSub');
+    $funcao = array('fecharModal(); buscaVServidor(acao,idVariavelDesc,idLotacaoSub,nomeLotacaoSub)');
+    postRestAjax('acaoEmlote', 'buscaVSetor', 'folhaOn/buscaVSetor.php',$dados,'','', $funcao);
     
     //busca
     $dados = array('acao', 'nomeLotacaoSub');

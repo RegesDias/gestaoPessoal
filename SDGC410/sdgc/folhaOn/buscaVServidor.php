@@ -88,7 +88,7 @@
 
         
     }
-    if($respGet[acao]=='selecionarSetor'){
+    if(($respGet[acao]=='selecionarSetor') OR ($respGet[acao]=='aprovarVariavelSetor')){
         if($respGet[idLotacaoSub] != ""){$_SESSION[idLotacaoSub] = $respGet[idLotacaoSub];}
         if($respGet[idVariavelDesc] != ""){$_SESSION[idVariavelDesc] = $respGet[idVariavelDesc];}
         if($respGet[nomeLotacaoSub] != ""){$_SESSION[nomeLotacaoSub] = $respGet[nomeLotacaoSub];}
