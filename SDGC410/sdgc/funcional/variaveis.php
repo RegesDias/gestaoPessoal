@@ -49,7 +49,7 @@ $_SESSION['dataPeriodoFolha'] = $dataPeriodoFolha;
                     <input type="hidden" name="acao" value="lancarVariaveis">-->
 <!--                    <button <?=$inativo?> type="submit" class="btn btn-info pull-right  btn-sm"><i class="fa fa-edit"></i> Lançar</button>-->
                     
-                    <button id="idBtnAvaliar" class="btn btn-info pull-right  btn-sm" onclick="incluirVariavel('lancarVariaveis', $('#idSetorVL').val() , $('#idVariaveisDescVL').val(), $('#idQuantidadeVL').val(), $('#idValorVL').val())" type="button">
+                    <button id="idBtnLancarVariaveis" class="btn btn-info pull-right  btn-sm" onclick="incluirVariavel('lancarVariaveis', $('#idSetorVL').val() , $('#idVariaveisDescVL').val(), $('#idQuantidadeVL').val(), $('#idValorVL').val())" type="button">
                        <i class="fa fa-edit"></i> Lançar
                    </button>
                 </div>

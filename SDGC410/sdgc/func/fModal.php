@@ -251,7 +251,7 @@ function modalInicio($id, $title, $pst, $arq, $acao, $padrao = null, $vtab = nul
                     <div class="modal-body col-md-12">
                         <div class="col-md-12">
                             <label>Período</label>
-                            <input id="idMesAnoInicial" name="mesAnoInicial" class="form-control" type="month" value="<?= date('Y-m') ?>" max="<?= date('Y-m') ?>">
+                            <input id="idMesAnoInicial<?= $id ?>" name="mesAnoInicial" class="form-control" type="month" value="<?= date('Y-m') ?>" max="<?= date('Y-m') ?>">
                         </div>
     <?php if ($padrao == 'nsd') { ?>
                             <div class="col-md-12">
@@ -265,7 +265,7 @@ function modalInicio($id, $title, $pst, $arq, $acao, $padrao = null, $vtab = nul
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
-                        <button class="btn btn-primary" data-dismiss="modal" onclick="<?='post'.$acao?>($('#idMesAnoInicial').val(),'<?= $acao ?>',true)" type="button">
+                        <button class="btn btn-primary" data-dismiss="modal" onclick="<?='post'.$acao?>($('#idMesAnoInicial<?= $id ?>').val(),'<?= $acao ?>',true)" type="button">
                              <b>OK</b>
                         </button>
                     </div>
