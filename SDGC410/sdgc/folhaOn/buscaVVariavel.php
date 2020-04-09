@@ -109,7 +109,7 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
           <th>Processo</th>
           <th style="width: 40px"></th>
         </tr>
-        <?php foreach (paginaAtual($_SESSION[lotacaoVariavel],$respGet[pgLotacao]) as $ArrEsp){?>
+        <?php foreach (paginaAtual($_SESSION[lotacaoVariavel],$respGet[pgVariavel]) as $ArrEsp){?>
             <tr>
                <td>
                     <button class="btn btn-default" onclick="buscaVSetor('selecionar','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
@@ -199,7 +199,7 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
            </tr>         
        <?php }?>
       </table>
-        <?=controleDePagina($_SESSION[lotacaoVariavel],$respGet[pgVariavel],"pgServidor",null,'pgServidor');?> 
+        <?=controleDePagina($_SESSION[lotacaoVariavel],$respGet[pgVariavel],"pgVariavel",null,'pgVariavel');?> 
     </div>
     <!-- /.box-body -->
   <!-- /.box -->

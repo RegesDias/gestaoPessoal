@@ -372,7 +372,6 @@ function controleDePagina($array,$pgAtual,$nome,$tab=null,$pgNome=null) {
     if($pgNome == null){
         $pgNome = 'pg';
     }
-    echo $pgNome;
     if($pgAtual <=0){
         $pgAtual = 1;
     }

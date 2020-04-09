@@ -65,7 +65,7 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 <div id="buscaVServidor">
 </div>
 <?php
-    //variaveis
+    //*variaveis------------------------------------------------------>
     $dados = array('acao', 'idSecretaria');
     $b1 = array('buscaVSetor','addClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
@@ -87,7 +87,11 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $beforeSend= array ($b1,$b2);
     postRestAjax('buscarVariavelNome','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados,$beforeSend); 
     
-    //setor------------------------------------->
+    //pg
+    $dados = array('acao', 'pgVariavel');
+    postRestAjax('pgVariavel','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados);  
+    
+    //*setor------------------------------------------------------------------------->
     $dados = array('acao', 'idVariavelDesc','nomeVariavelDesc');
     $b1 = array('buscaVSetor','removeClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
@@ -114,20 +118,20 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     postRestAjax('buscarSetorServidor','buscaVSetor','folhaOn/buscaVSetor.php',$dados);
     
     //pg
-    $dados = array('acao', 'pgSetor',null);
+    $dados = array('acao', 'pgSetor');
     postRestAjax('pgSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados);
     
     $dados = array('acao', 'idVariavelDesc','variaveisDesc','pgLotacaoSub');
     postRestAjax('buscaVServidorNegar','buscaVSetor','folhaOn/buscaVVariavel.php',$dados); 
     
-    //servidor--------------------------------------------->
+    //*servidor--------------------------------------------->
     $dados = array('acao','idVariavelDesc','idLotacaoSub','nomeLotacaoSub');
     $funcao = array('buscarSetorNome(acao,nomeLotacaoSub); $("#buscaVServidor").removeClass("hidden");');
     postRestAjax('buscaVServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados,'','',$funcao);
     
     //pg
-    $dados = array('acao', 'pgSetor',null);
-    postRestAjax('pgSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados);   
+    $dados = array('acao', 'pgServidor');
+    postRestAjax('pgServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados);   
     
     //buscar
     $dados = array('acao','nomeMatriculaPessoa');
