@@ -19,6 +19,8 @@
 //console.log("ChamouFBoxSecretariaSetor");
 //funcao usada no filtro de relatorios e no modal
     function selectSecretariasAjax(lista) {
+        console.log("TESTE");
+        console.log(lista);
         let listaMapeada = lista.map(item => [item.ativo, item.atual, item.controle, item.id, item.max, item.nome]);
         let arrayColumn = (arr, n) => arr.map(x => x[n]);
         listaNomeSecretaria = arrayColumn(listaMapeada, 5);
@@ -135,6 +137,7 @@
 
 //EXECUTA DEPOIS QUE CARREGA A PAGINA
     $(document).ready(function () {
+        
         carregaRelat();
     });
     //-------------------------------------------------------------

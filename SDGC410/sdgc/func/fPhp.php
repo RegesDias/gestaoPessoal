@@ -14,7 +14,7 @@
     //
 //SISTEMA
 $versaoSDGC = '4.1.0';
-$localBack = false;
+$localBack = true;
 $localEndereco = false;
 $DBteste = false;
 $rodarLocal = true;
@@ -29,7 +29,7 @@ $DBtestePort = '32796';
 //reges
 //$ip = '97';
 //joao
-//$ip = '89';
+$ip = '89';
 //
 //---CONFIGURAÇÃO DO SERVIDOR ----------
      //controle de URL 
