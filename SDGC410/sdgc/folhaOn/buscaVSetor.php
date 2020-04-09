@@ -20,26 +20,32 @@ if($respGet[acao]=='selecionar'){
   
 //Fechar Variavel Setor
 if($respGet[acao]=='fecharVariavelSetor'){
+    $Array = $_SESSION[lotacaoSubVariavel];
+    $p =  array_search($respGet[nomeLotacaoSub], array_column($Array, 'nomeLotacaoSub')).'<br />';
+    $p = intval($p);
+    $_SESSION[lotacaoSubVariavel] = array($Array[$p]);
     $v = array('idVariavelDesc'=>$respGet[idVariavelDesc],'idLotacaoSub'=>$respGet[idLotacaoSub]);
     $aVariaveis = array($v);
-    $executar = postRest('variaveis/postFecharVariaveisLotacaoSub',$aVariaveis);
-    if (count($_SESSION[lotacaoSubVariavel]) == 1){
-        if(($_SESSION[lotacaoSubVariavel][0][status] == 1) AND ($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-            $_SESSION[lotacaoSubVariavel][0][status] = 0;
-            $i=0;
-            $_SESSION['setorFechado'] = 0;
-        }elseif(($_SESSION[lotacaoSubVariavel][0][status] == 0) AND ($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-            $_SESSION[lotacaoSubVariavel][0][status] = 1;
-            $i=0;
-            $_SESSION['setorFechado'] = 1;
+    if(isset($respGet[idLotacaoSub])){
+        $executar = postRest('variaveis/postFecharVariaveisLotacaoSub',$aVariaveis);
+        if (count($_SESSION[lotacaoSubVariavel]) == 1){
+            if(($_SESSION[lotacaoSubVariavel][0][status] == 1) AND ($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
+                $_SESSION[lotacaoSubVariavel][0][status] = 0;
+                $i=0;
+                $_SESSION['setorFechado'] = 0;
+            }elseif(($_SESSION[lotacaoSubVariavel][0][status] == 0) AND ($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
+                $_SESSION[lotacaoSubVariavel][0][status] = 1;
+                $i=0;
+                $_SESSION['setorFechado'] = 1;
+            }
+        }else{
+            $respGet[acao]='selecionarSetor'; 
         }
-    }else{
-        $respGet[acao]='selecionarSetor'; 
+        $Porcentagem = array('idLotacao'=>$_SESSION[idLotacao],'idVariavelDesc'=>$respGet[idVariavelDesc]);
+        $busca = getRest('variaveis/getPorcentagemPorIdLotacaoIdVariavelDesc',$Porcentagem);
+        $_SESSION[lotacaoVariavel][0][porcentagem] = $busca[0][porcentagem];
+        $msnTexto = "ao alterar variavel. ".$executar['msn'];
     }
-    $Porcentagem = array('idLotacao'=>$_SESSION[idLotacao],'idVariavelDesc'=>$respGet[idVariavelDesc]);
-    $busca = getRest('variaveis/getPorcentagemPorIdLotacaoIdVariavelDesc',$Porcentagem);
-    $_SESSION[lotacaoVariavel][0][porcentagem] = $busca[0][porcentagem];
-    $msnTexto = "ao alterar variavel. ".$executar['msn'];
 }
 //Aprovar Variavel Setor
 if($respGet[acao]=='aprovarVariavelSetor'){
@@ -96,6 +102,7 @@ if($respGet[acao]=='lançarVariavelSetor'){
     }else{
         $respGet[acao]='selecionarSetor'; 
     }
+    sleep(10);
     $msnTexto = "ao alterar variavel. ".$executar['msn'];
 }
 //Excluir Variavel Setor
@@ -172,7 +179,7 @@ if(count($_SESSION[lotacaoSubVariavel])>0){?>
                   <th>Ação</th>
                 </tr>
                 <?php 
-                    foreach (paginaAtual($_SESSION[lotacaoSubVariavel],$respGet[pgLotacaoSub]) as $ArrEspp){
+                    foreach (paginaAtual($_SESSION[lotacaoSubVariavel],$respGet[pgSetor]) as $ArrEspp){
                         $id = str_replace(".", "", $ArrEspp[idLotacaoSub]);
                         if($ArrEspp[status] == 1){
                             $lableBtn = "btn btn-success";
@@ -214,15 +221,7 @@ if(count($_SESSION[lotacaoSubVariavel])>0){?>
                                         <p>O status da variável <?=$ArrEsp[variaveisDesc]?> do setor <?=$ArrEspp[nomeLotacaoSub]?> vai ser alterado para <?=$MsnNome?>. Deseja realmente fazer esta ação?</p>
                                   </div>
                                   <div class="modal-footer">
-<!--                                        <form action="index.php" method="<?=$method?>" class="inline">
-                                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEspp[idVariavelDesc]?>"/>
-                                                <input type="hidden" name="idLotacaoSub" value="<?=$ArrEspp[idLotacaoSub]?>"/>
-                                                <input type="hidden" name="nomeLotacaoSub" value="<?=$ArrEspp[nomeLotacaoSub]?>"/>
-                                                <input type="hidden" name="pgLotacaoSub" value="<?=$respGet[pgLotacaoSub]?>"/>
-                                                <input type="hidden" name="acao" value="fecharVariavelSetor"/>
-                                                <button class="btn btn-primary">Confirmar</button>
-                                        </form>-->
-                                        <button class="btn btn-primary" onclick="acaoEmlote('fecharVariavelSetor','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>','<?=$respGet[pgLotacaoSub]?>')" type="button">
+                                        <button class="btn btn-primary" onclick="fecharEmloteSetor('fecharVariavelSetor','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>','<?=$respGet[pgSetor]?>','<?=$_SESSION[nomeVariavel]?>')" type="button">
                                             Confirmar
                                         </button>
                                         <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
@@ -240,7 +239,7 @@ if(count($_SESSION[lotacaoSubVariavel])>0){?>
                                         <p> Aprovar todas as variáveis <?=$ArrEsp[variaveisDesc]?> do setor <?=$ArrEspp[nomeLotacaoSub]?>. Deseja realmente fazer esta ação?</p>
                                   </div>
                                   <div class="modal-footer">
-                                        <button class="btn btn-primary" onclick="acaoEmlote('aprovarVariavelSetor','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>','<?=$respGet[pgLotacaoSub]?>')" type="button">
+                                        <button class="btn btn-primary" onclick="acaoEmlote('aprovarVariavelSetor','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>','<?=$respGet[pgSetor]?>')" type="button">
                                             Confirmar
                                         </button>
                                         <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
@@ -257,7 +256,7 @@ if(count($_SESSION[lotacaoSubVariavel])>0){?>
                                         <p> Reprovar todas as variáveis <?=$ArrEsp[variaveisDesc]?> do setor <?=$ArrEspp[nomeLotacaoSub]?>. Deseja realmente fazer esta ação?</p>
                                   </div>
                                   <div class="modal-footer">
-                                        <button class="btn btn-primary" onclick="acaoEmlote('negarVariavelSetor','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>','<?=$respGet[pgLotacaoSub]?>')" type="button">
+                                        <button class="btn btn-primary" onclick="acaoEmlote('negarVariavelSetor','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>','<?=$respGet[pgSetor]?>')" type="button">
                                             Confirmar
                                         </button>
                                         <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
@@ -273,7 +272,7 @@ if(count($_SESSION[lotacaoSubVariavel])>0){?>
                                         <p> Liberar todas as variáveis <?=$ArrEsp[variaveisDesc]?> do setor <?=$ArrEspp[nomeLotacaoSub]?> para modificação. Deseja realmente fazer esta ação?</p>
                                   </div>
                                   <div class="modal-footer">
-                                        <button class="btn btn-primary" onclick="acaoEmlote('lançarVariavelSetor','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>','<?=$respGet[pgLotacaoSub]?>')" type="button">
+                                        <button class="btn btn-primary" onclick="acaoEmlote('lançarVariavelSetor','<?=$ArrEspp[idVariavelDesc]?>','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEspp[nomeLotacaoSub]?>','<?=$respGet[pgSetor]?>')" type="button">
                                             Confirmar
                                         </button>
                                         <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
@@ -315,7 +314,7 @@ if(count($_SESSION[lotacaoSubVariavel])>0){?>
               </table>
             </div>
             <!-- /.box-body -->
-           <?=controleDePagina($_SESSION[lotacaoSubVariavel],$respGet[pgLotacaoSub],"pgLotacaoSub");?> 
+           <?=controleDePagina($_SESSION[lotacaoSubVariavel],$respGet[pgSetor],"pgSetor",null,'pgSetor');?> 
           </div>
           <!-- /.box -->
         </div>

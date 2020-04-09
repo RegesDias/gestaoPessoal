@@ -368,7 +368,11 @@ function paginaAtual($array, $pgAtual){
     $array = array_slice($array, $ii, 10 );
     return $array;
 }
-function controleDePagina($array,$pgAtual,$nome,$tab=null) {
+function controleDePagina($array,$pgAtual,$nome,$tab=null,$pgNome=null) {
+    if($pgNome == null){
+        $pgNome = 'pg';
+    }
+    echo $pgNome;
     if($pgAtual <=0){
         $pgAtual = 1;
     }
@@ -386,7 +390,7 @@ function controleDePagina($array,$pgAtual,$nome,$tab=null) {
                     if($pgAtual>1){?>
                         <li>
                             <a>
-                                <button class="link-button" onclick="<?=$nome?>('pg','<?=$pgAtual-1?>')" type="button">
+                                <button class="link-button" onclick="<?=$nome?>('<?=$pgNome?>','<?=$pgAtual-1?>')" type="button">
                                       &laquo;
                                 </button>
                             </a>
@@ -403,7 +407,7 @@ function controleDePagina($array,$pgAtual,$nome,$tab=null) {
                         ?>
                             <li>
                                 <a>
-                                <button class="link-button" onclick="<?=$nome?>('pg','<?=$index?>')" type="button">
+                                <button class="link-button" onclick="<?=$nome?>('<?=$pgNome?>','<?=$index?>')" type="button">
                                       <?=$v?>
                                 </button>
                                 </a>
@@ -413,7 +417,7 @@ function controleDePagina($array,$pgAtual,$nome,$tab=null) {
                     if($pag > $pgAtual){?>
                         <li>
                             <a>
-                                <button class="link-button" onclick="<?=$nome?>('pg','<?=$pgAtual+1?>')" type="button">
+                                <button class="link-button" onclick="<?=$nome?>('<?=$pgNome?>','<?=$pgAtual+1?>')" type="button">
                                       &raquo;
                                 </button>
                             </a>

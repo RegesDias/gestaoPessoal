@@ -34,7 +34,7 @@
         }else{
             $respGet[acao]='selecionarSetor';
         }
-        if($_SESSION[servidorVariavel][0][status] == 'Negado'){
+        if($respGet[status] == 'Negado'){
             $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] = $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] + 1;
         }
         $msnTexto = "ao alterar variavel. ".$executar['msn'];
@@ -49,7 +49,7 @@
         }else{
             $respGet[acao]='selecionarSetor';
         }
-        if($_SESSION[servidorVariavel][0][status] == 'Aprovado'){
+        if($respGet[status] == 'Aprovado'){
             $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] = $_SESSION[lotacaoSubVariavel][0][quantidadeAprovado] - 1;
         }
         $msnTexto = "ao alterar variavel. ".$executar['msn'];
@@ -157,33 +157,18 @@ if(count($_SESSION[servidorVariavel])>0){?>
                       <td><?=dataHoraBr($ArrEspServidor[data])?></td>
                       <td><span class="<?=$lable?>"><?=$ArrEspServidor[status]?></span></td>
                       <td>
-                            <button title="Aprovar lançamento" <?=$disablelotacaoSubFechado?> class="btn btn-success" onclick="acaoServidor('aprovarVariavelServidor','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>')" type="button">
+                            <button title="Aprovar lançamento" <?=$disablelotacaoSubFechado?> class="btn btn-success" onclick="acaoServidor('aprovarVariavelServidor','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>','<?=$ArrEspServidor[status]?>')" type="button">
                                 <i class="fa fa-check-circle"></i>
                             </button>
-                            <button title="Negar lançamento" <?=$disablelotacaoSubFechado?> class="btn btn-danger" onclick="acaoServidor('negarVariavelServidor','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>')" type="button">
+                            <button title="Negar lançamento" <?=$disablelotacaoSubFechado?> class="btn btn-danger" onclick="acaoServidor('negarVariavelServidor','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>','<?=$ArrEspServidor[status]?>')" type="button">
                                 <i class="fa fa-ban"></i>
                             </button>
-                            <button title="Aprovar Liberar lançamento para alteração" <?=$disablelotacaoSubFechado?> class="btn btn-primary" onclick="acaoServidor('lancarVariavelServidor','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>')" type="button">
+                            <button title="Aprovar Liberar lançamento para alteração" <?=$disablelotacaoSubFechado?> class="btn btn-primary" onclick="acaoServidor('lancarVariavelServidor','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>','<?=$ArrEspServidor[status]?>')" type="button">
                                 <i class="fa fa-sort-amount-desc"></i>
                             </button>
-                            <button title="Apagar Lançamento" <?=$disablelotacaoSubFechado?> class="btn btn-default" onclick="acaoServidor('variavelRemover','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>')" type="button">
+                            <button title="Apagar Lançamento" <?=$disablelotacaoSubFechado?> class="btn btn-default" onclick="acaoServidor('variavelRemover','<?=$ArrEspServidor[idVariavel]?>','<?=$respGet[idVariavelDesc]?>','<?=$respGet[nomeMatriculaPessoa]?>','<?=$respGet[idLotacaoSub]?>','<?=$respGet[nomeLotacaoSub]?>','<?=$respGet[pgServidor]?>','<?=$ArrEspServidor[status]?>')" type="button">
                                 <i class="fa fa-close"></i>
                             </button>
-
-<!--                            <form action="index.php" method="<?=$method?>" class="inline">
-                                    <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                    <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                    <input type="hidden" name="idVariavel" value="<?=$ArrEspServidor[idVariavel]?>"/>
-                                    <input type="hidden" name="idVariavelDesc" value="<?=$respGet[idVariavelDesc]?>"/>
-                                    <input type="hidden" name="nomeMatriculaPessoa" value="<?=$respGet[nomeMatriculaPessoa]?>"/>
-                                    <input type="hidden" name="idLotacaoSub" value="<?=$respGet[idLotacaoSub]?>"/>
-                                    <input type="hidden" name="nomeLotacaoSub" value="<?=$respGet[nomeLotacaoSub]?>"/>
-                                    <input type="hidden" name="pgServidor" value="<?=$respGet[pgServidor]?>"/>
-                                    <input type="hidden" name="acao" value="variavelRemover"/>
-                                    <button title="Apagar Lançamento" <?=$disablelotacaoSubFechado?> type="submit" class="btn btn-default">
-                                        <i class="fa fa-close"></i>
-                                    </button>
-                            </form>-->
                       </td>
                     </tr>
                 <?php }?>

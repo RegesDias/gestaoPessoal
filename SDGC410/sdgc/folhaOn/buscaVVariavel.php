@@ -6,6 +6,46 @@
     $arq = 'validarVariaveis';
     print_p($respGet);
     //lotacaoVariavel
+    $buscAcessoNivel = array("7");
+    $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao',$buscAcessoNivel);
+    foreach ($listaAcesso as $valor) {
+        if (($valor['link'] == 'FecharLotacao') AND ($valor['buscar'] == '1')){ 
+             $btnFecharLotacao = true;
+             break;
+        }
+    }
+    foreach ($listaAcesso as $valor) {
+        if (($valor['link'] == 'FecharLotacaoSub') AND ($valor['buscar'] == '1')){ 
+             $btnFecharLotacaoSub = true;
+             break;
+        }
+    }
+    if(isset($respGet[pg])){
+        $respGet[pgLotacao] = $respGet[pg];
+        $respGet[pgLotacaoSub] = $respGet[pg];
+        $respGet[pgServidor] = $respGet[pg];
+    }
+    if($respGet[acao]=='fecharVariavelSecretaria'){
+        $v = array('idVariavelDesc'=>$respGet[idVariavelDesc],'idLotacao'=>$_SESSION[idLotacao]);
+        $aVariaveis = array($v);
+        $executar = postRest('variaveis/postFecharVariaveisLotacao',$aVariaveis);
+        if (count($_SESSION[lotacaoVariavel]) == 1){
+            if(($_SESSION[lotacaoVariavel][0][status] == 1) AND ($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
+                $_SESSION[lotacaoVariavel][0][status] = 0;
+                $i=0;
+                $_SESSION['lotacaoSubFechado'] = 0;
+            }elseif(($_SESSION[lotacaoVariavel][0][status] == 0) AND ($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
+                $_SESSION[lotacaoVariavel][0][status] = 1;
+                $i=0;
+                $_SESSION['lotacaoSubFechado'] = 1;
+                $codValidacao = getRest('variaveis/getCodValidacaoVariavelLotacao',$v);
+                $_SESSION[lotacaoVariavel][0][codValidacao] = bin2hex(mhash(MHASH_ADLER32, $codValidacao[0][codValidacao]));
+            }
+        }else{
+            $respGet[acao]='selecionarSecretaria';   
+        }
+        $msnTexto = "ao alterar variavel. ".$executar['msn'];       
+    }
 if($respGet[acao]=='selecionarSecretaria'){
     if(isset($respGet[idSecretaria])){
         $_SESSION[idLotacao] = $respGet[idSecretaria];
@@ -29,6 +69,7 @@ if($respGet[acao]=='selecionar'){
         $_SESSION['lotacaoSubFechado'] = 0;
     }
 }
+exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 if(count($_SESSION[lotacaoVariavel])>0){?>
  <div class="box">
     <div class="box-header">
@@ -103,14 +144,9 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
                                     <p>O status da variável <?=$ArrEsp[variaveisDesc]?> vai ser alterado para <?=$MsnNome?>. Deseja realmente fazer esta ação?</p>
                               </div>
                               <div class="modal-footer">
-                                    <form action="index.php" method="<?=$method?>" class="inline">
-                                            <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                            <input type="hidden" name="arq" value="<?=$arq?>"/>
-                                            <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
-                                            <input type="hidden" name="nomeVariavelDesc" value="<?=$ArrEsp[variaveisDesc]?>"/>
-                                            <input type="hidden" name="acao" value="fecharVariavelSecretaria"/>
-                                            <button class="btn btn-primary">Confirmar</button>
-                                    </form>
+                                    <button class="btn btn-primary" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+                                        Confirmar
+                                    </button>
                                     <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
                               </div>
                             </div>
@@ -163,7 +199,7 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
            </tr>         
        <?php }?>
       </table>
-        <?=controleDePagina($_SESSION[lotacaoVariavel],$respGet[pgLotacao],"pgLotacao");?> 
+        <?=controleDePagina($_SESSION[lotacaoVariavel],$respGet[pgVariavel],"pgServidor",null,'pgServidor');?> 
     </div>
     <!-- /.box-body -->
   <!-- /.box -->

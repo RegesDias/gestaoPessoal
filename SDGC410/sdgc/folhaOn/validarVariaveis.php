@@ -5,25 +5,6 @@
     $pst = 'folhaOn';
     $arq = 'validarVariaveis';
 //acesso
-    $buscAcessoNivel = array("7");
-    $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao',$buscAcessoNivel);
-    foreach ($listaAcesso as $valor) {
-        if (($valor['link'] == 'FecharLotacao') AND ($valor['buscar'] == '1')){ 
-             $btnFecharLotacao = true;
-             break;
-        }
-    }
-    foreach ($listaAcesso as $valor) {
-        if (($valor['link'] == 'FecharLotacaoSub') AND ($valor['buscar'] == '1')){ 
-             $btnFecharLotacaoSub = true;
-             break;
-        }
-    }
-    if(isset($respGet[pg])){
-        $respGet[pgLotacao] = $respGet[pg];
-        $respGet[pgLotacaoSub] = $respGet[pg];
-        $respGet[pgServidor] = $respGet[pg];
-    }
     $respGet[acao]='limparSessao';
     if($respGet[acao]=='limparSessao'){
         $_SESSION[lotacaoVariavel] = Null; 
@@ -38,27 +19,6 @@
            $respGet[acao] = 'selecionarSecretaria'; 
            $respGet[idSecretaria] = $total[0][id];
         }
-    }
-    if($respGet[acao]=='fecharVariavelSecretaria'){
-        $v = array('idVariavelDesc'=>$respGet[idVariavelDesc],'idLotacao'=>$_SESSION[idLotacao]);
-        $aVariaveis = array($v);
-        $executar = postRest('variaveis/postFecharVariaveisLotacao',$aVariaveis);
-        if (count($_SESSION[lotacaoVariavel]) == 1){
-            if(($_SESSION[lotacaoVariavel][0][status] == 1) AND ($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-                $_SESSION[lotacaoVariavel][0][status] = 0;
-                $i=0;
-                $_SESSION['lotacaoSubFechado'] = 0;
-            }elseif(($_SESSION[lotacaoVariavel][0][status] == 0) AND ($executar['info'] >= 200) AND ( $executar['info'] <= 299)) {
-                $_SESSION[lotacaoVariavel][0][status] = 1;
-                $i=0;
-                $_SESSION['lotacaoSubFechado'] = 1;
-                $codValidacao = getRest('variaveis/getCodValidacaoVariavelLotacao',$v);
-                $_SESSION[lotacaoVariavel][0][codValidacao] = bin2hex(mhash(MHASH_ADLER32, $codValidacao[0][codValidacao]));
-            }
-        }else{
-            $respGet[acao]='selecionarSecretaria';   
-        }
-        $msnTexto = "ao alterar variavel. ".$executar['msn'];       
     }
 
     //remover variavel servidor
@@ -112,6 +72,15 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $beforeSend= array ($b1,$b2);
     postRestAjax('buscaVVariavel','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados,$beforeSend); 
     
+    //fecharVariavelSecretaria
+    $dados = array('acao', 'idVariavelDesc','nomeVariavelDesc');
+    $b1 = array('buscaVSetor','addClass','hidden');
+    $b2 = array('buscaVServidor','addClass','hidden');
+    $beforeSend= array ($b1,$b2);
+    $funcao = array('fecharModal();');
+    postRestAjax('fecharEmSecretaria','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados,$beforeSend,'',$funcao); 
+    
+    //buscarVariavelNome
     $dados = array('acao', 'nomeVariavelDesc');
     $b1 = array('buscaVSetor','removeClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
@@ -130,13 +99,23 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $dados = array('acao','idVariavelDesc','idLotacaoSub', 'nomeLotacaoSub','pgLotacaoSub');
     $funcao = array('fecharModal(); buscaVServidor(acao,idVariavelDesc,idLotacaoSub,nomeLotacaoSub)');
     postRestAjax('acaoEmlote', 'buscaVSetor', 'folhaOn/buscaVSetor.php',$dados,'','', $funcao);
+
+    //fecharEmloteSetor
+    $dados = array('acao','idVariavelDesc','idLotacaoSub', 'nomeLotacaoSub','pgLotacaoSub','nomeVariavelDesc');
+    $funcao = array('fecharModal(); buscaVServidor(acao,idVariavelDesc,idLotacaoSub,nomeLotacaoSub);buscarVariavelNome(acao, nomeVariavelDesc)');
+    postRestAjax('fecharEmloteSetor', 'buscaVSetor', 'folhaOn/buscaVSetor.php',$dados,'','', $funcao);
     
     //busca
     $dados = array('acao', 'nomeLotacaoSub');
     $b1 = array('buscaVSetor','removeClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
     $beforeSend= array ($b1,$b2);
-    postRestAjax('buscarSetorNome','buscaVSetor','folhaOn/buscaVSetor.php',$dados,$beforeSend); 
+    postRestAjax('buscarSetorNome','buscaVSetor','folhaOn/buscaVSetor.php',$dados,$beforeSend);
+    postRestAjax('buscarSetorServidor','buscaVSetor','folhaOn/buscaVSetor.php',$dados);
+    
+    //pg
+    $dados = array('acao', 'pgSetor',null);
+    postRestAjax('pgSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados);
     
     $dados = array('acao', 'idVariavelDesc','variaveisDesc','pgLotacaoSub');
     postRestAjax('buscaVServidorNegar','buscaVSetor','folhaOn/buscaVVariavel.php',$dados); 
@@ -146,13 +125,18 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $funcao = array('buscarSetorNome(acao,nomeLotacaoSub); $("#buscaVServidor").removeClass("hidden");');
     postRestAjax('buscaVServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados,'','',$funcao);
     
+    //pg
+    $dados = array('acao', 'pgSetor',null);
+    postRestAjax('pgSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados);   
+    
     //buscar
     $dados = array('acao','nomeMatriculaPessoa');
     postRestAjax('buscarServidorNomeMatricula','buscaVServidor','folhaOn/buscaVServidor.php',$dados); 
     
     //acao
-    $dados = array('acao','idVariavel','idVariavelDesc','nomeMatriculaPessoa','idLotacaoSub','nomeLotacaoSub','pgServidor');
-    postRestAjax('acaoServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados); 
+    $dados = array('acao','idVariavel','idVariavelDesc','nomeMatriculaPessoa','idLotacaoSub','nomeLotacaoSub','pgServidor','status');
+    $funcao = array('buscarSetorServidor(acao, nomeLotacaoSub)');
+    postRestAjax('acaoServidor','buscaVServidor','folhaOn/buscaVServidor.php',$dados,'','',$funcao);
 ?>
 <script>
        $("#myModal").on("show", function() {    // wire up the OK button to dismiss the modal when shown
