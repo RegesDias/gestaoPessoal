@@ -363,9 +363,9 @@ function paginaAtual($array, $pgAtual){
     if($pgAtual == 1){
         $ii = 0;
     }else{
-        $ii = ($pgAtual * 10) - 10;
+        $ii = ($pgAtual * 5) - 5;
     }
-    $array = array_slice($array, $ii, 10 );
+    $array = array_slice($array, $ii, 5 );
     return $array;
 }
 function controleDePagina($array,$pgAtual,$nome,$tab=null,$pgNome=null) {
@@ -381,7 +381,7 @@ function controleDePagina($array,$pgAtual,$nome,$tab=null,$pgNome=null) {
     if($pag < $pgAtual+10 ){
         $ultimapg = $pag;
     }else{
-        $ultimapg = $pgAtual+5;
+        $ultimapg = $pgAtual+10;
     }
     if ($pg >=1){ ?>
             <div class="box-footer clearfix">

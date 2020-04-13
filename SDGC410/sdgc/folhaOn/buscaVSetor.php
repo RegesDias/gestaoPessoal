@@ -4,7 +4,6 @@
     require_once '../func/fModal.php';
     $pst = 'folhaOn';
     $arq = 'validarVariaveis';
-    print_p($respGet);
 if($respGet[acao]=='selecionar'){
     $lvs = array($_SESSION[idLotacao],$respGet[idVariavelDesc]);
     $_SESSION[nomeVariavel]=$respGet[nomeVariavelDesc];

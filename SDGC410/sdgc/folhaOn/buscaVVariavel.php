@@ -4,7 +4,6 @@
     require_once '../func/fModal.php';
     $pst = 'folhaOn';
     $arq = 'validarVariaveis';
-    print_p($respGet);
     //lotacaoVariavel
     $buscAcessoNivel = array("7");
     $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao',$buscAcessoNivel);
@@ -198,7 +197,7 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
              <td><span class="<?=$numeroPercent?>"><?=$ArrEsp[porcentagem]?>%</span></td>
            </tr>         
        <?php }?>
-      </table>
+          </table>
         <?=controleDePagina($_SESSION[lotacaoVariavel],$respGet[pgVariavel],"pgVariavel",null,'pgVariavel');?> 
     </div>
     <!-- /.box-body -->

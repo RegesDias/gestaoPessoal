@@ -18,7 +18,7 @@
 <section class="content">
     <div class="row">
         <form class="form-horizontal" method="<?=$method?>" action="index.php" name="formTemplate">
-            <?php //require_once 'lancaVariaveisLote.php'; ?>
+            <?php require_once '../funcional/lancaVariaveisLote.php'; ?>
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Selecionar servidor</h3>

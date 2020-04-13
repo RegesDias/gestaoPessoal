@@ -4,7 +4,6 @@
     require_once '../func/fModal.php';
     $pst = 'folhaOn';
     $arq = 'validarVariaveis';
-    print_p($respGet);
     //servidor----------->---
     //Alterar Status Aprovar Variavel Servidor
     if ($respGet['acao'] == "variavelRemover") {
@@ -180,8 +179,7 @@ if(count($_SESSION[servidorVariavel])>0){?>
           <!-- /.box -->
         </div>
       </div>
-<?php }
-    if((count($_SESSION[servidorVariavel]) == 0) AND (isset($respGet[idLotacaoSub])) AND ($respGet[acao] == 'selecionarSetor')){?>
+<?php }else{?>
             <div class="box-body">
               <div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
