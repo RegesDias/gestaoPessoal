@@ -1,7 +1,7 @@
 <?php
-//configuração
-    $pst = 'admin';
-    $arq = 'alterDataPreviaFolha';
+session_start();
+require_once '../func/fPhp.php';
+require_once '../func/fModal.php';
     $diasPlan = array();
     if ($respGet['acao']=='alterarDiasPlan'){
         foreach ($respGet['diasPlan'] as $value) {
@@ -35,7 +35,7 @@
                         <div class="modal-body col-md-12">
                             <div class="col-md-12">
                                 <label>Liberação para cosulta</label>
-                                <select class="form-control select2" multiple="multiple" name='diasPlan[]' data-placeholder="Não possui setor" style="width: 100%;">
+                                <select class="form-control select2" multiple="multiple" name='diasPlan[]' id='diasPlan' data-placeholder="Não possui setor" style="width: 100%;">
                                   <?php foreach ($dataFolhaPrevia as $dataBanco) {
                                             if($dataBanco[ativo] == 1){
                                                 $selected = "selected='selected'";
@@ -53,13 +53,20 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" name="acao" value="alterarDiasPlan">
-                            <input type="hidden" name="pst" value="<?= $pst ?>">
-                            <input type="hidden" name="arq" value="<?= $arq ?>">
-                            <input type="submit" class="btn btn-primary" value='Alterar'>
+                            <button class="btn btn-primary" onclick="agendarData('alterarDiasPlan',$('#diasPlan').val())" type="button">
+                                Alterar
+                            </button>
                         </div>
                     </form>
             </div>
                    <div class="modal-body col-md-12">
                </div>
 </div>
+<?php
+    //salvar
+    $dados = array('acao','diasPlan');
+    postRestAjax('agendarData', 'corpo', 'admin/alterDataPreviaFolha.php', $dados);
+?>
+<script>
+   configuraTela(); 
+</script>

@@ -14,7 +14,7 @@ function modalCadUser($id, $title, $pst, $arq) {
                     <h4 class="modal-title" id="exampleModalLabel"><?= $title ?></h4>
                 </div>
                 <form method='<?= $method ?>' action='index.php' name='formTemplate'>
-    <?= esconderItem('template') ?>
+                <?= esconderItem('template') ?>
                     <div class="modal-body col-md-12">
                         <div class="col-md-12">
                             <label>Versão App</label>
@@ -31,12 +31,12 @@ function modalCadUser($id, $title, $pst, $arq) {
                                         echo "selected='selected'";
                                         $lotAtivo = true;
                                     } ?>><?= $ArrEsp['nome'] . " " . $ArrEsp['versao'] ?></option>
-    <?php
-    }
-    if ($lotAtivo != true) {
-        echo "<option></option>";
-    }
-    ?>  
+                                    <?php
+                                    }
+                                    if ($lotAtivo != true) {
+                                        echo "<option></option>";
+                                    }
+                                    ?>  
                                     </select>
 
                                 </div>
@@ -102,7 +102,7 @@ function modalCadUser($id, $title, $pst, $arq) {
     <!-- Carrega todas secretarias neste modal -->
 
     <?php
-    require_once 'javascript/fBoxSecretariaSetor.php';
+    require_once '../javascript/fBoxSecretariaSetor.php';
 }
 
 //ModalInicioFim

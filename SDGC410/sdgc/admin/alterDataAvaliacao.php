@@ -1,7 +1,7 @@
 <?php
-//configuração
-    $pst = 'admin';
-    $arq = 'alterDataAvaliacao';
+session_start();
+require_once '../func/fPhp.php';
+require_once '../func/fModal.php';
     if ($respGet['acao'] == 'alterDataAvaliacao'){
         $respGet['data'] = $respGet['data'].'-01';
         $respGet['dataAgenda'] = $respGet['dataAgenda'].'-01';
@@ -50,21 +50,25 @@
                     <h2>Novo Período</h2>
                     <div class="col-md-6">
                         <label>Inicial</label>
-                        <input name="data" class="form-control" type="month" value="">
+                        <input name="data" id="data" class="form-control" type="month" value="">
                     </div>
                     <div class="col-md-6">
                         <label>Final</label>
-                        <input name="dataAgenda" class="form-control" type="month" value="">
+                        <input name="dataAgenda" id="dataAgenda" class="form-control" type="month" value="">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="acao" value="alterDataAvaliacao">
-                    <input type="hidden" name="pst" value="<?= $pst ?>">
-                    <input type="hidden" name="arq" value="<?= $arq ?>">
-                    <input type="submit" class="btn btn-primary" value='Alterar'>
+                    <button class="btn btn-primary" onclick="agendarData('alterDataAvaliacao',$('#data').val(),$('#dataAgenda').val())" type="button">
+                        Alterar
+                    </button>
                 </div>
                <div class="modal-body col-md-12">
                </div>
             </form>
     </div>
 </div>
+<?php
+    //salvar
+    $dados = array('acao','data', 'dataAgenda');
+    postRestAjax('agendarData', 'corpo', 'admin/alterDataAvaliacao.php', $dados);
+?>

@@ -1,7 +1,7 @@
 <?php
-//configuração
-    $pst = 'admin';
-    $arq = 'alterDataFalta';
+session_start();
+require_once '../func/fPhp.php';
+require_once '../func/fModal.php';
     if ($respGet['acao'] == 'alterarDataFalta'){
         $alterData = array('dataAgenda' => $respGet['dataAgenda']);
         $dadosAlterData = array($alterData);
@@ -11,7 +11,8 @@
    $pAtual=substr($dataOco[4]['dataFrequencia'], 0, 7);
    $pNovo=substr($dataOco[0]['dataFrequencia'], 0, 7);
     
-//messagem incluir  
+//messagem incluir
+exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 ?>
 <h1>
     Falta Previa
@@ -38,17 +39,21 @@
                         <div class="modal-body col-md-12">
                             <div class="col-md-6">
                                 <label>Novo Período</label>
-                                <input name="dataAgenda" class="form-control" type="date" value="">
+                                <input name="dataAgenda" id="dataAgenda" class="form-control" type="date" value="">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" name="acao" value="alterarDataFalta">
-                            <input type="hidden" name="pst" value="<?= $pst ?>">
-                            <input type="hidden" name="arq" value="<?= $arq ?>">
-                            <input type="submit" class="btn btn-primary" value='Alterar'>
+                            <button class="btn btn-primary" onclick="agendarData('alterarDataFalta',$('#data').val(),$('#dataAgenda').val())" type="button">
+                                Alterar
+                            </button>
                         </div>
                     </form>
             </div>
                    <div class="modal-body col-md-12">
                </div>
 </div>
+<?php
+    //salvar
+    $dados = array('acao','data', 'dataAgenda');
+    postRestAjax('agendarData', 'corpo', 'admin/alterDataFalta.php', $dados);
+?>

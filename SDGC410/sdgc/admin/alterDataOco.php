@@ -1,7 +1,7 @@
 <?php
-//configuração
-    $pst = 'admin';
-    $arq = 'alterDataOco';
+session_start();
+require_once '../func/fPhp.php';
+require_once '../func/fModal.php';
     if ($respGet['acao'] == 'alterarDataOco'){
         $respGet['data'] = $respGet['data'].'-01';
         $alterData = array('data' => $respGet['data'], 'dataAgenda' => $respGet['dataAgenda']);
@@ -43,18 +43,17 @@
                         <div class="modal-body col-md-12">
                             <div class="col-md-6">
                                 <label>Novo periodo de lançamento</label>
-                                <input name="data" class="form-control" type="month" value="">
+                                <input name="data" id="data" class="form-control" type="month" value="">
                             </div>
                             <div class="col-md-6">
                                 <label>Agentar Alteração</label>
-                                <input name="dataAgenda" class="form-control" type="date" value="">
+                                <input name="dataAgenda" id="dataAgenda" class="form-control" type="date" value="">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" name="acao" value="alterarDataOco">
-                            <input type="hidden" name="pst" value="<?= $pst ?>">
-                            <input type="hidden" name="arq" value="<?= $arq ?>">
-                            <input type="submit" class="btn btn-primary" value='Alterar'>
+                            <button class="btn btn-primary" onclick="agendarData('alterarDataOco',$('#data').val(),$('#dataAgenda').val())" type="button">
+                                Alterar
+                            </button>
                         </div>
                        <div class="modal-body col-md-12">
                            <h2>Agendamento</h2>
@@ -68,3 +67,9 @@
                     </form>
             </div>
 </div>
+<?php
+    //salvar
+    $dados = array('acao','data', 'dataAgenda');
+    postRestAjax('agendarData', 'corpo', 'admin/alterDataOco.php', $dados);
+
+?>

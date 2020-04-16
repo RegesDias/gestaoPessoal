@@ -1,7 +1,7 @@
 <?php
-//configuração
-    $pst = 'admin';
-    $arq = 'alterDataPlan';
+session_start();
+require_once '../func/fPhp.php';
+require_once '../func/fModal.php';
     $diasPlan = array();
     if ($respGet['acao']=='alterarDiasPlan'){
         foreach ($respGet['diasPlan'] as $value) {
@@ -13,10 +13,6 @@
     }
     $diaPlan = getRest('planejamento/getListaPlanejamentoData');
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
-//TESTE
-//    echo "<pre>";
-//    print_r($aSetor);
-//    echo "</pre>";
 ?>
 <h1>
     Planejamento
@@ -38,7 +34,7 @@
                         <div class="modal-body col-md-12">
                             <div class="col-md-12">
                                 <label>Liberação para Consolidação</label>
-                                <select class="form-control select2" multiple="multiple" name='diasPlan[]' data-placeholder="Não possui setor" style="width: 100%;">
+                                <select class="form-control select2" multiple="multiple" name='diasPlan[]' id='diasPlan' data-placeholder="Não possui setor" style="width: 100%;">
                                   <?php for ($diaMes = 1; $diaMes < 32; $diaMes++) {
                                             foreach ($diaPlan as $diaBanco) {
                                                 if ($diaBanco == $diaMes){
@@ -56,13 +52,20 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" name="acao" value="alterarDiasPlan">
-                            <input type="hidden" name="pst" value="<?= $pst ?>">
-                            <input type="hidden" name="arq" value="<?= $arq ?>">
-                            <input type="submit" class="btn btn-primary" value='Alterar'>
+                            <button class="btn btn-primary" onclick="agendarData('alterarDiasPlan',$('#diasPlan').val())" type="button">
+                                Alterar
+                            </button>
                         </div>
                     </form>
                <div class="modal-body col-md-12">
                </div>
             </div>
 </div>
+<?php
+    //salvar
+    $dados = array('acao','diasPlan');
+    postRestAjax('agendarData', 'corpo', 'admin/alterDataPlan.php', $dados);
+?>
+<script>
+   configuraTela(); 
+</script>

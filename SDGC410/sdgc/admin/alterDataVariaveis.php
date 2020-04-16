@@ -1,7 +1,8 @@
 <?php
-//configuração
-    $pst = 'admin';
-    $arq = 'alterDataVariaveis';
+session_start();
+require_once '../func/fPhp.php';
+require_once '../func/fModal.php';
+print_p($respGet);
     if ($respGet['acao'] == 'agendarDataVariaveis'){
         $respGet['data'] = $respGet['data'].'-01';
         $alterData = array('data' => $respGet['data'], 'dataAgenda' => $respGet['dataAgenda']);
@@ -12,7 +13,6 @@
    $dataOco = getRest('dataFrequenciaWs/getListaDataFrequencia');
    $pNovo=substr($dataOco[7]['dataFrequencia'], 0, 7);
    $pAtual=substr($dataOco[9]['dataFrequencia'], 0, 7);
-//messagem incluir  
 ?>
 <h1>
      Variáveis
@@ -39,18 +39,17 @@
                         <div class="modal-body col-md-12">
                             <div class="col-md-6">
                                 <label>Novo periodo de lançamento</label>
-                                <input name="data" class="form-control" type="month" value="">
+                                <input name="data" id="data" class="form-control" type="month" value="">
                             </div>
                             <div class="col-md-6">
                                 <label>Agentar Alteração</label>
-                                <input name="dataAgenda" class="form-control" type="date" value="">
+                                <input name="dataAgenda" id="dataAgenda" class="form-control" type="date" value="">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" name="acao" value="agendarDataVariaveis">
-                            <input type="hidden" name="pst" value="<?= $pst ?>">
-                            <input type="hidden" name="arq" value="<?= $arq ?>">
-                            <input type="submit" class="btn btn-primary" value='Agendar'>
+                            <button class="btn btn-primary" onclick="agendarData('agendarDataVariaveis',$('#data').val(),$('#dataAgenda').val())" type="button">
+                                Agendar
+                            </button>
                         </div>
                        <div class="modal-body col-md-12">
                            <h2>Agendamento</h2>
@@ -64,3 +63,8 @@
                     </form>
             </div>
 </div>
+<?php
+    //salvar
+    $dados = array('acao','data', 'dataAgenda');
+    postRestAjax('agendarData', 'corpo', 'admin/alterDataVariaveis.php', $dados);
+?>

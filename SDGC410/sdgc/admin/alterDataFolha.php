@@ -1,5 +1,7 @@
 <?php
-//configuração
+session_start();
+require_once '../func/fPhp.php';
+require_once '../func/fModal.php';
     $pst = 'admin';
     $arq = 'alterDataOco';
     if ($respGet['acao'] == 'alterarDataOco'){

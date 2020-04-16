@@ -19,38 +19,6 @@
          }?>
     </ul>
     <div class="tab-content">
-                      <ul class="control-sidebar-menu">
-                        <li>
-<!--                          <a href="index.php?pst=<?=$pst?>&arq=<?=$arq?>&pg=1&rightmenu=<?=$rm?>">
-                            <i class="menu-icon fa <?=$rMenuLock?> bg-red"></i>
-
-                            <div class="menu-info">
-                              <h4 class="control-sidebar-subheading">Atenção Área Restrita</h4>
-
-                              <p>Seu acesso controlado</p>
-                            </div>
-                          </a>-->
-                        <form method="<?=$method?>" action="index.php" class="inline">
-                            <input type="hidden" name="pst" value="<?=$respGet['pst']?>"/>
-                            <input type="hidden" name="arq" value="<?=$respGet['arq']?>"/>
-                            <input type="hidden" name="idSecretaria" value="<?=$respGet['idSecretaria']?>"/>
-                            <input type="hidden" name="varq" value="<?=$respGet['varq']?>"/>
-                            <input type="hidden" name="vpst" value="<?=$respGet['vpst']?>"/>
-                            <input type="hidden" name="relat" value="<?=$respGet['relat']?>"/>
-                            <input type="hidden" name="leftmenu" value="1"/>
-                            <input type="hidden" name="rightmenu" value="<?=$rm?>"/>
-                            <input type="hidden" name="orby" value="<?=$respGet['orby']?>"/>
-                            <input type="hidden" name="pg" value="1"/>
-                            <button type="submit" class="logo link-button">
-                                <i class="menu-icon fa <?=$rMenuLock?> bg-red"></i>
-                                <div class="menu-info">
-                                    <h4 class="control-sidebar-subheading">Atenção Área Restrita</h4>
-                                    <p>Seu acesso controlado</p>
-                                </div>
-                            </button>
-                        </form>
-                        </li>
-                      </ul>
         <?php  
             foreach ($_SESSION["menuRight"] as $valor) {
                 if ($valor['pasta'] == ''){
@@ -71,7 +39,10 @@
                                 if($valorSub[link] == $_SESSION[link]){?>
                                     <a href="#"><i class="fa fa-edit"></i> <b><?=' '.$valorSub['link']?></b></a><?php 
                                 }else{?>
-                                <form method="<?=$method?>" action="index.php" class="inline">
+                                <button class="link-button-menu-right" onclick="carregar('<?= $valorSub['pasta'] ?>', '<?= $valorSub['arquivo'] ?>', '<?= $valorSub['menuN1'] ?>','<?= $valorSub['menuN2'] ?>','<?= $valorSub['menuN3'] ?>','<?= $valorSub['menuN4'] ?>', '<?= $valorSub['link'] ?>', '#id<?=$valorSub['id']?>')" class="link-button-menu-left sidebar" type="button">
+                                    <i class="fa fa-edit"></i> <?=$valorSub['link']?>
+                                </button>
+<!--                                <form method="<?=$method?>" action="index.php" class="inline">
                                      <input type="hidden" name="pst" value="<?=$valorSub['pasta']?>">
                                      <input type="hidden" name="arq" value="<?=$valorSub['arquivo']?>">
                                      <input type="hidden" name="acao" value='limparSessao'>
@@ -84,7 +55,7 @@
                                     <button class="link-button-menu-right" type="submit">
                                          <i class="fa fa-edit"></i> <?=$valorSub['link']?>
                                     </button>
-                                 </form><br>
+                                 </form><br>-->
                             <?php
                             }}
                            }

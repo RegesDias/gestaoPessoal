@@ -1,5 +1,8 @@
 <?php
-//configuração
+session_start();
+require_once '../func/fPhp.php';
+require_once '../func/fModal.php';
+print_p($respGet);
 $limparAcesso = 'nao';
 $pst = 'usuario';
 $arq = 'perfil';
@@ -154,7 +157,6 @@ $cUser = array('',$respGet['cpf'],'');
 //msn
 exibeMsn($msnExibe, $msnTexto, $msnTipo, $exec);
 modalCadUser('cadUser', 'Cadastrar Perfil', $pst, $arq);
-$printPerfil = "vpst=$pst&varq=$arq&vtab=gestao&pst=print&arq=info&id=".$_SESSION["funcionalBusca"]["id"];
 modalAlterarSenha('alterarSenha', 'Alterar Senha', $pst, $arq, 'alterarSenha');
 modalInicoFimData('historicoAcesso', 'Historico de Acessos', 'print', 'info', 'historicoAcesso', $padrao, $pst, $arq,'',$_SESSION["perfilUsuario"] ['0']['login']);
 modalInicoFimData('graficoAcesso', 'Grafico de Acessos', 'grafico', 'userAcesso', 'userAcesso', $padrao, $pst, $arq,'',$_SESSION["perfilUsuario"] ['0']['login'], $_SESSION["perfilUsuario"] ['0']['cpf']);
@@ -162,6 +164,7 @@ modalInicoFimData('graficoAcesso', 'Grafico de Acessos', 'grafico', 'userAcesso'
 $userDataTreinamento = array($_SESSION["perfilUsuario"] ['0']['id']);
 $listaUserDataTreinamento = getRest('userDataTreinamento/getListaUserDataTreinamentoPorUserLogin',$userDataTreinamento);
 modaldefinirData('dataTreinamento', 'Data Treinamento', $pst, $arq, 'dataTreinamento',$listaUserDataTreinamento);
+
 //nivel acesso
     $buscAcessoNivel = array("6");
     $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao',$buscAcessoNivel);
@@ -199,24 +202,9 @@ modaldefinirData('dataTreinamento', 'Data Treinamento', $pst, $arq, 'dataTreinam
                             }
                             ?>
                             <?php if($prmUsuario['alterar']==true){ ?>
-                                <form method="<?=$method?>" action="index.php" class="inline">
-                                    <input type="hidden" name="orby" value="0">
-                                    <input type="hidden" name="pst" value="usuario">
-                                    <input type="hidden" name="arq" value="acesso">
-                                    <button class="btn btn-success" type="submit">
-                                        <i class="fa fa-arrow-circle-left"></i><b> Voltar</b>
+                                    <button class="btn btn-info" onclick="perfilBloquear('bloquearLiberar','<?=$valorStatus?>')" type="button">
+                                        <i class="fa fa-lock"></i><b> <?=$acaoStatus?>
                                     </button>
-                                </form>
-                                <form method="<?=$method?>" action="index.php" class="inline">
-                                    <input type="hidden" name="pst" value="<?=$pst?>">
-                                    <input type="hidden" name="arq" value="<?=$arq?>">
-                                    <input type="hidden" name="acao" value='bloquearLiberar'>
-                                    <input type="hidden" name="valorStatus" value='<?=$valorStatus?>'>
-                                   <button class="btn btn-info" type="submit">
-                                       <i class="fa fa-lock"></i><b> <?=$acaoStatus?>
-                                   </button>
-                                </form>
-                                <!--<a style="margin: 4px" href="index.php?pst=<?=$pst?>&arq=<?=$arq?>&acao=bloquearLiberar&valorStatus=<?=$valorStatus?>" class="btn btn-info"><i class="fa fa-lock"></i><b> <?=$acaoStatus?> </b></a>-->
                                 <button  style="margin: 4px"type="button" class="btn btn-info" data-toggle="modal" data-target="#alterarSenha">
                                   <i class="fa fa-key"></i> <b>Redefinir senha </b>
                                 </button>
@@ -414,6 +402,6 @@ modaldefinirData('dataTreinamento', 'Data Treinamento', $pst, $arq, 'dataTreinam
         </div>
         <?php
             $classAcessos = 'hide';
-            require_once 'usuario/showAcessoTemplate.php';
+            require_once '../usuario/showAcessoTemplate.php';
         ?>
 </section>
