@@ -37,16 +37,19 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 <div class="box-body">
     <div class="row">
          <div class="box">
+            <div class="overlay hidden" id="idSpinLoaderValidarVariaveis">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
             <div class="box-header">
                 <div class="box-body no-padding">
-                    <form>   
+                    <form name="formTemplate">   
                         <div id="carregaLot-variaveis">
                             <?php require_once '../relat/boxSecretaria.php';?>
                         </div>
                         <div class="box-footer pull-right">
-                            <input type="hidden" name="acao" value="selecionarSecretaria"/>
+                        <input type="hidden" name="acao" value="selecionarSecretaria"/>
                             <!--<button type="submit" class="btn btn-primary">Abrir</button>-->
-                         <button class="btn btn-primary" onclick="buscaVVariavel('selecionarSecretaria',$('#secretariaID').val())" type="button">
+                        <button class="btn btn-primary" onclick="buscaVVariavel('selecionarSecretaria', $('#secretariaID').val())" type="button">
                             <i class="fa fa-search"></i> Abrir
                         </button>
                         </div>
@@ -65,12 +68,16 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 <div id="buscaVServidor">
 </div>
 <?php
+    
     //*variaveis------------------------------------------------------>
-    $dados = array('acao', 'idSecretaria');
     $b1 = array('buscaVSetor','addClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
-    $beforeSend= array ($b1,$b2);
-    postRestAjax('buscaVVariavel','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados,$beforeSend); 
+    $b3 = array('idSpinLoaderValidarVariaveis','removeClass','hidden');
+    $beforeSend= array ($b1,$b2, $b3);
+    $l1 = array('idSpinLoaderValidarVariaveis','addClass','hidden');
+    $success= array ($l1);
+    $dados = array('acao', 'idSecretaria');
+    postRestAjax('buscaVVariavel','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados, $beforeSend, $success); 
     
     //fecharVariavelSecretaria
     $dados = array('acao', 'idVariavelDesc','nomeVariavelDesc');

@@ -21,6 +21,7 @@ require_once '../func/fModal.php';
             </div>
             <div class="box-body">
                 <div class="row">
+                    <form name="formTemplate">
                     <div class="col-md-12">
                         <label for="carregaLot-variaveis">Destino</label>
                         <div class="box-body no-padding">
@@ -34,6 +35,7 @@ require_once '../func/fModal.php';
                             </div>
                         </div> 
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -61,18 +63,28 @@ require_once '../func/fModal.php';
     postRestAjax('rRelancarV', 'rRelancarV', 'print/info.php', $dados);
 
     //salvar
+    $before = array('idSpinLoaderRelancarVFolha','removeClass','hidden');
+    $latter = array('idSpinLoaderRelancarVFolha','addClass','hidden');
+    $beforeSend= array ($before);
+    $success= array ($latter);
+    
     $dados = array('acao', 'pg', 'idLotacaoSub', 'idUserLogin');
     $funcao = array('fecharModal');
-    postRestAjax('RVSalvarFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, $b, $s, $funcao);
+    postRestAjax('RVSalvarFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, $beforeSend, $success, $funcao);
 
     //lançar
+    $before = array('idSpinLoaderRelancarVFolha','removeClass','hidden');
+    $latter = array('idSpinLoaderRelancarVFolha','addClass','hidden');
+    $beforeSend= array ($before);
+    $success= array ($latter);
+    
     $dados = array('acao', 'pg', 'idLotacaoSub', 'idUserLogin');
     $funcao = array('fecharModal');
-    postRestAjax('RVLancarFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, $b, $s, $funcao);
+    postRestAjax('RVLancarFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, $beforeSend, $success, $funcao);
 
     //pg
     $dados = array('acao', 'pg');
-    postRestAjax('pgLotacao', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados);
+    postRestAjax('pgLotacao', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, $beforeSend, $success);
     ?>
     <input type="hidden" name="acao" value="substituirVariaveis"/>
     <input type="hidden" name="pgLotacao" value="<?= $respGet[pgLotacao] ?>"/>

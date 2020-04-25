@@ -126,6 +126,7 @@ function carregaBoxSecretariaSetor(){
        document.formTemplate.idSecretaria.options[i] = new Option("Todas Scretarias");
        document.formTemplate.idSecretaria.options[i].value = "todasSecretarias";
     }
+    
     //executa se estiver na tela de relatorios por setor
     //Executa se estiver na página de emissão de relatórios de funcionarios por setor
     if (existeElementoPorId('carregaLot')){
@@ -133,6 +134,7 @@ function carregaBoxSecretariaSetor(){
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoUsuario', '', selectSecretariasAjax);
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuario/', document.formTemplate.idSecretaria.options[0].value, selectSingleSetorAjax);
     }
+    
     if (existeElementoPorId('carregaLot-previafalta')){
        
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoUsuarioPreviaFalta', '', selectSecretariasAjax);
@@ -144,14 +146,18 @@ function carregaBoxSecretariaSetor(){
 
        //getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuario/', document.formTemplate.idSecretaria.options[0].value, selectSingleSetorAjax);  
     }
+    
     if (existeElementoPorId('carregaLot-variaveis')){ 
        
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoUsuarioVariaveis', '', selectSecretariasAjax);
-       getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuario/', document.formTemplate.idSecretaria.options[0].value, selectSingleSetorAjax);  
+       console.log("AQUI");
+       //getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuario/', document.formTemplate.idSecretaria.options[0].value, selectSingleSetorAjax);  
     }
+    
     if (existeElementoPorId('carregaUsuarios')){
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'userloginws/getListaUserLogin', '', selectUsuariosAjax);
     }
+    
     if (existeElementoPorId('carregaUltimoLogin')){
         var caller = setInterval(function(){
             getAJAX(<?="'" . $ajurl . "'"; ?>, 'userloginws/getDataHoraUltimoLog/', idUsuario, atualizarUltimoLoginAjax);

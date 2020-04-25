@@ -35,7 +35,7 @@
 ?>
 <h1>
     Lançar
-    <small>Variáveis em lote</small>
+    <small>Crachás</small>
     <br><br>
 </h1>
 <ol class="breadcrumb">

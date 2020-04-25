@@ -2,7 +2,7 @@
     session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    print_p($respGet);
+   
     $pst = 'folhaOn';
     $arq = 'relancarVariaveis';
     if($respGet[acao]=='limparSessao'){
@@ -147,9 +147,11 @@
                                             <p> Este procedimento ira <b>substituir</b> sua base de lancamentos atuais, este procedimento pode ser desfeito. Deseja realmente fazer esta ação?</p>
                                       </div>
                                       <div class="modal-footer">
+                                          
                                             <button class="btn btn-primary" onclick="RVSalvarFolha('substituirVariaveis','<?=$respGet[pgLotacao]?>','<?=$ArrEsp[idLotacaoSub]?>','<?=$ArrEsp[idUserLogin]?>')" type="button">
                                                 Confirmar
                                             </button>
+                                          
                                             <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
                                       </div>
                                     </div>

@@ -24,8 +24,6 @@ function selectSecretariasAjax(lista){
     listaIdSecretaria = arrayColumn(listaMapeada,3);
     preencheSelect(campoSecretaria, listaNomeSecretaria, listaIdSecretaria);
     
-
-    
     if(estaEmLote){
        //Carrega todos os setores que o usuário tem acesso
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuarioVariaveis/', campoSecretaria.options[0].value, selectSetorAjax);
@@ -36,10 +34,6 @@ function selectSecretariasAjax(lista){
 }
 
 function selectSetorAjax(lista){
-    //
-    //console.log(lista);
-    //if criado para se adequar a diferença de padrão de respostas do WS
-    //console.log(lista);
     if(estaEmLote){
         var listaMapeada = lista.map(item => [item.ativo, item.id, item.nome]);
     }else{
@@ -65,6 +59,7 @@ function selectSetorAjax(lista){
 }
 
 function selectServidoresPorSetor(lista){
+    console.log(lista);
     var listaMapeada = lista.map(item => [item.nome, item.idFuncional, item.matricula]);
     let arrayColumn = (arr, n) => arr.map(x => x[n]);
     let listaNomeFuncional = arrayColumn(listaMapeada,0);
@@ -77,7 +72,6 @@ function selectServidoresPorSetor(lista){
 }
 
 function selectVariaveisDesc(lista){
-    //console.log(lista);
     var listaMapeada = lista.map(item => [item.id, item.nome, item.maximo, item.minimo, item.valor, item.quantidade, item.padrao]);
     let arrayColumn = (arr, n) => arr.map(x => x[n]);
     let listaId = arrayColumn(listaMapeada,0);
