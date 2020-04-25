@@ -16,6 +16,7 @@ function selectSecretariasAjax(lista){
     }
     if (existeElementoPorId('carregaLot-variaveis')){ 
         getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuario/', selectSecretaria.options[0].value, selectSingleSetorAjax);
+    
     }
     if (existeElementoPorId('carregaLot-previafalta')){         
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuario/', selectSecretaria.options[0].value, selectSingleSetorAjax);
@@ -150,10 +151,14 @@ function carregaBoxSecretariaSetor(){
     if (existeElementoPorId('carregaLot-variaveis')){ 
        
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoUsuarioVariaveis', '', selectSecretariasAjax);
-       console.log("AQUI");
+       
        //getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuario/', document.formTemplate.idSecretaria.options[0].value, selectSingleSetorAjax);  
     }
     
+    if (existeElementoPorId('carregaLot-variaveis-validar')){ 
+       getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoUsuarioVariaveis', '', selectSecretariasAjax);
+       
+    }
     if (existeElementoPorId('carregaUsuarios')){
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'userloginws/getListaUserLogin', '', selectUsuariosAjax);
     }

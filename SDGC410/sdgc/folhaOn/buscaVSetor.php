@@ -295,17 +295,16 @@ if(count($_SESSION[lotacaoSubVariavel])>0){?>
                                 </div>
                               </div>
                             </div>
-                             <form action="index.php" method="<?=$method?>" class="inline">
-                                     <input type="hidden" name="vpst" value="<?=$pst?>" />
-                                     <input type="hidden" name="varq" value="<?=$arq?>" />
-                                     <input type="hidden" name="pst" value="print"/>
-                                     <input type="hidden" name="arq" value="info"/>
-                                     <input type="hidden" name="pg" value="<?=$respGet[pgLotacaoSub]?>"/>
-                                     <input type="hidden" name="acao" value="fichaFuncional"/>
+                             <form  class="inline">
+                                     
+
                                      <input type="hidden" name="idLotacaoSub" value="<?=$ArrEspp[idLotacaoSub]?>"/>
-                                     <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
+                                     <input type="hidden" name="idVariavelDesc" value="<?=$ArrEspp[idVariavelDesc]?>"/>
                                      <input type="hidden" name="acao" value="relatFechamentoVariavelSub"/>
-                                     <button class="btn btn-primary" title="Imprimir" ><i class="fa fa-print"></i></button>
+<!--                                     <button class="btn btn-primary" title="Imprimir" ><i class="fa fa-print"></i></button>
+                                     -->
+        
+                                     <button type="button" onclick="imprimirRelatVariaveisServidores('relatFechamentoVariavelSub','<?=$ArrEspp[idLotacaoSub]?>','<?=$ArrEsp[idVariavelDesc]?>',true)" class="btn btn-primary"><i class="fa fa-print"></i></button>
                              </form>
                       </td>
                     </tr>                

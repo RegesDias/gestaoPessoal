@@ -71,9 +71,9 @@ if($respGet[acao]=='selecionar'){
 exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 if(count($_SESSION[lotacaoVariavel])>0){?>
  <div class="box">
-   <div class="overlay hidden" id="idSpinLoaderBuscarVariaveis1">
-       <i class="fa fa-refresh fa-spin"></i>
-   </div>
+     <div class="overlay hidden" id="idSpinLoaderVariaveisLotacao">
+                <i class="fa fa-refresh fa-spin"></i>
+     </div>
     <div class="box-header">
         <h3 class="box-title">
             Variável
@@ -141,7 +141,11 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
 
                         <div class="modal fade" id="fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
                           <div class="modal-dialog modal-md">
+                                 
                             <div class="modal-content">
+                                <div class="overlay hidden" id="idSpinLoadermodalFechar">
+                                    <i class="fa fa-refresh fa-spin"></i>
+                                </div>
                               <div class="modal-body">
                                     <p>O status da variável <?=$ArrEsp[variaveisDesc]?> vai ser alterado para <?=$MsnNome?>. Deseja realmente fazer esta ação?</p>
                               </div>
@@ -154,7 +158,7 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
                             </div>
                           </div>
                         </div>
-                        <form action="index.php" method="<?=$method?>" class="inline">
+                        <form class="inline">
                                 <input type="hidden" name="vpst" value="<?=$pst?>" />
                                 <input type="hidden" name="varq" value="<?=$arq?>" />
                                 <input type="hidden" name="codValidacao" value="<?=$ArrEsp[codValidacao]?>" />
@@ -162,15 +166,15 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
                                 <input type="hidden" name="arq" value="info"/>
                                 <input type="hidden" name="id" value="<?=$_SESSION['funcionalBusca']['id']?>"/>
                                 <input type="hidden" name="pg" value="<?=$respGet[pgLotacao]?>"/>
-                                <input type="hidden" name="acao" value="fichaFuncional"/>
                                 <input type="hidden" name="idLotacao" value="<?=$_SESSION[idLotacao]?>"/>
                                 <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
                                 <input type="hidden" name="nomeVariavelDesc" value="<?=$ArrEsp[variaveisDesc]?>"/>
                                 <input type="hidden" name="acao" value="relatVariavelLotacao"/>
-                                <button class="btn btn-primary"><i class="fa fa-print"></i></button>
+                                <button type="button" onclick="imprimirRelatVariaveisSetor('relatVariavelLotacao','<?=$ArrEsp[codValidacao]?>','<?=$_SESSION['funcionalBusca']['id']?>','<?=$_SESSION[idLotacao]?>','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>',false)" class="btn btn-primary"><i class="fa fa-print"></i></button>
+                                
                         </form>
                        <?php if($btnTipo == "fa fa-lock"){?>
-                        <form action="index.php" method="<?=$method?>" class="inline">
+                        <form class="inline">
                                 <input type="hidden" name="vpst" value="<?=$pst?>" />
                                 <input type="hidden" name="varq" value="<?=$arq?>" />
                                 <input type="hidden" name="codValidacao" value="<?=$ArrEsp[codValidacao]?>" />
@@ -183,7 +187,9 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
                                 <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
                                 <input type="hidden" name="nomeVariavelDesc" value="<?=$ArrEsp[variaveisDesc]?>"/>
                                 <input type="hidden" name="acao" value="relatFechamentoVariavel"/>
-                                <button class="btn btn-github"><i class="fa fa-stack-overflow"></i></button>
+<!--                            <button class="btn btn-github"><i class="fa fa-stack-overflow"></i></button>-->
+                                <button onclick="imprimirRelatVariaveisSetor('relatVariavelLotacao','<?=$ArrEsp[codValidacao]?>','<?=$_SESSION['funcionalBusca']['id']?>','<?=$_SESSION[idLotacao]?>','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>',false)" class="btn btn-github"><i class="fa fa-stack-overflow"></i></button>
+                                
                         </form>
                     <?php }}
                    

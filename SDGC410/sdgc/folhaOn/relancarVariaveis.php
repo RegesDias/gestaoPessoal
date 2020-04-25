@@ -25,7 +25,7 @@ require_once '../func/fModal.php';
                     <div class="col-md-12">
                         <label for="carregaLot-variaveis">Destino</label>
                         <div class="box-body no-padding">
-                            <div id="carregaLot-variaveis">
+                            <div id="carregaLot-variaveis-validar">
                                 <?php require_once '../relat/boxSecretaria.php'; ?>
                             </div>
                             <div class="box-footer pull-right">
