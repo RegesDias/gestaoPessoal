@@ -415,32 +415,21 @@ function modalAlterarSenha($id, $title, $pst, $arq, $acao) {
                         <span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"><?= $title ?></h4>
                 </div>
-                <form method='<?= $method ?>' action='index.php'>
                     <div class="modal-body col-md-12">
                         <div class="col-md-12">
                             <label>Senha</label>
-                            <input name="senha" class="form-control" type="password">
+                            <input name="senha" id="senha" class="form-control" type="password">
                         </div>
                         <div class="col-md-12">
                             <label>Redigite a senha</label>
-                            <input name="confirmaSenha" class="form-control" type="password">
+                            <input name="confirmaSenha" id="confirmaSenha" class="form-control" type="password">
                         </div>
-    <?php if ($padrao == 'nsd') { ?>
-                            <div class="col-md-12">
-                                <br>
-                                <label>Organizar por</label>
-                                </br>
-                                <input type="radio" name="orby" value ='0' class="flat-red" checked="checked"> Competência
-                                <input type="radio" name="orby" value ='0' class="flat-red" > NR
-                            </div>
-    <?php } ?>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="acao" value="<?= $acao ?>">
-                        <input type="hidden" name="pst" value="<?= $pst ?>">
-                        <input type="hidden" name="arq" value="<?= $arq ?>">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
-                        <input type="submit" class="btn btn-primary" value='OK'>
+                        <button data-dismiss="modal" class="btn btn-primary" onclick="modalAlterarSenha('<?=$acao?>', $('#senha').val(),$('#confirmaSenha').val())" type="button">
+                             OK
+                        </button>
                     </div>
                 </form>
             </div>
@@ -624,31 +613,29 @@ function modaldefinirData($id, $title, $pst, $arq, $acao, $ldt) {
                         <span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"><?= $title ?></h4>
                 </div>
-                <form method='<?= $method ?>' action='index.php'>
                     <div class="modal-body col-md-12">
                         <div class="col-md-12">
                             <b>Treinamentos que usuário já realizou:</b><br>
-    <?php
-    foreach ($ldt as $array) {
-        echo dataBr($array[0]) . " - ";
-    }
-    ?>
+                            <?php
+                            foreach ($ldt as $array) {
+                                echo dataBr($array[0]) . " - ";
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="modal-body col-md-12">
                         <div class="col-md-12">
                             <label>Data</label>
-                            <input name="dataTreinamento" class="form-control" type="date">
+                            <input name="dataTreinamento" id="data" class="form-control" type="date">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="acao" value="<?= $acao ?>">
-                        <input type="hidden" name="pst" value="<?= $pst ?>">
-                        <input type="hidden" name="arq" value="<?= $arq ?>">
                         <button type="button" class="btn btn-default pull-left">Fechar</button>
-                        <input type="submit" class="btn btn-primary" value='OK'>
+                        <button data-dismiss="modal" class="btn btn-primary" onclick="modalDataTreinamento('<?=$acao?>',$('#data').val())" type="button">
+                             OK
+                        </button>
+                        
                     </div>
-                </form>
             </div>
         </div>
     </div>

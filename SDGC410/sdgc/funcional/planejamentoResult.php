@@ -79,22 +79,9 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
                                     <div class="box-body">
                                       <b><?=$ArrEsp['nomeSetor']?></b><br>
                                       <?=$ArrEsp['planejamentoTipo']?>
-                                        <form action="index.php" method="<?=$method?>"name="formTemplate" class="<?=permissaoAcesso($prmPlanejamento["excluir"],'hide')?>">
-                                            
-
-                                            
-                                           <input type='hidden' name='idPlanejamentoAuxiliar' id="idPlanejamentoAuxiliar" value='<?=$ArrEsp['idPlanejamentoAuxiliar']?>'>
-                                           <input type='hidden' name='cpf' value='<?=$ArrEsp['cpf']?>'>
-                                           <input type='hidden' name='tab' value='planejamento'>
-                                           <input type='hidden' name='acao' value='excluirPlanejamento'>
-                                           <input type="hidden" name="pst" value="<?=$pst?>">
-                                           <input type="hidden" name="arq" value="<?=$arq?>">
-                                           <input type="hidden" name="pg" value="1">
-                                           
                                         <button <?=$inativo?>  class="btn btn-danger pull-right espaco-direita" onclick="postExcluirPlanejamento('excluirPlanejamento', $('#idPlanejamentoAuxiliar').val())" type="button">
                                                 <i class="fa fa-trash"></i>
                                         </button>
-                                       </form>
                                         &nbsp;<input type="checkbox" disabled="disabled" <?php if($ArrEsp['feriado'] == 1){ echo 'checked'; }?>>Feriado
                                         <input type="checkbox" disabled="disabled" <?php if($ArrEsp['pontoFacult'] == 1){ echo 'checked'; }?>>Ponto Facultativo
                                     </div>

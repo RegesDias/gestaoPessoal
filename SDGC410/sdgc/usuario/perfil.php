@@ -202,9 +202,9 @@ modaldefinirData('dataTreinamento', 'Data Treinamento', $pst, $arq, 'dataTreinam
                             }
                             ?>
                             <?php if($prmUsuario['alterar']==true){ ?>
-                                    <button class="btn btn-info" onclick="perfilBloquear('bloquearLiberar','<?=$valorStatus?>')" type="button">
-                                        <i class="fa fa-lock"></i><b> <?=$acaoStatus?>
-                                    </button>
+                                <button class="btn btn-info" onclick="perfilBloquear('bloquearLiberar','<?=$valorStatus?>')" type="button">
+                                    <i class="fa fa-lock"></i><b> <?=$acaoStatus?>
+                                </button>
                                 <button  style="margin: 4px"type="button" class="btn btn-info" data-toggle="modal" data-target="#alterarSenha">
                                   <i class="fa fa-key"></i> <b>Redefinir senha </b>
                                 </button>

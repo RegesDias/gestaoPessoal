@@ -42,20 +42,6 @@
                                 <button class="link-button-menu-right" onclick="carregar('<?= $valorSub['pasta'] ?>', '<?= $valorSub['arquivo'] ?>', '<?= $valorSub['menuN1'] ?>','<?= $valorSub['menuN2'] ?>','<?= $valorSub['menuN3'] ?>','<?= $valorSub['menuN4'] ?>', '<?= $valorSub['link'] ?>', '#id<?=$valorSub['id']?>')" class="link-button-menu-left sidebar" type="button">
                                     <i class="fa fa-edit"></i> <?=$valorSub['link']?>
                                 </button>
-<!--                                <form method="<?=$method?>" action="index.php" class="inline">
-                                     <input type="hidden" name="pst" value="<?=$valorSub['pasta']?>">
-                                     <input type="hidden" name="arq" value="<?=$valorSub['arquivo']?>">
-                                     <input type="hidden" name="acao" value='limparSessao'>
-                                     <input type="hidden" name="link" value='<?=$valorSub['link']?>'>
-                                     <input type="hidden" name="menuN1" value='<?=$valorSub['menuN1']?>'>
-                                     <input type="hidden" name="menuN2" value='<?=$valorSub['menuN2']?>'>
-                                     <input type="hidden" name="tabMenuAtivo" value='<?=$valorSub['menuN1']?>'>
-                                     <input type="hidden" name="leftmenu" value='1'>
-                                     <input type="hidden" name="rightmenu" value='1'>
-                                    <button class="link-button-menu-right" type="submit">
-                                         <i class="fa fa-edit"></i> <?=$valorSub['link']?>
-                                    </button>
-                                 </form><br>-->
                             <?php
                             }}
                            }

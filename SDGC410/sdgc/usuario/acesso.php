@@ -58,4 +58,11 @@ require_once '../func/fModal.php';
     $dados = array('acao','valorStatus' );
     postRestAjax('perfilBloquear','acessoBusca','usuario/perfil.php',$dados); 
     
+   $dados = array('acao','senha','confirmaSenha' );
+    postRestAjax('modalAlterarSenha','acessoBusca','usuario/perfil.php',$dados);  
+    
+   $dados = array('acao','dataTreinamento');
+   postRestAjax('modalDataTreinamento','acessoBusca','usuario/perfil.php',$dados);  
+    
+    
 ?>
