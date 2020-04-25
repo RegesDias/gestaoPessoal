@@ -302,14 +302,13 @@ if(isset($respGet['acao']) && $respGet['acao']=='getRelNsd'){
 //NSDS
 if(isset($respGet['acao']) && $respGet['acao']=='getRelNsds'){
 
-    $codNsds = $respGet['codNsds'];
+    $codNsds = $respGet['codNsd'];
     $cBusc = array($codNsds, $tipo);
     $lista = getRest('relatorio/getRelNsds',$cBusc);
 }
 //NSDA
 if(isset($respGet['acao']) && $respGet['acao']=='getRelNsda'){
-
-    $codNsda = $respGet['codNsda'];
+    $codNsda = $respGet['codNsd'];
     $cBusc = array($codNsda, $tipo);
     $lista = getRest('relatorio/getRelNsda',$cBusc);
 }

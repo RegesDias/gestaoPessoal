@@ -2,7 +2,6 @@
     session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    print_p($respGet);
      if ($respGet['acao'] == "buscar") {
         $_SESSION["buscaReferencia"] =  array(
                         'dataPrevia'=>$respGet['dataNSD'],
@@ -77,37 +76,13 @@
                               </div>
                               <!-- /.box-body -->
                               <div class="box-footer clearfix no-border">
-                                    <form action="index.php" method="<?=$method?>"name="formTemplate">
-                                        <button class='btn btn-default pull-right' value="Voltar">
-                                            <img src="img/nsda.png">
-                                        </button>
-                                        <input type='hidden' name='pst' value='print'>
-                                        <input type="hidden" name="arq" value="info">
-                                        <input type="hidden" name="vpst" value="<?=$pst?>"> 
-                                        <input type="hidden" name="varq" value="<?=$arq?>"> 
-                                        <input type="hidden" name="acao" value="getRelNsda">  
-                                        <input type="hidden" name="codNsda" value="<?=$valor[0]?>">
-                                    </form>                                    
-                                    <form action="index.php" method="<?=$method?>"name="formTemplate">
-                                        <button class='btn btn-default pull-right' value="Voltar">
-                                            <img src="img/nsds.png">
-                                        </button>
-                                        <input type='hidden' name='pst' value='print'>
-                                        <input type="hidden" name="arq" value="info">
-                                        <input type="hidden" name="vpst" value="<?=$pst?>"> 
-                                        <input type="hidden" name="varq" value="<?=$arq?>"> 
-                                        <input type="hidden" name="acao" value="getRelNsds">  
-                                        <input type="hidden" name="codNsds" value="<?=$valor[0]?>">
-                                    </form>
-<!--                                    <form action="index.php" method="<?=$method?>"name="formTemplate">
-                                        <button class='btn btn-default pull-right' value="Voltar">
-                                            <img src="img/nsd.png">
-                                        </button>
-
-                                        <input type="hidden" name="acao" value="getRelNsd">  
-                                        <input type="hidden" name="codNsd" value="<?=$valor[0]?>">
-                                    </form>-->
-                                    <button data-dismiss="modal" onclick="gerarNSD('getRelNsd', '<?=$valor[0]?>>')" class="btn btn-default pull-right">
+                                    <button data-dismiss="modal" onclick="gerarNSD('getRelNsda', '<?=$valor[0]?>',true)" class="btn btn-default pull-right">
+                                        <img src="img/nsda.png">
+                                    </button>
+                                    <button data-dismiss="modal" onclick="gerarNSD('getRelNsds', '<?=$valor[0]?>',true)" class="btn btn-default pull-right">
+                                        <img src="img/nsds.png">
+                                    </button>
+                                    <button data-dismiss="modal" onclick="gerarNSD('getRelNsd', '<?=$valor[0]?>',true)" class="btn btn-default pull-right">
                                         <img src="img/nsd.png">
                                     </button>
                               </div>

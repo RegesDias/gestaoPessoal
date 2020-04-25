@@ -159,12 +159,16 @@ if($btnBuscaNSD == true){ ?>
     $dados = array('mesAnoInicial','acao', 'ver');
     postRestAjax('postexportFUNDEB', 'imprimir', 'print/info.php',$dados, $beforeSend, $success);
     
+    
+    
+    $be = array('idBoxDados','removeClass','hidden');
+    $beforeSend= array ($be);
     $dados = array('acao', 'lotacaoNSD','numeroNSD','dataNSD' );
-    postRestAjax('templateBuscar','pmmBusca','contabil/pmmBusca.php',$dados);  
+    postRestAjax('templateBuscar','dados','contabil/pmmBusca.php',$dados,$beforeSend);  
     
     $dados = array('acao', 'pg');
-    postRestAjax('pagUpDown','pmmBusca','contabil/pmmBusca.php',$dados); 
+    postRestAjax('pagUpDown','dados','contabil/pmmBusca.php',$dados); 
     
-    $dados = array('acao','codNsd');
-    postRestAjax('gerarNSD','imprimir','print/info.php',$dados);
+    $dados = array('acao','codNsd','ver');
+    postRestAjax('gerarNSD','imprimir','print/info.php',$dados,$beforeSend, $success);
 ?>
