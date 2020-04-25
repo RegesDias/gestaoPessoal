@@ -66,16 +66,9 @@ require_once '../func/fModal.php';
                                         <img src="<?=exibeFoto($valor['cpf'])?>" class="img-circle img-bordered-sm" alt="Imagem do Usuário">
                                     </a>
                                     <span class="username">
-                                        <form method="<?=$method?>" action="index.php" class="inline">
-                                            <input type="hidden" name="acao" value="buscar" />
-                                            <input type="hidden" name="pst" value="usuario"/>
-                                            <input type="hidden" name="arq" value="perfil"/>
-                                            <input type="hidden" name="cpf" value="<?=$valor['cpf']?>"/>
-                                            <input type="hidden" name="pg" value="1"/>
-                                            <button type="submit" class="link-button">
-                                              <?=$valor['cpf']?>
-                                            </button>
-                                        </form>
+                                        <button class="link-button" onclick="perfilBusca('buscar','<?=$valor[cpf]?>')" type="button">
+                                            <?=$valor['cpf']?>
+                                        </button>
                                         <?=$valor['login']?>
                                         </form>
                                         <button class="pull-right btn-social-icon btn-box-tool btn btn-primary" onclick="perfilBusca('buscar','<?=$valor[cpf]?>')" type="button">

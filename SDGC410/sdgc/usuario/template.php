@@ -79,12 +79,6 @@ require_once '../func/fModal.php';
             </div>
         </div>
     </div>
-
-    <?php 
-//        $addAcessoTemplateTitulo = 'Adicionar Acessos ao Template';
-//        require_once '../usuario/addAcessoTemplate.php';
-//        require_once '../usuario/showAcessoTemplate.php';
-    ?>
     <div id='addAcessoTemplate'>
     </div>
     <div id='showAcessoTemplate'>
@@ -100,11 +94,14 @@ require_once '../func/fModal.php';
     postRestAjax('templateRemover','addAcessoTemplate','usuario/templateBuscar.php',$dados);  
 
     $dados = array('acao', 'idappversao','idTemplate','nometemplate' );
-    postRestAjax('templateEditar','addAcessoTemplate','usuario/addAcessoTemplate.php',$dados); 
+    postRestAjax('templateEditar','addAcessoTemplate','usuario/templateAddAcesso.php',$dados); 
     
     $dados = array('acao', 'idsUserMenu','incluir','excluir','alterar','listar','buscar' );
-    postRestAjax('templateAlterar','addAcessoTemplate','usuario/addAcessoTemplate.php',$dados); 
+    postRestAjax('templateAlterar','addAcessoTemplate','usuario/templateAddAcesso.php',$dados); 
 
-    $dados = array('acao', 'idappversao','idTemplate','nometemplate' );
-    postRestAjax('removeAcesso','addAcessoTemplate','usuario/addAcessoTemplate.php',$dados);     
+    $dados = array('acao', 'idUserTemplate','idUserMenu');
+    postRestAjax('removeAcesso','addAcessoTemplate','usuario/templateAddAcesso.php',$dados);     
+    
+    $dados = array('acao', 'closeResult', 'idClone', 'idappversao','nomeTemplate');
+    postRestAjax('modalClonarTemplate', 'addAcessoTemplate', 'usuario/templateAddAcesso.php', $dados);
 ?>

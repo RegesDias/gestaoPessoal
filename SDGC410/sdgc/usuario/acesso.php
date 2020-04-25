@@ -53,16 +53,16 @@ require_once '../func/fModal.php';
     postRestAjax('acessoBusca','acessoBusca','usuario/acessoBusca.php',$dados); 
     
     $dados = array('acao','cpf' );
-    postRestAjax('perfilBusca','acessoBusca','usuario/perfil.php',$dados); 
+    postRestAjax('perfilBusca','acessoBusca','usuario/acessoPerfil.php',$dados); 
     
     $dados = array('acao','valorStatus' );
-    postRestAjax('perfilBloquear','acessoBusca','usuario/perfil.php',$dados); 
+    postRestAjax('perfilBloquear','acessoBusca','usuario/acessoPerfil.php',$dados); 
     
    $dados = array('acao','senha','confirmaSenha' );
-    postRestAjax('modalAlterarSenha','acessoBusca','usuario/perfil.php',$dados);  
+    postRestAjax('modalAlterarSenha','acessoBusca','usuario/acessoPerfil.php',$dados);  
     
    $dados = array('acao','dataTreinamento');
-   postRestAjax('modalDataTreinamento','acessoBusca','usuario/perfil.php',$dados);  
+   postRestAjax('modalDataTreinamento','acessoBusca','usuario/acessoPerfil.php',$dados);  
     
     
 ?>

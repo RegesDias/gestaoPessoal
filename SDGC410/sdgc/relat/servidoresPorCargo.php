@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    require_once '../func/fPhp.php';
     $buscAcessoNivel = array("4");
     $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao',$buscAcessoNivel);
     foreach ($listaAcesso as $valor) {
@@ -35,7 +37,7 @@
                             <div>
                                 <div class="col-md-12">
                                     <label>Cargo</label>
-                                    <select name="idCargoGeral" size="1"  class="form-control select2" id='cargoGeralID' style="width: 100%;">
+                                    <select name="idCargoGeral" size="1"  class="form-control select2" id='idCargoGeral' style="width: 100%;">
                                         <?php foreach ($listaCargosGeral as $valor) { ?>
                                         <option value="<?=$valor['id']?>"><?=$valor['nome']?></option>
                                         <?php  } ?>
@@ -45,15 +47,13 @@
                         </div>
                     </div>
                     <div class="box-footer pull-right">
-                        <input type="hidden" name="pg" value="1"/>
-                        <input type="hidden" name="pst" value="print"/>
-                        <input type="hidden" name="arq" value="info"/>
-                        <input type="hidden" name="varq" value="servidoresPorCargo"/>
-                        <input type="hidden" name="vpst" value="relat"/>
-                        <input type="hidden" name="relat" value="ServidoresPorCargo"/>
-                        <input type="hidden" name="acao" value="ServidoresPorCargoGeral"/>
-                        <button class="btn btn-danger pull-right">
-                            <i class="fa fa-print"></i> Imprimir
+                        <input type="hidden" id="idInputIdSetor" value="0"/>
+                        <button  class="btn btn-info pull-right btn-sm espaco-direita" onclick="relatorioEmRelatorio('ServidoresPorCargoGeral', $('#idCargoGeral').val())" type="button">
+                             <i class="fa fa-print"></i> Imprimir
+                        </button>
+                        
+                        <button class="btn btn-facebook pull-right btn-sm espaco-direita" onclick="relatorioEmRelatorio('ServidoresPorCargoGeral', $('#idCargoGeral').val(),true)" type="button">
+                             <i class="fa fa-eye"></i> Visualizar
                         </button>
                     </div>
                 </form>
@@ -63,3 +63,13 @@
         </div>
     </div>
 </div>
+    <?php
+        require_once "../javascript/fRelat.php";
+        //relatorioEmRelatorio
+        $be = array('idSpinLoaderGestao','removeClass','hidden');
+        $s = array('idSpinLoaderGestao','addClass','hidden');
+        $beforeSend= array ($be);
+        $success= array ($s);
+        $dados = array('acao','idCargoGeral','ver');
+        postRestAjax('relatorioEmRelatorio','imprimir','print/info.php',$dados,$beforeSend,$success);
+    ?>

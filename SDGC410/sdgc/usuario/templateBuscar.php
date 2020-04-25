@@ -28,7 +28,6 @@ require_once '../func/fModal.php';
     }
 //TEMPLATE REMOVER 
         if ($respGet['acao'] == "removerTemplate") {
-            echo 'foi';
             $idTemplate = array('id' => $respGet['idTemplate']);
             $executar= postRest('userMenu/postDesativarTemplate',$idTemplate);
             $msnTexto = "ao remover menu.";
@@ -78,6 +77,7 @@ require_once '../func/fModal.php';
         }
     }
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
+    print_p();
 ?>
     <div class="col-md-12">
         <div class="box box-primary">

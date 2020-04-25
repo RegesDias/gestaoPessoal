@@ -13,7 +13,6 @@ function modalCadUser($id, $title, $pst, $arq) {
                     </button>
                     <h4 class="modal-title" id="exampleModalLabel"><?= $title ?></h4>
                 </div>
-                <form method='<?= $method ?>' action='index.php' name='formTemplate'>
                 <?= esconderItem('template') ?>
                     <div class="modal-body col-md-12">
                         <div class="col-md-12">
@@ -42,7 +41,7 @@ function modalCadUser($id, $title, $pst, $arq) {
                                 </div>
                             </div>
                         </div>
-    <?= esconderItem('secretaria') ?>
+                        <?= esconderItem('secretaria') ?>
                         <div onclick="secretaria()">
                             <div onclick="cargoGeral()">
                                 <div id="template" class="hide">
@@ -55,7 +54,7 @@ function modalCadUser($id, $title, $pst, $arq) {
                                 </div>
                             </div>
                         </div>
-    <?= esconderItem('setor') ?>
+                        <?= esconderItem('setor') ?>
                         <div onclick="setor()">
                             <div id="secretaria" class="hide">
                                 <div class="col-md-12">
@@ -66,7 +65,7 @@ function modalCadUser($id, $title, $pst, $arq) {
                                 </div>
                             </div>
                         </div>
-    <?= esconderItem('cargoGeral') ?>
+                        <?= esconderItem('cargoGeral') ?>
                         <div id="setor" class="hide">
                             <div class="col-md-12">
                                 <label>Setor</label>
@@ -77,13 +76,11 @@ function modalCadUser($id, $title, $pst, $arq) {
                         <div id="cargoGeral" class="hide">
                             <div class="col-md-12">
                                 <label>Cargo Geral</label>
-                                <select multiple name="idCargoGeral[]" size="1" class="form-control select2" id="cargoGeralID" style="width: 100%;">
-    <?php
-    $_SESSION['cargosGeral'] = getRest('cargo/getListaCargoGeral');
-    foreach ($_SESSION['cargosGeral'] as $ArrEsp) {
-        ?>
+                                <select multiple name="idCargoGeral[]" size="1" class="form-control select2" id="cargoGeralID" style="width: 100%;"><?php
+                                    $_SESSION['cargosGeral'] = getRest('cargo/getListaCargoGeral');
+                                    foreach ($_SESSION['cargosGeral'] as $ArrEsp) {?>
                                         <option value="<?= $ArrEsp['id'] ?>"><?= $ArrEsp['nome'] ?></option>
-    <?php } ?> 
+                                    <?php } ?> 
                                 </select>
                             </div>
                         </div>
@@ -95,7 +92,6 @@ function modalCadUser($id, $title, $pst, $arq) {
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
                         <input type="submit" class="btn btn-primary" value='OK'>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -375,31 +371,25 @@ function modalClonarTemplate($id, $title, $pst, $arq, $acao, $respGet) {
                         <span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"><?= $title ?></h4>
                 </div>
-                <form method='<?= $method ?>' action='index.php'>";
                     <div class="modal-body col-md-12">
                         <div class="col-md-12">
                             <label>Nome do Template</label>
-                            <input type="text" name="nomeTemplate" class="form-control">
+                            <input type="text" name="nomeTemplate" id="nomeTemplate" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="acao" value="<?= $acao ?>">
-                        <input type="hidden" name="closeResult" value="1">
-                        <input type="hidden" name="idClone" value="<?= $id ?>">
-                        <input type="hidden" name="idappversao" value="<?= $respGet['idappversao'] ?>">
-                        <input type="hidden" name="pst" value="<?= $pst ?>">
-                        <input type="hidden" name="arq" value="<?= $arq ?>">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
-                        <input type="submit" class="btn btn-primary" value='OK'>
+                        <button data-dismiss="modal" class="btn btn-primary" onclick="modalClonarTemplate('<?=$acao?>','1','<?=$id?>',<?= $respGet['idappversao'] ?>,$('#nomeTemplate').val())" type="button">
+                             OK
+                        </button>
                     </div>
-                </form>
+
             </div>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <?php
+    <?php  
 }
 
 //ModalInicioFim

@@ -1,13 +1,10 @@
 <?php
 //configuração
-    $pst = 'usuario';
-    $arq = 'perfil';
+session_start();
+require_once '../func/fPhp.php';
+require_once '../func/fModal.php';
 //msn
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$exec);
-//redireciona
-//echo'<pre>';
-//    print_r($respPost);
-//echo'</pre>';
 
 ?>
 <h1>
@@ -27,28 +24,32 @@
                         <span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Preencha todos os Campos</h4>
                 </div>
-                   <form method='<?=$method?>' action='index.php'>
-                        <div class="modal-body col-md-12">
-                            <div class="col-md-12">
-                                <label>Nome Completo</label>
-                                <input name="nomeCompleto" value="<?=$respGet['nomeCompleto']?>" class="form-control" type="text">
-                            </div>
-                            <div class="col-md-12">
-                                <label>Chave</label>
-                                <input name="chave" value="<?=$respGet['chave']?>" class="form-control" type="text">
-                            </div>
-                            <div class="col-md-12">
-                                <label>CPF</label>
-                                <input name="cpf" value="<?=$respGet['cpf']?>" class="form-control" type="text">
-                            </div>
-                            <div class="col-md-12"><br></div>
-                            <div class="col-md-12">
-                                <input type="hidden" name="acao" value="cadastarUsuario">
-                                <input type="hidden" name="pst" value="<?= $pst ?>">
-                                <input type="hidden" name="arq" value="<?= $arq ?>">
-                                <input type="submit" class="btn btn-primary" value='Cadastrar'>
-                            </div>
-                        </div>
-                    </form>
+                <div class="modal-body col-md-12">
+                    <div class="col-md-12">
+                        <label>Nome Completo</label>
+                        <input name="nomeCompleto" id="nomeCompleto" value="<?=$respGet['nomeCompleto']?>" class="form-control" type="text">
+                    </div>
+                    <div class="col-md-12">
+                        <label>Chave</label>
+                        <input name="chave" id="chave" value="<?=$respGet['chave']?>" class="form-control" type="text">
+                    </div>
+                    <div class="col-md-12">
+                        <label>CPF</label>
+                        <input name="cpf" id="cpf" value="<?=$respGet['cpf']?>" class="form-control" type="text">
+                    </div>
+                    <div class="col-md-12"><br></div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" onclick="cadastrarUsuario('cadastarUsuario',$('#nomeCompleto').val(),$('#chave').val(),$('#cpf').val())" type="button">
+                            Cadastrar
+                        </button>
+                    </div>
+                </div>
             </div>
-</div><br>
+</div>
+<div id='cadastro'>
+</div>
+<br>
+<?php
+    $dados = array('acao','nomeCompleto','chave', 'cpf');
+    postRestAjax('cadastrarUsuario','cadastro','usuario/acessoPerfil.php',$dados);  
+?>

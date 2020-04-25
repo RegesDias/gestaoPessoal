@@ -142,17 +142,6 @@ $_SESSION["relatorio"] = $respGet;
                     <!-- FIM BOX SECRETARIA SETOR -->
                     <!-- ************************* -->
                     <div class="box-footer pull-right">
-<!--                        <input type="hidden" name="pg" value="1"/>
-                        <input type="hidden" name="menuN2" value="<?= $_SESSION["relatorio"][menuN2] ?>"/>
-                        <input type="hidden" name="menuN3" value="<?= $_SESSION["relatorio"][menuN3] ?>"/>
-                        <input type="hidden" name="link" value="<?= $_SESSION["relatorio"][link] ?>"/>
-                        <input type="hidden" name="acao" value="menuN2"/>
-                        <button class="btn btn-danger pull-right">
-                            <i class="fa fa-print"></i> Imprimir
-                        </button>
-                        <button class="<?=permissaoAcesso($prmLotacao["listar"],'hide')?> btn btn-facebook pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','especialidadeServidor',true)" type="button">
-                             <i class="fa fa-eye"></i>
-                        </button>-->
                         <input type="hidden" id="idInputIdSetor" value="0"/>
                         <button  class="btn btn-info pull-right btn-sm espaco-direita" onclick="relatorioEmRelatorio('<?=$_SESSION[relatorio][menuN2]?>','<?=$_SESSION[relatorio][menuN3]?>','<?=$_SESSION[relatorio][link]?>', $('#idSecretaria').val(), $('#idInputIdSetor').val())" type="button">
                              <i class="fa fa-print"></i> Imprimir

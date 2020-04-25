@@ -346,7 +346,9 @@ function getPagina($qtd, $arq, $local) {
     );
     return $return;
 }
-function print_p($array){
+function print_p($array=null){
+    global $respGet;
+    if(count($array) == null){$array = $respGet;}
     echo '<br><br><pre>';
     echo '<b>Exibir dados</b><br>';
     print_r($array);

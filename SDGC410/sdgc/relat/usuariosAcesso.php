@@ -26,19 +26,19 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>
-                                <input type="radio" name="orby" value ='nome' class="flat-red" checked>
+                                <input id="idRadioNome" type="radio" name="orby" value ='nome' class="flat-red" checked>
                                 Nome
                             </label>
                             <label>
-                                <input type="radio" name="orby" value ='cpf' class="flat-red">
+                                <input id="idRadioCpf" type="radio" name="orby" value ='cpf' class="flat-red">
                                 CPF
                             </label>
                             <label>
-                                <input type="radio" name="orby" value ='login' class="flat-red">
+                                <input id="idRadioLogin" type="radio" name="orby" value ='login' class="flat-red">
                                 Login(Chave de Usuário)
                             </label>
                             <label>
-                                <input type="radio" name="orby" value ='nomeacesso' class="flat-red">
+                                <input id="idRadioNomeDoAcesso" type="radio" name="orby" value ='nomeacesso' class="flat-red">
                                 Nome do Acesso
                             </label>
                         </div>                        
@@ -48,13 +48,13 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div id="carregaLot"> 
-                                        <?php //require_once 'relat/boxSecretaria.php'; ?>
+                                        <?php require_once '../relat/boxSecretaria.php'; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="box-footer pull-right">
+<!--                    <div class="box-footer pull-right">
                         <input type="hidden" name="pg" value="1"/>
                         <input type="hidden" name="pst" value="print"/>
                         <input type="hidden" name="arq" value="info"/>
@@ -64,6 +64,36 @@
                         <button class="btn btn-danger pull-right">
                             <i class="fa fa-print"></i> Imprimir
                         </button>
+                    </div>-->
+                    <div class="box-footer pull-right">
+                        
+                        <script>
+                            var inputOrby = document.querySelector('#idOrby');
+                            
+                            $('#idRadioNome').on('ifChecked', function () {
+                                inputOrby.value = "nome";
+                            });
+                            $('#idRadioCpf').on('ifChecked', function () {
+                                inputOrby.value = "cpf";
+                            });
+                            $('#idRadioLogin').on('ifChecked', function () {
+                                inputOrby.value = "login";
+                            });
+                            $('#idRadioNomeDoAcesso').on('ifChecked', function () {
+                                inputOrby.value = "nomeacesso";
+                            });
+                            
+                        </script>
+
+                        <input type="hidden" id="idOrby" value="nome"/>
+                        
+                        <button  class="btn btn-info pull-right btn-sm espaco-direita" onclick="relatorioEmRelatorio('usuariosAcesso',$('#secretariaID').val(), $('#idOrby').val())" type="button">
+                             <i class="fa fa-print"></i> Imprimir
+                        </button>
+
+                        <button class="btn btn-facebook pull-right btn-sm espaco-direita" onclick="relatorioEmRelatorio('usuariosAcesso', $('#secretariaID').val(), $('#idOrby').val(),true)" type="button">
+                             <i class="fa fa-eye"></i> Visualizar
+                        </button>
                     </div>
                 </form>
                 <!--Fim do formulario-->
@@ -72,3 +102,12 @@
         </div>
     </div>
 </div>
+    <?php
+        //relatorioEmRelatorio
+        $be = array('idSpinLoaderGestao','removeClass','hidden');
+        $s = array('idSpinLoaderGestao','addClass','hidden');
+        $beforeSend= array ($be);
+        $success= array ($s);
+        $dados = array('acao','idSecretaria','orby', 'ver');
+        postRestAjax('relatorioEmRelatorio','imprimir','print/info.php',$dados,$beforeSend,$success);
+    ?>

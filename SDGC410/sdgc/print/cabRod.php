@@ -13,8 +13,10 @@ if($key!==false){
 //Se for um relatorio vindo da pasta relatorio
     //VER DEPOIS-------------------------------------------------------------------------------------------------
     if($respGet['menuN3'] == '5' AND $respGet['link'] == 'Listar' AND !isset($respGet['idSetor'])){
+        $respGet['orby'] = nome;
         $secretaria = $respGet['idSecretaria'];
-        $ordem = $respGet['ordenar'];
+        $ordem = $respGet['orby'];
+        $respGet['exibicao'] = 'todos';
         $cBusc = array($secretaria ,$ordem, $tipo);
         //Para exibir só comissionado é outro relatorio
         if($respGet['exibicao']=='so_comissionado'){
@@ -27,14 +29,11 @@ if($key!==false){
     }    
     //Servidores Por Setor
     if($respGet['menuN3'] == '5' AND $respGet['link'] == 'Listar' AND isset($respGet['idSetor'])){
-        
         $respGet['orby'] = nome;
         $respGet['exibicao'] = 'todos';
         $setor = $respGet['idSetor'];
         $ordem = $respGet['orby'];
         $cBusc = array($setor,$ordem, $tipo);
-        //Pega o nome do relatorio, pois para exibir todos é um relatorio
-        //Para exibir só comissionado é outro relatorio
         if($respGet['exibicao']=='so_comissionado'){
             $lista = getRest('relatorio/getRelServidoresComissionadosPorSetor',$cBusc);
         }else if($respGet['exibicao']=='todos'){
@@ -179,7 +178,6 @@ if(isset($respGet['acao']) && $respGet['acao']=='portaria'){
 }
 // Se for usuarios e acessos
 if(isset($respGet['acao']) && $respGet['acao']=='usuariosAcesso'){
-    
     $idSecretaria = $respGet['idSecretaria'];
     $orby = $respGet['orby'];
     $cBusc = array($idSecretaria, $orby, $tipo);

@@ -2,6 +2,7 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
+print_p();
 //TEMPLATE INCLUIR 
     if ($respGet['acao'] == "incluirPerfil") {
         $idTemplate = array('idAppVersao' => $respGet['idappversao'],'nome' => $respGet['nome']);
@@ -108,9 +109,9 @@ require_once '../func/fModal.php';
         <div class="box box-primary">
          <div class="box-header with-border">
            <h3 class="box-title">Acessos</h3>
-
            <div class="box-tools pull-right">
-             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-<?php if(!$respGet['closeAcesso']){?>plus<?php }else{?>minus<?php }?>"></i>
+             <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                 <i class="fa fa-<?php if(!$respGet['closeAcesso']){?>plus<?php }else{?>minus<?php }?>"></i>
              </button>
            </div>
          </div>
@@ -121,12 +122,6 @@ require_once '../func/fModal.php';
              <?php foreach ($_SESSION['verTemplate'] as $ArrEsp){?>
              <li class="item">
                <div class="product-img <?=$classAcessos?>">
-<!--                    <input type="hidden" name="acao" value="removeAcesso" />
-                    <input type="hidden" name="idUserTemplate" value="<?=$ArrEsp['idUserTemplate']?>"/>
-                    <input type="hidden" name="idUserMenu" value="<?=$ArrEsp['idUserMenu']?>"/>
-                    <button type="submit" class="btn btn-small btn-danger">
-                      <i class="fa fa-trash"></i>
-                    </button>-->
                     <button class="btn btn-small btn-danger" onclick="removeAcesso('removeAcesso', '<?=$ArrEsp['idUserTemplate']?>','<?=$ArrEsp['idUserMenu']?>')" type="button">
                         <i class="fa fa-trash"></i>
                     </button>
