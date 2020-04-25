@@ -207,103 +207,7 @@ if($btnBuscaNSD == true){ ?>
         </div>
     </div><?php 
 }
-if ($_SESSION["totalLista"] >= 1){?>
-<div class="row">
-    <div class="box-body">
-        <div class="box">
-        <div class="box-footer clearfix">
-            <ul class="pagination pagination-sm no-margin">
-                <?php exibePag($hrefPag, $respGet, $return); ?>
-            </ul>
-        </div>
-            <!--botões de controle-->
-            <div class="box-header with-border">
-                <div class="nav-tabs-custom">
-                    <div class="tab-content">
-                        <div class="active tab-pane" id="activity"> <?php
-                        foreach ($return['pgExb'] as $valor) {
-                            $valor[1] = dataBr($valor[1]);
-                            $valor[1] = substr($valor[1], 3);
-                            if($respGet['pg'] ==''){
-                                $pg=1;
-                            }else{
-                                $pg=$respGet['pg'];
-                            }
-                            $vaiPerfil = "acao=buscar&pst=$pst&arq=$arq&id=$valor[2]&pg=$pg";?>
-                            <!-- TO DO List -->
-                            <div class="box box-primary">
-                              <div class="box-header">
-                                <i class="ion ion-clipboard"></i>
-                                   <h3 class="box-title"><?=$valor[0]?></h3>
-                              </div>
-                              <!-- /.box-header -->
-                              <div class="box-body">
-                                <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-                                <ul class="todo-list">
-                                  <li>
-                                    <!-- todo text -->
-                                    <span class="text">Referência:</span> <?=$valor[1]?> <span class="text">Emissão:</span> <?=dataBr($valor[4])?>
-                                  </li>
-                                  <li>
-                                    <!-- todo text -->
-                                    <span class="text">Destino:</span> <?=$valor[2]?>
-                                  </li>
-                                  <li>
-                                    <!-- todo text -->
-                                    <span class="text">Origem:</span> <?=$valor[3]?>
-                                  </li>
-                              </div>
-                              <!-- /.box-body -->
-                              <div class="box-footer clearfix no-border">
-                                    <form action="index.php" method="<?=$method?>"name="formTemplate">
-                                        <button class='btn btn-default pull-right' value="Voltar">
-                                            <img src="img/nsda.png">
-                                        </button>
-                                        <input type='hidden' name='pst' value='print'>
-                                        <input type="hidden" name="arq" value="info">
-                                        <input type="hidden" name="vpst" value="<?=$pst?>"> 
-                                        <input type="hidden" name="varq" value="<?=$arq?>"> 
-                                        <input type="hidden" name="acao" value="getRelNsda">  
-                                        <input type="hidden" name="codNsda" value="<?=$valor[0]?>">
-                                    </form>                                    
-                                    <form action="index.php" method="<?=$method?>"name="formTemplate">
-                                        <button class='btn btn-default pull-right' value="Voltar">
-                                            <img src="img/nsds.png">
-                                        </button>
-                                        <input type='hidden' name='pst' value='print'>
-                                        <input type="hidden" name="arq" value="info">
-                                        <input type="hidden" name="vpst" value="<?=$pst?>"> 
-                                        <input type="hidden" name="varq" value="<?=$arq?>"> 
-                                        <input type="hidden" name="acao" value="getRelNsds">  
-                                        <input type="hidden" name="codNsds" value="<?=$valor[0]?>">
-                                    </form>
-                                    <form action="index.php" method="<?=$method?>"name="formTemplate">
-                                        <button class='btn btn-default pull-right' value="Voltar">
-                                            <img src="img/nsd.png">
-                                        </button>
-                                        <input type='hidden' name='pst' value='print'>
-                                        <input type="hidden" name="arq" value="info">
-                                        <input type="hidden" name="vpst" value="<?=$pst?>"> 
-                                        <input type="hidden" name="varq" value="<?=$arq?>"> 
-                                        <input type="hidden" name="acao" value="getRelNsd">  
-                                        <input type="hidden" name="codNsd" value="<?=$valor[0]?>">
-                                    </form>
-                              </div>
-                            </div><?php
-                            }?>
-                         </div>
-                    </div>
-                </div>
-            </div>
-        <div class="box-footer clearfix">
-            <ul class="pagination pagination-sm no-margin">
-                <?php exibePag($hrefPag, $respGet, $return); ?>
-            </ul>
-        </div>
-        </div>
-    </div>
-</div>
-<?php }
+
 
     $be = array('idSpinLoaderPMM','removeClass','hidden');
     $s2 = array('idSpinLoaderPMM','addClass','hidden');
@@ -313,17 +217,6 @@ if ($_SESSION["totalLista"] >= 1){?>
     postRestAjax('postexportFUNDEB', 'imprimir', 'print/info.php',$dados, $beforeSend, $success);
     
     
-//    //postEmCrachaPrint
-//    $be = array('idSpinLoaderPMM','removeClass','hidden');
-//    $s = array('idSpinLoaderPMM','addClass','hidden');
-//    $beforeSend= array ($be);
-//    $success= array ($s);            
-//    $dados = array('idFlagOrgPor', 'acao', 'mesAnoInicial', 'mesAnoFinal', 'selectCompetencia','ver');
-//    $funcao = array('fecharModal');
-//    postRestAjax('relatorioInicioFim', 'imprimir', 'print/info.php',$dados,$beforeSend,$success, $funcao);
-//
-//    //executaContabilExterno        
-//    $dados = array('modal', 'padrao', 'mesAnoInicial', 'mesAnoFinal');
-//    postRestAjax('executaInicioFim', 'corpo', 'contabil/externo.php', $dados);
+
     
 ?>

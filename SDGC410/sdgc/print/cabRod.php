@@ -254,7 +254,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='folhapontoInicio'){
 }
 //Gera Folha de Ponto em Lote Por Setor
 if(isset($respGet['acao']) && $respGet['acao']=='folhaDePontoEmLote'){
-        $respGet['idSetor'] = $respGet['dado'][0];
+        $respGet['idSetor'] = $respGet['dado'];
         $mesAno = $respData[4]['dataFrequenciaMesAno'];
         $mes = explode("-",$mesAno)[0];
         $ano = explode("-",$mesAno)[1];
@@ -264,7 +264,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='folhaDePontoEmLote'){
 }
 //Gera Marcacoes em Lote Por Setor
 if(isset($respGet['acao']) && $respGet['acao']=='marcacoesEmLote'){
-        $respGet['idSetor'] = $respGet['dado'][0];
+        $respGet['idSetor'] = $respGet['dado'];
         $mesAno = $respData[4]['dataFrequenciaMesAno'];
         $mes = explode("-",$mesAno)[0];
         $ano = explode("-",$mesAno)[1];
@@ -363,11 +363,12 @@ if(isset($respGet['acao']) && $respGet['acao']=='ddoSinteticoMacprev'){
         $cBusc = array($mesAnoInicial, '132','13F',$tipo);
     }
     $lista = getRest('relatorio/getRelDdoSinteticoMacprev',$cBusc);
+    print_p($lista);
 }
 //ddoAnaliticoMacprev
 if(isset($respGet['acao']) && $respGet['acao']=='ddoAnaliticoMacprev'){
 
-    if($respGet['tem13salario']){
+    if($respGet['tem13salario'] == 'true'){
         $respGet['tem13salario'] = 'sim';
     }else{
         $respGet['tem13salario'] = 'nao';
@@ -380,6 +381,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='ddoAnaliticoMacprev'){
         $cBusc = array($mesAnoInicial, '132',$tipo);
     }
     $lista = getRest('relatorio/getRelDdoAnaliticoMacprev',$cBusc);
+    print_p($lista);
 }
 //export
 if(isset($respGet['acao']) && $respGet['acao']=='exportarMacprevNsd'){
@@ -743,7 +745,6 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
           <div class="box-body">
           <?php 
               if((isset($respGet['acao']) && $respGet['gerarRelatorio'] == "TRUE") || $respGet['ver'] == "true"){
-                  
                     if($respGet[tipo_relatorio] == '' || $respGet['ver'] == "true"){
                         $height = '600';
                         $width = '100%';

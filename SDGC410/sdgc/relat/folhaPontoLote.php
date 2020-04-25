@@ -26,10 +26,10 @@ autoComplete($_SESSION["nomePessoas"], '#nome', '1');
                     <?php require_once '../relat/boxSecretariaSetor.php'; ?>
                     </div>
                     <div class="box-footer pull-right">
-                        <button class=" btn btn-info " onclick="relatorioEmGestao('folhaDePontoEmLote',$('#idSetor').val())" type="button">
+                        <button class=" btn btn-info " onclick="relatorioEmGestao('folhaDePontoEmLote',$('#setorID').val())" type="button">
                              <i class="fa fa-print"></i> Imprimir
                         </button>
-                        <button class=" btn btn-facebook" onclick="relatorioEmGestao('folhaDePontoEmLote',$('#idSetor').val(),true)" type="button">
+                        <button class=" btn btn-facebook" onclick="relatorioEmGestao('folhaDePontoEmLote',$('#setorID').val(),true)" type="button">
                              <i class="fa fa-eye"></i> Visualizar
                         </button>
                     </div>

@@ -53,7 +53,9 @@ require_once '../func/fModal.php';
         $_SESSION["planejamentoPerfil"] = $planejamentoPerfil;
         $_SESSION["variavelPerfil"] = $variavelPerfil;
         //BUSCAR PLANEJAMENTO
-         $respGet['acao'] = 'buscarPlanejamento';
+        $buscaPlan = array('idFuncional'=>$_SESSION["funcionalBusca"]['id']);
+        $buscaPlanejamento = getRest('planejamento/getListaPlanejamento',$buscaPlan);
+        $_SESSION["planLancados"] = $buscaPlanejamento;
          //BIOMETRIA
          if ($biometria['biometria'] == 1){
              $_SESSION["funcionalBio"]['biometria'] = 'SIM';

@@ -11,11 +11,11 @@ if ($respGet['acao'] == "consolidar") {
     foreach ($diaPlan as $diaBanco) {
         if ($diaBanco == $diaHoje) {
             $cont++;
-            $execConsolidar = array('cpf' => $_SESSION['consolidaPlanejamento']['foto'], 'idLotacaoSub' => $respGet['idSetor']);
+            $execConsolidar = array('cpf' => $_SESSION['consolidaPlanejamento']['foto'], 'idLotacaoSub' => $respGet['setorID']);
             $aConsolidar = array($execConsolidar);
             $executar = postRest('planejamento/postIncluirPlanejamentoConsolidado', $aConsolidar);
             //aqui
-            $execConsolidar = array('idLotacaoSub' => $respGet['idSetor']);
+            $execConsolidar = array('idLotacaoSub' => $respGet['setorID']);
             $executar = postRest('planejamento/postRevalidarPlanejamentoAuxiliar', $execConsolidar);
             //aqui
             $msnTexto = "ao consolidar.";
@@ -142,3 +142,6 @@ exibeMsn($msnExibe, $msnTexto, $msnTipo, $executar);
         $dados = array('acao','setorID');
         postRestAjax('postConsolidaPlan','corpo','funcional/consolidarPlanejamento.php',$dados);
 ?>
+<script>
+   configuraTela(); 
+</script>
