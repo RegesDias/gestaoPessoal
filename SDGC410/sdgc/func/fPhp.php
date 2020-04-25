@@ -14,7 +14,7 @@
     //
 //SISTEMA
 $versaoSDGC = '4.1.0';
-$localBack = false;
+$localBack = true;
 $localEndereco = false;
 $DBteste = false;
 $rodarLocal = false;

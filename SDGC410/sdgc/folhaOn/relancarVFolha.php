@@ -63,6 +63,9 @@
 <div class="row">
         <div class="col-md-12">
         <div class="box">
+            <div class="overlay hidden" id="idSpinLoaderRelancarVFolha">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
             <div class="box-body">
                 <?=controleDePagina($_SESSION[lotacaoVariavel] ,$respGet[pgLotacao],"pgLotacao");?> 
                     <div class="box box-success">
