@@ -71,6 +71,9 @@ if($respGet[acao]=='selecionar'){
 exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 if(count($_SESSION[lotacaoVariavel])>0){?>
  <div class="box">
+   <div class="overlay hidden" id="idSpinLoaderBuscarVariaveis1">
+       <i class="fa fa-refresh fa-spin"></i>
+   </div>
     <div class="box-header">
         <h3 class="box-title">
             Variável

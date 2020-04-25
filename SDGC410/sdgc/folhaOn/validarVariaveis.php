@@ -88,11 +88,15 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     postRestAjax('fecharEmSecretaria','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados,$beforeSend,'',$funcao); 
     
     //buscarVariavelNome
+    
     $dados = array('acao', 'nomeVariavelDesc');
     $b1 = array('buscaVSetor','removeClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
-    $beforeSend= array ($b1,$b2);
-    postRestAjax('buscarVariavelNome','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados,$beforeSend); 
+    $b3 = array('idSpinLoaderBuscarVariaveis1','removeClass','hidden');
+    $beforeSend= array ($b1,$b2, $b3);
+    $l1 = array('idSpinLoaderBuscarVariaveis1','addClass','hidden');
+    $success= array ($l1);
+    postRestAjax('buscarVariavelNome','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados, $beforeSend, $success); 
     
     //pg
     $dados = array('acao', 'pgVariavel');
