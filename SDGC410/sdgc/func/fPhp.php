@@ -382,12 +382,12 @@ function controleDePagina($array,$pgAtual,$nome,$tab=null,$pgNome=null) {
         $pgAtual = 1;
     }
     $total = count($array);
-    $pg = $total/10;
+    $pg = $total/5;
     $pag = ceil($pg);
-    if($pag < $pgAtual+10 ){
+    if($pag < $pgAtual+5 ){
         $ultimapg = $pag;
     }else{
-        $ultimapg = $pgAtual+10;
+        $ultimapg = $pgAtual+5;
     }
     if ($pg >=1){ ?>
             <div class="box-footer clearfix">

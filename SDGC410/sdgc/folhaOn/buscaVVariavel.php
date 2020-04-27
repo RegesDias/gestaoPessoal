@@ -153,36 +153,14 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
                           </div>
                         </div>
                         <form class="inline">
-                                <input type="hidden" name="vpst" value="<?=$pst?>" />
-                                <input type="hidden" name="varq" value="<?=$arq?>" />
-                                <input type="hidden" name="codValidacao" value="<?=$ArrEsp[codValidacao]?>" />
-                                <input type="hidden" name="pst" value="print"/>
-                                <input type="hidden" name="arq" value="info"/>
-                                <input type="hidden" name="id" value="<?=$_SESSION['funcionalBusca']['id']?>"/>
-                                <input type="hidden" name="pg" value="<?=$respGet[pgLotacao]?>"/>
-                                <input type="hidden" name="idLotacao" value="<?=$_SESSION[idLotacao]?>"/>
-                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
-                                <input type="hidden" name="nomeVariavelDesc" value="<?=$ArrEsp[variaveisDesc]?>"/>
-                                <input type="hidden" name="acao" value="relatVariavelLotacao"/>
+                            
                                 <button type="button" onclick="imprimirRelatVariaveisSetor('relatVariavelLotacao','<?=$ArrEsp[codValidacao]?>','<?=$_SESSION['funcionalBusca']['id']?>','<?=$_SESSION[idLotacao]?>','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>',false)" class="btn btn-primary"><i class="fa fa-print"></i></button>
                                 
                         </form>
                        <?php if($btnTipo == "fa fa-lock"){?>
                         <form class="inline">
-                                <input type="hidden" name="vpst" value="<?=$pst?>" />
-                                <input type="hidden" name="varq" value="<?=$arq?>" />
-                                <input type="hidden" name="codValidacao" value="<?=$ArrEsp[codValidacao]?>" />
-                                <input type="hidden" name="pst" value="print"/>
-                                <input type="hidden" name="arq" value="info"/>
-                                <input type="hidden" name="id" value="<?=$_SESSION['funcionalBusca']['id']?>"/>
-                                <input type="hidden" name="pg" value="<?=$respGet[pgLotacao]?>"/>
-                                <input type="hidden" name="acao" value="fichaFuncional"/>
-                                <input type="hidden" name="idLotacao" value="<?=$_SESSION[idLotacao]?>"/>
-                                <input type="hidden" name="idVariavelDesc" value="<?=$ArrEsp[idVariavelDesc]?>"/>
-                                <input type="hidden" name="nomeVariavelDesc" value="<?=$ArrEsp[variaveisDesc]?>"/>
-                                <input type="hidden" name="acao" value="relatFechamentoVariavel"/>
-<!--                            <button class="btn btn-github"><i class="fa fa-stack-overflow"></i></button>-->
-                                <button onclick="imprimirRelatVariaveisSetor('relatVariavelLotacao','<?=$ArrEsp[codValidacao]?>','<?=$_SESSION['funcionalBusca']['id']?>','<?=$_SESSION[idLotacao]?>','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>',false)" class="btn btn-github"><i class="fa fa-stack-overflow"></i></button>
+
+                                <button type="button" onclick="imprimirRelatFechamentoVariavel('relatFechamentoVariavel','<?=$ArrEsp[codValidacao]?>','<?=$_SESSION['funcionalBusca']['id']?>','<?=$_SESSION[idLotacao]?>','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>',false)" class="btn btn-github"><i class="fa fa-stack-overflow"></i></button>
                                 
                         </form>
                     <?php }}
@@ -207,3 +185,6 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
   <!-- /.box -->
 </div><br>
 <?php }?>
+<script>
+   configuraTela(); 
+</script>

@@ -88,12 +88,14 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $dados = array('acao', 'idVariavelDesc','nomeVariavelDesc');
     postRestAjax('fecharEmSecretaria','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados, $beforeSend, '', $funcao); 
     
-    //imprimir
-    $b1 = array('buscaVSetor','addClass','hidden');
-    $b2 = array('buscaVServidor','addClass','hidden');
-    $beforeSend= array ($b1,$b2);
+    //imprimir imprimirRelatVariaveisSetor
     $dados = array('acao', 'codValidacao','id', 'idLotacao', 'idVariavelDesc', 'nomeVariavelDesc', 'ver');
-    postRestAjax('imprimirRelatVariaveisSetor','imprimir','print/info.php',$dados, $beforeSend); 
+    postRestAjax('imprimirRelatVariaveisSetor','imprimir','print/info.php',$dados); 
+    
+    //imprimir relatFechamentoVariavel
+      
+    $dados = array('acao', 'codValidacao','id', 'idLotacao', 'idVariavelDesc', 'nomeVariavelDesc', 'ver');
+    postRestAjax('imprimirRelatFechamentoVariavel','imprimir','print/info.php',$dados); 
 
     //pg
     $dados = array('acao', 'pgVariavel');
@@ -132,11 +134,8 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     postRestAjax('buscaVServidorNegar','buscaVSetor','folhaOn/buscaVVariavel.php',$dados); 
     
     //imprimir
-    $b1 = array('buscaVSetor','addClass','hidden');
-    $b2 = array('buscaVServidor','addClass','hidden');
-    $beforeSend= array ($b1,$b2);
     $dados = array('acao', 'idLotacaoSub','idVariavelDesc','ver');
-    postRestAjax('imprimirRelatVariaveisServidores','imprimir','print/info.php',$dados, $beforeSend); 
+    postRestAjax('imprimirRelatVariaveisServidores','imprimir','print/info.php',$dados); 
 
     //*servidor--------------------------------------------->
     $dados = array('acao','idVariavelDesc','idLotacaoSub','nomeLotacaoSub');

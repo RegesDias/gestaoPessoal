@@ -188,3 +188,6 @@ if(count($_SESSION[servidorVariavel])>0){?>
               </div>
                 </div>
 <?php }?>
+<script>
+   configuraTela(); 
+</script>
