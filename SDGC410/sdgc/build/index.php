@@ -3,6 +3,7 @@
     require_once 'func/fPhp.php';
     require_once 'func/fModal.php';
 ?>
+oi
 <!DOCTYPE html>
 <html>
     <?php require_once 'incl/head.php';?>
