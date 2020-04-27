@@ -27,11 +27,11 @@ $DBtestePort = '32796';
 //juliano
 //$ip = '113'; 
 //reges
-//$ip = '97';
+$ip = '97';
 //joao
 //$ip = '89';
 //NoteREges
-$ip = '51';
+//$ip = '51';
 //
 //---CONFIGURAÇÃO DO SERVIDOR ----------
      //controle de URL 
@@ -234,6 +234,7 @@ function postRestAjax($nome, $cargEm, $cargArq ,$dados=null, $beforeSend=null, $
                         url:  '<?=$cargArq?>', //Indica a página que está sendo solicitada.
                         //função que vai ser executada assim que a requisição for enviada
                         beforeSend: function () {
+                            $('#idSpinAll').removeClass('hidden');
                             //executar antes de enviar
                             <?=$beforeSend?>
                         },
@@ -241,6 +242,7 @@ function postRestAjax($nome, $cargEm, $cargArq ,$dados=null, $beforeSend=null, $
                         //função que será executada quando a solicitação for finalizada.
                         success: function (msg)
                         {   
+                            $('#idSpinAll').addClass('hidden');
                             $("#<?=$cargEm?>").html(msg);
                             //Impressao
                             if(ver){

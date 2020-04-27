@@ -37,9 +37,6 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 <div class="box-body">
     <div class="row">
          <div class="box">
-            <div class="overlay hidden" id="idSpinLoaderValidarVariaveis">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
             <div class="box-header">
                 <div class="box-body no-padding">
                     <form name="formTemplate">   
@@ -68,16 +65,13 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 <div id="buscaVServidor">
 </div>
 <?php
-    
+
     //*variaveis------------------------------------------------------>
     $b1 = array('buscaVSetor','addClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
-    $b3 = array('idSpinLoaderValidarVariaveis','removeClass','hidden');
-    $beforeSend= array ($b1,$b2, $b3);
-    $l1 = array('idSpinLoaderValidarVariaveis','addClass','hidden');
-    $success= array ($l1);
+    $beforeSend= array ($b1,$b2);
     $dados = array('acao', 'idSecretaria');
-    postRestAjax('buscaVVariavel','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados, $beforeSend, $success); 
+    postRestAjax('buscaVVariavel','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados, $beforeSend); 
     
     //buscarVariavelNome
     $dados = array('acao', 'nomeVariavelDesc');
@@ -89,23 +83,23 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     //fecharVariavelSecretaria
     $b1 = array('buscaVSetor','addClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
-    $b3 = array('idSpinLoadermodalFechar','removeClass','hidden');
-    $beforeSend= array ($b3, $b1, $b2);
-    $l1 = array('idSpinLoadermodalFechar','addClass','hidden');
-    $success= array ($l1);
+    //$b3 = array('idSpinLoadermodalFechar','removeClass','hidden');
+    $beforeSend= array ($b1, $b2);
+    //$l1 = array('idSpinLoadermodalFechar','addClass','hidden');
+    //$success= array ($l1);
     $funcao = array('fecharModal();');
     $dados = array('acao', 'idVariavelDesc','nomeVariavelDesc');
-    postRestAjax('fecharEmSecretaria','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados, $beforeSend, $success, $funcao); 
+    postRestAjax('fecharEmSecretaria','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados, $beforeSend, '', $funcao); 
     
     //imprimir
     $b1 = array('buscaVSetor','addClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
-    $b3 = array('idSpinLoaderValidarVariaveis','removeClass','hidden');
-    $beforeSend= array ($b1,$b2, $b3);
-    $l1 = array('idSpinLoaderValidarVariaveis','addClass','hidden');
-    $success= array ($l1);
+    //$b3 = array('idSpinLoaderValidarVariaveis','removeClass','hidden');
+    $beforeSend= array ($b1,$b2);
+    //$l1 = array('idSpinLoaderValidarVariaveis','addClass','hidden');
+    //$success= array ($l1);
     $dados = array('acao', 'codValidacao','id', 'idLotacao', 'idVariavelDesc', 'nomeVariavelDesc', 'ver');
-    postRestAjax('imprimirRelatVariaveisSetor','imprimir','print/info.php',$dados, $beforeSend, $success); 
+    postRestAjax('imprimirRelatVariaveisSetor','imprimir','print/info.php',$dados, $beforeSend); 
 
     //pg
     $dados = array('acao', 'pgVariavel');
@@ -147,14 +141,14 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     //imprimir
     $b1 = array('buscaVSetor','addClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
-    $b3 = array('idSpinLoaderValidarVariaveis','removeClass','hidden');
+    //$b3 = array('idSpinLoaderValidarVariaveis','removeClass','hidden');
     $beforeSend= array ($b1,$b2, $b3);
     
-    $l1 = array('idSpinLoaderValidarVariaveis','addClass','hidden');
-    $success= array ($l1);
+    //$l1 = array('idSpinLoaderValidarVariaveis','addClass','hidden');
+    //$success= array ($l1);
 
     $dados = array('acao', 'idLotacaoSub','idVariavelDesc','ver');
-    postRestAjax('imprimirRelatVariaveisServidores','imprimir','print/info.php',$dados, $beforeSend, $success); 
+    postRestAjax('imprimirRelatVariaveisServidores','imprimir','print/info.php',$dados, $beforeSend); 
 
     //*servidor--------------------------------------------->
     $dados = array('acao','idVariavelDesc','idLotacaoSub','nomeLotacaoSub');
