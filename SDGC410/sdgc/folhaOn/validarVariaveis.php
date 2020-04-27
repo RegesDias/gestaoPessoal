@@ -83,10 +83,7 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     //fecharVariavelSecretaria
     $b1 = array('buscaVSetor','addClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
-    //$b3 = array('idSpinLoadermodalFechar','removeClass','hidden');
     $beforeSend= array ($b1, $b2);
-    //$l1 = array('idSpinLoadermodalFechar','addClass','hidden');
-    //$success= array ($l1);
     $funcao = array('fecharModal();');
     $dados = array('acao', 'idVariavelDesc','nomeVariavelDesc');
     postRestAjax('fecharEmSecretaria','buscaVVariavel','folhaOn/buscaVVariavel.php',$dados, $beforeSend, '', $funcao); 
@@ -94,10 +91,7 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     //imprimir
     $b1 = array('buscaVSetor','addClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
-    //$b3 = array('idSpinLoaderValidarVariaveis','removeClass','hidden');
     $beforeSend= array ($b1,$b2);
-    //$l1 = array('idSpinLoaderValidarVariaveis','addClass','hidden');
-    //$success= array ($l1);
     $dados = array('acao', 'codValidacao','id', 'idLotacao', 'idVariavelDesc', 'nomeVariavelDesc', 'ver');
     postRestAjax('imprimirRelatVariaveisSetor','imprimir','print/info.php',$dados, $beforeSend); 
 
@@ -134,19 +128,13 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     //pg
     $dados = array('acao', 'pgSetor');
     postRestAjax('pgSetor','buscaVSetor','folhaOn/buscaVSetor.php',$dados);
-    
     $dados = array('acao', 'idVariavelDesc','variaveisDesc','pgLotacaoSub');
     postRestAjax('buscaVServidorNegar','buscaVSetor','folhaOn/buscaVVariavel.php',$dados); 
     
     //imprimir
     $b1 = array('buscaVSetor','addClass','hidden');
     $b2 = array('buscaVServidor','addClass','hidden');
-    //$b3 = array('idSpinLoaderValidarVariaveis','removeClass','hidden');
-    $beforeSend= array ($b1,$b2, $b3);
-    
-    //$l1 = array('idSpinLoaderValidarVariaveis','addClass','hidden');
-    //$success= array ($l1);
-
+    $beforeSend= array ($b1,$b2);
     $dados = array('acao', 'idLotacaoSub','idVariavelDesc','ver');
     postRestAjax('imprimirRelatVariaveisServidores','imprimir','print/info.php',$dados, $beforeSend); 
 
