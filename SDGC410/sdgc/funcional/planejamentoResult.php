@@ -43,9 +43,7 @@ if ($respGet['acao'] == "buscarPlanejamento") {
 exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 ?>
 <div class="<?=permissaoAcesso($prmPlanejamento["buscar"],'hide')?> box box-primary">
-    <div class="overlay hidden" id="idSpinLoaderBuscarPlanejamento">
-                <i class="fa fa-refresh fa-spin"></i>
-    </div>
+
     <div class="box-header">
       <h3 class="box-title">Planejamento Consolidado</h3>
     </div>
@@ -104,11 +102,11 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 </div>
 <?php
     //Excluir
-    $be = array('idSpinLoaderBuscarPlanejamento','removeClass','hidden');
+
     $s1 = array('idBoxImprimir','addClass','hidden');
-    $s2 = array('idSpinLoaderBuscarPlanejamento','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1,$s2);
+
+
+    $success= array ($s1);
     $dados = array('acao', 'idPlanejamentoAuxiliar');
-    postRestAjax('postExcluirPlanejamento','buscaPlanejamento','funcional/planejamentoResult.php',$dados,$beforeSend,$success);
+    postRestAjax('postExcluirPlanejamento','buscaPlanejamento','funcional/planejamentoResult.php',$dados,'',$success);
 ?>

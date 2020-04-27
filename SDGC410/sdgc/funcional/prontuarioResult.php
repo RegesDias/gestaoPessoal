@@ -95,9 +95,6 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar, 6000);
 ?>
     <div class="box">
         
-        <div class="overlay hidden" id="idSpinLoaderBuscaProntuario">
-            <i class="fa fa-refresh fa-spin"></i>
-        </div>
         
         <div class="box-body ">
             <div class="row">
@@ -237,15 +234,11 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar, 6000);
     //pg
     $dados = array('acao', 'pg');
     postRestAjax('pagUpDown','buscaProntuario','funcional/prontuarioResult.php',$dados); 
-    
-    $be = array('idSpinLoaderBuscaProntuario','removeClass','hidden');
     $s1 = array('idBoxImprimir','addClass','hidden');
-    $s2 = array('idSpinLoaderBuscaProntuario','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1,$s2);
+    $success= array ($s1);
     //excluirRequisicaoProntuario
     $dados = array('acao', 'id');
-    postRestAjax('excluirRequisicaoProntuario','buscaProntuario','funcional/prontuarioResult.php',$dados, $beforeSend, $success);
+    postRestAjax('excluirRequisicaoProntuario','buscaProntuario','funcional/prontuarioResult.php',$dados, '', $success);
     
     //concluirRequisicaoProntuario
     $dados = array('acao', 'id');

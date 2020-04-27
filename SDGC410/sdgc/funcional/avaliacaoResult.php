@@ -248,31 +248,24 @@
     require_once '../javascript/fAvaliacao.php';
     
     //anularAvaliacao
-    $be = array('idSpinLoaderAvaliacao','removeClass','hidden');
+
     $s1 = array('idBoxImprimir','addClass','hidden');
-    $s2 = array('idSpinLoaderAvaliacao','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1,$s2);
+    $success= array ($s1);
     $dados = array('acao', 'idAvaliacao');
-    postRestAjax('anularAvaliacao','buscaAvaliacao','funcional/avaliacaoResult.php',$dados,$beforeSend,$success);
+    postRestAjax('anularAvaliacao','buscaAvaliacao','funcional/avaliacaoResult.php',$dados,'',$success);
     
     //incluirAvaliacao
-    $be = array('idSpinLoaderAvaliacao','removeClass','hidden');
     $s1 = array('idBoxImprimir','addClass','hidden');
-    $s2 = array('idSpinLoaderAvaliacao','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1,$s2);
+    $success= array ($s1);
     $dados = array('acao', 'idLotacaoSub','adaptacao','comprometimento','conhecimento','iniciativa','qualidade','relacionamentos','resolucao','responsabilidade');
     //$dados = array('acao', 'idAvaliacao');
-    postRestAjax('incluirAvaliacao','buscaAvaliacao','funcional/avaliacaoResult.php',$dados,$beforeSend,$success);
+    postRestAjax('incluirAvaliacao','buscaAvaliacao','funcional/avaliacaoResult.php',$dados,'',$success);
 
     //imprimir Avaliacao
-    $be = array('idSpinLoaderAvaliacao','removeClass','hidden');
-    $s = array('idSpinLoaderAvaliacao','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s);
+
+
     $dados = array('acao','idLotacaoSub','idHistorioFunc','ver');
-    postRestAjax('relatorioEmAvaliacao','imprimir','print/info.php',$dados,$beforeSend,$success);
+    postRestAjax('relatorioEmAvaliacao','imprimir','print/info.php',$dados);
 ?>
 <script>
     carregaAvaliacao();

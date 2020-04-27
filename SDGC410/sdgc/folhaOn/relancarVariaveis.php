@@ -16,9 +16,6 @@ require_once '../func/fModal.php';
 <div class="row">
     <div class="col-md-12">
         <div class="box">
-            <div class="overlay hidden" id="idSpinLoaderRelancarVariaveis">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
             <div class="box-body">
                 <div class="row">
                     <form name="formTemplate">
@@ -44,43 +41,26 @@ require_once '../func/fModal.php';
 <div id="relancarVFolha">
 </div>
 <?php
-    $before = array('idSpinLoaderRelancarVariaveis','removeClass','hidden');
-    $latter = array('idSpinLoaderRelancarVariaveis','addClass','hidden');
-    $beforeSend= array ($before);
-    $success= array ($latter);
-    $dados = array('acao', 'idSecretaria');
-    postRestAjax('relancarVFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, $beforeSend,$success);
 
-    
-    $before = array('idSpinLoaderRelancarVFolha','removeClass','hidden');
-    $latter = array('idSpinLoaderRelancarVFolha','addClass','hidden');
-    $beforeSend= array ($before);
-    $success= array ($latter);
+    $dados = array('acao', 'idSecretaria');
+    postRestAjax('relancarVFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados);
+
+
     $dados = array('acao', 'nomeLotacaoSub');
-    postRestAjax('buscarRVFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, $beforeSend,$success);
+    postRestAjax('buscarRVFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados);
 
     $dados = array('acao', 'pg', 'idLotacaoSub', 'idUserLogin', 'ver');
     postRestAjax('rRelancarV', 'rRelancarV', 'print/info.php', $dados);
 
     //salvar
-    $before = array('idSpinLoaderRelancarVFolha','removeClass','hidden');
-    $latter = array('idSpinLoaderRelancarVFolha','addClass','hidden');
-    $beforeSend= array ($before);
-    $success= array ($latter);
-    
     $dados = array('acao', 'pg', 'idLotacaoSub', 'idUserLogin');
     $funcao = array('fecharModal');
-    postRestAjax('RVSalvarFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, $beforeSend, $success, $funcao);
+    postRestAjax('RVSalvarFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, '', '', $funcao);
 
     //lançar
-    $before = array('idSpinLoaderRelancarVFolha','removeClass','hidden');
-    $latter = array('idSpinLoaderRelancarVFolha','addClass','hidden');
-    $beforeSend= array ($before);
-    $success= array ($latter);
-    
     $dados = array('acao', 'pg', 'idLotacaoSub', 'idUserLogin');
     $funcao = array('fecharModal');
-    postRestAjax('RVLancarFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, $beforeSend, $success, $funcao);
+    postRestAjax('RVLancarFolha', 'relancarVFolha', 'folhaOn/relancarVFolha.php', $dados, '', '', $funcao);
 
     //pg
     $dados = array('acao', 'pg');

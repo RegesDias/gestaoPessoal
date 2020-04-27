@@ -45,10 +45,6 @@
 <section class="content">
         <div class="box box-primary">
             
-             <div class="overlay hidden" id="idSpinLoaderImprimeParaEntrega">
-                        <i class="fa fa-refresh fa-spin"></i>
-             </div>
-            
             <div class="box-body">
                 <div class="form-horizontal">
                     <div class="col-md-12">
@@ -79,11 +75,7 @@
                 <div class="box-body">
               <!-- USERS LIST -->
               <div class="box box-danger">
-                  
-                  <div class="overlay hidden" id="idSpinLoaderImprimeCracha">
-                        <i class="fa fa-refresh fa-spin"></i>
-                  </div>
-                  
+ 
                 <div class="box-header with-border">
                   <h3 class="box-title">Pedidos de Impressão de crachas</h3>
 
@@ -135,46 +127,29 @@
 </section>
 <?php
             //buscaCracha
-            $be = array('idSpinLoaderImprimeCracha','removeClass','hidden');
-            $beforeSend= array ($be);
-            $s2 = array('idSpinLoaderImprimeCracha','addClass','hidden');
             $s1 = array('cracha','removeClass','hidden');
-            $success= array ($s1,$s2);
+            $success= array ($s1);
             $dados = array('acao', 'idHistFunc','crachaAdm');
-            postRestAjax('buscaCracha','cracha','funcional/cracha.php',$dados, $beforeSend,  $success);
+            postRestAjax('buscaCracha','cracha','funcional/cracha.php',$dados, '',  $success);
             
-            //postEmCrachaIncluir
-            $be = array('idSpinLoaderBoxCracha','removeClass','hidden');
-            $s = array('idSpinLoaderBoxCracha','addClass','hidden');
-            $beforeSend= array ($be);
-            $success= array ($s);      
+            //postEmCrachaIncluir    
             $dados = array('acao','idHistFunc','idCrachaTipo','crachaAdm');
-            postRestAjax('postEmCrachaIncluir','cracha','funcional/cracha.php',$dados,$beforeSend,$success);
+            postRestAjax('postEmCrachaIncluir','cracha','funcional/cracha.php',$dados,'','');
             
             //postEmCrachaStatus
-            $be = array('idSpinLoaderBoxCracha','removeClass','hidden');
-            $s = array('idSpinLoaderBoxCracha','addClass','hidden');
-            $beforeSend= array ($be);
-            $success= array ($s);      
             $dados = array('acao','idCrachaRequisicao', 'idHistFunc','crachaAdm');
-            postRestAjax('postEmCrachaStatus','cracha','funcional/cracha.php',$dados,$beforeSend,$success);
+            postRestAjax('postEmCrachaStatus','cracha','funcional/cracha.php',$dados);
             
             
-            //postEmCrachaPrint
-            $be = array('idSpinLoaderBoxCracha','removeClass','hidden');
-            $s = array('idSpinLoaderBoxCracha','addClass','hidden');
-            $beforeSend= array ($be);
-            $success= array ($s);            
+            //postEmCrachaPrint        
             $dados = array('acao','idCrachaTipo','nome', 'cpf','matricula','crachaAdm','idImagem', 'ver');
-            postRestAjax('relatorioEmCracha','imprimir','print/info.php',$dados,$beforeSend,$success); 
+            postRestAjax('relatorioEmCracha','imprimir','print/info.php',$dados); 
             
             //postEmCrachaPrint
-            $be = array('idSpinLoaderImprimeParaEntrega','removeClass','hidden');
-            $s = array('idSpinLoaderImprimeParaEntrega','addClass','hidden');
             $beforeSend= array ($be);
             $success= array ($s);            
             $dados = array('acao','ver');
-            postRestAjax('relatorioParaEntrega','imprimir','print/info.php',$dados,$beforeSend,$success);     
+            postRestAjax('relatorioParaEntrega','imprimir','print/info.php',$dados);     
             
             
         

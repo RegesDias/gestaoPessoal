@@ -47,10 +47,6 @@
         </div>
         <div class="box box-primary">
             
-            <div class="overlay hidden" id="idSpinLoaderBuscaOcorrencia">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
-            
             <div class="box-header">
                 <h3 class="box-title">Buscar e Analisar as Ocorrências lançadas</h3>
             </div>
@@ -168,23 +164,17 @@
    </div>
 <?php 
     //postLancarOcorrencia
-    $be = array('idSpinLoaderLancaOcorrencia','removeClass','hidden');
-    $s1 = array('idSpinLoaderLancaOcorrencia','addClass','hidden');
     $s2 = array('idBoxImprimir','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1,$s2);
+    $success= array ($s2);
     $funcao = array('postBuscarOcorrencia');
     $dados = array('tab','acao','secretariaID','setorID','ocorrencia','diasOco', 'datetimes', 'obsOco');
-    postRestAjax('postLancarOcorrencia','dados','funcional/perfil.php',$dados,$beforeSend,$success, $funcao);
+    postRestAjax('postLancarOcorrencia','dados','funcional/perfil.php',$dados,'',$success, $funcao);
 
     //postBuscarOcorrencia
-    $be = array('idSpinLoaderBuscaOcorrencia','removeClass','hidden');
     $s1 = array('idBoxImprimir','addClass','hidden');
-    $s2 = array('idSpinLoaderBuscaOcorrencia','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1, $s2);
+    $success= array ($s1);
     $dados = array('idOcorrenciaBusca','reservation', 'acao');
-    postRestAjax('postBuscarOcorrencia','ocorrenciaBusca','funcional/ocorrenciaBusca.php',$dados,$beforeSend,$success);
+    postRestAjax('postBuscarOcorrencia','ocorrenciaBusca','funcional/ocorrenciaBusca.php',$dados,'',$success);
 
 ?>
 <script>

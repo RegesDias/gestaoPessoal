@@ -15,9 +15,7 @@ autoComplete($_SESSION["nomePessoas"], '#nome', '1');
 <div class="row">
     <div class="col-md-12">
         <div class="box box-primary" id="idBoxPrimary">
-            <div class="overlay hidden" id="idSpinLoader">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
+            
             <!--botões de controle-->
             <div class="box-header with-border">
                 <div class="col-md-12">
@@ -88,7 +86,7 @@ autoComplete($_SESSION["nomePessoas"], '#nome', '1');
                     url: 'funcional/buscaResult.php', //Indica a página que está sendo solicitada.
                     //função que vai ser executada assim que a requisição for enviada
                     beforeSend: function () {
-                        $("#idSpinLoader").removeClass("hidden");
+                        $("#idSpinAll").removeClass("hidden");
                         $("#idBoxResultado").addClass("collapsed-box");
                         $("#idBoxResultado").removeClass("hidden");
                     },
@@ -98,7 +96,7 @@ autoComplete($_SESSION["nomePessoas"], '#nome', '1');
                     {
                         $("#dados").html(msg);
                         
-                        $("#idSpinLoader").addClass("hidden");
+                        $("#idSpinAll").addClass("hidden");
                         $("#idBoxImprimir").addClass("hidden");
                         $("#idBoxResultado").removeClass("collapsed-box");
                         $("#idBoxDados").removeClass("hidden");

@@ -104,10 +104,7 @@
 </div>
     <?php
         //relatorioEmRelatorio
-        $be = array('idSpinLoaderGestao','removeClass','hidden');
-        $s = array('idSpinLoaderGestao','addClass','hidden');
-        $beforeSend= array ($be);
-        $success= array ($s);
+
         $dados = array('acao','idSecretaria','orby', 'ver');
-        postRestAjax('relatorioEmRelatorio','imprimir','print/info.php',$dados,$beforeSend,$success);
+        postRestAjax('relatorioEmRelatorio','imprimir','print/info.php',$dados);
     ?>

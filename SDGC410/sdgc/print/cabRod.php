@@ -665,10 +665,6 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
   <div class="col-md-12">
       <div class="box box-primary">
           
-            <div class="overlay" id="idSpinLoaderCabRod">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
-          
           <div class="box-header with-border">
               <?php
               if ($botao == true){?>
@@ -756,7 +752,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                    </iframe>
                    <script type="text/javascript">
                             document.getElementById('idPaginaRelatorio').onload = function() {
-                                $("#idSpinLoaderCabRod").addClass("hidden");
+                                $("#idSpinAll").addClass("hidden");
                             }
                     </script>
                   <?php
@@ -788,7 +784,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                     url: pst + '/' + arq + '.php', //Indica a página que está sendo solicitada.
                     //função que vai ser executada assim que a requisição for enviada
                     beforeSend: function () {
-                        $("#idSpinLoaderGestao").removeClass("hidden");
+                        $("#idSpinAll").removeClass("hidden");
 
                     },
                     data: {pst:pst, arq:arq, menuN3:menuN3, menuN4:menuN4, tab:tab, pg:pg}, //Dados para consulta
@@ -797,7 +793,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                     {
                         $("#dados").html(msg);
                         configuraTela();
-                        $("#idSpinLoaderGestao").addClass("hidden");
+                        $("#idSpinAll").addClass("hidden");
                     }
                 });
     }
@@ -852,7 +848,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                     url: pst + '/' + arq + '.php', //Indica a página que está sendo solicitada.
                     //função que vai ser executada assim que a requisição for enviada
                     beforeSend: function () {
-                        $("#idSpinLoaderGestao").removeClass("hidden");
+                        $("#idSpinAll").removeClass("hidden");
                     },
                     data: {
                         tipo_relatorio:tipo_relatorio,
@@ -901,7 +897,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                     {
                         $("#imprimir").html(msg);
                         configuraTela();
-                        $("#idSpinLoaderGestao").addClass("hidden");
+                        $("#idSpinAll").addClass("hidden");
                     }
                 });
     }

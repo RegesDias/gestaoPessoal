@@ -102,19 +102,19 @@ if (!isset($respGet['pg'])){
                                                 url: 'funcional/perfil.php', //Indica a página que está sendo solicitada.
                                                 //função que vai ser executada assim que a requisição for enviada
                                                 beforeSend: function () {
-                                                    $("#idSpinLoader").removeClass("hidden");
+                                                    $("#idSpinAll").removeClass("hidden");
                                                     $("#idBoxResultado").addClass("collapsed-box");
                                                     $("#idBoxResultado").removeClass("hidden");
-                                                    $("#idSpinLoaderResultado").removeClass("hidden");
+                                                   
                                                 },
                                                 data: {id: id}, //Dados para consulta
                                                 //função que será executada quando a solicitação for finalizada.
                                                 success: function (msg)
                                                 {
-                                                    $("#idSpinLoader").addClass("hidden");
+                                                    $("#idSpinAll").addClass("hidden");
                                                     $("#dados").html(msg);
                                                     $("#idBoxResultado").removeClass("collapsed-box");
-                                                    $("#idSpinLoaderResultado").addClass("hidden");
+                                                    
                                                     configuraTela();
                                                     postBuscarOcorrencia();
                                                     buscaPlanejamento();

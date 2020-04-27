@@ -55,9 +55,6 @@ foreach ($cracharequisicao as $cracha) {
 exibeMsn($msnExibe, $msnTexto, $msnTipo, $executar);
 ?>
 <div class="box box-primary">
-    <div class="overlay hidden" id="idSpinLoaderBoxCracha">
-        <i class="fa fa-refresh fa-spin"></i>
-    </div>
     <div class="modal-dialog">
         <div class="modal-content">
             <?php

@@ -55,9 +55,7 @@
 ?>
 <div class="box box-info">
     
-    <div class="overlay hidden" id="idSpinLoaderVariaveisResult">
-        <i class="fa fa-refresh fa-spin"></i>
-    </div>
+
     
     <div class="box-header with-border">
       <h3 class="box-title">Lançamentos</h3>
@@ -116,13 +114,11 @@
 </div>
 <?php
     //incluirVariaveis
-    $be = array('idSpinLoaderVariaveisResult','removeClass','hidden');
+
     $s1 = array('idBoxImprimir','addClass','hidden');
-    $s2 = array('idSpinLoaderVariaveisResult','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1,$s2);
+    $success= array ($s1);
     $dados = array('acao', 'idVariavel');
     //$dados = array('acao', 'idAvaliacao');
-    postRestAjax('removeVariavel','buscaVariaveis','funcional/variaveisResult.php',$dados,$beforeSend,$success);
+    postRestAjax('removeVariavel','buscaVariaveis','funcional/variaveisResult.php',$dados,'',$success);
 
 ?>

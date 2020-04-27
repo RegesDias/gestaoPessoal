@@ -71,9 +71,6 @@ if($respGet[acao]=='selecionar'){
 exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 if(count($_SESSION[lotacaoVariavel])>0){?>
  <div class="box">
-     <div class="overlay hidden" id="idSpinLoaderVariaveisLotacao">
-                <i class="fa fa-refresh fa-spin"></i>
-     </div>
     <div class="box-header">
         <h3 class="box-title">
             Variável
@@ -143,9 +140,6 @@ if(count($_SESSION[lotacaoVariavel])>0){?>
                           <div class="modal-dialog modal-md">
                                  
                             <div class="modal-content">
-                                <div class="overlay hidden" id="idSpinLoadermodalFechar">
-                                    <i class="fa fa-refresh fa-spin"></i>
-                                </div>
                               <div class="modal-body">
                                     <p>O status da variável <?=$ArrEsp[variaveisDesc]?> vai ser alterado para <?=$MsnNome?>. Deseja realmente fazer esta ação?</p>
                               </div>

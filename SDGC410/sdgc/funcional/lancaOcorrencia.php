@@ -47,9 +47,7 @@ if ($respGet['acao'] == "lancarOco") {
 ?>
 <div class="box box-primary">
     
-    <div class="overlay hidden" id="idSpinLoaderLancaOcorrencia">
-        <i class="fa fa-refresh fa-spin"></i>
-    </div>
+
     
     <div class="box-header">
         <h3 class="box-title">Lançar Ocorrências</h3>

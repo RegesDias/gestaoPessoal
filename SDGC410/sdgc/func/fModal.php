@@ -104,12 +104,10 @@ function modalCadUser($id, $title, $pst, $arq) {
 //ModalInicioFim
 function modalInicoFim($id, $title, $pst, $arq, $acao, $padrao = null, $vtab = null, $user = null) {
     
-    $be = array('idSpinLoaderGestao','removeClass','hidden');
-    $s = array('idSpinLoaderGestao','addClass','hidden');
-    $beforeSend= array ($be);
-    $success = array ($s);
+    
+
     $dados = array('mesAnoInicial','mesAnoFinal','acao','ver');
-    postRestAjax('post'.$acao,'imprimir',$pst.'/'.$arq.'.php',$dados, $beforeSend, $success);
+    postRestAjax('post'.$acao,'imprimir',$pst.'/'.$arq.'.php',$dados);
     
     
     ?>
@@ -219,13 +217,8 @@ function modalInicoFimData($id, $title, $pst, $arq, $acao, $padrao = null, $vpst
 //ModalInicioFim
 function modalInicio($id, $title, $pst, $arq, $acao, $padrao = null, $vtab = null) {
 
-
-    $be = array('idSpinLoaderGestao','removeClass','hidden');
-    $s = array('idSpinLoaderGestao','addClass','hidden');
-    $beforeSend= array ($be);
-    $success = array ($s);
     $dados = array('dado','acao','ver');
-    postRestAjax('post'.$acao,'imprimir',$pst.'/'.$arq.'.php',$dados, $beforeSend, $success);
+    postRestAjax('post'.$acao,'imprimir',$pst.'/'.$arq.'.php',$dados);
     
     
     ?>
@@ -579,13 +572,10 @@ function modalInicoFimJavaScript($idSpinLoader, $id, $title, $pst, $arq, $acao, 
         </div>
     </div>
         <?php
-        $be = array($idSpinLoader,'removeClass','hidden');
-        $s = array($idSpinLoader,'addClass','hidden');
-        $beforeSend= array ($be);
-        $success= array ($s);            
+         
         $dados = array('idFlagOrgPor', 'acao', 'mesAnoInicial', 'mesAnoFinal', 'selectCompetencia','ver');
         $funcao = array('fecharModal');
-        postRestAjax('relatorioInicioFim', 'imprimir', 'print/info.php',$dados,$beforeSend,$success, $funcao);
+        postRestAjax('relatorioInicioFim', 'imprimir', 'print/info.php',$dados,'','', $funcao);
         
         //executaContabilExterno        
         $dados = array('modal', 'padrao', 'mesAnoInicial', 'mesAnoFinal');
@@ -634,13 +624,9 @@ function modaldefinirData($id, $title, $pst, $arq, $acao, $ldt) {
 
 //modal clonar acesso
 function modalEnviaSetorInicio($id, $title, $pst, $arq, $acao, $vtab = null, $cpf = null) {
-    
-    $be = array('idSpinLoaderGestao','removeClass','hidden');
-    $s = array('idSpinLoaderGestao','addClass','hidden');
-    $beforeSend= array ($be);
-    $success = array ($s);
+
     $dados = array('idSetor','acao','ver');
-    postRestAjax('post'.$acao,'imprimir',$pst.'/'.$arq.'.php',$dados, $beforeSend, $success);
+    postRestAjax('post'.$acao,'imprimir',$pst.'/'.$arq.'.php',$dados);
                               
                                 ?>
     <div class="modal fade" id="<?= $id ?>">
@@ -685,13 +671,8 @@ function modalEnviaSetorInicio($id, $title, $pst, $arq, $acao, $vtab = null, $cp
 //modal clonar acesso
 function modalEnviaSetorInicioFim($id, $title, $pst, $arq, $acao, $vtab = null, $cpf = null) {
 
-    
-    $be = array('idSpinLoaderGestao','removeClass','hidden');
-    $s = array('idSpinLoaderGestao','addClass','hidden');
-    $beforeSend= array ($be);
-    $success = array ($s);
     $dados = array('mesAnoInicial','mesAnoFinal', 'idSetor','acao','ver');
-    postRestAjax('post'.$acao,'imprimir',$pst.'/'.$arq.'.php',$dados, $beforeSend, $success);
+    postRestAjax('post'.$acao,'imprimir',$pst.'/'.$arq.'.php',$dados);
     
     ?>
     <div class="modal fade" id="<?= $id ?>">

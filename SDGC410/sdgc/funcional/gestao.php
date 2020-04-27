@@ -129,12 +129,6 @@ if($_SESSION["funcionalBusca"]['situacao']['nome'] == 'INATIVO'){
 <div class="tab-pane <?=tabId('gestao', $respGet['tab'],$padrao=true)?>" id="gestao">
     <div class="post clearfix">
         <div class="box box-primary">
-            
-            
-            <div class="overlay hidden" id="idSpinLoaderGestao">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
-            
             <div class="box-body">
                 <div class="form-horizontal">
                     <div class="col-md-12">
@@ -317,54 +311,32 @@ if($_SESSION["funcionalBusca"]['situacao']['nome'] == 'INATIVO'){
 </div>  
         <?php
             //relatorioEmGestao
-            $be = array('idSpinLoaderGestao','removeClass','hidden');
-            $s = array('idSpinLoaderGestao','addClass','hidden');
-            $beforeSend= array ($be);
-            $success= array ($s);
+
             $dados = array('dado','acao','ver');
-            postRestAjax('relatorioEmGestao','imprimir','print/info.php',$dados,$beforeSend,$success);
+            postRestAjax('relatorioEmGestao','imprimir','print/info.php',$dados);
             
             //postEmGestao
-            $be = array('idSpinLoaderGestao','removeClass','hidden');
-            $s = array('idSpinLoaderGestao','addClass','hidden');
-            $beforeSend= array ($be);
-            $success= array ($s);
             $dados = array('tab','acao','idFuncional','idLotacao', 'idSetor', 'idRegime', 'idEspecialidade');
-            postRestAjax('postEmGestao','dados','funcional/perfil.php',$dados,$beforeSend,$success);
+            postRestAjax('postEmGestao','dados','funcional/perfil.php',$dados);
 
             //buscaCracha
-            $be = array('idSpinLoaderGestao','removeClass','hidden');
-            $beforeSend= array ($be);
-            $s2 = array('idSpinLoaderGestao','addClass','hidden');
             $s1 = array('cracha','removeClass','hidden');
-            $success= array ($s1,$s2);
+            $success= array ($s1);
             $dados = array('acao', 'idHistFunc','crachaAdm');
-            postRestAjax('buscaCracha','cracha','funcional/cracha.php',$dados, $beforeSend,  $success);
+            postRestAjax('buscaCracha','cracha','funcional/cracha.php',$dados,'',$success);
             
             //postEmCrachaIncluir
-            $be = array('idSpinLoaderBoxCracha','removeClass','hidden');
-            $s = array('idSpinLoaderBoxCracha','addClass','hidden');
-            $beforeSend= array ($be);
             $success= array ($s);      
             $dados = array('acao','idHistFunc','idCrachaTipo','crachaAdm');
-            postRestAjax('postEmCrachaIncluir','cracha','funcional/cracha.php',$dados,$beforeSend,$success);
+            postRestAjax('postEmCrachaIncluir','cracha','funcional/cracha.php',$dados,'',$success);
             
-            //postEmCrachaStatus
-            $be = array('idSpinLoaderBoxCracha','removeClass','hidden');
-            $s = array('idSpinLoaderBoxCracha','addClass','hidden');
-            $beforeSend= array ($be);
-            $success= array ($s);      
+            //postEmCrachaStatus     
             $dados = array('acao','idCrachaRequisicao', 'idHistFunc','crachaAdm');
-            postRestAjax('postEmCrachaStatus','cracha','funcional/cracha.php',$dados,$beforeSend,$success);
+            postRestAjax('postEmCrachaStatus','cracha','funcional/cracha.php',$dados);
             
-            
-            //postEmCrachaPrint
-            $be = array('idSpinLoaderBoxCracha','removeClass','hidden');
-            $s = array('idSpinLoaderBoxCracha','addClass','hidden');
-            $beforeSend= array ($be);
-            $success= array ($s);            
+            //postEmCrachaPrint       
             $dados = array('acao','idCrachaTipo','nome', 'cpf','matricula','crachaAdm','idImagem', 'ver');
-            postRestAjax('relatorioEmCracha','imprimir','print/info.php',$dados,$beforeSend,$success);      
+            postRestAjax('relatorioEmCracha','imprimir','print/info.php',$dados);      
            
         ?> 
             <script>

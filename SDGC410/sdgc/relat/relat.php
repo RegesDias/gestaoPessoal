@@ -30,11 +30,6 @@ $_SESSION["relatorio"] = $respGet;
 <div class="row">
     <div class="col-md-12">
         <div class="box box-primary">
-            
-            <div class="overlay" id="idSpinLoaderRelat">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
-            
             <div class="box-header with-border">
                 <div class="col-md-12">
                     <h3 class="box-title">Gerar por</h3>          
@@ -164,11 +159,7 @@ $_SESSION["relatorio"] = $respGet;
     <?php
         require_once "../javascript/fRelat.php";
         //relatorioEmRelatorio
-        $be = array('idSpinLoaderGestao','removeClass','hidden');
-        $s = array('idSpinLoaderGestao','addClass','hidden');
-        $beforeSend= array ($be);
-        $success= array ($s);
         $dados = array('menuN2','menuN3','link','idSecretaria','idSetor','ver');
-        postRestAjax('relatorioEmRelatorio','imprimir','print/info.php',$dados,$beforeSend,$success);
+        postRestAjax('relatorioEmRelatorio','imprimir','print/info.php',$dados);
     ?>
     

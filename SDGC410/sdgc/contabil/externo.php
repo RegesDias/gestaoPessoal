@@ -42,9 +42,6 @@ modalInicoFimJavaScript('idSpinLoaderBoxExterno','consiguinadoCritica', 'Consigu
 <div class="row">
     <div class="col-md-12">
         <div class="box">
-            <div class="overlay hidden" id="idSpinLoaderBoxExterno">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">

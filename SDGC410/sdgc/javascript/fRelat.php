@@ -9,7 +9,7 @@
     var boxSelectSetor = document.querySelector('#idBoxSelectSetor');
     var boxRadioOrdenar = document.querySelector('#idBoxRadioOrdenar');
     var boxradioFiltrar = document.querySelector('#idBoxRadioFiltrar');
-    var spinLoader = document.querySelector('#idSpinLoaderRelat');
+    var spinLoader = document.querySelector('#idSpinAll');
     var inputIdSetor = document.querySelector('#idInputIdSetor');
 
 //Outras variaveis globais

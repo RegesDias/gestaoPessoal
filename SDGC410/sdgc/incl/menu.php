@@ -108,7 +108,7 @@
                                         //função que vai ser executada assim que a requisição for enviada
                                         beforeSend: function () {
                                            
-                                            $("#idSpinLoaderCorpo").removeClass("hidden");
+                                            $("#idSpinAll").removeClass("hidden");
 
                                         },
                                         data: {pst: pst, arq: arq, menuN1: menuN1, menuN2: menuN2, menuN3: menuN3, menuN4: menuN4, link: link, obj:obj}, //Dados para consulta
@@ -122,8 +122,7 @@
                                             $("#idBoxResultado").addClass("hidden");
                                             $("#idBoxDados").addClass("hidden");
                                             configuraTela();
-                                            $("#idSpinLoaderCorpo").addClass("hidden");
-                                            $("#idSpinLoaderCorpo").addClass("hidden");
+                                            $("#idSpinAll").addClass("hidden");
                                             $(".link-button-menu-left").removeClass("link-button-menu-select");
                                             $(obj).addClass("link-button-menu-select");
                                         }

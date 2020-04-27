@@ -39,9 +39,6 @@ modalAgendamento('agendamentoSesmt', 'Agendamento', 'print', 'info', 'contraCheq
 <!--                    <form class="<?= permissaoAcesso($prmProntuario['incluir'], 'hide') ?> form-horizontal" method="<?= $method ?>" action="index.php">-->
                         <div class="box box-primary">
                             
-                            <div class="overlay hidden" id="idSpinLoaderLancarProntuario">
-                                <i class="fa fa-refresh fa-spin"></i>
-                            </div>
                             
                             <div class="box-header">
                                 <h3 class="box-title">Dados do Requerente</h3>
@@ -191,58 +188,17 @@ modalAgendamento('agendamentoSesmt', 'Agendamento', 'print', 'info', 'contraCheq
 <?php
 require_once '../javascript/fProntuario.php';
 
-
-    $be = array('idSpinLoaderBuscaProntuario','removeClass','hidden');
     $s1 = array('idBoxImprimir','addClass','hidden');
-    $s2 = array('idSpinLoaderBuscaProntuario','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1,$s2);
+    $success= array ($s1);
     $dados = null;
-    postRestAjax('buscaProntuario','buscaProntuario','funcional/prontuarioResult.php',$dados, $beforeSend, $success);
+    postRestAjax('buscaProntuario','buscaProntuario','funcional/prontuarioResult.php',$dados, '', $success);
     
         //incluirVariaveis
-    $be = array('idSpinLoaderLancarProntuario','removeClass','hidden');
+  
     $s1 = array('idBoxImprimir','addClass','hidden');
-    $s2 = array('idSpinLoaderLancarProntuario','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1,$s2);
+    $success= array ($s1);
     $dados = array('acao','cep', 'estado', 'cidade', 'bairro', 'logradouro', 'numero', 'complemento', 'celular', 'teletone', 'email', 'idRequerimentoSolicitacao');
     //$dados = array('acao', 'idAvaliacao');
-    postRestAjax('lancarProntuario','buscaProntuario','funcional/prontuarioResult.php',$dados, $beforeSend, $success);
-
-                       
-
+    postRestAjax('lancarProntuario','buscaProntuario','funcional/prontuarioResult.php',$dados, '', $success);
 
 ?>
-<!--<script>
-
-
-function lancarProtocolo(acao,id,numProtocolo,anoProtocolo){   
-    console.log(acao);
-    console.log(id);
-    console.log(numProtocolo);
-    console.log(anoProtocolo);
-        $.ajax
-        ({
-            //Configurações
-            type: 'POST', //Método que está sendo utilizado.
-            dataType: 'html', //É o tipo de dado que a página vai retornar.
-            url:  'funcional/prontuarioResult.php', //Indica a página que está sendo solicitada.
-            //função que vai ser executada assim que a requisição for enviada
-            beforeSend: function () {
-                //executar antes de enviar
-            },
-            data: {acao:acao,id:id,numProtocolo:numProtocolo,anoProtocolo:anoProtocolo}, //Dados para consulta
-            //função que será executada quando a solicitação for finalizada.
-            success: function (msg)
-            {   
-                console.log("Aqui1");
-                $("#imprimir").html(msg);
-                console.log("Aqui2");
-                
-            }
-        });
-}
-    
-
-</script>-->

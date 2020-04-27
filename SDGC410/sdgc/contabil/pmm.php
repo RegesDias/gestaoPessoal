@@ -60,11 +60,6 @@ modalInicoFimJavaScript('idSpinLoaderPMM', 'exportAcomOrcamentario', 'Acompanham
 <div class="row">
     <div class="col-md-12">
         <div class="box">
-            
-            <div class="overlay hidden" id="idSpinLoaderPMM">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
-            
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">

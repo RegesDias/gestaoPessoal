@@ -13,9 +13,7 @@
 
     <div class="post clearfix">
         <div class="<?=permissaoAcesso($prmPlanejamento["incluir"],'hide')?> box box-primary">
-           <div class="overlay hidden" id="idSpinLoaderLancarPlanejamento">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
+    
                  <div class="box-header">
                    <h3 class="box-title">Lançar Planejamento</h3>
                  </div>
@@ -112,23 +110,18 @@
 </div>
 <?php
     //lancar
-    $be = array('idSpinLoaderLancarPlanejamento','removeClass','hidden');
+
     $s1 = array('idBoxImprimir','addClass','hidden');
-    $s2 = array('idSpinLoaderLancarPlanejamento','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1,$s2);
+    $success= array ($s1);
     $funcao = array('buscaPlanejamento');
     $dados = array('acao','diaSemana','hInicial','hFinal','tipoPlan','setorPlan','feriado','pontoFacult');
-    postRestAjax('postLancarPlanejamento','buscaPlanejamento','funcional/planejamentoResult.php',$dados,$beforeSend,$success);
+    postRestAjax('postLancarPlanejamento','buscaPlanejamento','funcional/planejamentoResult.php',$dados,'',$success);
     
     
     //exibir
-    $be = array('idSpinLoaderBuscarPlanejamento','removeClass','hidden');
     $s1 = array('idBoxImprimir','addClass','hidden');
-    $s2 = array('idSpinLoaderBuscarPlanejamento','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s1,$s2);
-    postRestAjax('buscaPlanejamento','buscaPlanejamento','funcional/planejamentoResult.php',$dados,$beforeSend,$success);
+    $success= array ($s1);
+    postRestAjax('buscaPlanejamento','buscaPlanejamento','funcional/planejamentoResult.php',$dados,'',$success);
 
 
 ?>
