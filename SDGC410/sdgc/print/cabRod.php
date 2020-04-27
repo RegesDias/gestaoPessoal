@@ -664,7 +664,9 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
 <div class="row">
   <div class="col-md-12">
       <div class="box box-primary">
-          
+            <div class="overlay" id="idSpinFormImpressao">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
           <div class="box-header with-border">
               <?php
               if ($botao == true){?>
@@ -752,7 +754,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                    </iframe>
                    <script type="text/javascript">
                             document.getElementById('idPaginaRelatorio').onload = function() {
-                                $("#idSpinAll").addClass("hidden");
+                                $("#idSpinFormImpressao").addClass("hidden");
                             }
                     </script>
                   <?php

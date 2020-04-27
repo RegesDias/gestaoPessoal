@@ -8,15 +8,7 @@ require_once '../func/fModal.php';
         $_SESSION['template'] = '';
         $_SESSION['verTemplate'] = '';
     }
-//TEMPLATE CLONAR 
-    if ($respGet['acao'] == "clonarTemplate") {
-        $idTemplate = array('idAppVersao' => $respGet['idappversao'],'id' => $respGet['idClone'],'nome' => $respGet['nomeTemplate']);
-        $msnTexto = "ao clonar o template.";
-        $executar= postRest('userMenu/postClonarTemplate',$idTemplate);
-        $respGet['acao'] = "buscar";
-        $respGet['closeResult'] = 1;
-        $respGet['closeAcesso'] = 0;
-    }
+
 //TEMPLATE INCLUIR 
     if ($respGet['acao'] == "incluirPerfil") {
         $idTemplate = array('idAppVersao' => $respGet['idappversao'],'nome' => $respGet['nome']);
@@ -35,25 +27,7 @@ require_once '../func/fModal.php';
             $respGet['nome'] = ""; 
             exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
         }
-//ACESSO INCLUIR
-    if ($respGet['acao'] == "incluirTemplate") {
-        $variavel = array('excluir','alterar','listar','buscar','incluir');
-        $respGet = trueFalse($respGet, $variavel);
-        $arrayJson2D= postJson2D($respGet['idsUserMenu'],'idUserMenu');
-        $acessoNivel = array(
-                    'idUserTemplate' => $_SESSION['template']['id'],
-                    'excluir' => $respGet['excluir'],
-                    'alterar' => $respGet['alterar'],
-                    'listar' => $respGet['listar'],
-                    'buscar' => $respGet['buscar'],
-                    'incluir' => $respGet['incluir'],
-                    'idsUserMenu' => $arrayJson2D
-                );
-        $msnTexto = "ao cadastrar menu.";
-        $executar = postRest('userMenu/postAdicionarTemplatePermissaoAcesso',$acessoNivel);
-        $buscaAcessoTemplate = array('id' => $_SESSION['template']['id']);
-        $_SESSION['verTemplate']= getRest('userMenu/getListaTemplatePermissaoAccesso',$buscaAcessoTemplate);
-    }
+
 //ACESSO REMOVER
     if ($respGet['acao'] == "removeAcesso") {
         $idTemplate = array('idUserTemplate' => $respGet['idUserTemplate'],'idUserMenu' => $respGet['idUserMenu']);

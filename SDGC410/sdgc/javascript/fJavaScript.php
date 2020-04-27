@@ -105,6 +105,7 @@ function fecharModal() {
     fecharModalClassRemove();
 }
 
+
 $(document).ready(function(){
     $('#imgSmile').width();
    
@@ -133,5 +134,8 @@ $(document).ready(function(){
 <script>
     function fecharModalClassRemove(){
         $("#bobyPrincipal").removeClass("modal-open");
+    }
+    function fecharUserMenu(){
+        $("#idUserMenu").removeClass("control-sidebar-open");
     }
 </script>

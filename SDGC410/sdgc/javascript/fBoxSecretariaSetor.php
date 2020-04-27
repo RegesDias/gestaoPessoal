@@ -124,6 +124,7 @@ function carregaBoxSecretariaSetor(){
        $("#secretariaID").select2({
 
        });
+       i=0;
        document.formTemplate.idSecretaria.options[i] = new Option("Todas Scretarias");
        document.formTemplate.idSecretaria.options[i].value = "todasSecretarias";
     }

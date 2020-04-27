@@ -2,8 +2,10 @@
 
 //Modalcaduser
 function modalCadUser($id, $title, $pst, $arq) {
-    global $method;
+
+
     ?>
+    
     <div class="modal fade" id="<?= $id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -13,6 +15,7 @@ function modalCadUser($id, $title, $pst, $arq) {
                     </button>
                     <h4 class="modal-title" id="exampleModalLabel"><?= $title ?></h4>
                 </div>
+                <form method="post" name='formTemplate'>
                 <?= esconderItem('template') ?>
                     <div class="modal-body col-md-12">
                         <div class="col-md-12">
@@ -64,6 +67,7 @@ function modalCadUser($id, $title, $pst, $arq) {
                                     </select>
                                 </div>
                             </div>
+                            
                         </div>
                         <?= esconderItem('cargoGeral') ?>
                         <div id="setor" class="hide">
@@ -87,17 +91,25 @@ function modalCadUser($id, $title, $pst, $arq) {
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="acao" value="incluirAcesso">
-                        <input type="hidden" name="pst" value="<?= $pst ?>">
-                        <input type="hidden" name="arq" value="<?= $arq ?>">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
-                        <input type="submit" class="btn btn-primary" value='OK'>
-                    </div>
+
+                        <button onclick="fecharModal()" type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+                        <input type="button" onclick="cadastraAcesso('incluirAcesso' ,$('#appVersaoID').val() ,$('#templateID').val() ,$('#secretariaID').val() ,$('#setorID').val() ,$('#cargoGeralID').val())" class="btn btn-primary" value='OK'>
+                
+                        </div>
+                    </form>
+                   
             </div>
         </div>
     </div>
     <!-- Carrega todas secretarias neste modal -->
-
+    <script>
+           configuraTela(); 
+    </script>
     <?php
+    $funcao = array('fecharModal');
+    $dados = array('acao','idAppVersao', 'idTemplate', 'idSecretaria', 'idSetor', 'idCargoGeral');
+    postRestAjax('cadastraAcesso','acessoBusca','usuario/acessoPerfil.php', $dados, '', '', $funcao); 
+    
     require_once '../javascript/fBoxSecretariaSetor.php';
 }
 
@@ -156,7 +168,7 @@ function modalInicoFim($id, $title, $pst, $arq, $acao, $padrao = null, $vtab = n
 }
 
 //ModalInicioFim
-function modalInicoFimData($id, $title, $pst, $arq, $acao, $padrao = null, $vpst = null, $varq = null, $vtab = null, $user = null, $cpf = null) {
+function modalInicoFimData($id, $title, $acao, $user = null) {
     global $method;
     ?>
     <div class="modal fade" id="<?= $id ?>">
@@ -166,48 +178,28 @@ function modalInicoFimData($id, $title, $pst, $arq, $acao, $padrao = null, $vpst
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"><?= $title ?></h4>
-                </div><?php
-            if ($arq == 'csv') {
-                echo "<form method='$method' action='export/csv.php'>";
-            } else {
-                echo "<form method='$method' action='index.php'>";
-            }
-            ?>
-                <form>
+                </div>
                     <div class="modal-body col-md-12">
                         <div class="col-md-6">
                             <label>Data Inicial</label>
-                            <input name="mesAnoInicial" class="form-control" type="date" value="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d') ?>">
+                            <input id="idDataInicio<?= $id ?>" name="mesAnoInicial" class="form-control" type="date" value="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d') ?>">
                         </div>
                         <div class="col-md-6">
                             <label>Data Final</label>
-                            <input name="mesAnoFinal" class="form-control" type="date" value="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d') ?>">
+                            <input id="idDataFim<?= $id ?>" name="mesAnoFinal" class="form-control" type="date" value="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d') ?>">
                         </div>
-                        <?php if ($padrao == 'nsd') { ?>
-                            <div class="col-md-12">
-                                <br>
-                                <label>Organizar por</label>
-                                </br>
-                                <input type="radio" name="orby" value ='competencia' class="flat-red" checked="checked"> Competência
-                                <input type="radio" name="orby" value ='nr' class="flat-red" > NR
-                            </div>
-    <?php } ?>
                     </div>
                     <div class="modal-footer">
-    <?php if ($user != null) { ?>
-                            <input type="hidden" name="user" value="<?= $user ?>">
-                            <input type="hidden" name="cpf" value="<?= $cpf ?>">
-    <?php } ?>
-                        <input type="hidden" name="vtab" value="<?= $vtab ?>">
+                        <input type="hidden" name="user" value="<?= $user ?>">
                         <input type="hidden" name="acao" value="<?= $acao ?>">
-                        <input type="hidden" name="pst" value="<?= $pst ?>">
-                        <input type="hidden" name="arq" value="<?= $arq ?>">
-                        <input type="hidden" name="vpst" value="<?= $vpst ?>">
-                        <input type="hidden" name="varq" value="<?= $varq ?>">
+
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
-                        <input type="submit" class="btn btn-primary" value='OK'>
+                        
+                        <input type="submit" class="btn btn-primary" value='OK-a'>
+                        <button class="btn btn-primary" data-dismiss="modal" onclick="<?='post'.$acao?>('<?= $acao ?>','<?= $user ?>',$('#idMesAnoInicial<?= $id ?>').val(),$('#idDataFim<?= $id ?>').val(), true )" type="button">
+                             <b>OK</b>
+                        </button>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -383,6 +375,7 @@ function modalClonarTemplate($id, $title, $pst, $arq, $acao, $respGet) {
     </div>
     <!-- /.modal -->
     <?php  
+    
 }
 
 //ModalInicioFim
@@ -723,4 +716,5 @@ function modalEnviaSetorInicioFim($id, $title, $pst, $arq, $acao, $vtab = null, 
     <!-- /.modal -->
                     <?php
                 }?>
+
 

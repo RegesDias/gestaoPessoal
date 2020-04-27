@@ -2,7 +2,10 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
+$_SESSION['appv'] = getRest('appversao/getListaAppVersao');
+
 print_p($respGet);
+
 $limparAcesso = 'nao';
 $pst = 'usuario';
 $arq = 'perfil';
@@ -71,9 +74,6 @@ $cUser = array('',$respGet['cpf'],'');
     }
 //INCLUIR ACESSOS
     if ($respGet['acao'] == "incluirAcesso") {
-//        echo '1<pre>';
-//        print_r($respGet); 
-//        echo '</pre>';
         if(!isset($respGet['idSecretaria'])){
             $respGet['idSecretaria'][0] = null;
         }
@@ -86,7 +86,7 @@ $cUser = array('',$respGet['cpf'],'');
             $setorJson2D= postJson2D($respGet['idSetor'],'idSetor');
             if($respGet['idSecretaria']==''){$respGet['idSecretaria']=null;}
                 $idTemplate = array(
-                    'id' => $respGet['idTemplate'],
+                    'id' => $respGet['idTemplate']['0'],
                     'idSecretaria' => $respGet['idSecretaria']['0'],
                     'idUserLogin'=>$_SESSION["perfilUsuario"] ['0']['id'],
                     'idSetor' => $setorJson2D,
@@ -98,7 +98,7 @@ $cUser = array('',$respGet['cpf'],'');
         }else if ($respGet['idSecretaria'][0] !='todasSecretarias'){
             foreach ($respGet['idSecretaria'] as $idSecretaria){
                 $idTemplate = array(
-                    'id' => $respGet['idTemplate'],
+                    'id' => $respGet['idTemplate']['0'],
                     'idSecretaria' => $idSecretaria,
                     'idUserLogin'=>$_SESSION["perfilUsuario"] ['0']['id'],
                     'idSetor' => null,
@@ -122,6 +122,7 @@ $cUser = array('',$respGet['cpf'],'');
             $exec= postRest('userMenu/postAlocarTemplateAoUsuario',$idTemplate);
             }
         }
+        print_p($idTemplate);
         $buscaAcessoTemplate = array('id' => $_SESSION['template']['id']);
         $_SESSION['verTemplate']= getRest('userMenu/getListaTemplatePermissaoAccesso',$buscaAcessoTemplate);
         $cUser = array('',$_SESSION["perfilUsuario"] ['0']['cpf'],'');
@@ -158,8 +159,15 @@ $cUser = array('',$respGet['cpf'],'');
 exibeMsn($msnExibe, $msnTexto, $msnTipo, $exec);
 modalCadUser('cadUser', 'Cadastrar Perfil', $pst, $arq);
 modalAlterarSenha('alterarSenha', 'Alterar Senha', $pst, $arq, 'alterarSenha');
-modalInicoFimData('historicoAcesso', 'Historico de Acessos', 'print', 'info', 'historicoAcesso', $padrao, $pst, $arq,'',$_SESSION["perfilUsuario"] ['0']['login']);
-modalInicoFimData('graficoAcesso', 'Grafico de Acessos', 'grafico', 'userAcesso', 'userAcesso', $padrao, $pst, $arq,'',$_SESSION["perfilUsuario"] ['0']['login'], $_SESSION["perfilUsuario"] ['0']['cpf']);
+
+modalInicoFimData('historicoAcesso', 'Historico de Acessos', 'historicoAcesso',$_SESSION["perfilUsuario"] ['0']['login']);
+//$dados('acao','user', 'mesAnoInicial', 'mesAnoFinal','ver');
+$dados = array('acao','user', 'mesAnoInicial', 'mesAnoFinal','ver');
+postRestAjax('posthistoricoAcesso','imprimir','print/info.php',$dados);  
+   
+modalInicoFimData('graficoAcesso', 'Grafico de Acessos', 'userAcesso',$_SESSION["perfilUsuario"] ['0']['login']);
+$dados = array('acao','user', 'mesAnoInicial', 'mesAnoFinal');
+postRestAjax('postuserAcesso','imprimir','grafico/userAcesso.php',$dados);  
 
 $userDataTreinamento = array($_SESSION["perfilUsuario"] ['0']['id']);
 $listaUserDataTreinamento = getRest('userDataTreinamento/getListaUserDataTreinamentoPorUserLogin',$userDataTreinamento);
@@ -212,9 +220,11 @@ modaldefinirData('dataTreinamento', 'Data Treinamento', $pst, $arq, 'dataTreinam
                                   <i class="fa fa-book"></i> <b>Cadastrar data de Treinamento</b>
                                 </button>
                             <?php }if($prmUsuario['buscar']==true){?>
+                                
                                 <button style="margin: 4px" type="button" class="btn btn-info" data-toggle="modal" data-target="#historicoAcesso">
                                   <i class="fa fa-book"></i> <b>Histórico de Acessos</b>
                                 </button>
+                            
                                 <button style="margin: 4px" type="button" class="btn btn-info" data-toggle="modal" data-target="#graficoAcesso">
                                   <i class="fa fa-book"></i> <b>Gráfico de Acessos</b>
                                 </button>
@@ -362,14 +372,14 @@ modaldefinirData('dataTreinamento', 'Data Treinamento', $pst, $arq, 'dataTreinam
                                                     </button>
                                                 </form>
                                                <?php if($prmUsuario['excluir']==true){?>
-                                                    <form method="<?=$method?>" action="index.php" class="inline">
-                                                        <input type="hidden" name="pst" value="<?=$pst?>"/>
-                                                        <input type="hidden" name="arq" value="<?=$arq?>"/>
+                                                    <form class="inline">
+
                                                         <input type="hidden" name="closeAcesso" value="1" />
                                                         <input type="hidden" name="idlotacao" value="<?=$ArrEsp['idSecretaria']?>"/>
                                                         <input type="hidden" name="idlotacaosub" value="<?=$ArrEsp['idSetor']?>"/>
                                                         <input type="hidden" name="acao" value="excluirTemplate" />
-                                                        <button type="submit" class="btn btn-small btn-danger">
+                                                        
+                                                        <button onclick="excluiTemplate('excluirTemplate','1','<?=$ArrEsp['idSecretaria']?>','<?=$ArrEsp['idSetor']?>')" type="button" class="btn btn-small btn-danger">
                                                           <i class="fa fa-trash"></i>
                                                         </button>
                                                     </form>
@@ -405,3 +415,9 @@ modaldefinirData('dataTreinamento', 'Data Treinamento', $pst, $arq, 'dataTreinam
             require_once '../usuario/showAcessoTemplate.php';
         ?>
 </section>
+
+<?php 
+
+
+
+?>

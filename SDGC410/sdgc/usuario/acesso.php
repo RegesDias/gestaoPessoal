@@ -45,7 +45,7 @@ require_once '../func/fModal.php';
             </div>
     </div>
     <div id='acessoBusca'>
-        carregando...
+  
     </div>
 </div>
 <?php
@@ -63,6 +63,10 @@ require_once '../func/fModal.php';
     
    $dados = array('acao','dataTreinamento');
    postRestAjax('modalDataTreinamento','acessoBusca','usuario/acessoPerfil.php',$dados);  
+   
+    //Exclui template    
+    $dados = array('acao','closeAcesso', 'idlotacao','idlotacaosub');
+    postRestAjax('excluiTemplate','acessoBusca','usuario/acessoPerfil.php',$dados); 
     
     
 ?>

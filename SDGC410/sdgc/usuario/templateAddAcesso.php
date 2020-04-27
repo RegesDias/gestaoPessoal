@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require_once '../func/fPhp.php';
@@ -22,8 +23,9 @@ print_p();
         }
 //ACESSO INCLUIR
     if ($respGet['acao'] == "incluirTemplate") {
+     
         $variavel = array('excluir','alterar','listar','buscar','incluir');
-        $respGet = trueFalse($respGet, $variavel);
+        //$respGet = trueFalse($respGet, $variavel);
         $arrayJson2D= postJson2D($respGet['idsUserMenu'],'idUserMenu');
         $acessoNivel = array(
                     'idUserTemplate' => $_SESSION['template']['id'],
@@ -39,6 +41,7 @@ print_p();
         $buscaAcessoTemplate = array('id' => $_SESSION['template']['id']);
         $_SESSION['verTemplate']= getRest('userMenu/getListaTemplatePermissaoAccesso',$buscaAcessoTemplate);
     }
+
 //ACESSO REMOVER
     if ($respGet['acao'] == "removeAcesso") {
         $idTemplate = array('idUserTemplate' => $respGet['idUserTemplate'],'idUserMenu' => $respGet['idUserMenu']);
@@ -55,6 +58,17 @@ print_p();
         $_SESSION['verTemplate']= getRest('userMenu/getListaTemplatePermissaoAccesso',$buscaAcessoTemplate);
         $_SESSION['template']= array('id'=>$respGet['idTemplate'],'nome'=>$respGet['nometemplate']);
     }
+    //TEMPLATE CLONAR 
+    if ($respGet['acao'] == "clonarTemplate") {
+        print_p();
+        $idTemplate = array('idAppVersao' => $respGet['idappversao'],'id' => $respGet['idClone'],'nome' => $respGet['nomeTemplate']);
+        $msnTexto = "ao clonar o template.";
+        $executar= postRest('userMenu/postClonarTemplate',$idTemplate);
+        $respGet['acao'] = "buscar";
+        $respGet['closeResult'] = 1;
+        $respGet['closeAcesso'] = 0;
+    }
+
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 ?>
 <div class="col-md-12">

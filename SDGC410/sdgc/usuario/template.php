@@ -102,6 +102,7 @@ require_once '../func/fModal.php';
     $dados = array('acao', 'idUserTemplate','idUserMenu');
     postRestAjax('removeAcesso','addAcessoTemplate','usuario/templateAddAcesso.php',$dados);     
     
+    $funcao = array('fecharModal();');
     $dados = array('acao', 'closeResult', 'idClone', 'idappversao','nomeTemplate');
-    postRestAjax('modalClonarTemplate', 'addAcessoTemplate', 'usuario/templateAddAcesso.php', $dados);
+    postRestAjax('modalClonarTemplate', 'addAcessoTemplate', 'usuario/templateAddAcesso.php', $dados,'','',$funcao);
 ?>

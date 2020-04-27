@@ -1,4 +1,4 @@
- <aside class="control-sidebar control-sidebar-dark active2">
+ <aside id="idUserMenu" class="control-sidebar control-sidebar-dark active2" >
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
         <?php

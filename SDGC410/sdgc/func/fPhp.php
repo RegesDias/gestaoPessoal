@@ -244,6 +244,7 @@ function postRestAjax($nome, $cargEm, $cargArq ,$dados=null, $beforeSend=null, $
                         {   
                             $('#idSpinAll').addClass('hidden');
                             $("#<?=$cargEm?>").html(msg);
+
                             //Impressao
                             if(ver){
                                 $("#idBoxImprimir").removeClass("hidden");   
@@ -254,7 +255,7 @@ function postRestAjax($nome, $cargEm, $cargArq ,$dados=null, $beforeSend=null, $
                             
                             <?=$success?>
                             //chamar Funcao
-                                <?=funcaoesAjax($funcao)?>
+                            <?=funcaoesAjax($funcao)?>
                         }
                     });
         }

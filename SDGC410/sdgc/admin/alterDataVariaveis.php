@@ -2,7 +2,7 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
-print_p($respGet);
+
     if ($respGet['acao'] == 'agendarDataVariaveis'){
         $respGet['data'] = $respGet['data'].'-01';
         $alterData = array('data' => $respGet['data'], 'dataAgenda' => $respGet['dataAgenda']);
