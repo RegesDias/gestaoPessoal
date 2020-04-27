@@ -152,12 +152,8 @@ if($btnBuscaNSD == true){ ?>
         
         <?php 
 }
-    $be = array('idSpinLoaderPMM','removeClass','hidden');
-    $s2 = array('idSpinLoaderPMM','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s2);
     $dados = array('mesAnoInicial','acao', 'ver');
-    postRestAjax('postexportFUNDEB', 'imprimir', 'print/info.php',$dados, $beforeSend, $success);
+    postRestAjax('postexportFUNDEB', 'imprimir', 'print/info.php',$dados);
     
     
     

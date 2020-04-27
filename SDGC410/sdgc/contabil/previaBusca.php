@@ -49,10 +49,6 @@ if ($_SESSION["totalLista"] >= 1){?>
     <div class="box-body">
         <div class="box">
             
-            <div class="overlay hidden" id="idSpinLoaderPreviaBusca">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
-            
         <div class="box-footer clearfix">
             <ul class="pagination pagination-sm no-margin">
                 <?php exibePag($hrefPag, $respGet, $return); ?>
@@ -117,12 +113,7 @@ if ($_SESSION["totalLista"] >= 1){?>
 </div>
 <?php }
 
-    $be = array('idSpinLoaderPreviaBusca','removeClass','hidden');
-    $s2 = array('idSpinLoaderPreviaBusca','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s2);
-
     $dados = array('acao','mesAnoInicial','idSecretaria', 'ver');
-    postRestAjax('gerarRelPrevia','imprimir','print/info.php',$dados, $beforeSend, $success);
+    postRestAjax('gerarRelPrevia','imprimir','print/info.php',$dados);
 
 ?>

@@ -63,9 +63,6 @@ if($btnBuscaPrevia == true){ ?>
     <div class="row">
             <div class="col-md-12">
             <div class="box">
-                <div class="overlay hidden" id="idSpinLoaderPrevia">
-                    <i class="fa fa-refresh fa-spin"></i>
-                </div>
                 <div class="box-body">
                     <form>
                         <div class="box-body">
@@ -143,13 +140,7 @@ if($btnBuscaPrevia == true){ ?>
         
     </div>
 <?php }
-
-    $be = array('idSpinLoaderPrevia','removeClass','hidden');
-    $s2 = array('idSpinLoaderPrevia','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s2);
-    
     $dados = array('acao', 'dataPrevia','lotacaoPrevia');
-    postRestAjax('buscarPrevia','previaBusca','contabil/previaBusca.php', $dados, $beforeSend, $success);  
+    postRestAjax('buscarPrevia','previaBusca','contabil/previaBusca.php', $dados);  
 
 ?>

@@ -22,9 +22,6 @@
                     <section class="col-lg-12">
                         <section class="content-header" id='idBoxCorpo'>
                               <div class="box box-info" id='idBoxInfoCorpo'>
-                                <div class="overlay hidden" id="idSpinLoaderCorpo">
-                                    <i class="fa fa-refresh fa-spin"></i>
-                                </div>
                                 <div class="box-header">
                                     <i class="fa fa-database"></i>
                                     <h3 class="box-title">Gestão Compartilhada</h3>
@@ -51,9 +48,6 @@
                        </section>
                         <section id='idBoxImprimir' class="content-header">
                               <div class="box box-info" id='idBoxInfoImprimir'>
-                                <div class="overlay hidden" id="idSpinLoaderCorpo">
-                                    <i class="fa fa-refresh fa-spin"></i>
-                                </div>
                                 <div class="box-header">
                                     <i class="fa fa-print"></i>
                                     <h3 class="box-title">Opções de Geração de Relatório </h3>
@@ -79,12 +73,6 @@
                         <section class="content-header collapsed-box" id='idBoxDados'>
 
                               <div class="box box-info" id='idBoxInfoDados'>
-                                    <div class="overlay hidden" id="idSpinLoaderResultado">
-                                        <i class="fa fa-refresh fa-spin"></i>
-                                    </div>
-                                <div class="overlay hidden" id="idSpinLoaderCorpo">
-                                    <i class="fa fa-refresh fa-spin"></i>
-                                </div>
                                 <div class="box-header">
                                     <i class="fa fa-gears"></i>
                                     <h3 class="box-title">Resultado</h3>

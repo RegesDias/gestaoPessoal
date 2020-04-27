@@ -20,11 +20,6 @@ modalInicio('exportMACPREV', 'Exportar dados MACPREV', 'print', 'info', 'exporta
 <div class="row">
     <div class="col-md-12">
         <div class="box">
-            
-            <div class="overlay hidden" id="idSpinLoaderMacprev">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
-            
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -53,12 +48,8 @@ modalInicio('exportMACPREV', 'Exportar dados MACPREV', 'print', 'info', 'exporta
     </div>
 </div>
 <?php
-    $be = array('idSpinLoaderMacprev','removeClass','hidden');
-    $s2 = array('idSpinLoaderMacprev','addClass','hidden');
-    $beforeSend= array ($be);
-    $success= array ($s2);
     $dados = array('acao', 'mesAnoInicial', 'tem13salario', 'ver');
-    postRestAjax('executaModalComp', 'imprimir', 'print/info.php',$dados, $beforeSend, $success);
+    postRestAjax('executaModalComp', 'imprimir', 'print/info.php',$dados);
     
     $dados = array('mesAnoInicial','acao', 'ver');
     postRestAjax('postexportarMacprevNsd', 'imprimir', 'print/info.php',$dados, $beforeSend, $success);
