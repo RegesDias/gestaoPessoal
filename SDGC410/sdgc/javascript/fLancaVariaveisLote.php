@@ -61,7 +61,7 @@ function selectSetorAjax(lista){
 }
 
 function selectServidoresPorSetor(lista){
-    //console.log(lista);
+    console.log(lista);
     var listaMapeada = lista.map(item => [item.nome, item.idFuncional, item.matricula]);
     let arrayColumn = (arr, n) => arr.map(x => x[n]);
     let listaNomeFuncional = arrayColumn(listaMapeada,0);
@@ -169,12 +169,6 @@ function carregaLancaVariaveis(){
         //Inicia carregando as secretarias que o usuario tem acesso
         getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoUsuarioVariaveis', '', selectSecretariasAjax);
     }
-    
-    
-    
-    //console.log(existeElementoPorId('idLancamentos'));
-    
-    
     
     if (!existeElementoPorId('idEstaEmLote')){
         divSecretaria.classList.add("hidden");
