@@ -359,7 +359,8 @@ function modalClonarTemplate($id, $title, $pst, $arq, $acao, $respGet) {
                     <div class="modal-body col-md-12">
                         <div class="col-md-12">
                             <label>Nome do Template</label>
-                            <input type="text" name="nomeTemplate" id="nomeTemplate" class="form-control">
+                            <!--<input type="text" name="nomeTemplate" id="nomeTemplate" class="form-control">-->
+                            <input type="text" id="nomeTemplate" value='10'>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -375,7 +376,9 @@ function modalClonarTemplate($id, $title, $pst, $arq, $acao, $respGet) {
     </div>
     <!-- /.modal -->
     <?php  
-    
+    $funcao = array('fecharModal();');
+    $dados = array('acao', 'closeResult', 'idClone', 'idappversao','nomeTemplate');
+    postRestAjax('modalClonarTemplate', 'addAcessoTemplate', 'usuario/templateAddAcesso.php', $dados,'','',$funcao);
 }
 
 //ModalInicioFim

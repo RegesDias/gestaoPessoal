@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require_once '../func/fPhp.php';
@@ -79,6 +80,9 @@ require_once '../func/fModal.php';
             </div>
         </div>
     </div>
+    <div id='cloneTemplate'>
+        
+    </div>
     <div id='addAcessoTemplate'>
     </div>
     <div id='showAcessoTemplate'>
@@ -101,8 +105,11 @@ require_once '../func/fModal.php';
 
     $dados = array('acao', 'idUserTemplate','idUserMenu');
     postRestAjax('removeAcesso','addAcessoTemplate','usuario/templateAddAcesso.php',$dados);     
-    
-    $funcao = array('fecharModal();');
+
     $dados = array('acao', 'closeResult', 'idClone', 'idappversao','nomeTemplate');
-    postRestAjax('modalClonarTemplate', 'addAcessoTemplate', 'usuario/templateAddAcesso.php', $dados,'','',$funcao);
+    postRestAjax('executarClone', 'addAcessoTemplate', 'usuario/templateBuscar.php', $dados);
+    
+    $dados = array('acao', 'closeResult', 'idClone', 'idappversao');
+    postRestAjax('abrirModalClonarTemplate', 'cloneTemplate', 'usuario/templateClone.php', $dados);
+    
 ?>

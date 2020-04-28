@@ -8,12 +8,13 @@
 ?>
 <h1>
     Lançar
-    <small>Variáveis em lote</small>
+    <small id="idEstaEmLote">Variáveis em lote</small>
     <br><br>
+    
 </h1>
 <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Servidor</a></li>
-    <li class="active">Variáveis em lote</li>
+    <li class="active" id="">Variáveis em lote</li>
 </ol>
 <section class="content">
     <div class="row">
@@ -69,3 +70,6 @@
         </form>
     </div>
 </section>
+<script>
+    
+</script>

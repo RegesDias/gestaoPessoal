@@ -13,9 +13,11 @@ var divValor = document.querySelector('#idDivValorVL');
 var campoServidores = document.querySelector('#multiselect');
 var campoServidoresLancar = document.querySelector('#multiselect_to');
 var vetParametrosVariavel = [];
-var estaEmLote = true;
 
+var estaEmLote;
 
+console.log("Está em lote?");
+console.log(existeElementoPorId('idEstaEmLote'));
 
 function selectSecretariasAjax(lista){
     let listaMapeada = lista.map(item => [item.ativo, item.atual, item.controle, item.id, item.max, item.nome]);
@@ -24,7 +26,7 @@ function selectSecretariasAjax(lista){
     listaIdSecretaria = arrayColumn(listaMapeada,3);
     preencheSelect(campoSecretaria, listaNomeSecretaria, listaIdSecretaria);
     
-    if(estaEmLote){
+    if(existeElementoPorId('idEstaEmLote')){
        //Carrega todos os setores que o usuário tem acesso
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuarioVariaveis/', campoSecretaria.options[0].value, selectSetorAjax);
     }else{
@@ -34,7 +36,7 @@ function selectSecretariasAjax(lista){
 }
 
 function selectSetorAjax(lista){
-    if(estaEmLote){
+    if(existeElementoPorId('idEstaEmLote')){
         var listaMapeada = lista.map(item => [item.ativo, item.id, item.nome]);
     }else{
         var listaMapeada = lista.map(item => [item.nome, item.idSetor, item.nome]);
@@ -48,7 +50,7 @@ function selectSetorAjax(lista){
     
     preencheSelect(campoSetor, listaNomeSetor, listaIdSetor);
     
-    if(estaEmLote){
+    if(existeElementoPorId('idEstaEmLote')){
         //Carrega o nome de todos os servidores do setor no lançamento em lote
         getAJAX(<?="'" . $ajurl . "'"; ?>, 'variaveis/getListaVariaveisDescAbertasPorSetor/', campoSetor.options[0].value, selectVariaveisDesc);
     }else{
@@ -59,7 +61,7 @@ function selectSetorAjax(lista){
 }
 
 function selectServidoresPorSetor(lista){
-    console.log(lista);
+    //console.log(lista);
     var listaMapeada = lista.map(item => [item.nome, item.idFuncional, item.matricula]);
     let arrayColumn = (arr, n) => arr.map(x => x[n]);
     let listaNomeFuncional = arrayColumn(listaMapeada,0);
@@ -110,11 +112,11 @@ $('#idSecretariaVL').on('change', function() {
 ////Se mudar a setor
 $('#idSetorVL').on('change', function() {
     limpaSelect(campoVariavel);
-    if(estaEmLote){
+    if(existeElementoPorId('idEstaEmLote')){
         limpaSelect(campoServidores);
         limpaSelect(campoServidoresLancar);
     }
-    if(estaEmLote){
+    if(existeElementoPorId('idEstaEmLote')){
         //carrega todos os servidores de um determinado setor no lançamento em lote
         getAJAX(<?="'" . $ajurl . "'"; ?>, 'variaveis/getListaVariaveisDescAbertasPorSetor/', campoSetor.value, selectVariaveisDesc);
     }else{
@@ -152,7 +154,7 @@ $('#idVariaveisDescVL').on('change', function() {
     }
         
     
-    if(estaEmLote){
+    if(existeElementoPorId('idEstaEmLote')){
         limpaSelect(campoServidores);
         limpaSelect(campoServidoresLancar);
         getAJAX(<?="'" . $ajurl . "'"; ?>, 'variaveis/getListaFuncionalVariaveisSetor/', campoSetor.value + "/" + campoVariavel.value, selectServidoresPorSetor);
@@ -168,10 +170,13 @@ function carregaLancaVariaveis(){
         getAJAX(<?="'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoUsuarioVariaveis', '', selectSecretariasAjax);
     }
     
-    console.log(existeElementoPorId('idLancamentos'));
     
-    if (existeElementoPorId('idLancamentos')){
-        estaEmLote = false;
+    
+    //console.log(existeElementoPorId('idLancamentos'));
+    
+    
+    
+    if (!existeElementoPorId('idEstaEmLote')){
         divSecretaria.classList.add("hidden");
     }
     

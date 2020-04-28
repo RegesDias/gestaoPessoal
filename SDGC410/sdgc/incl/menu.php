@@ -98,7 +98,7 @@
                             //O método $.ajax(); é o responsável pela requisição
                             console.log(pst);
                             console.log(arq);
-
+                            
                             $.ajax
                                     ({
                                         //Configurações

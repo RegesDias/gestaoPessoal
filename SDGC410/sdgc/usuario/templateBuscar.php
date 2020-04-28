@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require_once '../func/fPhp.php';
@@ -35,6 +36,15 @@ require_once '../func/fModal.php';
         $executar= postRest('userMenu/postExcluirTemplatePermissaoAcesso',$idTemplate);
         $buscaAcessoTemplate = array('id' => $_SESSION['template']['id']);
         $_SESSION['verTemplate']= getRest('userMenu/getListaTemplatePermissaoAccesso',$buscaAcessoTemplate);
+    }
+     //TEMPLATE CLONAR 
+    if ($respGet['acao'] == "clonarTemplate") {
+        $idTemplate = array('idAppVersao' => $respGet['idappversao'],'id' => $respGet['idClone'],'nome' => $respGet['nomeTemplate']);
+        $msnTexto = "ao clonar o template.";
+        $executar= postRest('userMenu/postClonarTemplate',$idTemplate);
+        $respGet['acao'] = "buscar";
+        $respGet['closeResult'] = 1;
+        $respGet['closeAcesso'] = 0;
     }
 
 //BUSCAR
@@ -93,14 +103,15 @@ require_once '../func/fModal.php';
                             <i class="fa fa-edit"></i>
                         </button>
                        
-                        <a href="" type="button" class="btn btn-small btn-success espaco-direita" data-toggle="modal" data-target="#<?=$ArrEsp['id']?>">
+                        <button onclick="abrirModalClonarTemplate('clonar', '1', '<?=$ArrEsp['id']?>','<?=$respGet['idappversao']?>')" type="button" class="btn btn-small btn-success espaco-direita">
                            <i class="fa fa-clone"></i>
-                       </a>                
+                       </button>                
                    </div>
                    <div class="product-info">
                         <b><?=$ArrEsp['nome']?></b>
                    </div>
                  </li>
+                 
              <?php }?>
            </ul>
          </div>

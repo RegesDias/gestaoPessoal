@@ -3,7 +3,7 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
-print_p();
+
 //TEMPLATE INCLUIR 
     if ($respGet['acao'] == "incluirPerfil") {
         $idTemplate = array('idAppVersao' => $respGet['idappversao'],'nome' => $respGet['nome']);
@@ -57,16 +57,6 @@ print_p();
         $buscaAcessoTemplate = array('id' => $respGet['idTemplate']);
         $_SESSION['verTemplate']= getRest('userMenu/getListaTemplatePermissaoAccesso',$buscaAcessoTemplate);
         $_SESSION['template']= array('id'=>$respGet['idTemplate'],'nome'=>$respGet['nometemplate']);
-    }
-    //TEMPLATE CLONAR 
-    if ($respGet['acao'] == "clonarTemplate") {
-        print_p();
-        $idTemplate = array('idAppVersao' => $respGet['idappversao'],'id' => $respGet['idClone'],'nome' => $respGet['nomeTemplate']);
-        $msnTexto = "ao clonar o template.";
-        $executar= postRest('userMenu/postClonarTemplate',$idTemplate);
-        $respGet['acao'] = "buscar";
-        $respGet['closeResult'] = 1;
-        $respGet['closeAcesso'] = 0;
     }
 
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
