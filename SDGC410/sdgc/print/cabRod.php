@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once '../func/fPhp.php';
-print_p($respGet);
 $tipo='html';
 if(@$respGet['tipo_relatorio']){//mesma coisa que isset($respGet['tipo_relatorio'])
     $tipo = $respGet['tipo_relatorio'];

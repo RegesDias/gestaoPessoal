@@ -9,10 +9,10 @@ function getAJAX(vgurl, vservico, parametro, callback){
     console.log(linkPedido);
     
     xhr.open('GET', linkPedido, true);
-    xhr.timeout = 1000;
+    xhr.timeout = 10000;
     xhr.addEventListener('load', function(){
         var objJSON = JSON.parse(xhr.responseText);
-        console.log()
+     
         callback(objJSON);
     });
     xhr.addEventListener('error', function(e){
