@@ -3,10 +3,8 @@
 <?php
 session_start();
 ini_set('memory_limit', '-1');
-//echo "<br>URL: <br>".$_SESSION['listaUrl']['url'];
-//echo "<br>respGet: <br><pre>";
-//print_r($_SESSION['respGet']);
-//echo "</pre>";
+
+
 
 if($_SESSION['respGet']['tipo_relatorio']==''){
    $strHtml = file_get_contents($_SESSION['listaUrl']['url']);

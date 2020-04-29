@@ -138,7 +138,7 @@ $_SESSION["relatorio"] = $respGet;
                     <!-- ************************* -->
                     <div class="box-footer pull-right">
                         <input type="hidden" id="idInputIdSetor" value="0"/>
-                        <button  class="btn btn-info pull-right btn-sm espaco-direita" onclick="relatorioEmRelatorio('<?=$_SESSION[relatorio][menuN2]?>','<?=$_SESSION[relatorio][menuN3]?>','<?=$_SESSION[relatorio][link]?>', $('#idSecretaria').val(), $('#idInputIdSetor').val())" type="button">
+                        <button  class="btn btn-info pull-right btn-sm espaco-direita" onclick="relatorioEmRelatorio('<?=$_SESSION[relatorio][menuN2]?>','<?=$_SESSION[relatorio][menuN3]?>','<?=$_SESSION[relatorio][link]?>', $('#idSecretaria').val(), $('#idInputIdSetor').val(),false)" type="button">
                              <i class="fa fa-print"></i> Imprimir
                         </button>
                         

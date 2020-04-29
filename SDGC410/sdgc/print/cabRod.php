@@ -218,11 +218,13 @@ if(isset($respGet['acao']) && $respGet['acao']=='regimeServidor'){
 }
 // Se for aficha funcional
 if(isset($respGet['acao']) && $respGet['acao']=='fichaFuncional'){
-    
+   
     $idpessoal = $respGet['dado'];
     $idpessoal = substr($idpessoal, 0, -4);//tira os 4 ultimos zeros
     $cBusc = array($idpessoal,$tipo);
+   
     $lista = getRest('relatorio/getRelFichaFuncional',$cBusc);
+    
 }
 // Se for contracheque
 if(isset($respGet['acao']) && $respGet['acao']=='contraCheque'){
@@ -359,7 +361,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='ddoSinteticoMacprev'){
         $cBusc = array($mesAnoInicial, '132','13F',$tipo);
     }
     $lista = getRest('relatorio/getRelDdoSinteticoMacprev',$cBusc);
-    print_p($lista);
+ 
 }
 //ddoAnaliticoMacprev
 if(isset($respGet['acao']) && $respGet['acao']=='ddoAnaliticoMacprev'){
@@ -377,7 +379,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='ddoAnaliticoMacprev'){
         $cBusc = array($mesAnoInicial, '132',$tipo);
     }
     $lista = getRest('relatorio/getRelDdoAnaliticoMacprev',$cBusc);
-    print_p($lista);
+   
 }
 //export
 if(isset($respGet['acao']) && $respGet['acao']=='exportarMacprevNsd'){
@@ -656,8 +658,11 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                     );
         $lista = getRest('relatorio/getRelTodosSesmt',$cBusc);   
 }
+
  $_SESSION['listaUrl'] = $lista;
  $_SESSION['respGet'] = $respGet;
+ 
+ 
 ?>    
 <!-- info row -->
 <div class="row">
@@ -674,7 +679,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                       <?php if($btnDownload == true){?>
                       
                           
-                          <button id="idBtnPdf" type="submit" class="btn btn-facebook pull-right">
+                      <button id="idBtnPdf" type="button" class="btn btn-facebook pull-right">
                               <i class="fa fa-file-pdf-o"></i> Download
                           </button>
                      
@@ -711,20 +716,20 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                        <!-- FIM CODIGO DE IMPRESSÃO POR JAVASCRIPT-->
                       
                           
-                          <button id="idBtnVisualizar" type="submit" style="margin-right: 5px;" class="btn btn-dark pull-right">
+                          <button type="button" id="idBtnVisualizar" type="submit" style="margin-right: 5px;" class="btn btn-dark pull-right">
                             <i class="fa fa-eye"></i> Visualizar
                           </button>
                    
                    <?php }if($btnExportarCSV == true){?>
     
-                          <button id="idBtnExportarCsv" type="submit" style="margin-right: 5px;" class="btn btn-success pull-right">
+                          <button type="button" id="idBtnExportarCsv" type="submit" style="margin-right: 5px;" class="btn btn-success pull-right">
                               <i class="fa fa-download"></i> Exportar CSV
                           </button>
               
                     <?php }if($btnExportar == true){
                         ?>
                        
-                            <button id="idBtnExportarXls" style="margin-right: 5px;" class="btn btn-success pull-right">
+                            <button type="button" id="idBtnExportarXls" style="margin-right: 5px;" class="btn btn-success pull-right">
                                 <i class="fa fa-download"></i> Exportar
                             </button>
                        
@@ -800,6 +805,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
     }
         
     function formatosDeRelatorio(tipo_relatorio,
+                                dado,
                                 pst,
                                 arq,
                                 vpst,
@@ -839,20 +845,22 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                                 menuN3,
                                 menuN4,
                                 gerarRelatorio){
-        
+        console.log('func formatosDeRelatorio:(tipo_relatorio): ');
+        console.log(tipo_relatorio);
         console.log(pst + '/' + arq + '.php');
         $.ajax
                 ({
                     //Configurações
                     type: 'POST', //Método que está sendo utilizado.
                     dataType: 'html', //É o tipo de dado que a página vai retornar.
-                    url: pst + '/' + arq + '.php', //Indica a página que está sendo solicitada.
+                    url: 'print' + '/' + 'info' + '.php', //Indica a página que está sendo solicitada.
                     //função que vai ser executada assim que a requisição for enviada
                     beforeSend: function () {
                         $("#idSpinAll").removeClass("hidden");
                     },
                     data: {
                         tipo_relatorio:tipo_relatorio,
+                        dado:dado,
                         pst:pst,
                         arq:arq,
                         vpst:vpst,
@@ -899,13 +907,17 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                         $("#imprimir").html(msg);
                         configuraTela();
                         $("#idSpinAll").addClass("hidden");
+                        $("#idSpinFormImpressao").addClass("hidden");
                     }
                 });
     }
     
     function defineFormato(formato){
+        console.log('func defineFormato:');
+        console.log(formato);
         formatosDeRelatorio(
                             formato,
+                            '<?=$respGet[dado]?>',
                             '<?=$respGet[pst]?>',
                             '<?=$respGet[arq]?>',
                             '<?=$respGet[vpst]?>',
@@ -950,10 +962,10 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
     
     
     $('#idBtnExportarXls').click(function () {
-        defineFormato('xls');
+        defineFormato('csv');
     });
     $('#idBtnExportarCsv').click(function () {
-        defineFormato('xls');
+        defineFormato('csv');
     });
     $('#idBtnVisualizar').click(function () {
         defineFormato('');
