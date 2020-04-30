@@ -126,8 +126,8 @@ $vetorMensagens = getRest("mensagemws/getListaMensagem");
                                                 });
                                             </script>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Texto</label> <i><sub class="caracteres">150</sub> <sub>Restantes </sub></i></label> 
-                                                <textarea id="obsMsn" name='obsMsn'class="form-control"  maxlength="150" rows="4"><?php echo $respGet['acao'] == 'editarMsn' ? $respGet['textoEditar'] : ""; ?></textarea>
+                                                <label for="exampleInputEmail1">Texto</label> <i><sub class="caracteres">400</sub> <sub>Restantes </sub></i></label> 
+                                                <textarea id="obsMsn" name='obsMsn'class="form-control"  maxlength="400" rows="4"><?php echo $respGet['acao'] == 'editarMsn' ? $respGet['textoEditar'] : ""; ?></textarea>
                                             </div>
                                         </div>
                                     </div>                                 

@@ -4999,6 +4999,7 @@ table.text-center th {
   color: #b8c7ce;
   cursor: pointer;
   padding: 12px 1px 8px 6px;
+  text-align: left;
 
 }
 .link-button-menu-right {
