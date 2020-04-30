@@ -1,4 +1,5 @@
- <aside class="control-sidebar control-sidebar-dark active2">
+<div id="fechaMenuUser">
+<aside class="control-sidebar control-sidebar-dark active2">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
         <?php
@@ -39,7 +40,7 @@
                                 if($valorSub[link] == $_SESSION[link]){?>
                                     <a href="#"><i class="fa fa-edit"></i> <b><?=' '.$valorSub['link']?></b></a><?php 
                                 }else{?>
-                                <button class="link-button-menu-right" onclick="carregar('<?= $valorSub['pasta'] ?>', '<?= $valorSub['arquivo'] ?>', '<?= $valorSub['menuN1'] ?>','<?= $valorSub['menuN2'] ?>','<?= $valorSub['menuN3'] ?>','<?= $valorSub['menuN4'] ?>', '<?= $valorSub['link'] ?>', '#id<?=$valorSub['id']?>')" class="link-button-menu-left sidebar" type="button">
+                                <button data-toggle="control-sidebar" class="link-button-menu-right" onclick="carregar('<?= $valorSub['pasta'] ?>', '<?= $valorSub['arquivo'] ?>', '<?= $valorSub['menuN1'] ?>','<?= $valorSub['menuN2'] ?>','<?= $valorSub['menuN3'] ?>','<?= $valorSub['menuN4'] ?>', '<?= $valorSub['link'] ?>', '#id<?=$valorSub['id']?>')" class="link-button-menu-left sidebar" type="button">
                                     <i class="fa fa-edit"></i> <?=$valorSub['link']?>
                                 </button>
                             <?php
@@ -51,3 +52,4 @@
             }?>
     </div>
   </aside>
+</div>

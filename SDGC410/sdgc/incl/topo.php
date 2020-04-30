@@ -119,10 +119,12 @@
                 <!-- Control Sidebar Toggle Button --> 
                 <?php if (count($_SESSION["menuRight"])>0){?>
                     <li>
-                       <a href="#" data-toggle="control-sidebar"><img src="img/vFox.png" class="img-rounded"></a>
+<!--                        <a onclick="clickMenuUser()" href="#" data-toggle="control-sidebar" id="btnMenuUser"><img src="img/vFox.png" class="img-rounded"></a>-->
+                        <a href="#" data-toggle="control-sidebar" id="btnMenuUser"><img src="img/vFox.png" class="img-rounded"></a>
                     </li>
                 <?php }?>
             </ul>
         </div>
     </nav>
 </header>
+

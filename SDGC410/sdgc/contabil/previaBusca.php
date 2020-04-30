@@ -2,13 +2,6 @@
     session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    
-    //buscar
-    if ($respGet['acao'] == "limparSessao") {
-        session_start();
-        $_SESSION["lotacao"] = getRest('lotacao/getListLotacaoUsuarioFolhaPrevia');
-        //$_SESSION["lotacao"] = getRest('lotacao/getListaLotacaoUsuario');
-    }
     if ($respGet['acao'] == "buscar") {
         $_SESSION["buscaReferencia"] =  array(
                         'dataPrevia'=>$respGet['dataPrevia'],

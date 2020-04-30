@@ -1,5 +1,5 @@
-<?php declare(strict_types=1) ?>
 <?php
+//declare(strict_types=1)
     session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
@@ -32,7 +32,8 @@
                 "'$n1' value='".$c1."'/>",
                 "'$n2' value='".$c2."'/>"
     );
-
+    session_start();
+    $_SESSION["lotacao"] = getRest('lotacao/getListLotacaoUsuarioFolhaPrevia');
 if($respGet['modal'] == 'exportAcomOrcamentario'){?>
     <script>
         jQuery(document).ready(function(){
