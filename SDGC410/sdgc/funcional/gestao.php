@@ -124,7 +124,6 @@ if($_SESSION["funcionalBusca"]['situacao']['nome'] == 'INATIVO'){
             break;
         }
     }
-    
 ?>
 <div class="tab-pane <?=tabId('gestao', $respGet['tab'],$padrao=true)?>" id="gestao">
     <div class="post clearfix">
@@ -222,17 +221,17 @@ if($_SESSION["funcionalBusca"]['situacao']['nome'] == 'INATIVO'){
                     </div>
                     </form>
                     <div class="col-sm-1">
-                        <button class="<?=permissaoAcesso($prmLotacao["alterar"],'hide')?> btn btn-success pull-right btn-sm" onclick="postEmGestao('gestao', 'alterarSetor','<?=$_SESSION["funcionalBusca"]["id"]?>','',$('#idSetor').val())" type="button">
+                        <button class="<?=permissaoAcesso($prmSetor["alterar"],'hide')?> btn btn-success pull-right btn-sm" onclick="postEmGestao('gestao', 'alterarSetor','<?=$_SESSION["funcionalBusca"]["id"]?>','',$('#idSetor').val())" type="button">
                               <i class="fa fa-edit"></i>
                         </button>
                     </div>
                      <div class="col-sm-1">
-                        <button class="<?=permissaoAcesso($prmLotacao["listar"],'hide')?> btn btn-info pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','lotacaoSubServidor')" type="button">
+                        <button class="<?=permissaoAcesso($prmSetor["listar"],'hide')?> btn btn-info pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','lotacaoSubServidor')" type="button">
                              <i class="fa fa-print"></i>
                         </button>
                      </div>
                      <div class="col-sm-1">
-                        <button class="<?=permissaoAcesso($prmLotacao["listar"],'hide')?> btn btn-facebook pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','lotacaoSubServidor',true)" type="button">
+                        <button class="<?=permissaoAcesso($prmSetor["listar"],'hide')?> btn btn-facebook pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','lotacaoSubServidor',true)" type="button">
                              <i class="fa fa-eye"></i>
                         </button>
                      </div>
@@ -257,17 +256,17 @@ if($_SESSION["funcionalBusca"]['situacao']['nome'] == 'INATIVO'){
                         </div>
                     </form>
                     <div class="col-sm-1">
-                        <button class="<?=permissaoAcesso($prmLotacao["alterar"],'hide')?> btn btn-success pull-right btn-sm" onclick="postEmGestao('gestao', 'alterarRegime','<?=$_SESSION["funcionalBusca"]["id"]?>','','',$('#idRegime').val())" type="button">
+                        <button class="<?=permissaoAcesso($prmRegTrabalho["alterar"],'hide')?> btn btn-success pull-right btn-sm" onclick="postEmGestao('gestao', 'alterarRegime','<?=$_SESSION["funcionalBusca"]["id"]?>','','',$('#idRegime').val())" type="button">
                              <i class="fa fa-edit"></i>
                         </button>
                     </div>
                     <div class="col-sm-1">
-                        <button class="<?=permissaoAcesso($prmLotacao["listar"],'hide')?> btn btn-info pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','regimeServidor')" type="button">
+                        <button class="<?=permissaoAcesso($prmRegTrabalho["listar"],'hide')?> btn btn-info pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','regimeServidor')" type="button">
                              <i class="fa fa-print"></i>
                         </button>
                     </div>
                     <div class="col-sm-1">
-                        <button class="<?=permissaoAcesso($prmLotacao["listar"],'hide')?> btn btn-facebook pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','regimeServidor',true)" type="button">
+                        <button class="<?=permissaoAcesso($prmRegTrabalho["listar"],'hide')?> btn btn-facebook pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','regimeServidor',true)" type="button">
                              <i class="fa fa-eye"></i>
                         </button>
                     </div>
@@ -290,17 +289,17 @@ if($_SESSION["funcionalBusca"]['situacao']['nome'] == 'INATIVO'){
                         </div>
                     </form>
                     <div class="col-sm-1">
-                        <button class="<?=permissaoAcesso($prmLotacao["alterar"],'hide')?> btn btn-success pull-right btn-sm" onclick="postEmGestao('gestao', 'alterarEspecialidade','<?=$_SESSION["funcionalBusca"]["id"]?>','','','',$('#idEspecialidade').val())" type="button">
+                        <button class="<?=permissaoAcesso($prmEspecialidade["alterar"],'hide')?> btn btn-success pull-right btn-sm" onclick="postEmGestao('gestao', 'alterarEspecialidade','<?=$_SESSION["funcionalBusca"]["id"]?>','','','',$('#idEspecialidade').val())" type="button">
                              <i class="fa fa-edit"></i>
                         </button>
                     </div>
                     <div class="col-sm-1">
-                        <button class="<?=permissaoAcesso($prmLotacao["listar"],'hide')?> btn btn-info pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','especialidadeServidor')" type="button">
+                        <button class="<?=permissaoAcesso($prmEspecialidade["listar"],'hide')?> btn btn-info pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','especialidadeServidor')" type="button">
                              <i class="fa fa-print"></i>
                         </button>
                     </div>
                     <div class="col-sm-1">
-                        <button class="<?=permissaoAcesso($prmLotacao["listar"],'hide')?> btn btn-facebook pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','especialidadeServidor',true)" type="button">
+                        <button class="<?=permissaoAcesso($prmEspecialidade["listar"],'hide')?> btn btn-facebook pull-right btn-sm" onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','especialidadeServidor',true)" type="button">
                              <i class="fa fa-eye"></i>
                         </button>
                     </div>

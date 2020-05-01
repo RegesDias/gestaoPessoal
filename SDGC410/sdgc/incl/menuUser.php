@@ -37,7 +37,7 @@
                                 if($valorSub[link] == 'Acesso - Editar/Cadastrar'){
                                     $_SESSION[usuario] = true;
                                 }?>
-                                <button class="link-button-menu-left" onclick="carregar('<?= $valorSub['pasta'] ?>', '<?= $valorSub['arquivo'] ?>', '<?= $valorSub['menuN1'] ?>','<?= $valorSub['menuN2'] ?>','<?= $valorSub['menuN3'] ?>','<?= $valorSub['menuN4'] ?>', '<?= $valorSub['link'] ?>', '#id<?=$valorSub['id']?>')"  type="button">
+                                <button data-toggle="control-sidebar" class="link-button-menu-left" onclick="carregar('<?= $valorSub['pasta'] ?>', '<?= $valorSub['arquivo'] ?>', '<?= $valorSub['menuN1'] ?>','<?= $valorSub['menuN2'] ?>','<?= $valorSub['menuN3'] ?>','<?= $valorSub['menuN4'] ?>', '<?= $valorSub['link'] ?>', '#id<?=$valorSub['id']?>')"  type="button">
                                   <i class="fa <?=$valorSub['icon']?>"></i> <b><?=$valorSub['link']?></b>
                                 </button>
                         <?php
