@@ -4,8 +4,6 @@ require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
 $_SESSION['appv'] = getRest('appversao/getListaAppVersao');
 
-print_p($respGet);
-
 $limparAcesso = 'nao';
 $pst = 'usuario';
 $arq = 'perfil';
@@ -122,7 +120,6 @@ $cUser = array('',$respGet['cpf'],'');
             $exec= postRest('userMenu/postAlocarTemplateAoUsuario',$idTemplate);
             }
         }
-        print_p($idTemplate);
         $buscaAcessoTemplate = array('id' => $_SESSION['template']['id']);
         $_SESSION['verTemplate']= getRest('userMenu/getListaTemplatePermissaoAccesso',$buscaAcessoTemplate);
         $cUser = array('',$_SESSION["perfilUsuario"] ['0']['cpf'],'');

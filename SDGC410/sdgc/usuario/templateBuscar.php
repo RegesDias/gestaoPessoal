@@ -61,7 +61,6 @@ require_once '../func/fModal.php';
         }
     }
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
-    print_p();
 ?>
     <div class="col-md-12">
         <div class="box box-primary">

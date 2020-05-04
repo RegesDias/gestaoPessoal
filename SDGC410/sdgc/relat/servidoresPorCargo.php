@@ -64,9 +64,6 @@
     </div>
 </div>
     <?php
-        require_once "../javascript/fRelat.php";
-        //relatorioEmRelatorio
-
         $dados = array('acao','idCargoGeral','ver');
         postRestAjax('relatorioEmRelatorio','imprimir','print/info.php',$dados);
     ?>

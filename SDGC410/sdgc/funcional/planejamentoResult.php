@@ -77,7 +77,7 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
                                     <div class="box-body">
                                       <b><?=$ArrEsp['nomeSetor']?></b><br>
                                       <?=$ArrEsp['planejamentoTipo']?>
-                                        <button <?=$inativo?>  class="btn btn-danger pull-right espaco-direita" onclick="postExcluirPlanejamento('excluirPlanejamento', $('#idPlanejamentoAuxiliar').val())" type="button">
+                                        <button <?=$inativo?>  class="btn btn-danger pull-right espaco-direita" onclick="postExcluirPlanejamento('excluirPlanejamento', '<?=$ArrEsp['idPlanejamentoAuxiliar']?>')" type="button">
                                                 <i class="fa fa-trash"></i>
                                         </button>
                                         &nbsp;<input type="checkbox" disabled="disabled" <?php if($ArrEsp['feriado'] == 1){ echo 'checked'; }?>>Feriado
