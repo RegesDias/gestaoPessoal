@@ -51,7 +51,7 @@ if($key!==false){
         $cargoGeral = $respGet['idCargoGeral'];
         $cBusc = array($cargoGeral, $tipo);
         $lista = getRest('relatorio/getRelServidoresPorCargo',$cBusc);
-        print_p($lista);
+        //print_p($lista);
     }
     //LancamentoIndividualPorPeriodo
     if(isset($respGet['acao']) && $respGet['acao'] =='LancamentoIndividualPorPeriodo'){
