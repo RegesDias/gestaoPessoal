@@ -475,12 +475,12 @@ if(isset($respGet['acao']) && $respGet['acao']=='consiguinadoCritica'){
 
 //folhaOnLine 
 if(isset($respGet['acao']) && $respGet['acao']=='folhaOnListar' AND isset($respGet['setorID'])){ 
-    echo setor;
+   
     $cBusc = array($respGet['idVariavel'], $respGet['setorID'],$tipo);
     $lista = getRest('relatorio/getRelservidoresGanhos',$cBusc);  
 }
 if(isset($respGet['acao']) && $respGet['acao']=='folhaOnListar' AND !isset($respGet['setorID'])){ 
-    echo secretaria;
+   
     $cBusc = array($respGet['idVariavel'],$respGet['secretariaID'],$tipo);
     $lista = getRest('relatorio/getRelservidoresGanhos',$cBusc);  
 }
