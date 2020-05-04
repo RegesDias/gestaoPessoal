@@ -2,6 +2,7 @@
 session_start();
 require_once '../func/fPhp.php';
 $tipo='html';
+print_p();
 if(@$respGet['tipo_relatorio']){//mesma coisa que isset($respGet['tipo_relatorio'])
     $tipo = $respGet['tipo_relatorio'];
 }
@@ -162,6 +163,7 @@ if($key!==false){
         $cBusc = array($respGet['idSecretaria'],$tipo);
         $lista = getRest('relatorio/getRelAvaliacaoPorSecretaria',$cBusc);  
     }
+    //avaliacao
     if( $respGet['acao']=='avaliacaoFicha'){
         
         $cBusc = array($respGet['idLotacaoSub'],$respGet['idHistorioFunc'],$tipo);
@@ -467,6 +469,18 @@ if(isset($respGet['acao']) && $respGet['acao']=='consiguinadoCritica'){
 
     $cBusc = array($respGet['selectCompetencia'],$tipo);
     $lista = getRest('relatorio/getRelConsignadoCritica',$cBusc);
+}
+
+//folhaOnLine 
+if(isset($respGet['acao']) && $respGet['acao']=='folhaOnListar' AND isset($respGet['setorID'])){ 
+    echo setor;
+    $cBusc = array($respGet['idVariavel'], $respGet['setorID'],$tipo);
+    $lista = getRest('relatorio/getRelservidoresGanhos',$cBusc);  
+}
+if(isset($respGet['acao']) && $respGet['acao']=='folhaOnListar' AND !isset($respGet['setorID'])){ 
+    echo secretaria;
+    $cBusc = array($respGet['codGanho'],$respGet['secretariaID'],$tipo);
+    $lista = getRest('relatorio/getRelservidoresGanhos',$cBusc);  
 }
 //Select Competencia Critica
 if(isset($respGet['acao']) && $respGet['acao']=='OcorrenciasPorPeriodo'){
