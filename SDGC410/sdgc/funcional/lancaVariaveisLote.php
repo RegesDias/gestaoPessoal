@@ -1,6 +1,3 @@
-<?php
-
-?>
 <div class="box box-primary">
     <div class="box-header">
         <h3 class="box-title">Lançar Variáveis</h3>
@@ -58,3 +55,4 @@
 <?php 
 require_once '../javascript/fLancaVariaveisLote.php';
 ?>
+

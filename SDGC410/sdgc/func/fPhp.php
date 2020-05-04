@@ -13,7 +13,7 @@
     //$aeurl
     //
 //SISTEMA
-$versaoSDGC = '4.1.0';
+$versaoSDGC = '4.1.1';
 $localBack = false;
 $localEndereco = false;
 $DBteste = false;
@@ -621,26 +621,29 @@ function dataHoraMensagem($strDataHora){
 }
 
 //---AUTO COMPLETA ----
-function autoComplete($lista, $id, $campo) {
+function autoComplete($lista, $id, $campo, $campo2=null) {
     ?>
     <script>
         $(function () {
             var availableTags = [
     <?php
     foreach ($lista as $valor) {
-        $nome = $valor[$campo];
+        if($campo2 == null){
+            $nome = $valor[$campo];
+        }else{
+            $nome = $valor[$campo]." - ".$valor[$campo2];
+        }
         echo "'$nome',";
     }
     ?>
             ];
             $("<?= $id ?>").autocomplete({
                 source: availableTags,
-                minLength: 6
+                minLength: 4
             });
         });
     </script><?php
 }
-
 //--ORDENAR ARRAY ----
 function ordernarPor($lista, $respGet) {
     uasort($lista, function ($a, $b) {

@@ -32,6 +32,7 @@ function selectSecretariasAjax(lista){
     }else{
        //carrega os setor que o servidor buscado está ativo
        getAJAX(<?="'" . $ajurl . "'"; ?>, 'funcionalws/getListaSetorAtivoPorId/', <?php echo "\"".$_SESSION["funcionalBusca"]['id']."\""; ?>, selectSetorAjax);
+       
     }
 }
 
@@ -55,10 +56,23 @@ function selectSetorAjax(lista){
         getAJAX(<?="'" . $ajurl . "'"; ?>, 'variaveis/getListaVariaveisDescAbertasPorSetor/', campoSetor.options[0].value, selectVariaveisDesc);
     }else{
         getAJAX(<?="'" . $ajurl . "'"; ?>, 'variaveis/getListaVariaveisSetorHistFunc/', campoSetor.value + "/<?=$_SESSION["funcionalBusca"]['id']?>", selectVariaveisDesc);
+        //getAJAX(<?="'" . $ajurl . "'"; ?>, 'variaveis/getListaVariaveisSetorHistFunc/', campoSetor.value + "/<?=$_SESSION["funcionalBusca"]['id']?>", preencheAutoSelect);
     }
     
     
 }
+//function preencheAutoSelect(lista){
+//    
+//        
+//    
+//        $(function () {
+//            var availableTags = ['JOAO', 'REGES'];
+//            $("#codNomeVariavel").autocomplete({
+//                source: availableTags,
+//                minLength: 4
+//            });
+//        });
+//}
 
 function selectServidoresPorSetor(lista){
     console.log(lista);
