@@ -27,7 +27,7 @@ $DBtestePort = '32796';
 //juliano
 //$ip = '113'; 
 //reges
-$ip = '97';
+//$ip = '97';
 //joao
 //$ip = '89';
 //NoteREges

@@ -2,7 +2,7 @@
 session_start();
 require_once '../func/fPhp.php';
 $tipo='html';
-print_p();
+
 if(@$respGet['tipo_relatorio']){//mesma coisa que isset($respGet['tipo_relatorio'])
     $tipo = $respGet['tipo_relatorio'];
 }
@@ -10,6 +10,7 @@ $key = array_search('semSetor', $respGet);
 if($key!==false){
     unset($respGet[$key]);
 }
+print_p();
 //Se for um relatorio vindo da pasta relatorio
     //VER DEPOIS-------------------------------------------------------------------------------------------------
     if($respGet['menuN3'] == '5' AND $respGet['link'] == 'Listar' AND !isset($respGet['idSetor'])){
@@ -479,7 +480,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='folhaOnListar' AND isset($respG
 }
 if(isset($respGet['acao']) && $respGet['acao']=='folhaOnListar' AND !isset($respGet['setorID'])){ 
     echo secretaria;
-    $cBusc = array($respGet['codGanho'],$respGet['secretariaID'],$tipo);
+    $cBusc = array($respGet['idVariavel'],$respGet['secretariaID'],$tipo);
     $lista = getRest('relatorio/getRelservidoresGanhos',$cBusc);  
 }
 //Select Competencia Critica

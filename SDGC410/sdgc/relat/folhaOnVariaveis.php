@@ -38,10 +38,10 @@ $variaveis = getRest('variaveis/getListaVariaveisDesc');
                     </div>
                 </div>
                 <div class="box-footer pull-right">
-                    <button class=" btn btn-info " onclick="relatorioEmGestao('folhaOnListar', $('#idInputIdSecretaria').val(), $('#idInputIdSetor').val(), $('#idVariavel').val())" type="button">
+                    <button class=" btn btn-info " onclick="relatorioEmGestao('folhaOnListar', $('#idInputSecretaria').val(), $('#idInputSetor').val(), $('#idVariavel').val())" type="button">
                         <i class="fa fa-print"></i> Imprimir
                     </button>
-                    <button class=" btn btn-facebook" onclick="relatorioEmGestao('folhaOnListar', $('#idInputIdSecretaria').val(), $('#idInputIdSetor').val(), $('#idVariavel').val(), true)" type="button">
+                    <button class=" btn btn-facebook" onclick="relatorioEmGestao('folhaOnListar', $('#idInputSecretaria').val(), $('#idInputSetor').val(), $('#idVariavel').val(), true)" type="button">
                         <i class="fa fa-eye"></i> Visualizar
                     </button>
                 </div>

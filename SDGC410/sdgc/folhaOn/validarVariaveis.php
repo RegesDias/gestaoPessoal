@@ -4,6 +4,7 @@
     require_once '../func/fModal.php';
     $pst = 'folhaOn';
     $arq = 'validarVariaveis';
+    
 //acesso
     $respGet[acao]='limparSessao';
     if($respGet[acao]=='limparSessao'){
