@@ -976,9 +976,39 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                 );
     }
     
+ </script>
+ <?php
+    $url = $_SESSION['listaUrl']['url'];
+    $arrFrom = array(".html?");
+    $arrTo = array(".xls?");
+
+    $url = str_replace($arrFrom, $arrTo, $url);
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HEADER, false);
+    $data = curl_exec($curl);
+    $base64Data = base64_encode($data);
+    curl_close($curl);
     
-    $('#idBtnExportarXls').click(function () {
-        defineFormato('csv');
+    session_start();
+?>
+ <script>
+    $('#idBtnExportarXls').click(function (e) {
+        //defineFormato('xls');
+        
+        
+        var a = document.createElement('a');
+        var data_type = 'data:application/vnd.ms-excel;base64';
+        //var table_div = document.getElementById('dvData');
+        var table_html = '<?=$base64Data?>';
+        a.href = data_type + ',' + table_html;
+        a.download = 'Relatorio.xls';
+        a.click();
+        e.preventDefault();
+        
+
     });
     $('#idBtnExportarCsv').click(function () {
         defineFormato('csv');
