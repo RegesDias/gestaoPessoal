@@ -114,9 +114,11 @@
                            <i class="fa fa-envelope-o"></i>
                         </button>
                     </form>
-                    <button  class="link-button-limpo" id='id<?= $valor['id'] ?>' onclick="carregar('msn', 'chamado')"  type="button">
-                        <i class="fa fa-support"></i>
-                    </button>
+                    <?php if (count($_SESSION["menuRight"])>0){?>
+                        <button  class="link-button-limpo" id='id<?= $valor['id'] ?>' onclick="carregar('msn', 'chamado')"  type="button">
+                            <i class="fa fa-support"></i>
+                        </button>
+                   <?php }?>
                     </a>
                 </li>
                 <!-- Control Sidebar Toggle Button --> 
