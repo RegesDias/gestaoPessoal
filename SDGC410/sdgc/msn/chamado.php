@@ -5,12 +5,12 @@
 ?>     
 <section class="content-header">
       <h1>
-        Mailbox
-        <small>13 new messages</small>
+        Chamados
+        <small><i>13 novos</i></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Mailbox</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Chamados</a></li>
+        <li class="active">Entrada</li>
       </ol>
     </section>
 
@@ -23,12 +23,7 @@
             </button>
           <div class="box box-solid">
             <div class="box-header with-border">
-              <h3 class="box-title">Folders</h3>
-
-              <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
+              <h3 class="box-title">Chamados</h3>
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
@@ -40,14 +35,22 @@
                 </li>
                 <li>
                     <a href="#" onclick="caixaEntrada('Analisando')">
-                        <i class="fa fa-inbox"></i> Analisando
+                        <i class="fa fa-comments"></i> Analisando
                         <span class="label label-primary pull-right">12</span>
                     </a>
                 </li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> Finalizado</a></li>
-                <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
+                <li>
+                    <a href="#" onclick="caixaEntrada('Finalizado')">
+                        <i class="fa fa-coffee"></i> Finalizado
+                        <span class="label label-primary pull-right">12</span>
+                    </a>
                 </li>
-                <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+                <li>
+                    <a href="#" onclick="caixaEntrada('Todos')">
+                        <i class="fa fa-hdd-o"></i> Todos
+                        <span class="label label-primary pull-right">12</span>
+                    </a>
+                </li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -66,9 +69,9 @@
         postRestAjax('chamadoEscrever','chamadoCorpo','msn/chamadoEscrever.php',$dados);
         $dados = array('acao');
         postRestAjax('chamadoLer','chamadoCorpo','msn/chamadoLer.php',$dados);
-        $dados = array('acao');
+        $dados = array('tipo');
         postRestAjax('caixaEntrada','chamadoCorpo','msn/chamadoEntrada.php',$dados);
   ?>
 <script>
-    window.onload = caixaEntrada();
+    window.onload = caixaEntrada('Aberto');
 </script>

@@ -13,8 +13,18 @@ require_once '../func/fModal.php';
             <input class="form-control" placeholder="Assunto:">
         </div>
         <div class="form-group">
-            <textarea id="compose-textarea" class="form-control" style="height: 300px">
-            </textarea>
+        <script>
+           $(document).on("keydown", "#obsMsn", function () {
+               var caracteresRestantes = 149;
+               var caracteresDigitados = parseInt($(this).val().length);
+               var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+               $(".caracteres").text(caracteresRestantes);
+           });
+       </script>
+       <div class="form-group">
+           <label for="exampleInputEmail1">Descreva em poucas palavras:</label> <i><sub class="caracteres">400</sub> <sub>Restantes </sub></i></label> 
+           <textarea id="obsMsn" name='obsMsn'class="form-control"  maxlength="400" rows="4"></textarea>
+       </div>
         </div>
     </div>
     <!-- /.box-body -->

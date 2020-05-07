@@ -2,11 +2,10 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
-print_p();
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Abertos</h3>
+    <h3 class="box-title"><?=$respGet['tipo']?></h3>
 
     <div class="box-tools pull-right">
       <div class="has-feedback">
@@ -25,10 +24,14 @@ print_p();
       <div class="btn-group">
         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+        <button type="button" class="btn btn-default btn-sm">
+            <i class="fa fa-share"></i>
+        </button>
       </div>
       <!-- /.btn-group -->
-      <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+        <button type="button" class="btn btn-default btn-sm" onclick="caixaEntrada('<?=$respGet['tipo']?>')">
+            <i class="fa fa-refresh"></i>
+        </button>
       <div class="pull-right">
         1-50/200
         <div class="btn-group">

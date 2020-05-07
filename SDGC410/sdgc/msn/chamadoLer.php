@@ -6,84 +6,100 @@
         <!-- /.col -->
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Read Mail</h3>
-
-    <div class="box-tools pull-right">
-      <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
-      <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
-    </div>
+    <h3 class="box-title">Ler Chamado 2544</h3>
   </div>
   <!-- /.box-header -->
   <div class="box-body no-padding">
     <div class="mailbox-read-info">
-      <h3>Message Subject Is Placed Here</h3>
+      <h3>Assunto: Erro no Sistema</h3>
       <h5>From: help@example.com
-        <span class="mailbox-read-time pull-right">15 Feb. 2016 11:03 PM</span></h5>
+        <span class="mailbox-read-time pull-right">15/02/2026 11:03</span></h5>
     </div>
-    <!-- /.mailbox-read-info -->
-    <div class="mailbox-controls with-border text-center">
-      <div class="btn-group">
-        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
-          <i class="fa fa-trash-o"></i></button>
-        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
-          <i class="fa fa-reply"></i></button>
-        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Forward">
-          <i class="fa fa-share"></i></button>
-      </div>
-      <!-- /.btn-group -->
-      <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
-        <i class="fa fa-print"></i></button>
-    </div>
-    <!-- /.mailbox-controls -->
-    <div class="mailbox-read-message">
-      <p>Hello John,</p>
+          <div class="box box-primary">
+              <div class="box direct-chat direct-chat-primary">
+                <div class="box-body">
+                  <div class="col-md-12">
+                    <div class="direct-chat-msg">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                        <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                      </div>
+                      <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
+                      <div class="direct-chat-text">
+                        Is this template really for free? That's unbelievable!
+                      </div>
+                    </div>
+                    <div class="direct-chat-msg right">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                        <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+                      </div>
+                      <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
+                      <div class="direct-chat-text">
+                        You better believe it!
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
 
-      <p>Keffiyeh blog actually fashion axe vegan, irony biodiesel. Cold-pressed hoodie chillwave put a bird
-        on it aesthetic, bitters brunch meggings vegan iPhone. Dreamcatcher vegan scenester mlkshk. Ethical
-        master cleanse Bushwick, occupy Thundercats banjo cliche ennui farm-to-table mlkshk fanny pack
-        gluten-free. Marfa butcher vegan quinoa, bicycle rights disrupt tofu scenester chillwave 3 wolf moon
-        asymmetrical taxidermy pour-over. Quinoa tote bag fashion axe, Godard disrupt migas church-key tofu
-        blog locavore. Thundercats cronut polaroid Neutra tousled, meh food truck selfies narwhal American
-        Apparel.</p>
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                        <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span>
+                      </div>
+                      <!-- /.direct-chat-info -->
+                      <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        Working with AdminLTE on a great new app! Wanna join?
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
 
-      <p>Raw denim McSweeney's bicycle rights, iPhone trust fund quinoa Neutra VHS kale chips vegan PBR&amp;B
-        literally Thundercats +1. Forage tilde four dollar toast, banjo health goth paleo butcher. Four dollar
-        toast Brooklyn pour-over American Apparel sustainable, lumbersexual listicle gluten-free health goth
-        umami hoodie. Synth Echo Park bicycle rights DIY farm-to-table, retro kogi sriracha dreamcatcher PBR&amp;B
-        flannel hashtag irony Wes Anderson. Lumbersexual Williamsburg Helvetica next level. Cold-pressed
-        slow-carb pop-up normcore Thundercats Portland, cardigan literally meditation lumbersexual crucifix.
-        Wayfarers raw denim paleo Bushwick, keytar Helvetica scenester keffiyeh 8-bit irony mumblecore
-        whatever viral Truffaut.</p>
+                    <!-- Message to the right -->
+                    <div class="direct-chat-msg right">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                        <span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span>
+                      </div>
+                      <!-- /.direct-chat-info -->
+                      <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        I would love to.
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
 
-      <p>Post-ironic shabby chic VHS, Marfa keytar flannel lomo try-hard keffiyeh cray. Actually fap fanny
-        pack yr artisan trust fund. High Life dreamcatcher church-key gentrify. Tumblr stumptown four dollar
-        toast vinyl, cold-pressed try-hard blog authentic keffiyeh Helvetica lo-fi tilde Intelligentsia. Lomo
-        locavore salvia bespoke, twee fixie paleo cliche brunch Schlitz blog McSweeney's messenger bag swag
-        slow-carb. Odd Future photo booth pork belly, you probably haven't heard of them actually tofu ennui
-        keffiyeh lo-fi Truffaut health goth. Narwhal sustainable retro disrupt.</p>
+                  </div>
+                  <!--/.direct-chat-messages-->
 
-      <p>Skateboard artisan letterpress before they sold out High Life messenger bag. Bitters chambray
-        leggings listicle, drinking vinegar chillwave synth. Fanny pack hoodie American Apparel twee. American
-        Apparel PBR listicle, salvia aesthetic occupy sustainable Neutra kogi. Organic synth Tumblr viral
-        plaid, shabby chic single-origin coffee Etsy 3 wolf moon slow-carb Schlitz roof party tousled squid
-        vinyl. Readymade next level literally trust fund. Distillery master cleanse migas, Vice sriracha
-        flannel chambray chia cronut.</p>
+                 
 
-      <p>Thanks,<br>Jane</p>
-    </div>
-    <!-- /.mailbox-read-message -->
-  </div>
-  <!-- /.box-body -->
+                </div>
+                <!-- /.box-footer-->
+              </div>
+          </div>
+
  
   <!-- /.box-footer -->
-  <div class="box-footer">
-    <div class="pull-right">
-      <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
-      <button type="button" class="btn btn-default"><i class="fa fa-share"></i> Forward</button>
-    </div>
-    <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
-    <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
+<div class="box-footer">
+  <div class="col-md-12">
+        <form action="#" method="post">
+          <div class="input-group">
+            <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+            <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-flat">Enviar</button>
+                </span>
+          </div>
+        </form>
   </div>
+</div>
   <!-- /.box-footer -->
+</div>
+  </div>
 </div>
 <!-- /. box -->
