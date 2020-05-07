@@ -114,6 +114,9 @@
                            <i class="fa fa-envelope-o"></i>
                         </button>
                     </form>
+                    <button  class="link-button-limpo" id='id<?= $valor['id'] ?>' onclick="carregar('msn', 'chamado')"  type="button">
+                        <i class="fa fa-support"></i>
+                    </button>
                     </a>
                 </li>
                 <!-- Control Sidebar Toggle Button --> 

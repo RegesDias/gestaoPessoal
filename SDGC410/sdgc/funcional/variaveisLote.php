@@ -5,6 +5,39 @@
     $lote = true;
     $_SESSION["funcionalPerfil"] = '';
     $_SESSION["funcionalBusca"] = '';
+    if ($respGet['acao'] == "lancarVariaveis") {
+        if($_SESSION["funcionalBusca"] == ''){
+            $arrayJson2D= postJson2D($respGet['to'],'idFunc');
+        }else{
+            $to = array($_SESSION["funcionalBusca"]["id"]);
+            $arrayJson2D= postJson2D($to,'idFunc');
+        }
+        if($respGet['diasOco'] == ''){
+            $respGet['diasOco'] = '0';
+        }
+        if (count($arrayJson2D) == 0){
+            $to = array('0000000000');
+            $arrayJson2D = postJson2D($to ,'idFunc');
+        }
+        if($respGet['idQuantidadeVL']==''){$respGet['idQuantidadeVL']=0;}
+        if($respGet['idValorVL']==''){$respGet['idValorVL']=0;}
+        if(($respGet['idVariaveisDescVL'])<1){$respGet['idVariaveisDescVL']=0;}
+        $lancarVariaveis = array(      
+                                'idFuncs' => $arrayJson2D,
+                                'idVariaveisDesc' => $respGet['idVariaveisDescVL'],
+                                'idLotacaoSub' => $respGet['idSetorVL'],
+                                'quantidade' => $respGet['idQuantidadeVL'],
+                                'valor' => $respGet['valor']
+                            );
+        $LV = array($lancarVariaveis);
+        $executar = postRest('variaveis/postVariaveisIncluirEmLote',$LV);
+        $msnTexto = "ao lançar Variável. ".$executar['msn'].".";
+        exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
+        //buscaVariaveis
+        $vPerfil = array('idFuncional' =>$_SESSION["funcionalBusca"]['id']);
+        $variaveisLancadas = getRest('variaveis/getListaVariaveisFuncionalPorId',$vPerfil);
+        $_SESSION["variaveisLancadas"] = $variaveisLancadas;
+    }
 ?>
 <h1>
     Lançar
@@ -62,14 +95,18 @@
                     <input type="hidden" name="acao" value="lancarVariaveis">
                     <input type="hidden" name="pst" value="funcional">
                     <input type="hidden" name="arq" value="variaveisLote">
-                    <div class="col-sm-12">
-                        <button type="submit" class="btn btn-success pull-right  btn-sm"><i class="fa fa-edit"></i> Lançar</button>
-                    </div>
+                    <button id="idBtnLancarVariaveis" class="btn btn-info pull-right  btn-sm" onclick="incluirVariavel('lancarVariaveis', $('#idSetorVL').val() , $('#idVariaveisDescVL').val(), $('#idQuantidadeVL').val(), $('#idValorVL').val(),$('select#multiselect_to option').map(function() {return $(this).val();}).get())" type="button">
+                       <i class="fa fa-edit"></i> Lançar
+                    </button>
                 </div>
             </div>
         </form>
     </div>
 </section>
+<?php
+    $dados = array('acao', 'idSetorVL','idVariaveisDescVL','idQuantidadeVL','idValorVL','to');
+    postRestAjax('incluirVariavel','corpo','funcional/variaveisLote.php',$dados);
+?>
 <script>
-    
+    configuraTela(); 
 </script>

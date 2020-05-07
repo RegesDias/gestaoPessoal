@@ -21,7 +21,6 @@
                     <div class="overlay hidden" id="idSpinAll">
                                     <i class="fa fa-refresh fa-spin"></i>
                     </div>
-                    <section class="col-lg-12">
                                 
                         <section class="content-header" id='idBoxCorpo'>
                               <div class="box box-info" id='idBoxInfoCorpo'>
@@ -104,7 +103,6 @@
                                   </div>
                               </div>
                        </section>
-                        </section>
                 </div>
             </div>
             <?php

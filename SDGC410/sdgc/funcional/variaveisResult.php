@@ -112,6 +112,14 @@
     </div>
   </div>
 </div>
+
+<script>
+//Script para limpar os campos de lançamento de variaveis
+//EXECUTA DEPOIS QUE CARREGA A PAGINA
+$(document).ready(function () {
+    //Fazer depois
+});
+</script>
 <?php
     //incluirVariaveis
 
