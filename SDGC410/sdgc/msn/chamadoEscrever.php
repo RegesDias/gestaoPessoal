@@ -2,39 +2,49 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
+if($respGet[acao] == 'salvarChamado'){
+    echo "salvando...";
+    print_p();
+}
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">Criar um Novo Chamado</h3>
     </div>
-    <!-- /.box-header -->
     <div class="box-body">
+        <label for="exampleInputEmail1">Categoria</label>
+        <select  class="form-control select2" name='categoria' id='idCategoria' style="width: 100%;">
+                <option selected='selected' value='nulo'></option>
+                <option>Ocorrêcia</option>
+                <option>Bug</option>
+                <option>Biometria</option>
+        </select>
+        <label for="exampleInputEmail1">Assunto</label>
         <div class="form-group">
-            <input class="form-control" placeholder="Assunto:">
+            <input type="text" id='assunto' class="form-control" placeholder="Assunto:">
         </div>
         <div class="form-group">
-        <script>
-           $(document).on("keydown", "#obsMsn", function () {
-               var caracteresRestantes = 149;
-               var caracteresDigitados = parseInt($(this).val().length);
-               var caracteresRestantes = caracteresRestantes - caracteresDigitados;
-               $(".caracteres").text(caracteresRestantes);
-           });
-       </script>
-       <div class="form-group">
-           <label for="exampleInputEmail1">Descreva em poucas palavras:</label> <i><sub class="caracteres">400</sub> <sub>Restantes </sub></i></label> 
-           <textarea id="obsMsn" name='obsMsn'class="form-control"  maxlength="400" rows="4"></textarea>
-       </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Descreva em poucas palavras:</label> <i><sub class="caracteres">200</sub> <sub>Restantes </sub></i></label> 
+                <textarea id="textoMsn" name='textoMsn' class="form-control"  maxlength="200" rows="4"></textarea>
+            </div>
         </div>
     </div>
-    <!-- /.box-body -->
     <div class="box-footer">
-        <div class="pull-right">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Enviar</button>
-        </div>
-        <button type="reset" class="btn btn-default" onclick="caixaEntrada('entrada')">
+        <button type="submit" id='enviarChamado' class="pull-right btn btn-primary" onclick="chamadoSalvar('salvarChamado', $('#idCategoria').val(),$('#assunto').val(), $('#textoMsn').val())">
+            <i class="fa fa-envelope-o"></i> Enviar
+        </button>
+        <button type="reset" class="btn btn-default" onclick="chamadoListar('Entrada')">
             <i class="fa fa-times"></i> Descartar
         </button>
     </div>
-    <!-- /.box-footer -->
 </div>
+<script>
+   $(document).on("keydown", "#textoMsn", function () {
+       var caracteresRestantes = 149;
+       var caracteresDigitados = parseInt($(this).val().length);
+       var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+       $(".caracteres").text(caracteresRestantes);
+   });
+    configuraTela(); 
+</script>

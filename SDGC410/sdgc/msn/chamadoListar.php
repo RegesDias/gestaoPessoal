@@ -19,10 +19,8 @@ require_once '../func/fModal.php';
   <div class="box-body no-padding">
     <div class="mailbox-controls">
       <!-- Check all button -->
-      <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
       </button>
       <div class="btn-group">
-        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
         <button type="button" class="btn btn-default btn-sm">
             <i class="fa fa-share"></i>
@@ -46,32 +44,35 @@ require_once '../func/fModal.php';
       <table class="table table-hover table-striped">
         <tbody>
         <tr>
-          <td><input type="checkbox"></td>
-          <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+          <td>
+              <a href="#" onclick="chamadoLer('ler','<?=1553?>')">
+                1553
+              </a>
+          </td>
+          <td class="mailbox-star"><a href="#"></a></td>
           <td class="mailbox-name">
-            <a href="#" onclick="chamadoLer('ler')">
-                Alexander Pierce
+                 Alexander Pierce
             </a>
-          <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+          <td class="mailbox-subject"><b>SDGC 4.0 Ocorrências</b> - Reportando bug
           </td>
           <td class="mailbox-attachment"></td>
-          <td class="mailbox-date">5 mins ago</td>
+          <td class="mailbox-date">Ocorrência</td>
         </tr>                  
         <tr>
-          <td><input type="checkbox"></td>
-          <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+          <td>
+              <a href="#" onclick="chamadoLer('ler','<?=1554?>')">
+                1554
+              </a>
+          </td>
+          <td class="mailbox-star"><a href="#"></a></td>
           <td class="mailbox-name">
-            <a href="#" onclick="chamadoLer('ler')">
-                Alexander Pierce
+                 Alexander Pierce
             </a>
-          <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+          <td class="mailbox-subject"><b>SDGC 4.0 Ocorrências</b> - Reportando bug
           </td>
           <td class="mailbox-attachment"></td>
-          <td class="mailbox-date">5 mins ago</td>
-        </tr>
-
-
-
+          <td class="mailbox-date">Ocorrência</td>
+        </tr>  
         </tbody>
       </table>
       <!-- /.table -->
@@ -82,15 +83,17 @@ require_once '../func/fModal.php';
   <div class="box-footer no-padding">
     <div class="mailbox-controls">
       <!-- Check all button -->
-      <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
       </button>
       <div class="btn-group">
-        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+        <button type="button" class="btn btn-default btn-sm">
+            <i class="fa fa-share"></i>
+        </button>
       </div>
       <!-- /.btn-group -->
-      <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+        <button type="button" class="btn btn-default btn-sm" onclick="caixaEntrada('<?=$respGet['tipo']?>')">
+            <i class="fa fa-refresh"></i>
+        </button>
       <div class="pull-right">
         1-50/200
         <div class="btn-group">

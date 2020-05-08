@@ -28,25 +28,25 @@
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
                 <li class="active">
-                    <a href="#" onclick="caixaEntrada('Aberto')">
+                    <a href="#" onclick="chamadoListar('Aberto')">
                         <i class="fa fa-inbox"></i> Aberto
                         <span class="label label-primary pull-right">12</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="caixaEntrada('Analisando')">
+                    <a href="#" onclick="chamadoListar('Analisando')">
                         <i class="fa fa-comments"></i> Analisando
                         <span class="label label-primary pull-right">12</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="caixaEntrada('Finalizado')">
+                    <a href="#" onclick="chamadoListar('Finalizado')">
                         <i class="fa fa-coffee"></i> Finalizado
                         <span class="label label-primary pull-right">12</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="caixaEntrada('Todos')">
+                    <a href="#" onclick="chamadoListar('Todos')">
                         <i class="fa fa-hdd-o"></i> Todos
                         <span class="label label-primary pull-right">12</span>
                     </a>
@@ -64,14 +64,24 @@
       <!-- /.row -->
     </section>
   <?php
-      //exibir
+        //ESCREVER--------------------------------------------
         $dados = array('acao');
         postRestAjax('chamadoEscrever','chamadoCorpo','msn/chamadoEscrever.php',$dados);
-        $dados = array('acao');
+        
+        $dados = array('acao', 'categoria','assunto','texto');
+        postRestAjax('chamadoSalvar','chamadoCorpo','msn/chamadoEscrever.php',$dados);
+        
+        //LER--------------------------------------------
+        $dados = array('acao','idChamado','texto');
         postRestAjax('chamadoLer','chamadoCorpo','msn/chamadoLer.php',$dados);
+        
+        $dados = array('acao');
+        postRestAjax('chamadoLer2','chamadoCorpo','msn/chamadoLer.php',$dados);
+        
+        //LISTAR--------------------------------------------
         $dados = array('tipo');
-        postRestAjax('caixaEntrada','chamadoCorpo','msn/chamadoEntrada.php',$dados);
+        postRestAjax('chamadoListar','chamadoCorpo','msn/chamadoListar.php',$dados);
   ?>
 <script>
-    window.onload = caixaEntrada('Aberto');
+    window.onload = chamadoListar('Aberto');
 </script>
