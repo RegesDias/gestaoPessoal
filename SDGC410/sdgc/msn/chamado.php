@@ -33,21 +33,27 @@
                         <span class="label label-primary pull-right">12</span>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#" onclick="chamadoListar('Analisando')">
-                        <i class="fa fa-comments"></i> Analisando
+                        <i class="fa  fa-comment-o"></i> Analisando
                         <span class="label label-primary pull-right">12</span>
                     </a>
                 </li>
-                <li>
+                 <li class="active">
                     <a href="#" onclick="chamadoListar('Finalizado')">
                         <i class="fa fa-coffee"></i> Finalizado
                         <span class="label label-primary pull-right">12</span>
                     </a>
                 </li>
-                <li>
+                 <li class="active">
                     <a href="#" onclick="chamadoListar('Todos')">
                         <i class="fa fa-hdd-o"></i> Todos
+                        <span class="label label-primary pull-right">12</span>
+                    </a>
+                </li>
+                 <li class="active">
+                    <a href="#" onclick="chamadoModelo('Todos')">
+                        <i class="fa fa-file-text"></i> Modelos
                         <span class="label label-primary pull-right">12</span>
                     </a>
                 </li>
@@ -81,6 +87,14 @@
         //LISTAR--------------------------------------------
         $dados = array('tipo');
         postRestAjax('chamadoListar','chamadoCorpo','msn/chamadoListar.php',$dados);
+        
+        //MODELO--------------------------------------------
+        $dados = array('acao');
+        postRestAjax('chamadoModelo','chamadoCorpo','msn/chamadoModelo.php',$dados);
+        
+        //pg
+        $dados = array('acao', 'pg');
+        postRestAjax('pagUpDownCh','chamadoCorpo','msn/chamadoModelo.php',$dados); 
   ?>
 <script>
     window.onload = chamadoListar('Aberto');
