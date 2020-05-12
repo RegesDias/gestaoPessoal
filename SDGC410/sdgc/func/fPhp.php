@@ -101,6 +101,14 @@ function postJson2D($id, $arrayN){
     }
     return $arrayJson2D;
 }
+function getJson2D($array){
+    foreach ($array as $valor){
+        $return = $return.'-'.$valor;
+    }
+    $return = substr($return, 1);  
+    return $return;
+}
+
 function getRest($pf, $data = null, $adress= null) {
     if($adress == null){
         global $gurl;
@@ -524,6 +532,12 @@ function mesAno($dataCriaPro) {
     $Eddia = substr("$dataCriaPro", -2);
     $Edano = substr("$dataCriaPro", 0, 4);
     $EdData = $Eddia . "/" . $Edano;
+    return $EdData;
+}
+function mesAnoGet($dataCriaPro) {
+    $Eddia = substr("$dataCriaPro", -2);
+    $Edano = substr("$dataCriaPro", 0, 4);
+    $EdData = $Eddia . "-" . $Edano;
     return $EdData;
 }
 function mesAnoBanco($dataCriaPro) {

@@ -53,6 +53,14 @@ if($key!==false){
         $lista = getRest('relatorio/getRelServidoresPorCargo',$cBusc);
         //print_p($lista);
     }
+    if(isset($respGet['acao']) && $respGet['acao']=='ocoQuantitativo'){
+        $selectSec = getJson2D($respGet['secretaria']);
+        $selectOco = getJson2D($respGet['ocorrencia'],'ocoDesc');
+        $mesAno = mesAnoGet($respGet[mesAno]);
+        $aSetor = array($selectSec,$selectOco, $mesAno);
+        $lista = getRest('relatorio/getRelSecretariaOcorrencia',$aSetor);     
+    }
+
     //LancamentoIndividualPorPeriodo
     if(isset($respGet['acao']) && $respGet['acao'] =='LancamentoIndividualPorPeriodo'){
         

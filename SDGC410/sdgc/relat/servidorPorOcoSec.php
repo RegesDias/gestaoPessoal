@@ -1,20 +1,6 @@
 <?php
     session_start();
     require_once '../func/fPhp.php';
-    $buscAcessoNivel = array("4");
-    $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao',$buscAcessoNivel);
-    foreach ($listaAcesso as $valor) {
-        if (($valor['link'] == 'soComissionados') AND ($valor['buscar'] == '1')){ 
-             $btnSoComissionados = true;
-             break;
-        }
-    }
-    foreach ($listaAcesso as $valor) {
-        if (($valor['link'] == 'biometria') AND ($valor['buscar'] == '1')){ 
-             $btnBiometria = true;
-             break;
-        }
-    }
     $listaCargosGeral = getRest('cargo/getListaCargoGeralUsuario');
     $listaLotacao = getRest('lotacao/getListaLotacaoUsuario');
     $ocorrenciaDesc = getRest('funcionalws/getListaOcorrenciaDesc');
@@ -47,7 +33,7 @@
                                     <label>Ocorrência</label>
                                     <select multiple name="idOco" id='idOco' size="1"  class="form-control select2"  style="width: 100%;">
                                         <?php foreach ($ocorrenciaDesc as $valor) { ?>
-                                        <option value="<?=$valor['tipo']?>"><?=$valor['nome']?></option>
+                                        <option value="<?=$valor['idOcorrencia']?>"><?=$valor['nome']?></option>
                                         <?php  } ?>
                                     </select>
                                     <label>Período</label>
