@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="box-footer pull-right">
-                        <button class="btn btn-info pull-right btn-sm espaco-direita" onclick="relatorioEmRelatorio('ocoQuantitativo',$('#idSec').val(),$('#idOco').val(),$('#idPeriodo').val())" type="button">
+                        <button class="btn btn-info pull-right btn-sm espaco-direita" onclick="relatorioEmRelatorio('ocoQuantitativo',$('#idSec').val(),$('#idOco').val(),$('#idPeriodo').val(), false)" type="button">
                              <i class="fa fa-print"></i> Imprimir
                         </button> 
                         <button class="btn btn-facebook pull-right btn-sm espaco-direita" onclick="relatorioEmRelatorio('ocoQuantitativo',$('#idSec').val(),$('#idOco').val(),$('#idPeriodo').val(),true)" type="button">
@@ -58,6 +58,6 @@
     </div>
 </div>
     <?php
-        $dados = array('acao','secretaria','ocorrencia','mesAno');
+        $dados = array('acao','secretaria','ocorrencia','mesAno', 'ver');
         postRestAjax('relatorioEmRelatorio','imprimir','print/info.php',$dados);
     ?>

@@ -57,7 +57,7 @@ if($key!==false){
         $selectSec = getJson2D($respGet['secretaria']);
         $selectOco = getJson2D($respGet['ocorrencia'],'ocoDesc');
         $mesAno = mesAnoGet($respGet[mesAno]);
-        $aSetor = array($selectSec,$selectOco, $mesAno);
+        $aSetor = array($selectSec,$selectOco, $mesAno, $tipo);
         $lista = getRest('relatorio/getRelSecretariaOcorrencia',$aSetor);     
     }
 
