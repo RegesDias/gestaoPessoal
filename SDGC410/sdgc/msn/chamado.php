@@ -71,6 +71,7 @@
     </section>
   <?php
         //ESCREVER--------------------------------------------
+        //-----------------------------------------------
         $dados = array('acao');
         postRestAjax('chamadoEscrever','chamadoCorpo','msn/chamadoEscrever.php',$dados);
         
@@ -78,13 +79,25 @@
         postRestAjax('chamadoSalvar','chamadoCorpo','msn/chamadoEscrever.php',$dados);
         
         //LER--------------------------------------------
+        //-----------------------------------------------
         $dados = array('acao','idChamado','texto');
         postRestAjax('chamadoLer','chamadoCorpo','msn/chamadoLer.php',$dados);
+        //aberto
+        $dados = array('acao','idChamado','texto');
+        postRestAjax('chamadoAberto','chamadoCorpo','msn/alterarStatusParaAberto.php',$dados);
+        //analizando
+        $dados = array('acao','idChamado','texto');
+        postRestAjax('chamadoAnalizando','chamadoCorpo','msn/postAlterarStatusParaAnalisando.php',$dados);
+        //finalizado
+        $dados = array('acao','idChamado','texto');
+        postRestAjax('chamadoFinalizado','chamadoCorpo','msn/postAlterarStatusParaFinalizado.php',$dados);
         
         $dados = array('acao');
         postRestAjax('chamadoLer2','chamadoCorpo','msn/chamadoLer.php',$dados);
+
         
         //LISTAR--------------------------------------------
+        //-----------------------------------------------
         $dados = array('tipo');
         postRestAjax('chamadoListar','chamadoCorpo','msn/chamadoListar.php',$dados);
         

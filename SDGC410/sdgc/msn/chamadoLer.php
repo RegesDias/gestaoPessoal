@@ -6,6 +6,9 @@ require_once '../func/fModal.php';
         echo 'salvar';
         print_p();
     }
+    $cTipo = array($respGet['idChamado']);
+    $chamadosLista = getRest('chamadows/getBuscaChamadoPorId',$cTipo);   
+    $chamadosLista[0][dataHora] = dataHoraBr($chamadosLista[0][dataHora]);
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -13,10 +16,33 @@ require_once '../func/fModal.php';
     </div>
     <div class="box-body no-padding">
         <div class="mailbox-read-info">
-            <h3>Assunto: Erro no Sistema</h3>
-            <h5>From: help@example.com
-            <span class="mailbox-read-time pull-right">15/02/2026 11:03</span></h5>
+            <h3>Assunto: <?=$chamadosLista[0][titulo]?>
+            <span class="mailbox-read-time pull-right"><b><h3><?=$chamadosLista[0][status]?></h3></b></span>
+            </h3>
+            <h5><b>Categoria:</b> 
+                <?=$chamadosLista[0][categoria]?>
+                <span class="mailbox-read-time pull-right"><?=$chamadosLista[0][dataHora]?></span>
+            </h5>
+            <h5><b>Descrição:</b> 
+                <i><?=$chamadosLista[0][texto]?></i>
+               
+            </h5>
         </div>
+    <div class="mailbox-controls">
+      <!-- Check all button -->
+      </button>
+      <!-- /.btn-group -->
+        <button type="button" class="btn btn-default btn-sm" onclick="chamadoAberto('aberto','<?=$respGet['idChamado']?>')">
+            <i class="fa fa-inbox"></i>
+        </button>
+        <button type="button" class="btn btn-default btn-sm" onclick="chamadoAnalizando('analizando','<?=$respGet['idChamado']?>')">
+            <i class="fa fa-comment-o"></i>
+        </button>
+        <button type="button" class="btn btn-default btn-sm" onclick="chamadoFinalizado('finalizado',<?=$respGet['idChamado']?>')">
+            <i class="fa fa-coffee"></i>
+        </button>
+      <!-- /.pull-right -->
+    </div>
         <div>
             <div class="box-body">
                 <div class="box box-primary direct-chat direct-chat-primary">

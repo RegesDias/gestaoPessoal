@@ -3,9 +3,13 @@ session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
 if($respGet[acao] == 'salvarChamado'){
-    echo "salvando...";
-    print_p();
+    $cadChamado = array('titulo' => $respGet['assunto'], 'texto' => $respGet['texto'], 'idCategoria' => $respGet['categoria']);
+    $salvarChamado = array($cadChamado);
+    $executar = postRest('chamadows/postCriarChamado',$salvarChamado);
+    $msnTexto = "ao criar Chamado.";
+    exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 }
+$chamadosCategoria = getRest('chamadows/listarChamadoCategoria');
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -14,10 +18,10 @@ if($respGet[acao] == 'salvarChamado'){
     <div class="box-body">
         <label for="exampleInputEmail1">Categoria</label>
         <select  class="form-control select2" name='categoria' id='idCategoria' style="width: 100%;">
-                <option selected='selected' value='nulo'></option>
-                <option>Ocorrêcia</option>
-                <option>Bug</option>
-                <option>Biometria</option>
+             <option selected='selected' value='nulo'></option>
+            <?php foreach ($chamadosCategoria as $value) {?>
+                <option value = '<?=$value[id]?>'><?=$value[nome]?></option>
+            <?php }?>
         </select>
         <label for="exampleInputEmail1">Assunto</label>
         <div class="form-group">
