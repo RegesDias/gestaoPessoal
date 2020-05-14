@@ -5,7 +5,6 @@ session_start();
     $cTipo = array($respGet['tipo']);
     $chamadosLista = getRest('chamadows/getListaChamadoUsuario',$cTipo);   
 ?> 
-h
 <div class="box box-primary">
   <div class="box-header with-border">
     <h3 class="box-title"><?=$respGet['tipo']?></h3>

@@ -2,8 +2,7 @@
     session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-?>    
-h
+?> 
 <section class="content-header">
       <h1>
         Chamados
@@ -83,16 +82,6 @@ h
         //-----------------------------------------------
         $dados = array('acao','idChamado','texto');
         postRestAjax('chamadoLer','chamadoCorpo','msn/chamadoLer.php',$dados);
-        //aberto
-        $dados = array('acao','idChamado','texto');
-        postRestAjax('chamadoAberto','chamadoCorpo','msn/alterarStatusParaAberto.php',$dados);
-        //analizando
-        $dados = array('acao','idChamado','texto');
-        postRestAjax('chamadoAnalizando','chamadoCorpo','msn/postAlterarStatusParaAnalisando.php',$dados);
-        //finalizado
-        $dados = array('acao','idChamado','texto');
-        postRestAjax('chamadoFinalizado','chamadoCorpo','msn/postAlterarStatusParaFinalizado.php',$dados);
-        
         $dados = array('acao');
         postRestAjax('chamadoLer2','chamadoCorpo','msn/chamadoLer.php',$dados);
 

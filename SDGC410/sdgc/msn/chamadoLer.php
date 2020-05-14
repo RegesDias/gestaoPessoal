@@ -2,15 +2,42 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
+$buscAcessoNivel = array("9");
+$listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao', $buscAcessoNivel);
+    foreach ($listaAcesso as $valor) {
+        if ($valor['link'] == 'chamadosAdm') {
+            $btnChamadosAdm = true;
+            break;
+        }
+    }
     if($respGet[acao]== 'salvar'){
         echo 'salvar';
         print_p();
     }
+    if($respGet[acao] == 'aberto'){
+        $chamado = array('id' => $respGet['idChamado']);
+        $chamadoE = array($chamado);
+        $executar = postRest('chamadows/postAlterarStatusParaAberto',$chamadoE);
+        $msnTexto = "Status Alterado.";
+    }
+    if($respGet[acao] == 'analizando'){
+        $chamado = array('id' => $respGet['idChamado']);
+        $chamadoE = array($chamado);
+        $executar = postRest('chamadows/postAlterarStatusParaAnalisando',$chamadoE);
+        $msnTexto = "Status Alterado.";
+    }
+    if($respGet[acao] == 'finalizado'){
+        $chamado = array('id' => $respGet['idChamado']);
+        $chamadoE = array($chamado);
+        $executar = postRest('chamadows/postAlterarStatusParaFinalizado',$chamadoE);
+        $msnTexto = "Status Alterado.";
+    }
+    exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $cTipo = array($respGet['idChamado']);
     $chamadosLista = getRest('chamadows/getBuscaChamadoPorId',$cTipo);   
     $chamadosLista[0][dataHora] = dataHoraBr($chamadosLista[0][dataHora]);
+    autoComplete($_SESSION["nomePessoas"], '#message', '1');
 ?> 
-h
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">Ler Chamado <?=$respGet['idChamado']?></h3>
@@ -29,21 +56,23 @@ h
                
             </h5>
         </div>
-    <div class="mailbox-controls">
-      <!-- Check all button -->
-      </button>
-      <!-- /.btn-group -->
-        <button type="button" class="btn btn-default btn-sm" onclick="chamadoAberto('aberto','<?=$respGet['idChamado']?>')">
-            <i class="fa fa-inbox"></i>
-        </button>
-        <button type="button" class="btn btn-default btn-sm" onclick="chamadoAnalizando('analizando','<?=$respGet['idChamado']?>')">
-            <i class="fa fa-comment-o"></i>
-        </button>
-        <button type="button" class="btn btn-default btn-sm" onclick="chamadoFinalizado('finalizado',<?=$respGet['idChamado']?>')">
-            <i class="fa fa-coffee"></i>
-        </button>
-      <!-- /.pull-right -->
-    </div>
+    <?php if($btnChamadosAdm == true){ ?>
+        <div class="mailbox-controls">
+          <!-- Check all button -->
+          </button>
+          <!-- /.btn-group -->
+            <button type="button" class="btn btn-default btn-sm" onclick="chamadoLer('aberto','<?=$respGet['idChamado']?>')">
+                <i class="fa fa-inbox"></i>
+            </button>
+            <button type="button" class="btn btn-default btn-sm" onclick="chamadoLer('analizando','<?=$respGet['idChamado']?>')">
+                <i class="fa fa-comment-o"></i>
+            </button>
+            <button type="button" class="btn btn-default btn-sm" onclick="chamadoLer('finalizado','<?=$respGet['idChamado']?>')">
+                <i class="fa fa-coffee"></i>
+            </button>
+          <!-- /.pull-right -->
+        </div>
+    <?php }?>
         <div>
             <div class="box-body">
                 <div class="box box-primary direct-chat direct-chat-primary">
@@ -94,12 +123,21 @@ h
             <div class="box-footer">
                 <div class="col-md-12">
                     <form action="#" method="post">
-                        <div class="input-group">
-                            <input type="text" name="message" id='message' placeholder="Escreva aqui ..." class="form-control">
-                            <span class="input-group-btn">
-                                <button type="button" onclick="chamadoLer('salvar','<?=$respGet['idChamado']?>',$('#message').val())" class="btn btn-default btn-flat">Enviar</button>
-                            </span>
-                        </div>
+                         <?php if($btnChamadosAdm == true){ ?>
+                            <div class="input-group">
+                                <input type="text" name="message" id='message' placeholder="Escreva aqui ..." class="form-control">
+                                <span class="input-group-btn">
+                                    <button type="button" onclick="chamadoLer('salvar','<?=$respGet['idChamado']?>',$('#message').val())" class="btn btn-default btn-flat">Enviar</button>
+                                </span>
+                            </div>
+                         <?php }else{ ?>
+                            <div class="input-group">
+                                <input type="text" name="message" id='message' placeholder="Escreva aqui ..." class="form-control">
+                                <span class="input-group-btn">
+                                    <button type="button" onclick="chamadoLer('salvar','<?=$respGet['idChamado']?>',$('#message').val())" class="btn btn-default btn-flat">Enviar</button>
+                                </span>
+                            </div>
+                         <?php }?>
                     </form>
                 </div>
             </div>
