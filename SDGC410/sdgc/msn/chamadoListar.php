@@ -3,7 +3,11 @@ session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
     $cTipo = array($respGet['tipo']);
-    $chamadosLista = getRest('chamadows/getListaChamadoUsuario',$cTipo);   
+    //$chamadosLista = getRest('chamadows/getListaChamadoUsuario',$cTipo); 
+    if(isset($respGet[tipo])){
+        $_SESSION[listaChamados] = getRest('chamadows/getListaChamadoUsuario', $cTipo);
+    }
+    
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
@@ -20,48 +24,31 @@ session_start();
   <!-- /.box-header -->
   <div class="box-body no-padding">
     <div class="mailbox-controls">
-      <!-- Check all button -->
-      </button>
-      <div class="btn-group">
-        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-        <button type="button" class="btn btn-default btn-sm">
-            <i class="fa fa-share"></i>
-        </button>
-      </div>
-      <!-- /.btn-group -->
-        <button type="button" class="btn btn-default btn-sm" onclick="caixaEntrada('<?=$respGet['tipo']?>')">
-            <i class="fa fa-refresh"></i>
-        </button>
-      <div class="pull-right">
-        1-50/200
-        <div class="btn-group">
-          <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-          <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-        </div>
-        <!-- /.btn-group -->
-      </div>
-      <!-- /.pull-right -->
+        <?=controleDePagina($_SESSION[listaChamados] ,$respGet[pg],"pagUpDownList","chamadoModelo");?> 
     </div>
     <div class="table-responsive mailbox-messages">
       <table class="table table-hover table-striped">
         <tbody>
-            <?php  foreach ($chamadosLista as $v){ ?>
+            <?php  //foreach ($chamadosLista as $v){ 
+            foreach (paginaAtual($_SESSION[listaChamados],$respGet[pg]) as $v) { ?>
             <tr>
+                 
               <td>
-                  <a href="#" onclick="chamadoLer('ler','<?=$v[id]?>')">
-                    <?=$v[id]?>
-                  </a>
+                 <a href="#" onclick="chamadoLer('ler','<?=$v[id]?>')">
+                     <i class="fa fa-check-square"></i> <?=$v[id]?>
+                 </a>
               </td>
-              <td class="mailbox-star"><a href="#"></a></td>
               <td class="mailbox-name">
                      <?=$v[nomeUserLogin]?>
-                </a>
+              </td>
+              <td class="mailbox-date">
+                    <?=$v[categoria]?>
+              </td>
               <td class="mailbox-subject">
                   <?=$v[titulo]?>
               </td>
-              <td class="mailbox-attachment"></td>
-              <td class="mailbox-date"><?=$v[categoria]?></td>
             </tr>  
+                              
            <?php }?>
         </tbody>
       </table>
@@ -72,27 +59,25 @@ session_start();
   <!-- /.box-body -->
   <div class="box-footer no-padding">
     <div class="mailbox-controls">
-      <!-- Check all button -->
-      </button>
-      <div class="btn-group">
-        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-        <button type="button" class="btn btn-default btn-sm">
-            <i class="fa fa-share"></i>
-        </button>
-      </div>
-      <!-- /.btn-group -->
-        <button type="button" class="btn btn-default btn-sm" onclick="caixaEntrada('<?=$respGet['tipo']?>')">
-            <i class="fa fa-refresh"></i>
-        </button>
-      <div class="pull-right">
-        1-50/200
-        <div class="btn-group">
-          <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-          <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-        </div>
-        <!-- /.btn-group -->
-      </div>
-      <!-- /.pull-right -->
+        <?=controleDePagina($_SESSION[listaChamados] ,$respGet[pg],"pagUpDownList","chamadoModelo");?> 
     </div>
   </div>
 </div>
+<?php if (!count($_SESSION[listaChamados])){ ?>
+        <div class="col-lg-12 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>Vazio</h3>
+
+              <p>Nenhum status chamados</p>
+            </div>
+            <div class="icon">
+              <i class="fa   fa-check-square-o"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                <br>
+            </a>
+          </div>
+        </div>
+<?php } ?>

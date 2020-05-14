@@ -90,6 +90,9 @@
         //-----------------------------------------------
         $dados = array('tipo');
         postRestAjax('chamadoListar','chamadoCorpo','msn/chamadoListar.php',$dados);
+        //pg
+        $dados = array('acao', 'pg');
+        postRestAjax('pagUpDownList','chamadoCorpo','msn/chamadoListar.php',$dados); 
         
         //MODELO--------------------------------------------
         $dados = array('acao');
