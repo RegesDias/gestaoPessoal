@@ -2,6 +2,10 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
+    $idChamado = array($respGet['idChamado']);
+    echo $respGet['idChamado'];
+    $chamadosDesc = getRest('chamadows/getListaChamadoDescPorId',$idChamado); 
+    print_r($chamadosDesc);
 $buscAcessoNivel = array("9");
 $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao', $buscAcessoNivel);
     foreach ($listaAcesso as $valor) {
