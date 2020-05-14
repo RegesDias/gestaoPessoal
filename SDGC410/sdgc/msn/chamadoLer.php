@@ -10,6 +10,7 @@ require_once '../func/fModal.php';
     $chamadosLista = getRest('chamadows/getBuscaChamadoPorId',$cTipo);   
     $chamadosLista[0][dataHora] = dataHoraBr($chamadosLista[0][dataHora]);
 ?> 
+h
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">Ler Chamado <?=$respGet['idChamado']?></h3>
