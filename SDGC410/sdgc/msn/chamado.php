@@ -45,7 +45,7 @@
                 </li>
                 <li class="active">
                     <a href="#" onclick="chamadoListar('Analisando')">
-                        <i class="fa  fa-comment-o"></i> Analisando
+                        <i class="fa fa-comment-o"></i> Analisando
                         <span class="label label-primary pull-right"><i class="fa fa-angle-double-right"></i></span>
                     </a>
                 </li>
@@ -103,7 +103,6 @@
         postRestAjax('chamadoLer','chamadoCorpo','msn/chamadoLer.php',$dados);
         $dados = array('acao');
         postRestAjax('chamadoLer2','chamadoCorpo','msn/chamadoLer.php',$dados);
-
         
         //LISTAR--------------------------------------------
         //-----------------------------------------------

@@ -6,6 +6,9 @@ if($respGet[acao] == 'salvarChamado'){
     echo "salvando...";
     print_p();
 }
+$idCategoria = array($chamadosLista[0][idCategoria]);
+$teste= getRest('chamadows/getListarChamadoMsnModelo',$idCategoria); 
+print_p($teste);
 $respGet[lista] = array(1,2,3,4,5,6,7,8,9,10,11,12)
 ?> 
 <div class="box box-primary">
