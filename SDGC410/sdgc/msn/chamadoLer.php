@@ -14,11 +14,17 @@ require_once '../func/fModal.php';
         }
     }
     if($respGet[acao]== 'salvar'){
-        echo 'salvar';
-        print_p();
         $cadChamado = array('idChamado' => $respGet['idChamado'], 'texto' => $respGet['texto']);
         $salvarChamado = array($cadChamado);
         $executar = postRest('chamadows/postCriarChamadoDesenv',$salvarChamado);
+        $msnTexto = "ao enviar menssagem.";
+    }
+    if($respGet[acao]== 'alterar'){
+        echo 'alterar';
+        print_p();
+        $cadChamado = array('id' => $respGet['texto'], 'idChamado' => $respGet['idChamado']);
+        $salvarChamado = array($cadChamado);
+        $executar = postRest('chamadows/postAlterarChamadoCategoria',$salvarChamado);
         $msnTexto = "ao enviar menssagem.";
     }
     if($respGet[acao] == 'aberto'){
@@ -81,7 +87,7 @@ require_once '../func/fModal.php';
           <center>
          </div>
           <label for="exampleInputEmail1">Alterar Categoria</label>
-            <select <?= $inativo ?> id="idLotacaoSubVariaveis" name="idLotacaoSubVariaveis" onchange="carregarVariaveisTipo('variavelTipo',$('#idLotacaoSubVariaveis').val())"  size="1" class="form-control select2" id='ocorrencia' style="width: 100%;">
+            <select <?= $inativo ?> id="idChamadoCategoria" name="idLotacaoSubVariaveis" onchange="chamadoLer('alterar','<?=$respGet['idChamado']?>',$('#idChamadoCategoria').val())"  size="1" class="form-control select2" id='ocorrencia' style="width: 100%;">
                 <option>--</option>
                 <?php foreach ($_SESSION[chamadosCategoria] as $ArrEsp) { ?>
                     <option value="<?= $ArrEsp['id'] ?>"><?= $ArrEsp['nome'] ?></option>

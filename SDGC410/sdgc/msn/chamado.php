@@ -62,13 +62,13 @@
                         <span class="label label-primary pull-right"><i class="fa fa-angle-double-right"></i></span>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="#" onclick="chamadoModelo('Todos')">
-                        <i class="fa fa-file-text"></i> Modelos
-                        <span class="label label-primary pull-right"><i class="fa fa-angle-double-right"></i></span>
-                    </a>
-                </li>
-                <?php if($btnChamadosAdm == true){ ?>
+               <?php if($btnChamadosAdm == true){ ?>
+                    <li class="active">
+                        <a href="#" onclick="chamadoModelo('Todos')">
+                            <i class="fa fa-file-text"></i> Modelos
+                            <span class="label label-primary pull-right"><i class="fa fa-angle-double-right"></i></span>
+                        </a>
+                    </li>
                     <li class="active">
                         <a href="#" onclick="chamadoModelo('Todos')">
                             <i class="fa fa-user-o"></i> Categoria
