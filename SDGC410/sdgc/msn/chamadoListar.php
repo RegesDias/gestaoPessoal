@@ -3,9 +3,9 @@ session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
     $cTipo = array($respGet['tipo']);
-    //$chamadosLista = getRest('chamadows/getListaChamadoUsuario',$cTipo); 
     if(isset($respGet[tipo])){
         $_SESSION[listaChamados] = getRest('chamadows/getListaChamadoUsuario', $cTipo);
+        $_SESSION[chamadosCategoria] = getRest('chamadows/listarChamadoCategoria');
     }
     
 ?> 
@@ -29,14 +29,16 @@ session_start();
     <div class="table-responsive mailbox-messages">
       <table class="table table-hover table-striped">
         <tbody>
-            <?php  //foreach ($chamadosLista as $v){ 
+            <?php
             foreach (paginaAtual($_SESSION[listaChamados],$respGet[pg]) as $v) { ?>
-            <tr>
-                 
+            <tr> 
               <td>
-                 <a href="#" onclick="chamadoLer('ler','<?=$v[id]?>')">
-                     <i class="fa fa-check-square"></i> <?=$v[id]?>
-                 </a>
+                     <b><?=$v[id]?></b>
+              </td>
+              <td class="mailbox-subject">
+                  <a href="#" onclick="chamadoLer('ler','<?=$v[id]?>')">
+                    <?=$v[titulo]?>
+                  </a>
               </td>
               <td class="mailbox-name">
                      <?=$v[nomeUserLogin]?>
@@ -44,11 +46,7 @@ session_start();
               <td class="mailbox-date">
                     <?=$v[categoria]?>
               </td>
-              <td class="mailbox-subject">
-                  <?=$v[titulo]?>
-              </td>
-            </tr>  
-                              
+            </tr>             
            <?php }?>
         </tbody>
       </table>

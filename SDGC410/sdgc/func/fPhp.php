@@ -163,7 +163,7 @@ function postRest($url, $data) {
     }else{
         $dataJson = json_encode($data);
     }
-    //print_p($dataJson);
+    print_p($dataJson);
     $ch = curl_init($gurl . $url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson);

@@ -3,11 +3,10 @@ session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
     $idChamado = array($respGet['idChamado']);
-    echo $respGet['idChamado'];
     $chamadosDesc = getRest('chamadows/getListaChamadoDescPorId',$idChamado); 
-    print_r($chamadosDesc);
-$buscAcessoNivel = array("9");
-$listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao', $buscAcessoNivel);
+    $buscAcessoNivel = array("9");
+    $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao', $buscAcessoNivel);
+
     foreach ($listaAcesso as $valor) {
         if ($valor['link'] == 'chamadosAdm') {
             $btnChamadosAdm = true;
@@ -17,6 +16,10 @@ $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao', $buscAce
     if($respGet[acao]== 'salvar'){
         echo 'salvar';
         print_p();
+        $cadChamado = array('idChamado' => $respGet['idChamado'], 'texto' => $respGet['texto']);
+        $salvarChamado = array($cadChamado);
+        $executar = postRest('chamadows/postCriarChamadoDesenv',$salvarChamado);
+        $msnTexto = "ao enviar menssagem.";
     }
     if($respGet[acao] == 'aberto'){
         $chamado = array('id' => $respGet['idChamado']);
@@ -40,6 +43,7 @@ $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao', $buscAce
     $cTipo = array($respGet['idChamado']);
     $chamadosLista = getRest('chamadows/getBuscaChamadoPorId',$cTipo);   
     $chamadosLista[0][dataHora] = dataHoraBr($chamadosLista[0][dataHora]);
+    $chamadosDesenv = getRest('chamadows/getListaChamadoDesenvIdCham', $cTipo);
     autoComplete($_SESSION["nomePessoas"], '#message', '1');
 ?> 
 <div class="box box-primary">
@@ -62,65 +66,54 @@ $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao', $buscAce
         </div>
     <?php if($btnChamadosAdm == true){ ?>
         <div class="mailbox-controls">
-          <!-- Check all button -->
+          <center>
           </button>
           <!-- /.btn-group -->
-            <button type="button" class="btn btn-default btn-sm" onclick="chamadoLer('aberto','<?=$respGet['idChamado']?>')">
+            <button type="button" class="btn btn-primary btn-sm" onclick="chamadoLer('aberto','<?=$respGet['idChamado']?>')">
                 <i class="fa fa-inbox"></i>
             </button>
-            <button type="button" class="btn btn-default btn-sm" onclick="chamadoLer('analizando','<?=$respGet['idChamado']?>')">
+            <button type="button" class="btn btn-primary btn-sm" onclick="chamadoLer('analizando','<?=$respGet['idChamado']?>')">
                 <i class="fa fa-comment-o"></i>
             </button>
-            <button type="button" class="btn btn-default btn-sm" onclick="chamadoLer('finalizado','<?=$respGet['idChamado']?>')">
+            <button type="button" class="btn btn-primary btn-sm" onclick="chamadoLer('finalizado','<?=$respGet['idChamado']?>')">
                 <i class="fa fa-coffee"></i>
             </button>
-          <!-- /.pull-right -->
-        </div>
+          <center>
+         </div>
+          <label for="exampleInputEmail1">Alterar Categoria</label>
+            <select <?= $inativo ?> id="idLotacaoSubVariaveis" name="idLotacaoSubVariaveis" onchange="carregarVariaveisTipo('variavelTipo',$('#idLotacaoSubVariaveis').val())"  size="1" class="form-control select2" id='ocorrencia' style="width: 100%;">
+                <option>--</option>
+                <?php foreach ($_SESSION[chamadosCategoria] as $ArrEsp) { ?>
+                    <option value="<?= $ArrEsp['id'] ?>"><?= $ArrEsp['nome'] ?></option>
+                <?php } ?>
+            </select>
     <?php }?>
         <div>
             <div class="box-body">
                 <div class="box box-primary direct-chat direct-chat-primary">
                     <div class="direct-chat-messages">
-                        <div class="direct-chat-msg">
-                            <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                        <?php foreach ($chamadosDesenv as $ArrEsp) { 
+                            if($ArrEsp[suporte] == true){
+                                $nome = "pull-right";
+                                $tempo = "pull-left";
+                                $adm = "right";
+                            }else{
+                                $nome = "pull-left";
+                                $tempo = "pull-right";
+                            }
+                            $dataHora=dataHoraBr($ArrEsp[dataHora]);
+                            ?>
+                            <div class="direct-chat-msg <?=$adm?>">
+                                <div class="direct-chat-info clearfix">
+                                    <span class="direct-chat-name <?=$nome?>"><?=$ArrEsp[nomeUserLogin]?></span>
+                                    <span class="direct-chat-timestamp <?=$tempo?>"><?=$dataHora?></span>
+                                </div>
+                                <img class="direct-chat-img" src="<?=exibeFoto($ArrEsp['cpfUserlogin'])?>" alt="message user image">
+                                <div class="direct-chat-text">
+                                    <?=$ArrEsp[texto]?>
+                                </div>
                             </div>
-                            <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
-                            <div class="direct-chat-text">
-                                Is this template really for free? That's unbelievable!
-                            </div>
-                        </div>
-                        <div class="direct-chat-msg right">
-                            <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
-                            </div>
-                            <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
-                            <div class="direct-chat-text">
-                                You better believe it!
-                            </div>
-                        </div>
-                        <div class="direct-chat-msg">
-                            <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                                <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span>
-                            </div>
-                            <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
-                            <div class="direct-chat-text">
-                                Working with AdminLTE on a great new app! Wanna join?
-                            </div>
-                        </div>
-                        <div class="direct-chat-msg right">
-                            <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                                <span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span>
-                            </div>
-                            <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
-                            <div class="direct-chat-text">
-                                I would love to.
-                            </div>
-                        </div>
+                        <?php }?>
                     </div>      
                 </div>
             </div>
