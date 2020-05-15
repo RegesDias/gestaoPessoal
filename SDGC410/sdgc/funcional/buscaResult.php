@@ -57,7 +57,7 @@ if (!isset($respGet['pg'])){
                                     </div>
                                 <h4 class="box-title">
                                   <a data-toggle="collapse" data-parent="#accordion" href="#<?=$valor['matricula']?>">
-                                    <?=$valor['matricula']." - ".$valor['nome']?>
+                                    <span class="<?=$lable?>"><?=$valor['matricula']?></span> - <?=$valor['nome']?>
                                   </a>
                                 </h4>
                               </div>
@@ -77,7 +77,7 @@ if (!isset($respGet['pg'])){
                                                                  <b>Data de Admissão:</b> <?=dataBr($valor['dataAdmissao'])?><?=$in?>
                                                              </p>
                                                              <p class="filename">
-                                                                 <span class="<?=$lable?>"><?=$valor['regime'].' '.$valor['situacao']?></span>
+                                                                 <span><?=$valor['regime'].' '.$valor['situacao']?></span>
                                                              </p>
                                                              <div class="pull-right">
                                                              </div>
