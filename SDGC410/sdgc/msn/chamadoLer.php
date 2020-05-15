@@ -2,11 +2,8 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
-    $idChamado = array($respGet['idChamado']);
-    $chamadosDesc = getRest('chamadows/getListaChamadoDescPorId',$idChamado); 
     $buscAcessoNivel = array("9");
     $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao', $buscAcessoNivel);
-
     foreach ($listaAcesso as $valor) {
         if ($valor['link'] == 'chamadosAdm') {
             $btnChamadosAdm = true;
@@ -20,12 +17,11 @@ require_once '../func/fModal.php';
         $msnTexto = "ao enviar menssagem.";
     }
     if($respGet[acao]== 'alterar'){
-        echo 'alterar';
-        print_p();
-        $cadChamado = array('id' => $respGet['texto'], 'idChamado' => $respGet['idChamado']);
+        $cadChamado = array('id' => $respGet['idChamado'], 'idCategoria' => $respGet['texto']);
         $salvarChamado = array($cadChamado);
         $executar = postRest('chamadows/postAlterarChamadoCategoria',$salvarChamado);
-        $msnTexto = "ao enviar menssagem.";
+        $msnTexto = "ao alterar Categoria.";
+        $respGet[acao]= 'ler';
     }
     if($respGet[acao] == 'aberto'){
         $chamado = array('id' => $respGet['idChamado']);
@@ -50,7 +46,16 @@ require_once '../func/fModal.php';
     $chamadosLista = getRest('chamadows/getBuscaChamadoPorId',$cTipo);   
     $chamadosLista[0][dataHora] = dataHoraBr($chamadosLista[0][dataHora]);
     $chamadosDesenv = getRest('chamadows/getListaChamadoDesenvIdCham', $cTipo);
-    autoComplete($_SESSION["nomePessoas"], '#message', '1');
+    
+    $idChamado = array($respGet['idChamado']);
+    $chamadosDesc = getRest('chamadows/getListaChamadoDescPorId',$idChamado); 
+    
+    if($respGet[acao]== 'ler'){
+        $idCategoria = array($chamadosLista[0][idCategoria]);
+        $_SESSION[chamadosModelo]= getRest('chamadows/getListarChamadoMsnModelo',$idCategoria); 
+    }
+    autoComplete($_SESSION["chamadosModelo"], '#message', 'texto');
+
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
