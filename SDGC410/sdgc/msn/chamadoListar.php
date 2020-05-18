@@ -68,7 +68,7 @@ session_start();
             <div class="inner">
               <h3>Vazio</h3>
 
-              <p>Nenhum status chamados</p>
+              <p>Nenhum chamado encontrado</p>
             </div>
             <div class="icon">
               <i class="fa   fa-check-square-o"></i>
