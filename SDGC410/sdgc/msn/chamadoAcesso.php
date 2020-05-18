@@ -5,74 +5,62 @@ require_once '../func/fModal.php';
 if($respGet[acao] == 'ativar'){
     $cadChamado = array('id' => $respGet['id']);
     $salvarChamado = array($cadChamado);
-    $executar = postRest('chamadows/postAtivarChamadoMsnModelo',$salvarChamado);
+    $executar = postRest('chamadows/postAtivarChamadosAcesso',$salvarChamado);
     $msnTexto = "ao ativar Chamado.";
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 }
 if($respGet[acao] == 'desativar'){
     $cadChamado = array('id' => $respGet['id']);
     $salvarChamado = array($cadChamado);
-    $executar = postRest('chamadows/postDesativarChamadoMsnModelo',$salvarChamado);
+    $executar = postRest('chamadows/postDesAtivarChamadosAcesso',$salvarChamado);
     $msnTexto = "ao deativar Chamado.";
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 }
-if($respGet[acao] == 'modeloSalvar'){
-    $cadChamado = array('idCategoria' => $respGet['categoria'], 'texto' => $respGet['texto']);
+if($respGet[acao] == 'acessoSalvar'){
+    $cadChamado = array('idUserLogin' => $respGet['idUserLogin'], 'idChamadoCategoria' => $respGet['idChamadoCategoria']);
+    print_p($cadChamado);
     $salvarChamado = array($cadChamado);
-    $executar = postRest('chamadows/postInserirChamadoMsnModelo',$salvarChamado);
+    $executar = postRest('chamadows/postSalvarChamadosAcesso',$salvarChamado);
     $msnTexto = "ao criar Chamado.";
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 }
-if($respGet[acao] == 'modeloEditar'){
-    $cadChamado = array('id' => $respGet['id'], 'idCategoria' => $respGet['idCategoria'], 'texto' => $respGet['texto']);
-    $salvarChamado = array($cadChamado);
-    $executar = postRest('chamadows/postAlterarChamadoMsnModelo',$salvarChamado);
-    $msnTexto = "ao criar Chamado.";
-    exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
-}
-if($respGet[acao] == 'buscarId'){
-    $cadChamado = array('id' => $respGet['id']);
-    $editarModelo = getRest('chamadows/getChamadoMsnModeloPorId',$cadChamado);
-}
-$chamadosCategoria = getRest('chamadows/listarChamadoCategoria');
+
 $idCategoria = array('Todos');
-$respGet[lista]= getRest('chamadows/getListarChamadoMsnModelo',$idCategoria); 
+$respGet[lista]= getRest('chamadows/getChamadosAcesso',$idCategoria); 
+
+if(isset($respGet[acao])){
+    $_SESSION['Categoria'] = getRest('chamadows/listarChamadoCategoria');
+    $_SESSION['UserLista'] = getRest('userloginws/getListaUserLogin');
+}
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Criar um Novo Modelo</h3>
+        <h3 class="box-title">Criar Acesso</h3>
     </div>
     <div class="box-body">
         <label for="exampleInputEmail1">Categoria</label>
-        <select  class="form-control select2" name='categoria' id='idCategoria' style="width: 100%;">
+        <select  class="form-control select2" name='categoria' id='idChamadoCategoria' style="width: 100%;">
              <option selected='selected' value='nulo'></option>
-            <?php foreach ($chamadosCategoria as $value) {
-                if($value[id] == $editarModelo[0][chamadoCategoria][id]){
-                    $slc = 'selected';
-                }else{
-                    $slc = '';
-                }
-                ?>
+            <?php foreach ($_SESSION['Categoria'] as $value) {?>
                 <option <?=$slc?> value='<?=$value[id]?>'><?=$value[nome]?></option>
             <?php }?>
         </select>
         <div class="form-group">
             <div class="form-group">
-                <label for="exampleInputEmail1">Descreva em poucas palavras:</label> <i><sub class="caracteres">200</sub> <sub>Restantes </sub></i></label> 
-                <textarea id="textoMsn" name='textoMsn' class="form-control"  maxlength="200" rows="4"><?=$editarModelo[0][texto]?></textarea>
+                <label for="exampleInputEmail1">Chave do Usuário</label></label> 
+                <select  class="form-control select2" name='categoria' id='idUserLogin' style="width: 100%;">
+                     <option selected='selected' value='nulo'></option>
+                    <?php foreach ($_SESSION['UserLista'] as $value) {?>
+                        <option <?=$slc?> value='<?=$value[id]?>'><?=$value[login]." - ".$value[nomeCompleto]?></option>
+                    <?php }?>
+                </select>
             </div>
         </div>
     </div>
     <div class="box-footer">
-        <?php if($respGet[acao] != 'buscarId'){ ?>
-            <button type="submit" id='enviarChamado' class="pull-right btn btn-primary" onclick="modeloSalvar('modeloSalvar', $('#idCategoria').val(), $('#textoMsn').val())">
-                <i class="fa fa-envelope-o"></i> Enviar
-            </button>
-        <?php }else{?>
-            <button type="submit" id='enviarChamado' class="pull-right btn" onclick="modeloEditar('modeloEditar', $('#idCategoria').val(), $('#textoMsn').val(),<?=$editarModelo[0][id]?>)">
-                <i class="fa fa-edit"></i> Alterar
-            </button>
-        <?php }?>
+        <button type="submit" id='enviarChamado' class="pull-right btn btn-primary" onclick="acessoSalvar('acessoSalvar', $('#idUserLogin').val(), $('#idChamadoCategoria').val())">
+            <i class="fa fa-envelope-o"></i> Enviar
+        </button>
         <button type="reset" class="btn btn-default" onclick="chamadoModelo('Todos')">
             <i class="fa fa-times"></i> Descartar
         </button>
@@ -81,6 +69,7 @@ $respGet[lista]= getRest('chamadows/getListarChamadoMsnModelo',$idCategoria);
 <div class="box-group" id="accordion">
      <?=controleDePagina($respGet[lista] ,$respGet[pg],"pagUpDownCh","chamadoModelo");?> 
      <?php foreach (paginaAtual($respGet[lista],$respGet[pg]) as $valor) {
+       //foreach ($_SESSION["lista"]  as $valor) {
               if($valor['ativo'] == false){
                   $lable = 'btn-danger';
                   $btnAction = 'fa-remove';
@@ -95,17 +84,14 @@ $respGet[lista]= getRest('chamadows/getListarChamadoMsnModelo',$idCategoria);
             <div class="box-header with-border">
                   <div class="pull-right box-tools">
                       <div class="pull-right box-tools">
-                          <button class="btn primary btn-small" onclick="alterarStatusModelo('buscarId', '<?=$valor['id']?>')" id="perfil<?=$valor['id']?>" type="button">
-                              <i class="fa fa-edit"></i>
-                          </button>
-                          <button class="btn <?=$lable?> btn-small" onclick="alterarStatusModelo('<?=$acao?>', '<?=$valor['id']?>')" id="perfil<?=$valor['id']?>" type="button">
+                          <button class="btn <?=$lable?> btn-small" onclick="alterarStatusAcesso('<?=$acao?>', '<?=$valor['id']?>')" id="perfil<?=$valor['id']?>" type="button">
                               <i class="fa <?=$btnAction?>"></i>
                           </button>
                       </div>
                   </div>
               <h4 class="box-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#<?=$valor['id']?>">
-                  <?=$valor['id']." - ".$valor[chamadoCategoria][nome]?>
+                  <?=$valor['id']." - ".$valor[userLogin][nome]?>
                 </a>
               </h4>
             </div>
@@ -121,7 +107,7 @@ $respGet[lista]= getRest('chamadows/getListarChamadoMsnModelo',$idCategoria);
                                                <b>Atualizado em:</b> <?=dataHoraBr($valor['dataHora'])?><?=$in?>
                                            </p>
                                            <p class="filename">
-                                               Texto: <?=$valor['texto']?>
+                                               <b>Categoria:</b> <?=$valor[chamadoCategoria][nome]?>
                                            </p>
                                        </div>
                                   </div>
@@ -133,16 +119,8 @@ $respGet[lista]= getRest('chamadows/getListarChamadoMsnModelo',$idCategoria);
             </div>
           </div>
   <?php 
-              }?>
+}?>
 </div>
 <script>
-   $(document).on("keydown", "#textoMsn", function () {
-       var caracteresRestantes = 149;
-       var caracteresDigitados = parseInt($(this).val().length);
-       var caracteresRestantes = caracteresRestantes - caracteresDigitados;
-       $(".caracteres").text(caracteresRestantes);
-   });
     configuraTela(); 
 </script>
-
-<?php 

@@ -111,6 +111,7 @@ require_once '../func/fModal.php';
                             }else{
                                 $nome = "pull-left";
                                 $tempo = "pull-right";
+                                $adm = "";
                             }
                             $dataHora=dataHoraBr($ArrEsp[dataHora]);
                             ?>
@@ -129,7 +130,8 @@ require_once '../func/fModal.php';
                 </div>
             </div>
             <div class="box-footer">
-                <div class="col-md-12">
+                <div class="col-md-12">    
+                   <?php if($chamadosLista[0][status] == 'Analisando'){ ?>
                     <form action="#" method="post">
                          <?php if($btnChamadosAdm == true){ ?>
                             <div class="input-group">
@@ -147,6 +149,7 @@ require_once '../func/fModal.php';
                             </div>
                          <?php }?>
                     </form>
+                   <?php } ?>
                 </div>
             </div>
         </div>

@@ -114,17 +114,14 @@
                            <i class="fa fa-envelope-o"></i>
                         </button>
                     </form>
-                    <?php if (count($_SESSION["menuRight"])>0){?>
-                        <button  class="link-button-limpo" id='id<?= $valor['id'] ?>' onclick="carregar('msn', 'chamado')"  type="button">
-                            <i class="fa fa-support"></i>
-                        </button>
-                   <?php }?>
                     </a>
                 </li>
-                <!-- Control Sidebar Toggle Button --> 
+
                 <?php if (count($_SESSION["menuRight"])>0){?>
                     <li>
-<!--                        <a onclick="clickMenuUser()" href="#" data-toggle="control-sidebar" id="btnMenuUser"><img src="img/vFox.png" class="img-rounded"></a>-->
+                        <a href="#" onclick="carregar('msn', 'chamado')" id="btnMenuUser"><img src="img/helpDesk.png" class="img-rounded"></a>
+                    </li>
+                    <li>
                         <a href="#" data-toggle="control-sidebar" id="btnMenuUser"><img src="img/vFox.png" class="img-rounded"></a>
                     </li>
                 <?php }?>

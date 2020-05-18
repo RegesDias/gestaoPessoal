@@ -15,12 +15,12 @@
       <h1>
         Chamados
         <?php if($btnChamadosAdm == true){ ?>
-            <small><span class="label label-danger">12 abertos</span></small>
+            <!--<small><span class="label label-danger">12 abertos</span></small>-->
         <?php }?>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Chamados</a></li>
-        <li class="active">Entrada</li>
+        <li class="active">Acesso</li>
       </ol>
     </section>
 
@@ -29,7 +29,7 @@
       <div class="row">
         <div class="col-md-3">
             <button class="btn btn-primary btn-block margin-bottom" onclick="chamadoEscrever('escrever')"  type="button">
-                Criar Chamado
+                Escrever Chamado
             </button>
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -70,8 +70,8 @@
                         </a>
                     </li>
                     <li class="active">
-                        <a href="#" onclick="chamadoModelo('Todos')">
-                            <i class="fa fa-user-o"></i> Categoria
+                        <a href="#" onclick="chamadoAcesso('Todos')">
+                            <i class="fa fa-user-o"></i> Acesso
                             <span class="label label-primary pull-right"><i class="fa fa-angle-double-right"></i></span>
                         </a>
                     </li>
@@ -90,7 +90,7 @@
     </section>
   <?php
         //ESCREVER--------------------------------------------
-        //-----------------------------------------------
+        //----------------------------------------------------
         $dados = array('acao');
         postRestAjax('chamadoEscrever','chamadoCorpo','msn/chamadoEscrever.php',$dados);
         
@@ -105,7 +105,7 @@
         postRestAjax('chamadoLer2','chamadoCorpo','msn/chamadoLer.php',$dados);
         
         //LISTAR--------------------------------------------
-        //-----------------------------------------------
+        //--------------------------------------------------
         $dados = array('tipo');
         postRestAjax('chamadoListar','chamadoCorpo','msn/chamadoListar.php',$dados);
         //pg
@@ -113,12 +113,34 @@
         postRestAjax('pagUpDownList','chamadoCorpo','msn/chamadoListar.php',$dados); 
         
         //MODELO--------------------------------------------
+        //--------------------------------------------------
         $dados = array('acao');
         postRestAjax('chamadoModelo','chamadoCorpo','msn/chamadoModelo.php',$dados);
         
         //pg
         $dados = array('acao', 'pg');
         postRestAjax('pagUpDownCh','chamadoCorpo','msn/chamadoModelo.php',$dados); 
+        //salvar
+        $dados = array('acao', 'categoria','texto');
+        postRestAjax('modeloSalvar','chamadoCorpo','msn/chamadoModelo.php',$dados);
+        //editar
+        $dados = array('acao', 'idCategoria','texto','id');
+        postRestAjax('modeloEditar','chamadoCorpo','msn/chamadoModelo.php',$dados);
+        //Alterar Status
+        $dados = array('acao', 'id');
+        postRestAjax('alterarStatusModelo','chamadoCorpo','msn/chamadoModelo.php',$dados);
+        
+        //ACESSO_____________________________________________________________
+        //-------------------------------------------------------------------
+        $dados = array('acao');
+        postRestAjax('chamadoAcesso','chamadoCorpo','msn/chamadoAcesso.php',$dados);
+        //salvar
+        $dados = array('acao', 'idUserLogin','idChamadoCategoria');
+        postRestAjax('acessoSalvar','chamadoCorpo','msn/chamadoAcesso.php',$dados);
+        //Alterar Status
+        $dados = array('acao', 'id');
+        postRestAjax('alterarStatusAcesso','chamadoCorpo','msn/chamadoAcesso.php',$dados);
+        
   ?>
 <script>
     window.onload = chamadoListar('Aberto');
