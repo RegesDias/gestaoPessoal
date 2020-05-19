@@ -15,7 +15,7 @@ session_start();
 
     <div class="box-tools pull-right">
       <div class="has-feedback">
-        <input type="text" class="form-control input-sm" placeholder="Search Mail">
+        <input type="text" class="form-control input-sm" placeholder="Procurar chamado">
         <span class="glyphicon glyphicon-search form-control-feedback"></span>
       </div>
     </div>
