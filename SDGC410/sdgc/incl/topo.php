@@ -116,11 +116,11 @@
                     </form>
                     </a>
                 </li>
-
-                <?php if (count($_SESSION["menuRight"])>0){?>
                     <li>
                         <a href="#" onclick="carregar('msn', 'chamado')" id="btnMenuUser"><img src="img/helpDesk.png" class="img-rounded"></a>
                     </li>
+                <?php if (count($_SESSION["menuRight"])>0){?>
+
                     <li>
                         <a href="#" data-toggle="control-sidebar" id="btnMenuUser"><img src="img/vFox.png" class="img-rounded"></a>
                     </li>
