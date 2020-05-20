@@ -123,7 +123,7 @@ function getRest($pf, $data = null, $adress= null) {
         $q = curl_escape($curl, $campos);
         $url = $url . '/' . $q;
     }
-    //echo_p($url);
+   //echo_p($url);
     $options = array(
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_URL => $url,
