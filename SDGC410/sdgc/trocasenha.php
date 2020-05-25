@@ -1,11 +1,14 @@
 <?php
+
+    session_start();
+    $_SESSION['user']['trocarSenha'] = 0;
     require_once 'func/fPhp.php';
     if($method =='get'){
         $respGet = filter_input_array(INPUT_GET, FILTER_DEFAULT);
     }else if($method =='post'){
         $respGet = filter_input_array(INPUT_POST, FILTER_DEFAULT);
     }
-    session_start();
+
 //ALTERAR SENHA
     if ($respGet['acao'] == "alterarSenha") {
         $cBusc = array($_SESSION['user']['login'],$respGet['senha']);

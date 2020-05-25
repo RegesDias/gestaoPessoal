@@ -9,20 +9,16 @@ session_start();
     }
     
 ?> 
-    dia /semana / mes /todos
-    <div class="col-sm-6">
-    <label>Médico</label> <sup><div id="setor" class="hide">!</div></sup>
-    <select id="agendaMedico" class="form-control select2" style="width: 100%;">
-        <option value=""></option>
-        <option value="volvo">dr1</option>
-        <option value="saab">dr2</option>
-        <option value="opel">dr3</option>
-        <option value="audi">dr4</option>
-    </select>
-</div>
+<div class="box box-primary">
   <div class="box-header with-border">
       <h3 class="box-title"><?=$respGet['tipo']?> <span class="label label-primary"><?=count($_SESSION[listaChamados])?></span></h3>
 
+    <div class="box-tools pull-right">
+      <div class="has-feedback">
+        <input type="text" class="form-control input-sm" placeholder="Procurar agendaSESMT">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+      </div>
+    </div>
     <!-- /.box-tools -->
   </div>
   <!-- /.box-header -->

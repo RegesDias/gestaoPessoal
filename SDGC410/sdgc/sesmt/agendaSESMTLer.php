@@ -2,156 +2,109 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
-    $buscAcessoNivel = array("9");
-    $listaAcesso = getRest('userPermissaoAcesso/getPermissaoAcessoDirecao', $buscAcessoNivel);
-    foreach ($listaAcesso as $valor) {
-        if ($valor['link'] == 'agendaSESMTsAdm') {
-            $btnChamadosAdm = true;
-            break;
-        }
-    }
-    if($respGet[acao]== 'salvar'){
-        $cadChamado = array('idChamado' => $respGet['idChamado'], 'texto' => $respGet['texto']);
-        $salvarChamado = array($cadChamado);
-        $executar = postRest('agendaSESMTws/postCriarChamadoDesenv',$salvarChamado);
-        $sesmtTexto = "ao enviar menssagem.";
-    }
-    if($respGet[acao]== 'alterar'){
-        $cadChamado = array('id' => $respGet['idChamado'], 'idCategoria' => $respGet['texto']);
-        $salvarChamado = array($cadChamado);
-        $executar = postRest('agendaSESMTws/postAlterarChamadoCategoria',$salvarChamado);
-        $sesmtTexto = "ao alterar Categoria.";
-        $respGet[acao]= 'ler';
-    }
-    if($respGet[acao] == 'aberto'){
-        $agendaSESMT = array('id' => $respGet['idChamado']);
-        $agendaSESMTE = array($agendaSESMT);
-        $executar = postRest('agendaSESMTws/postAlterarStatusParaAberto',$agendaSESMTE);
-        $sesmtTexto = "Status Alterado.";
-    }
-    if($respGet[acao] == 'analizando'){
-        $agendaSESMT = array('id' => $respGet['idChamado']);
-        $agendaSESMTE = array($agendaSESMT);
-        $executar = postRest('agendaSESMTws/postAlterarStatusParaAnalisando',$agendaSESMTE);
-        $sesmtTexto = "Status Alterado.";
-    }
-    if($respGet[acao] == 'finalizado'){
-        $agendaSESMT = array('id' => $respGet['idChamado']);
-        $agendaSESMTE = array($agendaSESMT);
-        $executar = postRest('agendaSESMTws/postAlterarStatusParaFinalizado',$agendaSESMTE);
-        $sesmtTexto = "Status Alterado.";
-    }
-    exibeMsn($sesmtExibe,$sesmtTexto,$sesmtTipo,$executar);
-    $cTipo = array($respGet['idChamado']);
-    $agendaSESMTsLista = getRest('agendaSESMTws/getBuscaChamadoPorId',$cTipo);   
-    $agendaSESMTsLista[0][dataHora] = dataHoraBr($agendaSESMTsLista[0][dataHora]);
-    $agendaSESMTsDesenv = getRest('agendaSESMTws/getListaChamadoDesenvIdCham', $cTipo);
-    
-    $idChamado = array($respGet['idChamado']);
-    $agendaSESMTsDesc = getRest('agendaSESMTws/getListaChamadoDescPorId',$idChamado); 
-    
-    if($respGet[acao]== 'ler'){
-        $idCategoria = array($agendaSESMTsLista[0][idCategoria]);
-        $_SESSION[agendaSESMTsModelo]= getRest('agendaSESMTws/getListarChamadoMsnModelo',$idCategoria); 
-    }
-    autoComplete($_SESSION["agendaSESMTsModelo"], '#message', 'texto');
-
 ?> 
 <div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">Ler Chamado <?=$respGet['idChamado']?></h3>
-    </div>
-    <div class="box-body no-padding">
-        <div class="mailbox-read-info">
-            <h3>Assunto: <?=$agendaSESMTsLista[0][titulo]?>
-            <span class="mailbox-read-time pull-right"><b><h3><?=$agendaSESMTsLista[0][status]?></h3></b></span>
-            </h3>
-            <h5><b>Categoria:</b> 
-                <?=$agendaSESMTsLista[0][categoria]?>
-                <span class="mailbox-read-time pull-right"><?=$agendaSESMTsLista[0][dataHora]?></span>
-            </h5>
-            <h5><b>Descrição:</b> 
-                <i><?=$agendaSESMTsLista[0][texto]?></i>
-               
-            </h5>
-        </div>
-    <?php if($btnChamadosAdm == true){ ?>
-        <div class="mailbox-controls">
-          <center>
-          </button>
-          <!-- /.btn-group -->
-            <button type="button" class="btn btn-primary btn-sm" onclick="agendaSESMTLer('aberto','<?=$respGet['idChamado']?>')">
-                <i class="fa fa-inbox"></i>
-            </button>
-            <button type="button" class="btn btn-primary btn-sm" onclick="agendaSESMTLer('analizando','<?=$respGet['idChamado']?>')">
-                <i class="fa fa-comment-o"></i>
-            </button>
-            <button type="button" class="btn btn-primary btn-sm" onclick="agendaSESMTLer('finalizado','<?=$respGet['idChamado']?>')">
-                <i class="fa fa-coffee"></i>
-            </button>
-          <center>
-         </div>
-          <label for="exampleInputEmail1">Alterar Categoria</label>
-            <select <?= $inativo ?> id="idChamadoCategoria" name="idLotacaoSubVariaveis" onchange="agendaSESMTLer('alterar','<?=$respGet['idChamado']?>',$('#idChamadoCategoria').val())"  size="1" class="form-control select2" id='ocorrencia' style="width: 100%;">
-                <option>--</option>
-                <?php foreach ($_SESSION[agendaSESMTsCategoria] as $ArrEsp) { ?>
-                    <option value="<?= $ArrEsp['id'] ?>"><?= $ArrEsp['nome'] ?></option>
-                <?php } ?>
-            </select>
-    <?php }?>
-        <div>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Box Comment -->
+          <div class="box box-widget">
+            <div class="box-header with-border">
+              <div class="user-block">
+                <img class="img-circle" src="<?=exibeFoto('09487331794')?>" alt="User Image">
+                <span class="username"><a href="#">027437 - REGES FERNANDES DIAS</a></span>
+                <span class="description">Assistente de Adm e Logistica</span>
+              </div>
+              <!-- /.user-block -->
+              <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
+                  <i class="fa fa-circle-o"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
             <div class="box-body">
-                <div class="box box-primary direct-chat direct-chat-primary">
-                    <div class="direct-chat-messages">
-                        <?php foreach ($agendaSESMTsDesenv as $ArrEsp) { 
-                            if($ArrEsp[suporte] == true){
-                                $nome = "pull-right";
-                                $tempo = "pull-left";
-                                $adm = "right";
-                            }else{
-                                $nome = "pull-left";
-                                $tempo = "pull-right";
-                                $adm = "";
-                            }
-                            $dataHora=dataHoraBr($ArrEsp[dataHora]);
-                            ?>
-                            <div class="direct-chat-msg <?=$adm?>">
-                                <div class="direct-chat-info clearfix">
-                                    <span class="direct-chat-name <?=$nome?>"><?=$ArrEsp[nomeUserLogin]?></span>
-                                    <span class="direct-chat-timestamp <?=$tempo?>"><?=$dataHora?></span>
-                                </div>
-                                <img class="direct-chat-img" src="<?=exibeFoto($ArrEsp['cpfUserlogin'])?>" alt="message user image">
-                                <div class="direct-chat-text">
-                                    <?=$ArrEsp[texto]?>
-                                </div>
+
+              <p><b>Nascimento:</b> 21/08/1982 <b>Data Admissão:</b>01/02/2010</p>
+              <p><b>Regime:</b> Estatutario  <b>Hora/Semanal:</b> 30 </p>
+              
+            <button type="button" class="btn btn-primary"><i class="fa fa-print"></i> Marcações</button>
+            <button class="btn btn-success" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" ><i class="fa fa-calendar-check-o"></i> Agendar</button>
+                <div class="modal fade" id="fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
+                  <div class="modal-dialog modal-md">
+
+                    <div class="modal-content">
+                      <div class="modal-body">
+                            <div class="col-sm-6">
+                                <label>Médico</label> <sup><div id="setor" class="hide">!</div></sup>
+                                <select id="agendaMedico" class="form-control select2" style="width: 100%;">
+                                    <option value=""></option>
+                                    <option value="volvo">dr1</option>
+                                    <option value="saab">dr2</option>
+                                    <option value="opel">dr3</option>
+                                    <option value="audi">dr4</option>
+                                </select>
                             </div>
-                        <?php }?>
-                    </div>      
+                            <div class="col-sm-6">
+                              <label>Dia</label> <sup><div id="setor" class="hide">!</div></sup>
+                              <select id="agendaDia" class="form-control select2" style="width: 100%;">
+                                  <option value=""></option>
+                                  <option value="volvo">01/02</option>
+                                  <option value="saab">02/02</option>
+                                  <option value="opel">03/02</option>
+                                  <option value="audi">04/02</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12"><br></div>
+                      </div>
+                      <div class="modal-footer">
+                            <button class="btn btn-primary" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+                                Confirmar
+                            </button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              <span class="pull-right"><h3>Atendimento 7</h3></span>
             </div>
-            <div class="box-footer">
-                <div class="col-md-12">    
-                   <?php if($agendaSESMTsLista[0][status] == 'Analisando'){ ?>
-                    <form action="#" method="post">
-                         <?php if($btnChamadosAdm == true){ ?>
-                            <div class="input-group">
-                                <input type="text" name="message" id='message' placeholder="Escreva aqui ..." class="form-control">
-                                <span class="input-group-btn">
-                                    <button type="button" onclick="agendaSESMTLer('salvar','<?=$respGet['idChamado']?>',$('#message').val())" class="btn btn-default btn-flat">Enviar</button>
-                                </span>
-                            </div>
-                         <?php }else{ ?>
-                            <div class="input-group">
-                                <input type="text" name="message" id='message' placeholder="Escreva aqui ..." class="form-control">
-                                <span class="input-group-btn">
-                                    <button type="button" onclick="agendaSESMTLer('salvar','<?=$respGet['idChamado']?>',$('#message').val())" class="btn btn-default btn-flat">Enviar</button>
-                                </span>
-                            </div>
-                         <?php }?>
-                    </form>
-                   <?php } ?>
+            <!-- /.box-body -->
+            <div class="box-footer box-comments">
+              <div class="box-comment">
+
+                <div class="comment-text">
+                      <span class="username">
+                        5 - PERICULOSIDADE
+                        <span class="text-muted pull-right">Aberto em: 01/02/2010</span>
+                      </span><!-- /.username -->
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
                 </div>
+                <!-- /.comment-text -->
+              </div>
+              <!-- /.box-comment -->
+              <div class="box-comment">
+                        
+                <div class="comment-text">
+                      <span class="username">
+                        2 - ATESTADO
+                        <span class="text-muted pull-right">Aberto em: 01/02/2010</span>
+                      </span><!-- /.username -->
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+                </div>
+                <!-- /.comment-text -->
+              </div>
+              <!-- /.box-comment -->
             </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
         </div>
-    </div>
+   
 </div>
+<script>
+    configuraTela(); 
+</script>
