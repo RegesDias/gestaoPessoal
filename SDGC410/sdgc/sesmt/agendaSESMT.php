@@ -105,6 +105,10 @@
         //Result
         $dados = array('acao','idChamado','texto');
         postRestAjax('agendaSESMTAtendimentosResult','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosResult.php',$dados);
+        
+        //Ficha
+        $dados = array('acao','idChamado','texto');
+        postRestAjax('agendaSESMTAtendimentosFichaMedica','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosFichaMedica.php',$dados);
 
         //BUSCAR--------------------------------------------
         //--------------------------------------------------

@@ -13,7 +13,7 @@ require_once '../func/fModal.php';
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success"  data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" ><i class="fa fa-calendar-check-o"></i> Ficha Médica</button>
+        <button class="btn btn-success" onclick="agendaSESMTAtendimentosFichaMedica('Agenda Alterar')" ><i class="fa fa-calendar-check-o"></i> Ficha Médica</button>
     </div>
 </div>
 <script>

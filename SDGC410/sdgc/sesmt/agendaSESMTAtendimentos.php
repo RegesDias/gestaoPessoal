@@ -43,14 +43,15 @@ session_start();
         <?php require_once '../sesmt/dadosMedico.php'; ?>
     </div>
     <div class="table-responsive mailbox-messages">
+        <h3>Atendimentos de Hoje</h3>
       <table class="table table-hover table-striped">
         <tbody>
             <tr>
-              <td>
-                   <b>Data</b>
-              </td>
               <td class="mailbox-subject">
                     <b>id</b>
+              </td>
+              <td>
+                   <b>Data</b>
               </td>
               <td class="mailbox-name">
                    <b>Dados</b>
@@ -59,12 +60,12 @@ session_start();
                   <b>Requerimento</b>
               </td>
             </tr>
-            <tr> 
-              <td>
-                  01/01/2020
-              </td>
+            <tr>
               <td class="mailbox-subject">
                     7
+              </td>
+              <td>
+                  01/01/2020
               </td>
               <td class="mailbox-name">
                   <a href="#" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
@@ -86,6 +87,11 @@ session_start();
     <div class="mailbox-controls">
     </div>
   </div>
+</div>
+<div class="modal-footer">
+      <button class="btn btn-primary" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+          Imprimir
+      </button>
 </div>
 <?php if (!count($_SESSION[listaChamados])){ ?>
         <div class="col-lg-12 col-xs-6">
