@@ -39,12 +39,12 @@ if(isset($respGet[acao])){
        <div>
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li><a href="#timeline" data-toggle="tab">Abrir</a></li>
-              <li><a href="#settings" data-toggle="tab">Alterar</a></li>
+              <li class="active"><a href="#abrirAgenda" data-toggle="tab">Abrir</a></li>
+              <li><a href="#alterarAgenda" data-toggle="tab">Alterar</a></li>
             </ul>
             <div class="tab-content">
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="timeline">
+              <div class="tab-pane active" id="abrirAgenda">
                     <div class="box-header with-border">
                         <h3 class="box-title">Abrir Agenda</h3>
                     </div>
@@ -74,31 +74,30 @@ if(isset($respGet[acao])){
               </div>
               <!-- /.tab-pane -->
 
-              <div class="tab-pane" id="settings">
-                asasasasa
-              </div>
-            <div id="<?=$valor['id']?>" class="panel-collapse collapse <?=$in?>">
-              <div class="box-body">
-                  <button class="btn link-button-limpo inline" id="perfil2<?=$valor['id']?>" type="button">
-                       <form action="#" method="post">
-                         <div class="item">
-                               <div>
-                                   <div class="row">
-                                       <div class="attachment">
-                                           <p class="filename">
-                                               <b>Atualizado em:</b> <?=dataHoraBr($valor['dataHora'])?><?=$in?>
-                                           </p>
-                                           <p class="filename">
-                                               <b>Categoria:</b> <?=$valor[agendaSESMTCategoria][nome]?>
-                                           </p>
+              <div class="tab-pane" id="alterarAgenda">
+                    <div id="<?=$valor['id']?>" class="panel-collapse collapse <?=$in?>">
+                      <div class="box-body">
+                          <button class="btn link-button-limpo inline" id="perfil2<?=$valor['id']?>" type="button">
+                               <form action="#" method="post">
+                                 <div class="item">
+                                       <div>
+                                           <div class="row">
+                                               <div class="attachment">
+                                                   <p class="filename">
+                                                       <b>Atualizado em:</b> <?=dataHoraBr($valor['dataHora'])?><?=$in?>
+                                                   </p>
+                                                   <p class="filename">
+                                                       <b>Categoria:</b> <?=$valor[agendaSESMTCategoria][nome]?>
+                                                   </p>
+                                               </div>
+                                          </div>
                                        </div>
-                                  </div>
-                               </div>
-                           </div>
-                       </form>
-                   </button>
+                                   </div>
+                               </form>
+                           </button>
+                      </div>
+                    </div>
               </div>
-            </div>
           </div>
 </div>
 <script>

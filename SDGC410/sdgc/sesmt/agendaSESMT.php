@@ -40,32 +40,32 @@
               <ul class="nav nav-pills nav-stacked">
                 <li class="active">
                     <a href="#" onclick="agendaSESMTEntrada('Entrada')">
-                        <i class="fa fa-medkit"></i> Entrada
+                        <i class="fa fa-ambulance"></i> Entrada
                         <span class="label label-primary pull-right"><i class="fa fa-angle-double-right"></i></span>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="#" onclick="agendaSESMTListar('Agenda')">
-                        <i class="fa fa-calendar-check-o"></i> Atendimentos
+                    <a href="#" onclick="agendaSESMTAtendimentos('Atendimentos')">
+                        <i class="fa fa-stethoscope"></i> Atendimentos
                         <span class="label label-primary pull-right"><i class="fa fa-angle-double-right"></i></span>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="#" onclick="agendaSESMTListar('Agenda')">
-                        <i class="fa fa-calendar-check-o"></i> Buscar
+                    <a href="#" onclick="agendaSESMTBuscar('Buscar')">
+                        <i class="fa fa-search"></i> Buscar
                         <span class="label label-primary pull-right"><i class="fa fa-angle-double-right"></i></span>
                     </a>
                 </li>
                <?php if($btnChamadosAdm == true){ ?>
                     <li class="active">
-                        <a href="#" onclick="agendaSESMTModelo('Cadastrar Médicos')">
-                            <i class="fa fa-stethoscope"></i> Cadastrar Médicos
+                        <a href="#" onclick="agendaSESMTMedico('Cadastrar Médicos')">
+                            <i class="fa fa-user-md"></i> Cadastrar Médicos
                             <span class="label label-primary pull-right"><i class="fa fa-angle-double-right"></i></span>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="#" onclick="agendaSESMTAcesso('Agenda Alterar')">
-                            <i class="fa fa-calendar-check-o"></i> Agenda
+                        <a href="#" onclick="agendaSESMTAgendaEditar('Agenda Alterar')">
+                            <i class="fa  fa-medkit"></i> Agenda
                             <span class="label label-primary pull-right"><i class="fa fa-angle-double-right"></i></span>
                         </a>
                     </li>
@@ -83,6 +83,40 @@
       <!-- /.row -->
     </section>
   <?php
+        //ENTRADA--------------------------------------------
+        //--------------------------------------------------     
+        //abrir
+        $dados = array('tipo');
+        postRestAjax('agendaSESMTEntrada','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados);
+        //pg
+        $dados = array('acao', 'pg');
+        postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados);  
+        //Result
+        $dados = array('acao','idChamado','texto');
+        postRestAjax('agendaSESMTEntradaResult','agendaSESMTCorpo','sesmt/agendaSESMTEntradaResult.php',$dados);  
+        
+        //ATENDIMENTOS--------------------------------------------
+        //--------------------------------------------------
+        $dados = array('tipo');
+        postRestAjax('agendaSESMTAtendimentos','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados);
+        //pg
+        $dados = array('acao', 'pg');
+        postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados); 
+        //Result
+        $dados = array('acao','idChamado','texto');
+        postRestAjax('agendaSESMTAtendimentosResult','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosResult.php',$dados);
+
+        //BUSCAR--------------------------------------------
+        //--------------------------------------------------
+        $dados = array('tipo');
+        postRestAjax('agendaSESMTBuscar','agendaSESMTCorpo','sesmt/agendaSESMTBuscar.php',$dados);
+        //pg
+        $dados = array('acao', 'pg');
+        postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTBuscar.php',$dados); 
+        //Result
+        $dados = array('acao','idChamado','texto');
+        postRestAjax('agendaSESMTBuscarResult','agendaSESMTCorpo','sesmt/agendaSESMTBuscarResult.php',$dados);
+        
         //ESCREVER--------------------------------------------
         //----------------------------------------------------
         $dados = array('acao');
@@ -98,25 +132,10 @@
         $dados = array('acao');
         postRestAjax('agendaSESMTLer2','agendaSESMTCorpo','sesmt/agendaSESMTLer.php',$dados);
         
-        //LISTAR--------------------------------------------
-        //--------------------------------------------------     
-        $dados = array('tipo');
-        postRestAjax('agendaSESMTEntrada','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados);
-        //pg
-        $dados = array('acao', 'pg');
-        postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados);    
-        //LISTAR--------------------------------------------
-        //--------------------------------------------------
-        $dados = array('tipo');
-        postRestAjax('agendaSESMTListar','agendaSESMTCorpo','sesmt/agendaSESMTListar.php',$dados);
-        //pg
-        $dados = array('acao', 'pg');
-        postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTListar.php',$dados); 
-        
-        //MODELO--------------------------------------------
+        //CADASTRAR MEDICO--------------------------------------------
         //--------------------------------------------------
         $dados = array('acao');
-        postRestAjax('agendaSESMTModelo','agendaSESMTCorpo','sesmt/agendaSESMTMedico.php',$dados);
+        postRestAjax('agendaSESMTMedico','agendaSESMTCorpo','sesmt/agendaSESMTMedico.php',$dados);
         
         //pg
         $dados = array('acao', 'pg');
@@ -134,7 +153,7 @@
         //ACESSO_____________________________________________________________
         //-------------------------------------------------------------------
         $dados = array('acao');
-        postRestAjax('agendaSESMTAcesso','agendaSESMTCorpo','sesmt/agendaSESMTAbrirAgenda.php',$dados);
+        postRestAjax('agendaSESMTAgendaEditar','agendaSESMTCorpo','sesmt/agendaSESMTAgendaEditar.php',$dados);
         //salvar
         $dados = array('acao', 'idUserLogin','idChamadoCategoria');
         postRestAjax('acessoSalvar','agendaSESMTCorpo','sesmt/agendaSESMTAbrirAgenda.php',$dados);
@@ -144,5 +163,5 @@
         
   ?>
 <script>
-    window.onload = agendaSESMTListar('Aberto');
+    window.onload = agendaSESMTEntrada('Entrada');
 </script>

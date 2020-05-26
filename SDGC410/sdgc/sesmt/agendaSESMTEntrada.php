@@ -2,24 +2,11 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    $cTipo = array('Aberto');
-    if(isset($respGet[tipo])){
-        $_SESSION[listaChamados] = getRest('chamadows/getListaChamadoUsuario', $cTipo);
-        $_SESSION[agendaSESMTsCategoria] = getRest('chamadows/listarChamadoCategoria');
-    }
     
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
       <h3 class="box-title"><?=$respGet['tipo']?> <span class="label label-primary"><?=count($_SESSION[listaChamados])?></span></h3>
-
-    <div class="box-tools pull-right">
-      <div class="has-feedback">
-        <input type="text" class="form-control input-sm" placeholder="Procurar agendaSESMT">
-        <span class="glyphicon glyphicon-search form-control-feedback"></span>
-      </div>
-    </div>
-    <!-- /.box-tools -->
   </div>
   <!-- /.box-header -->
   <div class="box-body no-padding">
@@ -33,12 +20,12 @@ session_start();
                      <b><?=$v[id]?></b>
               </td>
               <td class="mailbox-subject">
-                  <a href="#" onclick="agendaSESMTLer('ler','<?=$v[id]?>')">
                     7
-                  </a>
               </td>
               <td class="mailbox-name">
-                   27437 - REGES FERNANDES DIAS
+                  <a href="#" onclick="agendaSESMTEntradaResult('ler','<?=$v[id]?>')">
+                    27437 - REGES FERNANDES DIAS
+                  </a>
               </td>
               <td class="mailbox-date">
                    ATESTADO

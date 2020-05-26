@@ -2,27 +2,42 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    $cTipo = array('Aberto');
-    if(isset($respGet[tipo])){
-        $_SESSION[listaChamados] = getRest('chamadows/getListaChamadoUsuario', $cTipo);
-        $_SESSION[agendaSESMTsCategoria] = getRest('chamadows/listarChamadoCategoria');
-    }
     
 ?> 
-    dia /semana / mes /todos
-    <div class="col-sm-6">
-    <label>Médico</label> <sup><div id="setor" class="hide">!</div></sup>
-    <select id="agendaMedico" class="form-control select2" style="width: 100%;">
-        <option value=""></option>
-        <option value="volvo">dr1</option>
-        <option value="saab">dr2</option>
-        <option value="opel">dr3</option>
-        <option value="audi">dr4</option>
-    </select>
-</div>
+<div class="box box-primary">
   <div class="box-header with-border">
-      <h3 class="box-title"><?=$respGet['tipo']?> <span class="label label-primary"><?=count($_SESSION[listaChamados])?></span></h3>
-
+    <div class="col-sm-12">
+        <h3 class="box-title"><?=$respGet['tipo']?> <span class="label label-primary"><?=count($_SESSION[listaChamados])?></span></h3>
+    </div>
+    <div class="col-sm-12"><br></div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nome</label>
+                    <input type="text" id="nome" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Matrícula</label>
+                    <input type="text" id="matricula"  class="form-control">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">CPF</label>
+                    <input type="text" id="cpf" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12"><br></div>
+    <div class="modal-footer">
+          <button class="btn btn-primary" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+              Buscar
+          </button>
+    </div>
     <!-- /.box-tools -->
   </div>
   <!-- /.box-header -->
@@ -37,7 +52,7 @@ session_start();
                      <b><?=$v[id]?></b>
               </td>
               <td class="mailbox-subject">
-                  <a href="#" onclick="agendaSESMTLer('ler','<?=$v[id]?>')">
+                  <a href="#" onclick="agendaSESMTBuscarResult('ler','<?=$v[id]?>')">
                     7
                   </a>
               </td>
@@ -78,3 +93,6 @@ session_start();
           </div>
         </div>
 <?php } ?>
+<script>
+    configuraTela(); 
+</script>
