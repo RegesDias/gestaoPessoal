@@ -2,45 +2,41 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
+print_p();
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">Cadastro Médico</h3>
     </div>
     <div class="box-body">
+        <?php if($respGet[acao] != 'editarMedico'){ ?>
         <div class="row" id="idBoxSelectSecretaria">
             <div class="col-md-12">
                 <label>Secretaria</label>
                 <select name="idSecretaria" size="1"  class="form-control select2" id='idSecretaria' style="width: 100%;">
-
+                    <option value="0940">RH</option>
                 </select>
             </div>
         </div>
         <div class="row" id="idBoxSelectSetor">
             <div class="col-md-12">
                 <label>Setor</label>
-                <select name="idSetor" size="1" class="form-control select2" id="idSetor" style="width: 100%;">
-
+                <select name="idSetor" size="1" class="form-control select2" id="setor" style="width: 100%;">
+                    <option value="0940">setinf</option>
                 </select>
             </div>
         </div>
+        <?php }?>
         <label for="exampleInputEmail1">Servidor</label>
-        <select  class="form-control select2" name='categoria' id='idCategoria' style="width: 100%;">
-             <option selected='selected' value='nulo'></option>
+        <select  class="form-control select2" name='categoria' id='servidor' style="width: 100%;">
+             <option selected='selected' value='27437'>Reges Dias</option>
             <?php foreach ($agendaSESMTsCategoria as $value) {
-                if($value[id] == $editarModelo[0][agendaSESMTCategoria][id]){
-                    $slc = 'selected';
-                }else{
-                    $slc = '';
-                }
-                ?>
-                <option <?=$slc?> value='<?=$value[id]?>'><?=$value[nome]?></option>
-            <?php }?>
+             }?>
         </select>
         <div class="row" id="idBoxSelectDiaSemana">
             <div class="col-md-6">
                 <label>Dia Semana</label>
-                <select name="idSetor" size="1" multiple="multiple" class="form-control select2" id="idSetor" style="width: 100%;">
+                <select name="diaSemana" size="1" multiple="multiple" class="form-control select2" id="diaSemana" style="width: 100%;">
                     <option>Segunda</option>
                     <option>Terça</option>
                     <option>Quarta</option>
@@ -52,21 +48,21 @@ require_once '../func/fModal.php';
             </div>
             <div class="col-md-6">
                 <label>Atendimentos</label>
-                <input type='number' class="form-control" style="width: 100%;">
+                <input type='number' id='atendimentos' class="form-control" style="width: 100%;">
             </div>
         </div>
     </div>
     <div class="box-footer">
-        <?php if($respGet[acao] != 'buscarId'){ ?>
-            <button type="submit" id='enviarChamado' class="pull-right btn btn-primary" onclick="modeloSalvar('modeloSalvar', $('#idCategoria').val(), $('#textoMsn').val())">
-                <i class="fa fa-envelope-o"></i> Enviar
+        <?php if($respGet[acao] != 'editarMedico'){ ?>
+            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#diaSemana option').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentos').val())" type="button">
+                   <i class="fa fa-save"></i> Salvar
             </button>
         <?php }else{?>
-            <button type="submit" id='enviarChamado' class="pull-right btn" onclick="modeloEditar('modeloEditar', $('#idCategoria').val(), $('#textoMsn').val(),<?=$editarModelo[0][id]?>)">
+            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#diaSemana option').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentos').val())" type="button">
                 <i class="fa fa-edit"></i> Alterar
             </button>
         <?php }?>
-        <button type="reset" class="btn btn-default" onclick="agendaSESMTModelo('Todos')">
+        <button type="reset" class="btn btn-default" onclick="agendaSESMTMedico('Limpar')">
             <i class="fa fa-times"></i> Descartar
         </button>
     </div>
@@ -76,11 +72,14 @@ require_once '../func/fModal.php';
             <div class="box-header with-border">
                   <div class="pull-right box-tools">
                       <div class="pull-right box-tools">
-                          <button class="btn btn-primary btn-small" onclick="alterarStatusModelo('buscarId', '<?=$valor['id']?>')" id="perfil<?=$valor['id']?>" type="button">
+                          <button class="btn btn-primary btn-small" onclick="medicoStatus('editarMedico', '2555')" id="perfil<?=$valor['id']?>" type="button">
                               <i class="fa fa-edit"></i>
                           </button>
-                          <button class="btn btn-danger btn-small" onclick="alterarStatusModelo('<?=$acao?>', '<?=$valor['id']?>')" id="perfil<?=$valor['id']?>" type="button">
-                              <i class="fa fa-print"></i>
+                          <button class="btn btn-info btn-small" onclick="medicoStatus('ativarMedico', '22555')" id="perfil<?=$valor['id']?>" type="button">
+                              <i class="fa fa-toggle-off"></i>
+                          </button>
+                          <button class="btn btn-info btn-small" onclick="medicoStatus('desativarMedico', '22555')" id="perfil<?=$valor['id']?>" type="button">
+                              <i class="fa fa-toggle-on"></i>
                           </button>
                       </div>
                   </div>

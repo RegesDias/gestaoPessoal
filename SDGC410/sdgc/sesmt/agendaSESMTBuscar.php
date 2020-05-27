@@ -2,6 +2,8 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
+    autoComplete($_SESSION["nomePessoas"], '#nome', '1');
+    print_p();
     
 ?> 
 <div class="box box-primary">
@@ -34,9 +36,9 @@ session_start();
     </div>
     <div class="col-sm-12"><br></div>
     <div class="modal-footer">
-          <button class="btn btn-primary" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
-              Buscar
-          </button>
+        <button class="btn btn-primary" onclick="buscaAtendimentos('buscaAtendimento',$('#nome').val(),$('#matricula').val(),$('#cpf').val())" type="button">
+            <i class="fa fa-search"></i> Buscar
+        </button>
     </div>
     <!-- /.box-tools -->
   </div>
@@ -47,17 +49,31 @@ session_start();
     <div class="table-responsive mailbox-messages">
       <table class="table table-hover table-striped">
         <tbody>
-            <tr> 
-              <td>
-                     <b><?=$v[id]?></b>
-              </td>
+            <tr>
               <td class="mailbox-subject">
-                  <a href="#" onclick="agendaSESMTBuscarResult('ler','<?=$v[id]?>')">
-                    7
-                  </a>
+                    <b>Status</b>
+              </td>
+              <td>
+                   <b>Data</b>
               </td>
               <td class="mailbox-name">
-                   27437 - REGES FERNANDES DIAS
+                   <b>Servidor</b>
+              </td>
+              <td class="mailbox-date">
+                  <b>Requerimento</b>
+              </td>
+            </tr>
+            <tr> 
+              <td>
+                   Finalizado
+              </td>
+              <td class="mailbox-subject">
+                  10/11/2017
+              </td>
+              <td class="mailbox-name">
+                  <a href="#" onclick="agendaSESMTBuscarResult('ler','<?=$v[id]?>')">
+                    27437 - REGES FERNANDES DIAS
+                  </a>  
               </td>
               <td class="mailbox-date">
                    ATESTADO
@@ -65,7 +81,6 @@ session_start();
             </tr>             
         </tbody>
       </table>
-      <!-- /.table -->
     </div>
     <!-- /.mail-box-messages -->
   </div>

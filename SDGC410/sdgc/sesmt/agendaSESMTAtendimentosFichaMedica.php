@@ -65,8 +65,12 @@ require_once '../func/fModal.php';
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success"  data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" ><i class="fa fa-calendar-check-o"></i> Finalizar</button>
-        <button class="btn btn-success"  data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" ><i class="fa fa-calendar-check-o"></i> Salvar</button>
+        <button class="btn btn-success"  data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
+            <i class="fa fa-check"></i> Finalizar
+        </button>
+        <button class="btn btn-primary"  data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
+            <i class="fa fa-save"></i> Salvar
+        </button>
     </div>
 </div>
 <script>

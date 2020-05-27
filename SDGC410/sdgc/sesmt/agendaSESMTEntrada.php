@@ -2,7 +2,7 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    
+    print_p();
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
@@ -15,14 +15,28 @@ session_start();
     <div class="table-responsive mailbox-messages">
       <table class="table table-hover table-striped">
         <tbody>
-            <tr> 
-              <td>
-                     <b><?=$v[id]?></b>
-              </td>
+            <tr>
               <td class="mailbox-subject">
-                    7
+                    <b>Status</b>
+              </td>
+              <td>
+                   <b>Data</b>
               </td>
               <td class="mailbox-name">
+                   <b>Servidor</b>
+              </td>
+              <td class="mailbox-date">
+                  <b>Requerimento</b>
+              </td>
+            </tr>
+            <tr> 
+                <td>
+                    Aguardando
+                </td>
+              <td>
+                     -
+              </td>
+              <td class="mailbox-subject">
                   <a href="#" onclick="agendaSESMTEntradaResult('ler','<?=$v[id]?>')">
                     27437 - REGES FERNANDES DIAS
                   </a>
@@ -50,10 +64,10 @@ session_start();
             <div class="inner">
               <h3>Vazio</h3>
 
-              <p>Nenhum agendaSESMT encontrado</p>
+              <p>Nenhum paciente encontrado</p>
             </div>
             <div class="icon">
-              <i class="fa   fa-check-square-o"></i>
+              <i class="fa fa-user"></i>
             </div>
             <a href="#" class="small-box-footer">
                 <br>

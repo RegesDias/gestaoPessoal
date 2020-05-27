@@ -20,29 +20,29 @@ require_once '../func/fModal.php';
             <div class="modal-content">
               <div class="modal-body">
                     <div class="col-sm-6">
-                        <label>Médico</label> <sup><div id="setor" class="hide">!</div></sup>
+                        <label>Médico</label>
                         <select id="agendaMedico" class="form-control select2" style="width: 100%;">
                             <option value=""></option>
-                            <option value="volvo">dr1</option>
-                            <option value="saab">dr2</option>
-                            <option value="opel">dr3</option>
-                            <option value="audi">dr4</option>
+                            <option value="1">dr1</option>
+                            <option value="2">dr2</option>
+                            <option value="3">dr3</option>
+                            <option value="4">dr4</option>
                         </select>
                     </div>
                     <div class="col-sm-6">
-                      <label>Dia</label> <sup><div id="setor" class="hide">!</div></sup>
+                      <label>Dia</label>
                       <select id="agendaDia" class="form-control select2" style="width: 100%;">
                           <option value=""></option>
-                          <option value="volvo">01/02</option>
-                          <option value="saab">02/02</option>
-                          <option value="opel">03/02</option>
-                          <option value="audi">04/02</option>
+                          <option>01/02/2020</option>
+                          <option>01/02/2020</option>
+                          <option>01/02/2020</option>
+                          <option>01/02/2020</option>
                         </select>
                     </div>
                     <div class="col-sm-12"><br></div>
               </div>
               <div class="modal-footer">
-                    <button class="btn btn-primary" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+                    <button class="btn btn-primary" onclick="agendaSESMTAgendar('agendar',$('#agendaMedico').val(),$('#agendaDia').val())" type="button">
                         Confirmar
                     </button>
                     <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>

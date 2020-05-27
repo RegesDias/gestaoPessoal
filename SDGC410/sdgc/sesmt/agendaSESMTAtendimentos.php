@@ -2,6 +2,7 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
+    print_p();
     
 ?> 
 <div class="box box-primary">
@@ -11,29 +12,29 @@ session_start();
     </div>
     <div class="col-sm-12"><br></div>
     <div class="col-sm-6">
-        <label>Período</label> <sup><div id="setor" class="hide">!</div></sup>
-        <select id="agendaMedico"  class="form-control select2" style="width: 100%;">
+        <label>Período</label> 
+        <select id="buscaPeriodo"  class="form-control select2" style="width: 100%;">
             <option value=""></option>
             <option value="dia">Hoje</option>
             <option value="semana">Esta Semana</option>
-            <option value="opel">Este mês</option>
+            <option value="mes">Este mês</option>
         </select>
     </div>
     <div class="col-sm-6">
-        <label>Médico</label> <sup><div id="setor" class="hide">!</div></sup>
-        <select id="agendaMedico" class="form-control select2" style="width: 100%;">
+        <label>Médico</label>
+        <select id="buscaMedico" class="form-control select2" style="width: 100%;">
             <option value=""></option>
-            <option value="volvo">dr1</option>
-            <option value="saab">dr2</option>
-            <option value="opel">dr3</option>
-            <option value="audi">dr4</option>
+            <option value="1">dr1</option>
+            <option value="2">dr2</option>
+            <option value="3">dr3</option>
+            <option value="4">dr4</option>
         </select>
     </div>
     <div class="col-sm-12"><br></div>
     <div class="modal-footer">
-          <button class="btn btn-primary" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
-              Buscar
-          </button>
+        <button class="btn btn-primary" onclick="buscaAtendimentos('buscaAtendimento',$('#buscaPeriodo').val(),$('#buscaMedico').val())" type="button">
+            <i class="fa fa-search"></i> Buscar
+        </button>
     </div>
     <!-- /.box-tools -->
   </div>
@@ -48,13 +49,13 @@ session_start();
         <tbody>
             <tr>
               <td class="mailbox-subject">
-                    <b>id</b>
+                    <b>Status</b>
               </td>
               <td>
                    <b>Data</b>
               </td>
               <td class="mailbox-name">
-                   <b>Dados</b>
+                   <b>Servidor</b>
               </td>
               <td class="mailbox-date">
                   <b>Requerimento</b>
@@ -62,7 +63,7 @@ session_start();
             </tr>
             <tr>
               <td class="mailbox-subject">
-                    7
+                    Agendado
               </td>
               <td>
                   01/01/2020
@@ -75,7 +76,90 @@ session_start();
               <td class="mailbox-date">
                    ATESTADO
               </td>
-            </tr>             
+              <td class="mailbox-date">
+                <button class="btn btn-info btn-small" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
+                    <i class="fa fa-toggle-on"></i>
+                </button>
+                <div class="modal fade" id="fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
+                  <div class="modal-dialog modal-md">
+
+                    <div class="modal-content">
+                      <div class="modal-body">
+                            <div class="col-sm-6">
+                                <label>Médico</label>
+                                <select id="agendaMedico" class="form-control select2" style="width: 100%;">
+                                    <option value=""></option>
+                                    <option value="1">dr1</option>
+                                    <option value="2">dr2</option>
+                                    <option value="3">dr3</option>
+                                    <option value="4">dr4</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                              <label>Dia</label>
+                              <select id="agendaDia" class="form-control select2" style="width: 100%;">
+                                  <option value=""></option>
+                                  <option>01/02/2020</option>
+                                  <option>01/02/2020</option>
+                                  <option>01/02/2020</option>
+                                  <option>01/02/2020</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12"><br></div>
+                      </div>
+                      <div class="modal-footer">
+                            <button class="btn btn-primary" onclick="agendaSESMTAgendar('agendar',$('#agendaMedico').val(),$('#agendaDia').val())" type="button">
+                                Confirmar
+                            </button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="mailbox-subject">
+                    -
+              </td>
+              <td>
+                  01/01/2020
+              </td>
+              <td class="mailbox-name">
+                  <a href="#" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
+                      Horário Vago
+                  </a>
+              </td>
+              <td class="mailbox-date">
+                  -
+              </td>
+              <td class="mailbox-date">
+                    <button class="btn btn-info btn-small" onclick="medicoStatus('desativarMedico', '22555')" id="perfil<?=$valor['id']?>" type="button">
+                        <i class="fa fa-toggle-on"></i>
+                    </button>
+              </td>
+            </tr> 
+            <tr>
+              <td class="mailbox-subject">
+                    -
+              </td>
+              <td>
+                  01/01/2020
+              </td>
+              <td class="mailbox-name">
+                  <a href="#" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
+                      Horário Vago
+                  </a>
+              </td>
+              <td class="mailbox-date">
+                  -
+              </td>
+              <td class="mailbox-date">
+                    <button class="btn btn-info btn-small" onclick="medicoStatus('desativarMedico', '22555')" id="perfil<?=$valor['id']?>" type="button">
+                        <i class="fa fa-toggle-on"></i>
+                    </button>
+              </td>
+            </tr> 
         </tbody>
       </table>
       <!-- /.table -->
@@ -89,8 +173,11 @@ session_start();
   </div>
 </div>
 <div class="modal-footer">
-      <button class="btn btn-primary" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
-          Imprimir
+      <button class="btn btn-success" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+        <i class="fa fa-plus"></i> Criar Vaga
+      </button>
+      <button class="btn btn-info" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+        <i class="fa fa-print"></i> Imprimir
       </button>
 </div>
 <?php if (!count($_SESSION[listaChamados])){ ?>
@@ -100,10 +187,10 @@ session_start();
             <div class="inner">
               <h3>Vazio</h3>
 
-              <p>Nenhum agendaSESMT encontrado</p>
+              <p>Nenhum Atendimento Encontrado</p>
             </div>
             <div class="icon">
-              <i class="fa   fa-check-square-o"></i>
+              <i class="fa fa-user"></i>
             </div>
             <a href="#" class="small-box-footer">
                 <br>
