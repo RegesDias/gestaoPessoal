@@ -74,4 +74,10 @@ session_start();
             </a>
           </div>
         </div>
-<?php } ?>
+<?php 
+        //Agendar
+        $dados = array('acao','agendaMedico','agendaDia','agendaPeriodo','idPaciente');
+        $funcao = array('fecharModal');
+        postRestAjax('agendaSESMTAgendar','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados,'','',$funcao);
+
+}?>

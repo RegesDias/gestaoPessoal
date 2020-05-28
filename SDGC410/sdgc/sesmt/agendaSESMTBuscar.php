@@ -51,32 +51,14 @@ session_start();
         <tbody>
             <tr>
               <td class="mailbox-subject">
-                    <b>Status</b>
-              </td>
-              <td>
-                   <b>Data</b>
-              </td>
-              <td class="mailbox-name">
-                   <b>Servidor</b>
-              </td>
-              <td class="mailbox-date">
-                  <b>Requerimento</b>
+                    <b>Servidor</b>
               </td>
             </tr>
             <tr> 
               <td>
-                   Finalizado
-              </td>
-              <td class="mailbox-subject">
-                  10/11/2017
-              </td>
-              <td class="mailbox-name">
                   <a href="#" onclick="agendaSESMTBuscarResult('ler','<?=$v[id]?>')">
                     27437 - REGES FERNANDES DIAS
-                  </a>  
-              </td>
-              <td class="mailbox-date">
-                   ATESTADO
+                  </a> 
               </td>
             </tr>             
         </tbody>

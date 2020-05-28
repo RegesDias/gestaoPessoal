@@ -6,7 +6,7 @@
     <span class="description">MEDICO ESPECIALISTA</span>
   </div>
     <div class="box-body">
-      <p><b>Dias de atendimentos:</b> Segunda e Quinta</p> 
-      <p><b>Total de Atendimentos:</b> 12</p>
+      <p><b>Atendimentos Manhã:</b> 12 - Segunda e Quinta</p> 
+      <p><b>Atendimentos Tarde:</b> 12 - Segunda e Quinta</p> 
     </div>
 </div>

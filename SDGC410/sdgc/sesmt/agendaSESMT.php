@@ -81,10 +81,6 @@
         $dados = array('tipo');
         postRestAjax('agendaSESMTEntrada','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados);
         
-        //Agendar
-        $dados = array('acao','agendaMedico','agendaDia');
-        $funcao = array('fecharModal');
-        postRestAjax('agendaSESMTAgendar','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados,'','',$funcao);
         
         //pg
         $dados = array('acao', 'pg');
@@ -122,7 +118,7 @@
         postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTBuscar.php',$dados); 
         //Buscar
         $dados = array('acao','nome','matricula','cpf');
-        postRestAjax('buscaAtendimentos','agendaSESMTCorpo','sesmt/agendaSESMTBuscar.php',$dados);  
+        postRestAjax('buscaServidor','agendaSESMTCorpo','sesmt/agendaSESMTBuscar.php',$dados);  
         //Result
         $dados = array('acao','idChamado','texto');
         postRestAjax('agendaSESMTBuscarResult','agendaSESMTCorpo','sesmt/agendaSESMTBuscarResult.php',$dados);
@@ -152,7 +148,7 @@
         postRestAjax('pagUpDownCh','agendaSESMTCorpo','sesmt/agendaSESMTMedico.php',$dados); 
         
         //salvar
-        $dados = array('acao', 'diaSemana','servidor','atendimentos');
+        $dados = array('acao', 'diaTarde','diaManha','servidor','atendimentosTarde','atendimentosManha');
         postRestAjax('medicoSalvar','agendaSESMTCorpo','sesmt/agendaSESMTMedico.php',$dados);
         
         //ativar-desativar-editar

@@ -48,6 +48,9 @@ session_start();
       <table class="table table-hover table-striped">
         <tbody>
             <tr>
+                <td colspan='5'><center><b><h4>Manhã</h4></b></center></td>
+            </tr>
+            <tr>
               <td class="mailbox-subject">
                     <b>Status</b>
               </td>
@@ -59,6 +62,9 @@ session_start();
               </td>
               <td class="mailbox-date">
                   <b>Requerimento</b>
+              </td>
+              <td class="mailbox-date">
+                  <b>Ação</b>
               </td>
             </tr>
             <tr>
@@ -77,45 +83,32 @@ session_start();
                    ATESTADO
               </td>
               <td class="mailbox-date">
-                <button class="btn btn-info btn-small" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
-                    <i class="fa fa-toggle-on"></i>
-                </button>
-                <div class="modal fade" id="fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
-                  <div class="modal-dialog modal-md">
-
-                    <div class="modal-content">
-                      <div class="modal-body">
-                            <div class="col-sm-6">
-                                <label>Médico</label>
-                                <select id="agendaMedico" class="form-control select2" style="width: 100%;">
-                                    <option value=""></option>
-                                    <option value="1">dr1</option>
-                                    <option value="2">dr2</option>
-                                    <option value="3">dr3</option>
-                                    <option value="4">dr4</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
-                              <label>Dia</label>
-                              <select id="agendaDia" class="form-control select2" style="width: 100%;">
-                                  <option value=""></option>
-                                  <option>01/02/2020</option>
-                                  <option>01/02/2020</option>
-                                  <option>01/02/2020</option>
-                                  <option>01/02/2020</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-12"><br></div>
-                      </div>
-                      <div class="modal-footer">
-                            <button class="btn btn-primary" onclick="agendaSESMTAgendar('agendar',$('#agendaMedico').val(),$('#agendaDia').val())" type="button">
-                                Confirmar
-                            </button>
-                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                      </div>
-                    </div>
-                  </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
+                        <i class="fa fa-calendar-check-o"></i> Agendar
+                    </button>
                 </div>
+                <?php require_once '../sesmt/modalAgendar.php'; ?>
+              </td>
+            </tr>
+            <tr>
+                <td colspan='5'><center><b><h4>Tarde</h4></b></center></td>
+            </tr>
+            <tr>
+              <td class="mailbox-subject">
+                    <b>Status</b>
+              </td>
+              <td>
+                   <b>Data</b>
+              </td>
+              <td class="mailbox-name">
+                   <b>Servidor</b>
+              </td>
+              <td class="mailbox-date">
+                  <b>Requerimento</b>
+              </td>
+              <td class="mailbox-date">
+                  <b>Ação</b>
               </td>
             </tr>
             <tr>
@@ -134,30 +127,36 @@ session_start();
                   -
               </td>
               <td class="mailbox-date">
-                    <button class="btn btn-info btn-small" onclick="medicoStatus('desativarMedico', '22555')" id="perfil<?=$valor['id']?>" type="button">
-                        <i class="fa fa-toggle-on"></i>
-                    </button>
-              </td>
-            </tr> 
-            <tr>
-              <td class="mailbox-subject">
-                    -
-              </td>
-              <td>
-                  01/01/2020
-              </td>
-              <td class="mailbox-name">
-                  <a href="#" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
-                      Horário Vago
-                  </a>
-              </td>
-              <td class="mailbox-date">
-                  -
-              </td>
-              <td class="mailbox-date">
-                    <button class="btn btn-info btn-small" onclick="medicoStatus('desativarMedico', '22555')" id="perfil<?=$valor['id']?>" type="button">
-                        <i class="fa fa-toggle-on"></i>
-                    </button>
+                  <div class="modal-footer">
+                <button class="btn btn-warning btn-small" data-toggle="modal" data-target="#fecharLotacao2<?=$ArrEsp[idVariavelDesc]?>" >
+                    <i class="fa fa-calendar-check-o"></i> Agendar
+                </button>
+                <div class="modal fade" id="fecharLotacao2<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
+                  <div class="modal-dialog modal-md">
+
+                    <div class="modal-content">
+                      <div class="modal-body">
+                            <div class="col-sm-12">
+                              <label>Servidor</label>
+                              <select id="agendaDia" class="form-control select2" style="width: 100%;">
+                                  <option value=""></option>
+                                  <option>2222-joao</option>
+                                  <option>2223-Reges</option>
+                                  <option>2224-Amauri</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12"><br></div>
+                      </div>
+                      <div class="modal-footer">
+                            <button class="btn btn-primary" onclick="buscaAtendimentos('agendar',$('#agendaMedico').val(),$('#agendaDia').val())" type="button">
+                                Confirmar
+                            </button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               </div>
               </td>
             </tr> 
         </tbody>
@@ -173,6 +172,9 @@ session_start();
   </div>
 </div>
 <div class="modal-footer">
+      <button class="btn btn-warning" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+        <i class="fa fa-minus"></i> Remarcar Todos
+      </button>
       <button class="btn btn-success" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
         <i class="fa fa-plus"></i> Criar Vaga
       </button>
@@ -197,7 +199,12 @@ session_start();
             </a>
           </div>
         </div>
-<?php } ?>
+<?php }  
+        //Agendar
+        $dados = array('acao','agendaMedico','agendaDia','agendaPeriodo','idPaciente');
+        $funcao = array('fecharModal');
+        postRestAjax('agendaSESMTAgendar','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
+?>
 <script>
     configuraTela(); 
 </script>

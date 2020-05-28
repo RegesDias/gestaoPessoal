@@ -65,12 +65,37 @@ require_once '../func/fModal.php';
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success"  data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
+        <button class="btn btn-success" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
             <i class="fa fa-check"></i> Finalizar
         </button>
         <button class="btn btn-primary"  data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
             <i class="fa fa-save"></i> Salvar
         </button>
+    </div>
+    <div class="modal fade" id="fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <label>Ação</label>
+                    <select id="agendaMedico" class="form-control select2" style="width: 100%;">
+                        <option value=""></option>
+                        <option value="1">Homologado</option>
+                        <option value="2">Não Homologado</option>
+                        <option value="3">Pendente de Documentos</option>
+                        <option value="4">Junta Médica</option>
+                    </select>
+                </div>
+                <div class="col-sm-12"><br></div>
+            </div>
+            <div class="modal-footer">
+                  <button class="btn btn-primary" onclick="agendaSESMTAgendar('agendar',$('#agendaMedico').val(),$('#agendaDia').val(),$('#agendaPeriodo').val())" type="button">
+                      Confirmar
+                  </button>
+                  <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+            </div>
+        </div>
+      </div>
     </div>
 </div>
 <script>

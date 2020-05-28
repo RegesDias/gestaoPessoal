@@ -1,6 +1,5 @@
 <div class="box-header with-border">
   <div class="user-block">
-    <span class="pull-right"><h4>ID.7 - Atestado</h4></span>
     <img class="img-circle" src="<?=exibeFoto('09487331794')?>" alt="User Image">
     <span class="username"><a href="#">027437 - REGES FERNANDES DIAS</a></span>
     <span class="description">Assistente de Adm e Logistica</span>
