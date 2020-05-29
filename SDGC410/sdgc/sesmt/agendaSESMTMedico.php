@@ -33,6 +33,9 @@ print_p();
             <?php foreach ($agendaSESMTsCategoria as $value) {
              }?>
         </select>
+        <label for="exampleInputEmail1">CRM</label>
+             <input type='text' id='CRM' class="form-control" style="width: 100%;">
+
         <div class="row" id="idBoxSelectDiaSemana">
             <div class="col-md-6">
                 <label>Dia Semana Manhã</label>
