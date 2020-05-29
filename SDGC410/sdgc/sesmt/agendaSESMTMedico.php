@@ -35,7 +35,7 @@ print_p();
         </select>
         <div class="row" id="idBoxSelectDiaSemana">
             <div class="col-md-6">
-                <label>Dia Semana Manha</label>
+                <label>Dia Semana Manhã</label>
                 <select name="diaManha" size="1" multiple="multiple" class="form-control select2" id="diaManha" style="width: 100%;">
                     <option>Segunda</option>
                     <option>Terça</option>
@@ -47,7 +47,7 @@ print_p();
                 </select>
             </div>
             <div class="col-md-6">
-                <label>Atendimentos Tarde</label>
+                <label>Atendimentos Manhã</label>
                 <input type='number' id='atendimentosManha' class="form-control" style="width: 100%;">
             </div>
         </div>
