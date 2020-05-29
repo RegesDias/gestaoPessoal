@@ -18,7 +18,7 @@ print_p();
             <option value="4">dr4</option>
         </select>
         <label for="exampleInputEmail1">Período</label>
-        <select id="buscaMedico" class="form-control select2" style="width: 100%;">
+        <select id="buscaMedico" multiple="multiple" class="form-control select2" style="width: 100%;">
             <option value=""></option>
             <option value="1">Manhã</option>
             <option value="2">Tarde</option>
