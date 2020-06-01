@@ -14,10 +14,10 @@
     //
 //SISTEMA
 $versaoSDGC = '4.1.2';
-$localBack = false;
+$localBack = true;
 $localEndereco = false;
 $DBteste = false;
-$rodarLocal = true;
+$rodarLocal = false;
 $DBtestePort = '32796';
 //---DEFINIÇÃO DE PARAMETROS PARA TESTE DO SISTEMA
 //raphael
@@ -29,7 +29,7 @@ $DBtestePort = '32796';
 //reges
 //$ip = '97';
 //joao
-//$ip = '89';
+$ip = '89';
 //NoteREges
 //$ip = '51';
 //
@@ -268,6 +268,12 @@ function postRestAjax($nome, $cargEm, $cargArq ,$dados=null, $beforeSend=null, $
                     });
         }
     </script><?php
+}
+function protocolo($dado){
+    $cod = substr($dado, 0, -4); 
+    $cod = str_pad($cod, 6,'0', STR_PAD_LEFT);  
+    $ano = substr($dado, -4); 
+    return $cod."-".$ano;
 }
 //data Frequencia
 $respData = getRest('dataFrequenciaWs/getListaDataFrequencia');
