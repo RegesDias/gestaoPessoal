@@ -148,7 +148,7 @@
         postRestAjax('pagUpDownCh','agendaSESMTCorpo','sesmt/agendaSESMTMedico.php',$dados); 
         
         //salvar
-        $dados = array('acao', 'diaTarde','diaManha','servidor','atendimentosTarde','atendimentosManha');
+        $dados = array('acao', 'diaTarde','diaManha','idHistFunc','atendimentosTarde','atendimentosManha','CRM');
         postRestAjax('medicoSalvar','agendaSESMTCorpo','sesmt/agendaSESMTMedico.php',$dados);
         
         //ativar-desativar-editar

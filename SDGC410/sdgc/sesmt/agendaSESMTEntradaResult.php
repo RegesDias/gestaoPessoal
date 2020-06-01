@@ -2,6 +2,10 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
+    $respGet[cpf] = '09487331794';
+    $cBusc = array($respGet[nome],$respGet[matricula],$respGet[cpf]);
+    $listar = getRest('funcionalws/getListarFuncionalPorNomeMatriculaCpf',$cBusc);
+    print_p($listar);
 ?> 
 <div class="box box-primary">
     <div class="row">

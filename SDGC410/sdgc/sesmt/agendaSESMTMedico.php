@@ -2,6 +2,23 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
+if($respGet[acao] == 'medicoSalvar'){
+        $arrayDiaManha= postJson2D($respGet['diaManha'],'diaManha');
+        $arrayDiaTarde= postJson2D($respGet['diaTarde'],'diaTarde');
+        $cadastrarMedico = array(      
+                        'idHistFunc' => $respGet['idHistFunc'],
+                        'CRM' => $respGet['CRM'],
+                        'atendimentosManha' => $respGet['atendimentosManha'],
+                        'atendimentosTarde' => $respGet['atendimentosTarde'],
+                        'listDiaManha'=> $respGet['diaManha'],
+                        'ListdiaTarde'=> $respGet['diaTarde']
+                    );
+        
+        
+        $cadastrarMedico = array($cadastrarMedico);
+        $executar = postRest('requerimento/postIncluirRequerimentoMedicos',$cadastrarMedico);
+}
+ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 print_p();
 ?> 
 <div class="box box-primary">
@@ -29,7 +46,7 @@ print_p();
         <?php }?>
         <label for="exampleInputEmail1">Servidor</label>
         <select  class="form-control select2" name='categoria' id='servidor' style="width: 100%;">
-             <option selected='selected' value='27437'>Reges Dias</option>
+             <option selected='selected' value='0073540000'>Reges Dias</option>
             <?php foreach ($agendaSESMTsCategoria as $value) {
              }?>
         </select>
@@ -40,13 +57,13 @@ print_p();
             <div class="col-md-6">
                 <label>Dia Semana Manhã</label>
                 <select name="diaManha" size="1" multiple="multiple" class="form-control select2" id="diaManha" style="width: 100%;">
-                    <option>Segunda</option>
-                    <option>Terça</option>
-                    <option>Quarta</option>
-                    <option>Quinta</option>
-                    <option>Sexta</option>
-                    <option>Sabado</option>
-                    <option>Domingo</option>
+                    <option value = '1'>Sabado</option>
+                    <option value = '2'>Segunda</option>
+                    <option value = '3'>Terça</option>
+                    <option value = '4'>Quarta</option>
+                    <option value = '5'>Quinta</option>
+                    <option value = '6'>Sexta</option>
+                    <option value = '7' >Domingo</option>
                 </select>
             </div>
             <div class="col-md-6">
@@ -58,13 +75,13 @@ print_p();
             <div class="col-md-6">
                 <label>Dia Semana Tarde</label>
                 <select name="diaTarde" size="1" multiple="multiple" class="form-control select2" id="diaTarde" style="width: 100%;">
-                    <option>Segunda</option>
-                    <option>Terça</option>
-                    <option>Quarta</option>
-                    <option>Quinta</option>
-                    <option>Sexta</option>
-                    <option>Sabado</option>
-                    <option>Domingo</option>
+                    <option value = '1'>Sabado</option>
+                    <option value = '2'>Segunda</option>
+                    <option value = '3'>Terça</option>
+                    <option value = '4'>Quarta</option>
+                    <option value = '5'>Quinta</option>
+                    <option value = '6'>Sexta</option>
+                    <option value = '7' >Domingo</option>
                 </select>
             </div>
             <div class="col-md-6">
@@ -75,11 +92,11 @@ print_p();
     </div>
     <div class="box-footer">
         <?php if($respGet[acao] != 'editarMedico'){ ?>
-            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#diaManha option').map(function() {return $(this).val();}).get(),$('select#diaTarde option').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val())" type="button">
+            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#diaManha option').map(function() {return $(this).val();}).get(),$('select#diaTarde option').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),$('#CRM').val())" type="button">
                    <i class="fa fa-save"></i> Salvar
             </button>
         <?php }else{?>
-            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#diaManha option').map(function() {return $(this).val();}).get(),$('select#diaTarde option').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val())" type="button">
+            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#diaManha option').map(function() {return $(this).val();}).get(),$('select#diaTarde option').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),,$('#CRM').val())" type="button">
                 <i class="fa fa-edit"></i> Alterar
             </button>
         <?php }?>
