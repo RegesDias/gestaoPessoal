@@ -2,6 +2,7 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
+$diasemana = array(1=>'Domingo', 2=>'Segunda', 3=>'Terça', 4=>'Quarta', 5=>'Quinta', 6=>'Sexta', 7=>'Sabado');
 if($respGet[acao] == 'medicoSalvar'){
         $cadastrarMedico = array(      
                         'idHistFunc' => $respGet['idHistFunc'],
@@ -16,8 +17,28 @@ if($respGet[acao] == 'medicoSalvar'){
         $cadastrarMedico = array($cadastrarMedico);
         $executar = postRest('requerimento/postIncluirRequerimentoMedicos',$cadastrarMedico);
 }
- exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
-print_p();
+if($respGet[acao] == 'ativarMedico'){
+    $statusAlterar = array('idRequerimentoMedico' => $respGet[idMedico]);
+    $sa = array($statusAlterar);
+    $executar = postRest('requerimento/postAtivarRequerimentoMedico',$sa);
+}
+if($respGet[acao] == 'desativarMedico'){
+    $statusAlterar = array('idRequerimentoMedico'=> $respGet[idMedico]);
+    $sa = array($statusAlterar);
+    $executar = postRest('requerimento/postDesativarRequerimentoMedico',$sa);
+}
+if($respGet[acao] == 'editarMedico'){
+    $e = array('idRequerimentoMedico'=> $respGet[idMedico]);
+    $em = getRest('requerimento/getListarRequerimentoMedico',$e);
+    $bdm = array($em[0][idRequerimentoMedico],'manha');
+    $bdt = array($em[0][idRequerimentoMedico],'tarde');
+    $listaEmm = getRest('requerimento/getListarRequerimentoMedicoDias',$bdm);
+    $listaEmt = getRest('requerimento/getListarRequerimentoMedicoDias',$bdt);
+}
+exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
+$listaMedico = getRest('requerimento/getListarRequerimentoMedico');
+
+print_p($listaEmt);
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -49,42 +70,71 @@ print_p();
              }?>
         </select>
         <label for="exampleInputEmail1">CRM</label>
-             <input type='text' id='CRM' class="form-control" style="width: 100%;">
+             <input type='text' id='CRM' value='<?=$em[0][CRM]?>' class="form-control" style="width: 100%;">
 
         <div class="row" id="idBoxSelectDiaSemana">
             <div class="col-md-6">
                 <label>Dia Semana Manhã</label>
                 <select name="diaManha" size="1" multiple="multiple" class="form-control select2" id="diaManha" style="width: 100%;">
-                    <option value = '1'>Sabado</option>
-                    <option value = '2'>Segunda</option>
-                    <option value = '3'>Terça</option>
-                    <option value = '4'>Quarta</option>
-                    <option value = '5'>Quinta</option>
-                    <option value = '6'>Sexta</option>
-                    <option value = '7' >Domingo</option>
+                    <?php
+                        print_p($diasemana);
+                        foreach ($diasemana as $ds) {
+                            $i++;
+                            foreach ($listaEmm as $ld){
+                                //echo "<br>s".$ld." d".$i;
+                                if($ld == $i){
+                                   $s = true;
+                                   break;
+                                }else{
+                                   $s =false;
+                                }
+                                //echo '<br>V'.$s;
+                            }
+                            echo '<br>';
+                            if($s == true){
+                                echo "<option selected value = '$i'>$ds</option>";
+                            }else{
+                                echo "<option value = '$i'>$value</option>";  
+                            }
+                        }
+                    ?>
                 </select>
             </div>
             <div class="col-md-6">
                 <label>Atendimentos Manhã</label>
-                <input type='number' id='atendimentosManha' class="form-control" style="width: 100%;">
+                <input type='number' id='atendimentosManha' value='<?=$em[0][atendimentosManha]?>' class="form-control" style="width: 100%;">
             </div>
         </div>
         <div class="row" id="idBoxSelectDiaSemana">
             <div class="col-md-6">
                 <label>Dia Semana Tarde</label>
-                <select name="diaTarde" size="1" multiple="multiple" class="form-control select2" id="diaTarde" style="width: 100%;">
-                    <option value = '1'>Sabado</option>
-                    <option value = '2'>Segunda</option>
-                    <option value = '3'>Terça</option>
-                    <option value = '4'>Quarta</option>
-                    <option value = '5'>Quinta</option>
-                    <option value = '6'>Sexta</option>
-                    <option value = '7' >Domingo</option>
+                <select name="diaTarde" size="1" multiple="multiple" class="form-control select2" id="diaTarde" style="width: 100%;">s
+                    <?php
+                        foreach ($diasemana as $ds) {
+                            $f++;
+                            foreach ($listaEmt as $ld){
+                                //echo "<br>s".$ld." d".$f;
+                                if($ld == $f){
+                                   $s = true;
+                                   break;
+                                }else{
+                                   $s =false;
+                                }
+                                //echo '<br>V'.$s;
+                            }
+                            //echo '<br>';
+                            if($s == true){
+                                echo "<option selected value = '$f'>$ds</option>";
+                            }else{
+                                echo "<option value = '$f'>$value</option>";  
+                            }
+                        }
+                    ?>
                 </select>
             </div>
             <div class="col-md-6">
                 <label>Atendimentos Tarde</label>
-                <input type='number' id='atendimentosTarde' class="form-control" style="width: 100%;">
+                <input type='number' id='atendimentosTarde' value='<?=$em[0][atendimentosTarde]?>' class="form-control" style="width: 100%;">
             </div>
         </div>
     </div>
@@ -104,43 +154,75 @@ print_p();
     </div>
 </div>
 <div class="box-group" id="accordion">
+    <?php foreach ($listaMedico as $value){
+        $bdm = array($value[idRequerimentoMedico],'manha');
+        $bdt = array($value[idRequerimentoMedico],'tarde');
+        $listadiaManha = getRest('requerimento/getListarRequerimentoMedicoDias',$bdm);
+        $listadiaTarde = getRest('requerimento/getListarRequerimentoMedicoDias',$bdt);
+        ?>
           <div class="panel box box-primary">
             <div class="box-header with-border">
                   <div class="pull-right box-tools">
                       <div class="pull-right box-tools">
-                          <button class="btn btn-primary btn-small" onclick="medicoStatus('editarMedico', '2555')" id="perfil<?=$valor['id']?>" type="button">
+                          <button class="btn btn-primary btn-small" onclick="medicoStatus('editarMedico', '<?=$value[idHistFunc]?>')" id="perfil<?=$value['id']?>" type="button">
                               <i class="fa fa-edit"></i>
                           </button>
-                          <button class="btn btn-info btn-small" onclick="medicoStatus('ativarMedico', '22555')" id="perfil<?=$valor['id']?>" type="button">
-                              <i class="fa fa-toggle-off"></i>
-                          </button>
-                          <button class="btn btn-info btn-small" onclick="medicoStatus('desativarMedico', '22555')" id="perfil<?=$valor['id']?>" type="button">
-                              <i class="fa fa-toggle-on"></i>
-                          </button>
+                          <?php if($value[ativo]){ ?>
+                                <button class="btn btn-success btn-small" onclick="medicoStatus('desativarMedico', '<?=$value[idRequerimentoMedico]?>')" id="perfil<?=$value['id']?>" type="button">
+                                    <i class="fa fa-toggle-on"></i>
+                                </button>                    
+                          <?php }else{ ?>
+                            <button class="btn btn-danger btn-small" onclick="medicoStatus('ativarMedico', '<?=$value[idRequerimentoMedico]?>')" id="perfil<?=$value['id']?>" type="button">
+                                <i class="fa fa-toggle-off"></i>
+                            </button>                  
+                         <?php }?>
                       </div>
                   </div>
                 <h4 class="box-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#abre<?=$valor['id']?>">
-                    22555- João Jabor
+                  <a data-toggle="collapse" data-parent="#accordion" href="#abre<?=$value['idHistFunc']?>">
+                    <?=$value[CRM]."-".$value[nomeMedico]?>
                   </a>
                 </h4>
             </div>
-            <div id="abre<?=$valor['id']?>" class="panel-collapse collapse <?=$in?>">
+            <div id="abre<?=$value['idHistFunc']?>" class="panel-collapse collapse <?=$in?>">
               <div class="box-body">
-                  <button class="btn link-button-limpo inline" id="perfil2<?=$valor['id']?>" type="button">
+                  <button class="btn link-button-limpo inline" id="perfil2<?=$value['idHistFunc']?>" type="button">
                        <form action="#" method="post">
                          <div class="item">
                                <div>
                                    <div class="row">
                                        <div class="attachment">
                                            <p class="filename">
-                                               <b>Atualizado em:</b> <?=dataHoraBr($data)?><?=$in?>
+                                               <b>Atualizado em:</b> <?=dataHoraBr($value['data'])?><?=$in?>
                                            </p>
                                            <p class="filename">
-                                              <b>Total Atendimentos</b> 12<?=$in?>
+                                              <b><h3>Manhã</h3></b>
                                            </p>
                                            <p class="filename">
-                                              <b>Dias de Semana:</b> Segunda e Quinta <?=$in?>
+                                              <b>Total Atendimentos</b> <?=$value[atendimentosManha]?><?=$in?>
+                                           </p>
+                                           <p class="filename">
+                                               <b>Dias de Semana:</b> 
+                                              <?php                                                       
+                                                foreach ($listadiaManha as $dsm){
+                                                    echo diaSemana($dsm)." ";
+                                                    
+                                                }
+                                              ?>       
+                                           </p>
+                                           <p class="filename">
+                                             <b><h3>Tarde</h3></b>
+                                           </p>
+                                           <p class="filename">
+                                              <b>Total Atendimentos</b> <?=$value[atendimentosTarde]?><?=$in?>
+                                           </p>
+                                           <p class="filename">
+                                              <b>Dias de Semana:</b> 
+                                              <?php                                                       
+                                                foreach ($listadiaTarde as $dsm){
+                                                    echo diaSemana($dsm)." ";    
+                                                }
+                                              ?>
                                            </p>
                                        </div>
                                   </div>
@@ -151,10 +233,8 @@ print_p();
               </div>
             </div>
           </div>
+    <?php }?>
 </div>
 <script>
     configuraTela(); 
 </script>
-
-<?php 
-        //require_once "../javascript/fRelat.php";
