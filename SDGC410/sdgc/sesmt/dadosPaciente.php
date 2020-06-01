@@ -1,14 +1,30 @@
+<?php
+    modalInicoFim('macacoesInicioFim', 'Marcações', 'print', 'info', 'macacoesInicioFim', '', 'frequencia');
+
+    $dados = array('dado','acao','ver');
+    postRestAjax('relatorioEmGestao','imprimir','print/info.php',$dados);        
+        
+    $cBusc = array($respGet[nome],$respGet[matricula],$respGet[cpf]);
+    $listarServidor = getRest('funcionalws/getListarFuncionalPorNomeMatriculaCpf',$cBusc);
+?>
 <div class="box-header with-border">
-  <div class="user-block">
-    <img class="img-circle" src="<?=exibeFoto('09487331794')?>" alt="User Image">
-    <span class="username"><a href="#">027437 - REGES FERNANDES DIAS</a></span>
-    <span class="description">Assistente de Adm e Logistica</span>
-  </div>
-    <div class="box-body">
-      <p><b>Nascimento:</b> 21/08/1982 <b>Data Admissão: </b>01/02/2010</p>
-      <p><b>Regime:</b> Estatutario  <b>Hora/Semanal: </b> 30 </p>
-    </div>
+    <?php foreach ($listarServidor as $value){ 
+        ?>
+        <div class="user-block">
+          <img class="img-circle" src="<?=exibeFoto($value[cpf])?>" alt="User Image">
+          <span class="username"><a href="#"><?=$value[matricula]." - ".$value[nome]?></a></span>
+          <span class="description"><?=$value[cargo]?></span>
+        </div>
+        <div class="box-body">
+          <p><b>Nascimento:</b> <?=dataBr($value[nascimento])?> <b>Data Admissão: </b><?=dataBr($value[dataAdmissao])?></p>
+          <p><b>Situação:</b> <?=$value[situacao]?>  <b>Hora/Semanal: </b> <?=$value[horaSemanal]?> </p>
+        </div>
+    <?php }?>
 </div>
-<button type="button" class="btn btn-primary"><i class="fa fa-print"></i> Marcações</button>
-<button type="button" class="btn btn-primary"><i class="fa fa-print"></i> Ficha Funcional</button>
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#macacoesInicioFim">
+    <i class="fa fa-print"></i> <b>Marcações</b>
+</button>
+<button class="btn btn-info" onclick="relatorioEmGestao('<?=$value['idHistFunc']?>','fichaFuncional',true)" type="button">
+    <i class="fa fa-print"></i><b> Ficha Funcional</b>
+</button>
 <button type="button" class="btn btn-primary"><i class="fa fa-print"></i> Histórico Médico</button>

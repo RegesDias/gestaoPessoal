@@ -2,8 +2,7 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    $listaAcesso = getRest('requerimento/getRequerimentoEntrada');
-    print_p($listaAcesso);
+    $listaReqEntrada = getRest('requerimento/getRequerimentoEntrada');
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
@@ -18,10 +17,10 @@ session_start();
         <tbody>
             <tr>
               <td class="mailbox-subject">
-                    <b>Status</b>
+                    <b>Protocolo</b>
               </td>
               <td>
-                   <b>Data</b>
+                   <b>Requisitado em</b>
               </td>
               <td class="mailbox-name">
                    <b>Servidor</b>
@@ -30,22 +29,27 @@ session_start();
                   <b>Requerimento</b>
               </td>
             </tr>
+            <?php foreach ($listaReqEntrada as $value) { 
+                $value['protocolo'] = protocolo($value['protocolo']);
+                $value['dataCriado'] = datahoraBr($value['dataCriado']);
+                ?>
             <tr> 
                 <td>
-                    Aguardando
+                    <?=$value['protocolo']?>
                 </td>
               <td>
-                     -
+                    <?=$value['dataCriado']?>
               </td>
               <td class="mailbox-subject">
-                  <a href="#" onclick="agendaSESMTEntradaResult('ler','<?=$v[id]?>')">
-                    27437 - REGES FERNANDES DIAS
+                  <a href="#" onclick="agendaSESMTEntradaResult('ler','<?=$value[cpf]?>')">
+                    <?=$value['matriculaServidor']?> - <?=$value['nomeServidor']?>
                   </a>
               </td>
               <td class="mailbox-date">
-                   ATESTADO
+                   <?=$value['nomeSolicitaco']?>
               </td>
-            </tr>             
+            </tr>   
+            <?php }?>
         </tbody>
       </table>
       <!-- /.table -->
@@ -58,7 +62,7 @@ session_start();
     </div>
   </div>
 </div>
-<?php if (!count($_SESSION[listaChamados])){ ?>
+<?php if (!count($listaReqEntrada)){ ?>
         <div class="col-lg-12 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">

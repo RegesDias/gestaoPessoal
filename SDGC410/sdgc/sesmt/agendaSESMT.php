@@ -86,9 +86,8 @@
         $dados = array('acao', 'pg');
         postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados);  
         //Result
-        $dados = array('acao','idChamado','texto');
+        $dados = array('acao','cpf','texto');
         postRestAjax('agendaSESMTEntradaResult','agendaSESMTCorpo','sesmt/agendaSESMTEntradaResult.php',$dados);  
-        
         //ATENDIMENTOS--------------------------------------------
         //--------------------------------------------------------
         $dados = array('tipo');

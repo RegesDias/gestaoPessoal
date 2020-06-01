@@ -3,15 +3,13 @@ session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
 if($respGet[acao] == 'medicoSalvar'){
-        $arrayDiaManha= postJson2D($respGet['diaManha'],'diaManha');
-        $arrayDiaTarde= postJson2D($respGet['diaTarde'],'diaTarde');
         $cadastrarMedico = array(      
                         'idHistFunc' => $respGet['idHistFunc'],
                         'CRM' => $respGet['CRM'],
                         'atendimentosManha' => $respGet['atendimentosManha'],
                         'atendimentosTarde' => $respGet['atendimentosTarde'],
                         'listDiaManha'=> $respGet['diaManha'],
-                        'ListdiaTarde'=> $respGet['diaTarde']
+                        'listDiaTarde'=> $respGet['diaTarde']
                     );
         
         
@@ -96,7 +94,7 @@ print_p();
                    <i class="fa fa-save"></i> Salvar
             </button>
         <?php }else{?>
-            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#diaManha option').map(function() {return $(this).val();}).get(),$('select#diaTarde option').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),,$('#CRM').val())" type="button">
+            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#diaManha option').map(function() {return $(this).val();}).get(),$('select#diaTarde option').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),$('#CRM').val())" type="button">
                 <i class="fa fa-edit"></i> Alterar
             </button>
         <?php }?>
