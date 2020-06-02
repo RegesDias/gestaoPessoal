@@ -47,25 +47,27 @@ print_p($listaEmt);
     <div class="box-body">
         <?php if($respGet[acao] != 'editarMedico'){ ?>
         <div class="row" id="idBoxSelectSecretaria">
+            <div id="carregaLot"></div>
             <div class="col-md-12">
                 <label>Secretaria</label>
-                <select name="idSecretaria" size="1"  class="form-control select2" id='idSecretaria' style="width: 100%;">
-                    <option value="0940">RH</option>
+                <select size="1" onchange="getAJAX(<?= "'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuario/', this.value, selectSingleSetorAjax)" class="form-control select2" id='secretariaID' name="idSecretaria" style="width: 100%;">
+<!--                    <option value="0940">RH</option>-->
                 </select>
             </div>
         </div>
         <div class="row" id="idBoxSelectSetor">
             <div class="col-md-12">
                 <label>Setor</label>
-                <select name="idSetor" size="1" class="form-control select2" id="setor" style="width: 100%;">
-                    <option value="0940">setinf</option>
+                <select name="idSetor"  size="1" class="form-control select2" id="setorID" style="width: 100%;">
+<!--                    <option value="0940">setinf</option>-->
                 </select>
             </div>
         </div>
         <?php }?>
         <label for="exampleInputEmail1">Servidor</label>
-        <select  class="form-control select2" name='categoria' id='servidor' style="width: 100%;">
-             <option selected='selected' value='0073540000'>Reges Dias</option>
+        <div id="carregaFuncional"></div>
+        <select  class="form-control select2" name='servidor' id='multiselect' style="width: 100%;">
+<!--             <option selected='selected' value='0073540000'>Reges Dias</option>-->
             <?php foreach ($agendaSESMTsCategoria as $value) {
              }?>
         </select>
@@ -238,3 +240,7 @@ print_p($listaEmt);
 <script>
     configuraTela(); 
 </script>
+
+<?php
+require_once '../javascript/fBoxSecretariaSetor.php';
+?>
