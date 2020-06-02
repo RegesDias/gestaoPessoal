@@ -4,6 +4,7 @@ require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
 $diasemana = array(1=>'Domingo', 2=>'Segunda', 3=>'Terça', 4=>'Quarta', 5=>'Quinta', 6=>'Sexta', 7=>'Sabado');
 if($respGet[acao] == 'medicoSalvar'){
+
         $cadastrarMedico = array(      
                         'idHistFunc' => $respGet['idHistFunc'],
                         'CRM' => $respGet['CRM'],
@@ -58,7 +59,7 @@ print_p($listaEmt);
         <div class="row" id="idBoxSelectSetor">
             <div class="col-md-12">
                 <label>Setor</label>
-                <select name="idSetor"  size="1" class="form-control select2" id="setorID" style="width: 100%;">
+                <select onchange="getAJAX(<?="'" . $ajurl . "'"; ?>, 'funcionalws/getListaFuncionalPorIdSetor/', this.value, selectServidoresPorSetor);" name="idSetor"  size="1" class="form-control select2" id="setorID" style="width: 100%;">
 <!--                    <option value="0940">setinf</option>-->
                 </select>
             </div>
@@ -77,7 +78,7 @@ print_p($listaEmt);
         <div class="row" id="idBoxSelectDiaSemana">
             <div class="col-md-6">
                 <label>Dia Semana Manhã</label>
-                <select name="diaManha" size="1" multiple="multiple" class="form-control select2" id="diaManha" style="width: 100%;">
+                <select name="diaManha[]" size="1" multiple="multiple" class="form-control select2" id="diaManha" style="width: 100%;">
                     <?php
                         print_p($diasemana);
                         foreach ($diasemana as $ds) {
@@ -110,7 +111,7 @@ print_p($listaEmt);
         <div class="row" id="idBoxSelectDiaSemana">
             <div class="col-md-6">
                 <label>Dia Semana Tarde</label>
-                <select name="diaTarde" size="1" multiple="multiple" class="form-control select2" id="diaTarde" style="width: 100%;">s
+                <select name="diaTarde[]" size="1" multiple="multiple" class="form-control select2" id="diaTarde" style="width: 100%;">s
                     <?php
                         foreach ($diasemana as $ds) {
                             $f++;
