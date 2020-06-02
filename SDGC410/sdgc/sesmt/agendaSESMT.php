@@ -159,7 +159,7 @@
         $dados = array('acao');
         postRestAjax('agendaSESMTAgendaEditar','agendaSESMTCorpo','sesmt/agendaSESMTAgendaEditar.php',$dados);
         //salvar
-        $dados = array('acao', 'idUserLogin','idChamadoCategoria');
+        $dados = array('acao', 'inicio','fim','idMedico');
         postRestAjax('agendaSESMTAgendaSalvar','agendaSESMTCorpo','sesmt/agendaSESMTAgendaEditar.php',$dados);
         //Alterar Status
         $dados = array('acao', 'id');

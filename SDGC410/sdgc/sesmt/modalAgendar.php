@@ -1,4 +1,4 @@
-    <div class="modal fade" id="fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
+    <div class="modal fade" id="agenda<?=$ArrEsp?>" role="dialog">
       <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-body">
