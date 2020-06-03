@@ -1,3 +1,8 @@
+<?php
+    $histR = array($respGet[cpf]);
+    $listaHist = getRest('requerimento/getListaRequerimentoPorFuncionalTodos',$histR);
+    print_p($listaHist);
+?>
 <h3>Histórico Médico Recente</h3>
 <div class="box-footer box-comments">
   <div class="box-comment">

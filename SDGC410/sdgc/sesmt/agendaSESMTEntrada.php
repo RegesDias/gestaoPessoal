@@ -3,7 +3,6 @@ session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
     $listaReqEntrada = getRest('requerimento/getRequerimentoEntrada');
-    print_p()
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
