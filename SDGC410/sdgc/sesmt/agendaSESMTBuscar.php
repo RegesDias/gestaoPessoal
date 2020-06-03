@@ -4,7 +4,12 @@ session_start();
     require_once '../func/fModal.php';
     autoComplete($_SESSION["nomePessoas"], '#nome', '1');
     print_p();
-    
+    if($respGet['acao'] ==  'buscaAtendimentos'){
+        echo entrou;
+        $cBusc = array($respGet[nome],$respGet[matricula],$respGet[cpf]);
+        $listar = getRest('requerimento/getListarRequerimentoPorNomeMatriculaCpf',$cBusc);
+        print_r($lista);
+    }
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
@@ -36,7 +41,7 @@ session_start();
     </div>
     <div class="col-sm-12"><br></div>
     <div class="modal-footer">
-        <button class="btn btn-primary" onclick="buscaAtendimentos('buscaAtendimento',$('#nome').val(),$('#matricula').val(),$('#cpf').val())" type="button">
+        <button class="btn btn-primary" onclick="buscaAtendimentos('buscaAtendimentos',$('#nome').val(),$('#matricula').val(),$('#cpf').val())" type="button">
             <i class="fa fa-search"></i> Buscar
         </button>
     </div>

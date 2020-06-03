@@ -97,8 +97,8 @@
         postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados); 
         
         //Buscar
-        $dados = array('acao','buscaPeriodo','buscaMedico');
-        postRestAjax('buscaAtendimentos','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados);    
+        $dados = array('acao','nome','matricula','cpf');
+        postRestAjax('buscaAtendimentos','agendaSESMTCorpo','sesmt/agendaSESMTBuscar.php',$dados);    
         
         //Result
         $dados = array('acao','idChamado','texto');
