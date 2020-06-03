@@ -7,8 +7,7 @@ session_start();
     if($respGet['acao'] ==  'buscaAtendimentos'){
         echo entrou;
         $cBusc = array($respGet[nome],$respGet[matricula],$respGet[cpf]);
-        $listar = getRest('requerimento/getListarRequerimentoPorNomeMatriculaCpf',$cBusc);
-        print_r($lista);
+        $listarBusca = getRest('requerimento/getListarRequerimentoPorNomeMatriculaCpf',$cBusc);
     }
 ?> 
 <div class="box box-primary">
@@ -53,19 +52,22 @@ session_start();
     </div>
     <div class="table-responsive mailbox-messages">
       <table class="table table-hover table-striped">
+          
         <tbody>
             <tr>
               <td class="mailbox-subject">
                     <b>Servidor</b>
               </td>
             </tr>
-            <tr> 
-              <td>
-                  <a href="#" onclick="agendaSESMTBuscarResult('ler','<?=$v[id]?>')">
-                    27437 - REGES FERNANDES DIAS
-                  </a> 
-              </td>
-            </tr>             
+            <?php foreach ($listarBusca as $key => $value) {?>
+                <tr> 
+                  <td>
+                      <a href="#" onclick="agendaSESMTBuscarResult('ler','<?=$v[id]?>')">
+                        27437 - REGES FERNANDES DIAS
+                      </a> 
+                  </td>
+                </tr>
+            <?php }?>
         </tbody>
       </table>
     </div>

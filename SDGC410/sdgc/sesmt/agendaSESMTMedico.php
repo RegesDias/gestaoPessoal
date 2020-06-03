@@ -157,6 +157,7 @@ print_p($em);
         $bdt = array($value[idRequerimentoMedico],'tarde');
         $listadiaManha = getRest('requerimento/getListarRequerimentoMedicoDias',$bdm);
         $listadiaTarde = getRest('requerimento/getListarRequerimentoMedicoDias',$bdt);
+        $value[cpf] = '09487331794';
         ?>
           <div class="panel box box-primary">
             <div class="box-header with-border">
@@ -178,56 +179,82 @@ print_p($em);
                   </div>
                 <h4 class="box-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#abre<?=$value['idHistFunc']?>">
-                    <?=$value[CRM]."-".$value[nomeMedico]?>
+                      <div class="table-responsive mailbox-messages">
+                        <div class="box-body chat" id="chat-box">
+                            <div class="item">
+                                <img src="<?=exibeFoto($value[cpf])?>" alt="user image" class="online"> <?=$value[CRM]."-".$value[nomeMedico]?>
+                            </div>
+
+                        </div>                          
+                      </div>
                   </a>
                 </h4>
             </div>
             <div id="abre<?=$value['idHistFunc']?>" class="panel-collapse collapse <?=$in?>">
               <div class="box-body">
-                  <button class="btn link-button-limpo inline" id="perfil2<?=$value['idHistFunc']?>" type="button">
-                       <form action="#" method="post">
-                         <div class="item">
-                               <div>
-                                   <div class="row">
-                                       <div class="attachment">
-                                           <p class="filename">
-                                               <b>Atualizado em:</b> <?=dataHoraBr($value['data'])?><?=$in?>
-                                           </p>
-                                           <p class="filename">
-                                              <b><h3>Manhã</h3></b>
-                                           </p>
-                                           <p class="filename">
-                                              <b>Total Atendimentos</b> <?=$value[atendimentosManha]?><?=$in?>
-                                           </p>
-                                           <p class="filename">
-                                               <b>Dias de Semana:</b> 
-                                              <?php                                                       
-                                                foreach ($listadiaManha as $dsm){
-                                                    echo diaSemana($dsm)." ";
-                                                    
-                                                }
-                                              ?>       
-                                           </p>
-                                           <p class="filename">
-                                             <b><h3>Tarde</h3></b>
-                                           </p>
-                                           <p class="filename">
-                                              <b>Total Atendimentos</b> <?=$value[atendimentosTarde]?><?=$in?>
-                                           </p>
-                                           <p class="filename">
-                                              <b>Dias de Semana:</b> 
-                                              <?php                                                       
-                                                foreach ($listadiaTarde as $dsm){
-                                                    echo diaSemana($dsm)." ";    
-                                                }
-                                              ?>
-                                           </p>
-                                       </div>
-                                  </div>
-                               </div>
-                           </div>
-                       </form>
-                   </button>
+                <div class="col-md-12">
+                  <!-- Info Boxes Style 2 -->
+                  <div class="info-box bg-yellow">
+                    <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+
+                    <div class="info-box-content">
+                      <span class="info-box-text">Última Alteração</span>
+                      <span class="info-box-number"><?=dataHoraBr($value['data'])?></span>
+
+                      <div class="progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                      </div>
+                      <span class="progress-description">
+
+                          </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                <section class="content">
+                  <div class="row">
+                    <div class="col-lg-6 col-xs-12">
+                      <div class="small-box bg-aqua">
+                        <div class="inner">
+                          <h3>Manhã</h3>
+                          <p><?=$value[atendimentosManha]?> Atendimentos</p>
+                        </div>
+                        <div class="icon">
+                          <i class="fa fa-moon-o"></i>
+                        </div>
+                        <div class="small-box-footer">
+                            <b>
+                                <?php                                                       
+                                  foreach ($listadiaManha as $dsm){
+                                      echo diaSemana($dsm)." ";
+
+                                  }
+                                ?> 
+                            </b>
+                         </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-xs-12">
+                      <div class="small-box bg-green">
+                        <div class="inner">
+                          <h3>Tarde</h3>
+
+                          <p><?=$value[atendimentosTarde]?> Atendimentos</p>
+                        </div>
+                        <div class="icon">
+                          <i class="fa fa-sun-o"></i>
+                        </div>
+                        <div class="small-box-footer">
+                            <?php                                                       
+                              foreach ($listadiaTarde as $dst){
+                                  echo diaSemana($dst)." ";
+
+                              }
+                            ?>
+                        </div>
+                      </div>
+                    </div>
+                </section>
+
               </div>
             </div>
           </div>

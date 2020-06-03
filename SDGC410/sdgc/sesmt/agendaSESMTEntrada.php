@@ -15,6 +15,7 @@ session_start();
     </div>
     <div class="table-responsive mailbox-messages">
             <?php foreach ($listaReqEntrada as $value) {
+                //print_p($listaReqEntrada);
                 $value['protocolo'] = protocolo($value['protocolo']);
                 $value['dataCriado'] = datahoraBr($value['dataCriado']);
                 $ArrEsp = $value['cpf'];
@@ -30,23 +31,22 @@ session_start();
                   </a>
                 </p>
                 <div class="attachment">
-                  <h4>Requisição:</h4>
                 <table class="table table-hover table-striped">
                   <tbody>
                       <tr>
-                        <td class="mailbox-subject">
-                              <b>Protocolo</b>
-                        </td>
                         <td class="mailbox-date">
                             <b>Requerimento</b>
                         </td>
+                        <td class="mailbox-subject">
+                              <b>Protocolo</b>
+                        </td>
                       </tr>
                       <tr> 
-                        <td>
-                            <?=$value['protocolo']?>
-                        </td>
                         <td class="mailbox-date">
                              <?=$value['nomeSolicitaco']?>
+                        </td>
+                        <td>
+                            <?=$value['protocolo']?>
                         </td>
                       </tr>
                   </tbody>
