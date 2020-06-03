@@ -83,16 +83,16 @@ print_p($em);
                     <?php
                         foreach ($diasemana as $ds) {
                             $i++;
-                            foreach ($listaEmm as $ld){
-                                if($ld == $i){
-                                   $s = true;
+                            foreach ($listaEmm as $ldt){
+                                if($ldt == $i){
+                                   $sm = true;
                                    break;
                                 }else{
-                                   $s =false;
+                                   $sm =false;
                                 }
                             }
                             echo '<br>';
-                            if($s == true){
+                            if($sm == true){
                                 echo "<option selected value = '$i'>$ds</option>";
                             }else{
                                 echo "<option value = '$i'>$ds</option>";  
@@ -113,15 +113,15 @@ print_p($em);
                     <?php
                         foreach ($diasemana as $ds) {
                             $f++;
-                            foreach ($listaEmt as $ld){
-                                if($ld == $f){
-                                   $s = true;
+                            foreach ($listaEmt as $ldm){
+                                if($ldm == $f){
+                                   $st = true;
                                    break;
                                 }else{
-                                   $s =false;
+                                   $st =false;
                                 }
                             }
-                            if($s == true){
+                            if($st == true){
                                 echo "<option selected value = '$f'>$ds</option>";
                             }else{
                                 echo "<option value = '$f'>$ds</option>";  
