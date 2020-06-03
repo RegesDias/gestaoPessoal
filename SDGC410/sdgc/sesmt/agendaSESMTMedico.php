@@ -39,8 +39,7 @@ if($respGet[acao] == 'editarMedico'){
 exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
 
-print_p($respGet);
-//print_p($listaEmt);
+print_p($em);
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -53,7 +52,6 @@ print_p($respGet);
             <div class="col-md-12">
                 <label>Secretaria</label>
                 <select size="1" onchange="getAJAX(<?= "'" . $ajurl . "'"; ?>, 'lotacao/getListaLotacaoSubUsuario/', this.value, selectSingleSetorAjax)" class="form-control select2" id='secretariaID' name="idSecretaria" style="width: 100%;">
-<!--                    <option value="0940">RH</option>-->
                 </select>
             </div>
         </div>
@@ -61,18 +59,19 @@ print_p($respGet);
             <div class="col-md-12">
                 <label>Setor</label>
                 <select onchange="getAJAX(<?="'" . $ajurl . "'"; ?>, 'funcionalws/getListaFuncionalPorIdSetor/', this.value, selectServidoresPorSetor);" name="idSetor"  size="1" class="form-control select2" id="setorID" style="width: 100%;">
-<!--                    <option value="0940">setinf</option>-->
                 </select>
             </div>
         </div>
-        <?php }?>
         <label for="exampleInputEmail1">Servidor</label>
         <div id="carregaFuncional"></div>
         <select  class="form-control select2" name='servidor' id='multiselect' style="width: 100%;">
-<!--             <option selected='selected' value='0073540000'>Reges Dias</option>-->
-            <?php foreach ($agendaSESMTsCategoria as $value) {
-             }?>
         </select>
+        <?php }else{?>
+        <select  class="form-control select2" name='servidor' id='multiselect' style="width: 100%;">
+            <option selected value = '<?=$em[0][idHistFunc]?>'><?=$em[0][nomeMedico]?></option>
+        </select>      
+        <?php }?>
+
         <label for="exampleInputEmail1">CRM</label>
              <input type='text' id='CRM' value='<?=$em[0][CRM]?>' class="form-control" style="width: 100%;">
 
@@ -139,11 +138,11 @@ print_p($respGet);
     </div>
     <div class="box-footer">
         <?php if($respGet[acao] != 'editarMedico'){ ?>
-            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#idDiaManha option:selected').map(function() {return $(this).val();}).get(),$('select#idDiaTarde option:selected').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),$('#CRM').val())" type="button">
+            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#idDiaManha option:selected').map(function() {return $(this).val();}).get(),$('select#idDiaTarde option:selected').map(function() {return $(this).val();}).get(),$('#multiselect').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),$('#CRM').val())" type="button">
                    <i class="fa fa-save"></i> Salvar
             </button>
         <?php }else{?>
-            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#idDiaManha option:selected').map(function() {return $(this).val();}).get(),$('select#idDiaTarde option:selected').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),$('#CRM').val())" type="button">
+            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#idDiaManha option:selected').map(function() {return $(this).val();}).get(),$('select#idDiaTarde option:selected').map(function() {return $(this).val();}).get(),$('#multiselect').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),$('#CRM').val())" type="button">
                 <i class="fa fa-edit"></i> Alterar
             </button>
         <?php }?>
