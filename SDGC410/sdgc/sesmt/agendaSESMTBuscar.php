@@ -3,9 +3,7 @@ session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
     autoComplete($_SESSION["nomePessoas"], '#nome', '1');
-    print_p();
     if($respGet['acao'] ==  'buscaAtendimentos'){
-        echo entrou;
         $cBusc = array($respGet[nome],$respGet[matricula],$respGet[cpf]);
         $listarBusca = getRest('requerimento/getListarRequerimentoPorNomeMatriculaCpf',$cBusc);
     }
@@ -13,7 +11,7 @@ session_start();
 <div class="box box-primary">
   <div class="box-header with-border">
     <div class="col-sm-12">
-        <h3 class="box-title"><?=$respGet['tipo']?> <span class="label label-primary"><?=count($_SESSION[listaChamados])?></span></h3>
+        <h3 class="box-title"><?=$respGet['tipo']?></h3>
     </div>
     <div class="col-sm-12"><br></div>
     <div class="box-body">
@@ -40,7 +38,7 @@ session_start();
     </div>
     <div class="col-sm-12"><br></div>
     <div class="modal-footer">
-        <button class="btn btn-primary" onclick="buscaAtendimentos('buscaAtendimentos',$('#nome').val(),$('#matricula').val(),$('#cpf').val())" type="button">
+        <button class="btn btn-success" onclick="buscaAtendimentos('buscaAtendimentos',$('#nome').val(),$('#matricula').val(),$('#cpf').val())" type="button">
             <i class="fa fa-search"></i> Buscar
         </button>
     </div>
@@ -51,42 +49,39 @@ session_start();
     <div class="mailbox-controls">
     </div>
     <div class="table-responsive mailbox-messages">
-      <table class="table table-hover table-striped">
-          
-        <tbody>
-            <tr>
-              <td class="mailbox-subject">
-                    <b>Servidor</b>
-              </td>
-            </tr>
-            <?php foreach ($listarBusca as $key => $value) {?>
-                <tr> 
-                  <td>
-                      <a href="#" onclick="agendaSESMTBuscarResult('ler','<?=$v[id]?>')">
-                        27437 - REGES FERNANDES DIAS
-                      </a> 
-                  </td>
-                </tr>
+        <div class="box-body chat" id="chat-box">
+            <?php foreach ($listarBusca as $key => $value) {
+                ?>
+              <div class="item">
+                    <img src="<?=exibeFoto($value[cpf])?>" alt="user image" class="online">
+
+                    <p class="message">
+                      <a href="#" class="name">
+                        <?=$value['matriculaServidor']?> - <?=$value['nomeServidor']?>
+                      </a>
+                    </p>
+                    <div class="pull-right">
+                          <button type="button" onclick="agendaSESMTEntradaResult('ler','<?=$value[cpf]?>')" class="btn btn-primary btn-sm">
+                              <i class="fa fa-search"></i> Abrir
+                          </button>
+                    </div>
+                </div>
             <?php }?>
-        </tbody>
-      </table>
-    </div>
-    <!-- /.mail-box-messages -->
-  </div>
+         </div>
   <!-- /.box-body -->
   <div class="box-footer no-padding">
     <div class="mailbox-controls">
     </div>
   </div>
 </div>
-<?php if (!count($_SESSION[listaChamados])){ ?>
+<?php if ((count($listarBusca) == 0) and ($respGet['acao'] ==  'buscaAtendimentos')){ ?>
         <div class="col-lg-12 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>Vazio</h3>
 
-              <p>Nenhum agendaSESMT encontrado</p>
+              <p>Nenhum servidor encontrado</p>
             </div>
             <div class="icon">
               <i class="fa   fa-check-square-o"></i>
