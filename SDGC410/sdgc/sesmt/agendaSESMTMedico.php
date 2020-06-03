@@ -157,7 +157,6 @@ print_p($em);
         $bdt = array($value[idRequerimentoMedico],'tarde');
         $listadiaManha = getRest('requerimento/getListarRequerimentoMedicoDias',$bdm);
         $listadiaTarde = getRest('requerimento/getListarRequerimentoMedicoDias',$bdt);
-        $value[cpf] = '09487331794';
         ?>
           <div class="panel box box-primary">
             <div class="box-header with-border">
@@ -194,7 +193,7 @@ print_p($em);
               <div class="box-body">
                 <div class="col-md-12">
                   <!-- Info Boxes Style 2 -->
-                  <div class="info-box bg-yellow">
+                  <div class="info-box bg-info">
                     <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
 
                     <div class="info-box-content">
