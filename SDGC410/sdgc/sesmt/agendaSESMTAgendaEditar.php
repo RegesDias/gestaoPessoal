@@ -8,7 +8,7 @@ require_once '../func/fModal.php';
         $executar = postRest('requerimento/postAbrirAgenda',$sa);
     }
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
-    $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
+    $listaMedico = getRest('requerimento/getListarRequerimentoMedicoAtivos');
 ?>
  <div class="tab-pane active" id="abrirAgenda">
     <div class="box-header with-border">

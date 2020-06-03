@@ -82,29 +82,21 @@ print_p($respGet);
                 
                 <select name="diaManha[]" id="idDiaManha" size="1" multiple="multiple" class="form-control select2"  style="width: 100%;">
                     <?php
-//                    $i=0;
-//                    foreach ($diasemana as $ds) {
-//                        $i++;
-//                        echo "<option value = '$i'>$ds</option>";
-//                    }
-                        //print_p($diasemana);
                         foreach ($diasemana as $ds) {
                             $i++;
                             foreach ($listaEmm as $ld){
-                                //echo "<br>s".$ld." d".$i;
                                 if($ld == $i){
                                    $s = true;
                                    break;
                                 }else{
                                    $s =false;
                                 }
-                                //echo '<br>V'.$s;
                             }
                             echo '<br>';
                             if($s == true){
                                 echo "<option selected value = '$i'>$ds</option>";
                             }else{
-                                echo "<option value = '$i'>$value</option>";  
+                                echo "<option value = '$i'>$ds</option>";  
                             }
                         }
                     ?>
@@ -123,20 +115,17 @@ print_p($respGet);
                         foreach ($diasemana as $ds) {
                             $f++;
                             foreach ($listaEmt as $ld){
-                                //echo "<br>s".$ld." d".$f;
                                 if($ld == $f){
                                    $s = true;
                                    break;
                                 }else{
                                    $s =false;
                                 }
-                                //echo '<br>V'.$s;
                             }
-                            //echo '<br>';
                             if($s == true){
                                 echo "<option selected value = '$f'>$ds</option>";
                             }else{
-                                echo "<option value = '$f'>$value</option>";  
+                                echo "<option value = '$f'>$ds</option>";  
                             }
                         }
                     ?>
