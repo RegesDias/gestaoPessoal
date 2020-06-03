@@ -39,7 +39,8 @@ if($respGet[acao] == 'editarMedico'){
 exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
 
-print_p($listaEmt);
+print_p($respGet);
+//print_p($listaEmt);
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -78,9 +79,15 @@ print_p($listaEmt);
         <div class="row" id="idBoxSelectDiaSemana">
             <div class="col-md-6">
                 <label>Dia Semana Manhã</label>
-                <select name="diaManha[]" size="1" multiple="multiple" class="form-control select2" id="diaManha" style="width: 100%;">
+                
+                <select name="diaManha[]" id="idDiaManha" size="1" multiple="multiple" class="form-control select2"  style="width: 100%;">
                     <?php
-                        print_p($diasemana);
+//                    $i=0;
+//                    foreach ($diasemana as $ds) {
+//                        $i++;
+//                        echo "<option value = '$i'>$ds</option>";
+//                    }
+                        //print_p($diasemana);
                         foreach ($diasemana as $ds) {
                             $i++;
                             foreach ($listaEmm as $ld){
@@ -111,7 +118,7 @@ print_p($listaEmt);
         <div class="row" id="idBoxSelectDiaSemana">
             <div class="col-md-6">
                 <label>Dia Semana Tarde</label>
-                <select name="diaTarde[]" size="1" multiple="multiple" class="form-control select2" id="diaTarde" style="width: 100%;">s
+                <select name="diaTarde[]"id="idDiaTarde" size="1" multiple="multiple" class="form-control select2"  style="width: 100%;">
                     <?php
                         foreach ($diasemana as $ds) {
                             $f++;
@@ -143,11 +150,11 @@ print_p($listaEmt);
     </div>
     <div class="box-footer">
         <?php if($respGet[acao] != 'editarMedico'){ ?>
-            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#diaManha option').map(function() {return $(this).val();}).get(),$('select#diaTarde option').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),$('#CRM').val())" type="button">
+            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#idDiaManha option:selected').map(function() {return $(this).val();}).get(),$('select#idDiaTarde option:selected').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),$('#CRM').val())" type="button">
                    <i class="fa fa-save"></i> Salvar
             </button>
         <?php }else{?>
-            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#diaManha option').map(function() {return $(this).val();}).get(),$('select#diaTarde option').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),$('#CRM').val())" type="button">
+            <button class="btn btn-success pull-right btn-sm" onclick="medicoSalvar('medicoSalvar',$('select#idDiaManha option:selected').map(function() {return $(this).val();}).get(),$('select#idDiaTarde option:selected').map(function() {return $(this).val();}).get(),$('#servidor').val(),$('#atendimentosManha').val(),$('#atendimentosTarde').val(),$('#CRM').val())" type="button">
                 <i class="fa fa-edit"></i> Alterar
             </button>
         <?php }?>
