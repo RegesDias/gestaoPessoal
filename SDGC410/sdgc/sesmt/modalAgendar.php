@@ -1,15 +1,25 @@
-    <div class="modal fade" id="agenda<?=$ArrEsp?>" role="dialog">
+<?php
+    $listaMedico = getRest('requerimento/getListarRequerimentoMedicoAtivos');
+?>
+<div class="modal fade" id="agenda<?=$ArrEsp?>" role="dialog">
       <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="col-sm-12">
                     <label>Médico</label>
-                    <select id="agendaMedico" class="form-control select2" style="width: 100%;">
-                        <option value=""></option>
-                        <option value="1">dr1</option>
-                        <option value="2">dr2</option>
-                        <option value="3">dr3</option>
-                        <option value="4">dr4</option>
+                    <select id='idMedico' class="form-control select2" style="width: 100%;">
+                        <option></option>
+                        <?php foreach ($listaMedico as $value) {
+                            echo "<option value='$value[idRequerimentoMedico]'>$value[nomeMedico]</option>";
+                        }?>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                  <label>Periodo</label>
+                  <select id="agendaPeriodo" class="form-control select2" style="width: 100%;">
+                      <option value=""></option>
+                      <option value='am'>Manhã</option>
+                      <option value='pm'>Tarde</option>
                     </select>
                 </div>
                 <div class="col-sm-6">
@@ -20,14 +30,6 @@
                       <option>01/02/2020</option>
                       <option>01/02/2020</option>
                       <option>01/02/2020</option>
-                    </select>
-                </div>
-                <div class="col-sm-6">
-                  <label>Periodo</label>
-                  <select id="agendaPeriodo" class="form-control select2" style="width: 100%;">
-                      <option value=""></option>
-                      <option value='am'>Manhã</option>
-                      <option value='pm'>Tarde</option>
                     </select>
                 </div>
                 <div class="col-sm-12"><br></div>

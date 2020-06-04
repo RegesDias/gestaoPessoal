@@ -11,7 +11,7 @@ session_start();
 <div class="box box-primary">
   <div class="box-header with-border">
     <div class="col-sm-12">
-        <h3 class="box-title"><?=$respGet['tipo']?></h3>
+        <h3 class="box-title">Buscar</h3>
     </div>
     <div class="col-sm-12"><br></div>
     <div class="box-body">
@@ -38,7 +38,7 @@ session_start();
     </div>
     <div class="col-sm-12"><br></div>
     <div class="modal-footer">
-        <button class="btn btn-success" onclick="buscaAtendimentos('buscaAtendimentos',$('#nome').val(),$('#matricula').val(),$('#cpf').val())" type="button">
+        <button class="btn btn-success" onclick="buscaServidor('buscaAtendimentos',$('#nome').val(),$('#matricula').val(),$('#cpf').val())" type="button">
             <i class="fa fa-search"></i> Buscar
         </button>
     </div>

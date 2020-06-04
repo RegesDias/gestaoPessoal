@@ -14,10 +14,9 @@ session_start();
     </div>
     <div class="table-responsive mailbox-messages">
             <?php foreach ($listaReqEntrada as $value) {
-                //print_p($listaReqEntrada);
                 $value['protocolo'] = protocolo($value['protocolo']);
                 $value['dataCriado'] = datahoraBr($value['dataCriado']);
-                $ArrEsp = $value['cpf'];
+                $ArrEsp = $value['idRequerimento'];
                 ?>
             <div class="box-body chat" id="chat-box">
               <div class="item">

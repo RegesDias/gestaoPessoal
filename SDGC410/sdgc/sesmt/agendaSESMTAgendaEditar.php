@@ -3,7 +3,7 @@ session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
     if($respGet[acao] == 'AbrirAgenda'){
-        $statusAlterar = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim],'idRequerimentoMedico' => '5');
+        $statusAlterar = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim],'idRequerimentoMedico' => $respGet[idMedico]);
         $sa = array($statusAlterar);
         $executar = postRest('requerimento/postAbrirAgenda',$sa);
     }
@@ -23,6 +23,12 @@ require_once '../func/fModal.php';
             }?>
         </select>
         <label for="exampleInputEmail1">Período</label>
+            <select name="select" class="form-control select2" id="periodo">
+              <option value=""></option>
+              <option value="manha">Manhã</option> 
+              <option value="tarde">Tarde</option>
+            </select>
+        <label for="exampleInputEmail1">Intervalo</label>
         <div class="form-group">
             <div class="form-group">
                 <input type='date'  class="form-control" name='mes' id='inicio' style="width: 100%;">
@@ -35,7 +41,7 @@ require_once '../func/fModal.php';
         </div>
     </div>
     <div class="box-footer">
-        <button type="submit" id='enviarChamado' class="pull-right btn btn-primary" onclick="agendaSESMTAgendaSalvar('AbrirAgenda', $('#inicio').val(), $('#fim').val(), $('#idMedico').val())">
+        <button type="submit" id='enviarChamado' class="pull-right btn btn-primary" onclick="agendaSESMTAgendaSalvar('AbrirAgenda', $('#inicio').val(), $('#fim').val(), $('#idMedico').val(),$('#periodo').val())">
             <i class="fa fa-envelope-o"></i> Liberar
         </button>
         <button type="reset" class="btn btn-default" onclick="agendaSESMTAgendaEditar('limpar')">

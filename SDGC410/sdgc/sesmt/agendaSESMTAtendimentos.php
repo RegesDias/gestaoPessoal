@@ -2,37 +2,46 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    print_p();
-    
+    $listaMedico = getRest('requerimento/getListarRequerimentoMedicoAtivos');
+    if($respGet[acao] = 'buscaAtendimento'){
+        $statusAlterar = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim],'idRequerimentoMedico' => $respGet[medico]);
+        $sa = array($statusAlterar);
+        $executar = postRest('requerimento/getAgendaPorPeriodoRequerimentoMedico',$sa);
+    }
+    print_p($statusAlterar);
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
     <div class="col-sm-12">
-        <h3 class="box-title"><?=$respGet['tipo']?> <span class="label label-primary"><?=count($_SESSION[listaChamados])?></span></h3>
+        <h3 class="box-title">Atendimentos</h3>
     </div>
-    <div class="col-sm-12"><br></div>
-    <div class="col-sm-6">
-        <label>Período</label> 
-        <select id="buscaPeriodo"  class="form-control select2" style="width: 100%;">
-            <option value=""></option>
-            <option value="dia">Hoje</option>
-            <option value="semana">Esta Semana</option>
-            <option value="mes">Este mês</option>
-        </select>
-    </div>
-    <div class="col-sm-6">
-        <label>Médico</label>
-        <select id="buscaMedico" class="form-control select2" style="width: 100%;">
-            <option value=""></option>
-            <option value="1">dr1</option>
-            <option value="2">dr2</option>
-            <option value="3">dr3</option>
-            <option value="4">dr4</option>
-        </select>
+    <div class="col-sm-12">
+        <div class="col-sm-6">
+            <label for="exampleInputEmail1">Intervalo</label>
+            <div class="form-group">
+                <div class="form-group">
+                    <input type='date'  class="form-control" name='mes' id='inicio' style="width: 100%;">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <input type='date'  class="form-control" name='mes' id='fim' style="width: 100%;">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label>Médico</label>
+            <select id='idMedico' class="form-control select2" style="width: 100%;">
+                <option></option>
+                <?php foreach ($listaMedico as $value) {
+                    echo "<option value='$value[idRequerimentoMedico]'>$value[nomeMedico]</option>";
+                }?>
+            </select>
+        </div>
     </div>
     <div class="col-sm-12"><br></div>
     <div class="modal-footer">
-        <button class="btn btn-primary" onclick="buscaAtendimentos('buscaAtendimento',$('#buscaPeriodo').val(),$('#buscaMedico').val())" type="button">
+        <button class="btn btn-primary" onclick="buscaAtendimentos('buscaAtendimento',$('#inicio').val(),$('#fim').val(),$('#idMedico').val())" type="button">
             <i class="fa fa-search"></i> Buscar
         </button>
     </div>
