@@ -5,24 +5,23 @@
 ?>
 <h3>Histórico Médico Recente</h3>
 <div class="box-footer box-comments">
-  <div class="box-comment">
-    <div class="comment-text">
-          <span class="username">
-            5 - PERICULOSIDADE
-            <span class="text-muted pull-right btn-success"> Atendido em: 01/02/2010 </span>
-          </span><!-- /.username -->
-      It is a long established fact that a reader will be distracted
-      by the readable content of a page when looking at its layout.
-    </div>
-  </div>
-  <div class="box-comment">
-    <div class="comment-text">
-          <span class="username">
-            2 - ATESTADO
-            <span class="text-muted pull-right btn-success"> Atendido em: 01/02/2010 </span>
-          </span><!-- /.username -->
-      It is a long established fact that a reader will be distracted
-      by the readable content of a page when looking at its layout.
-    </div>
-  </div>
+      <?php foreach ($listaHist as $value) { ?>
+        <div class="box-comment">
+            <div class="comment-text">
+                  <span class="username">
+                    <?=$value[id]." - ".$value[solicitacao]?>
+                    <span class="text-muted pull-right btn-success"><?=$value[status]?></span>
+                  </span><!-- /.username -->
+                  <b>Protocolo:</b> <?=$value[protocolo]?>
+            </div>
+            <?php if($value[idStatus] < 5){?>
+            <div class="modal-footer">
+                <button class="btn btn-info" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
+                    <i class="fa fa-calendar-check-o"></i> Agendar
+                </button>
+            </div>
+            <?php }?>
+          </div>
+        <?php require '../sesmt/modalAgendar.php'; ?>
+      <?php }?>
 </div>
