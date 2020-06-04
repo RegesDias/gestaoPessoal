@@ -3,9 +3,10 @@ session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
     if($respGet[acao] == 'AbrirAgenda'){
-        $statusAlterar = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim],'idRequerimentoMedico' => $respGet[idMedico]);
+        $statusAlterar = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim],'idRequerimentoMedico' => $respGet[idMedico], 'periodo' => $respGet[periodo]);
         $sa = array($statusAlterar);
         $executar = postRest('requerimento/postAbrirAgenda',$sa);
+        print_p($executar);
     }
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $listaMedico = getRest('requerimento/getListarRequerimentoMedicoAtivos');

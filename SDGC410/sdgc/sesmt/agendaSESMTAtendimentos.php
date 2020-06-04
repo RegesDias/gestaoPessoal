@@ -4,11 +4,10 @@ session_start();
     require_once '../func/fModal.php';
     $listaMedico = getRest('requerimento/getListarRequerimentoMedicoAtivos');
     if($respGet[acao] = 'buscaAtendimento'){
-        $statusAlterar = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim],'idRequerimentoMedico' => $respGet[medico]);
-        $sa = array($statusAlterar);
-        $executar = postRest('requerimento/getAgendaPorPeriodoRequerimentoMedico',$sa);
+        $lAtend = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim],'idRequerimentoMedico' => $respGet[medico]);
+        $listaAtendimentos = getRest('requerimento/getAgendaPorPeriodoRequerimentoMedico',$lAtend);
     }
-    print_p($statusAlterar);
+    print_p($listaAtendimentos);
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
