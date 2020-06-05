@@ -81,34 +81,10 @@ session_start();
                                       <center><i>Vago</i></center>
                                   </td>
                                     <td class="mailbox-date">
-                                            <button class="btn btn-warning btn-small" data-toggle="modal" data-target="#fecharLotacao2<?=$ArrEsp[idVariavelDesc]?>" >
+                                            <button class="btn btn-warning btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp[idVariavelDesc]?>" >
                                                 <i class="fa fa-calendar-check-o"></i>
                                             </button>
-                                            <div class="modal fade" id="fecharLotacao2<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
-                                              <div class="modal-dialog modal-md">
-
-                                                <div class="modal-content">
-                                                  <div class="modal-body">
-                                                        <div class="col-sm-12">
-                                                          <label>Servidor</label>
-                                                          <select id="agendaDia" class="form-control select2" style="width: 100%;">
-                                                              <option value=""></option>
-                                                              <option>2222-joao</option>
-                                                              <option>2223-Reges</option>
-                                                              <option>2224-Amauri</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-sm-12"><br></div>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                        <button class="btn btn-primary" onclick="buscaAtendimentos('agendar',$('#agendaMedico').val(),$('#agendaDia').val())" type="button">
-                                                            Confirmar
-                                                        </button>
-                                                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
+                                        <?php require_once '../sesmt/modalAgendar.php'; ?>
                                     </td>
                                     </tr>
                                    <?php }else{ ?>
@@ -123,7 +99,7 @@ session_start();
                                                 <a href="#" class="btn btn-info btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
                                                     <i class="fa fa-search"></i>
                                                 </a>
-                                                  <button class="btn btn-info btn-small" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
+                                                  <button class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp[idVariavelDesc]?>" >
                                                       <i class="fa fa-calendar-check-o"></i>
                                                   </button>
                                                   <?php require_once '../sesmt/modalAgendar.php'; ?>

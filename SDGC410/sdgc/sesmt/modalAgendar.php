@@ -1,8 +1,7 @@
 <?php
     $histR = array();
     $listaMedicos = getRest('requerimento/getListarMedicoComVagasAbertas',$histR);
-    print_p($listaMedicos);
-    if($value2[matriculaServidor] == 'VAGO'){?>
+    if($value2[matriculaServidor] == 'VAGO'){ ?>
         <div class="modal fade" id="agenda<?=$ArrEsp?>" role="dialog">
           <div class="modal-dialog modal-md">
 
@@ -28,7 +27,7 @@
             </div>
           </div>
         </div>
-    <?}else{?>   
+    <?php }else{?>   
         <div class="modal fade" id="agenda<?=$ArrEsp?>" role="dialog">
               <div class="modal-dialog modal-md">
                 <div class="modal-content">
@@ -70,4 +69,4 @@
                 </div>
               </div>
             </div>
-    <?}?>
+    <?php }?>
