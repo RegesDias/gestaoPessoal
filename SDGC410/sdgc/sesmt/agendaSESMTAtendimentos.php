@@ -112,8 +112,19 @@ session_start();
 
                 </table>
               </div>
+                <div class="modal-footer">
+                    <div class="pull-right">
+                        <button class="btn btn-warning" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+                          <i class="fa fa-plus"></i> Criar Vaga
+                        </button>
+                        <button class="btn btn-info" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+                          <i class="fa fa-calendar-check-o"></i> Remarcar Todos
+                        </button>
+                    </div>
+                </div>
             </div><?php  
             $dataAtual = $value[data];
+            
         }?>
     <!-- /.box-body -->
     <div class="box-footer no-padding">
@@ -122,12 +133,6 @@ session_start();
     </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-warning" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
-          <i class="fa fa-minus"></i> Remarcar Todos
-        </button>
-        <button class="btn btn-success" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
-          <i class="fa fa-plus"></i> Criar Vaga
-        </button>
         <button class="btn btn-info" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
           <i class="fa fa-print"></i> Imprimir
         </button>
