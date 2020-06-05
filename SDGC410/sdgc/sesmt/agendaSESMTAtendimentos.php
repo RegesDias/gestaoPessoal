@@ -70,17 +70,6 @@ session_start();
                         <b>Atendimentos: </b><?=$value[vagas]?>
                     </td>
                </tr>
-                <tr>
-                  <td class="mailbox-name">
-                       <i><b>Servidor</b></i>
-                  </td>
-                  <td class="mailbox-date">
-                      <i><b>Requerimento</b></i>
-                  </td>
-                  <td class="mailbox-date">
-                      <i><b>Ação</b></i>
-                  </td>
-                </tr>
                <?php
                     $ll = array('folha' => $value[idFolha]);
                     $llinha = getRest('requerimento/getListarLinhasPorIdFolha',$ll);
@@ -92,11 +81,9 @@ session_start();
                                       <center><i>Vago</i></center>
                                   </td>
                                     <td class="mailbox-date">
-                                      <div class="modal-footer">
                                             <button class="btn btn-warning btn-small" data-toggle="modal" data-target="#fecharLotacao2<?=$ArrEsp[idVariavelDesc]?>" >
                                                 <i class="fa fa-calendar-check-o"></i>
                                             </button>
-                                      </div>
                                             <div class="modal fade" id="fecharLotacao2<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
                                               <div class="modal-dialog modal-md">
 
@@ -133,7 +120,6 @@ session_start();
                                              <?=$value2[requerimentoSolicitacao]?>
                                         </td>
                                           <td class="mailbox-date">
-                                            <div class="modal-footer">
                                                 <a href="#" class="btn btn-info btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
                                                     <i class="fa fa-search"></i>
                                                 </a>
@@ -141,7 +127,6 @@ session_start();
                                                       <i class="fa fa-calendar-check-o"></i>
                                                   </button>
                                                   <?php require_once '../sesmt/modalAgendar.php'; ?>
-                                            </div>
                                           </td>
                                     </tr>
                                <?php }?>
