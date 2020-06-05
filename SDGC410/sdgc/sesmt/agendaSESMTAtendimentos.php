@@ -3,11 +3,10 @@ session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
     $listaMedico = getRest('requerimento/getListarRequerimentoMedicoAtivos');
-    if($respGet[acao] = 'buscaAtendimento'){
+    if($respGet[acao] == 'buscaAtendimento'){
         $lAtend = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim],'idRequerimentoMedico' => $respGet[medico]);
-        $listaAtendimentos = getRest('requerimento/getAgendaPorPeriodoRequerimentoMedico',$lAtend);
+        $listaFolha = getRest('requerimento/getListarFolhaPorPeriodoEMedico',$lAtend);
     }
-    print_p($listaAtendimentos);
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
@@ -47,150 +46,145 @@ session_start();
     <!-- /.box-tools -->
   </div>
   <!-- /.box-header -->
+  <?php if((count($listaFolha) and $respGet[acao] == 'buscaAtendimento')){ ?>
   <div class="box-body no-padding">
     <div class="mailbox-controls">
         <?php require_once '../sesmt/dadosMedico.php'; ?>
     </div>
     <div class="table-responsive mailbox-messages">
-        <h3>Atendimentos de Hoje</h3>
+        <h3>Atendimentos</h3>
       <table class="table table-hover table-striped">
         <tbody>
-            <tr>
-                <td colspan='5'><center><b><h4>Manhã</h4></b></center></td>
-            </tr>
-            <tr>
-              <td class="mailbox-subject">
-                    <b>Status</b>
-              </td>
-              <td>
-                   <b>Data</b>
-              </td>
-              <td class="mailbox-name">
-                   <b>Servidor</b>
-              </td>
-              <td class="mailbox-date">
-                  <b>Requerimento</b>
-              </td>
-              <td class="mailbox-date">
-                  <b>Ação</b>
-              </td>
-            </tr>
-            <tr>
-              <td class="mailbox-subject">
-                    Agendado
-              </td>
-              <td>
-                  01/01/2020
-              </td>
-              <td class="mailbox-name">
-                  <a href="#" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
-                      27437 - REGES FERNANDES DIAS
-                  </a>
-              </td>
-              <td class="mailbox-date">
-                   ATESTADO
-              </td>
-              <td class="mailbox-date">
-                <div class="modal-footer">
-                    <button class="btn btn-info" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
-                        <i class="fa fa-calendar-check-o"></i> Agendar
-                    </button>
-                </div>
-                <?php require_once '../sesmt/modalAgendar.php'; ?>
-              </td>
-            </tr>
-            <tr>
-                <td colspan='5'><center><b><h4>Tarde</h4></b></center></td>
-            </tr>
-            <tr>
-              <td class="mailbox-subject">
-                    <b>Status</b>
-              </td>
-              <td>
-                   <b>Data</b>
-              </td>
-              <td class="mailbox-name">
-                   <b>Servidor</b>
-              </td>
-              <td class="mailbox-date">
-                  <b>Requerimento</b>
-              </td>
-              <td class="mailbox-date">
-                  <b>Ação</b>
-              </td>
-            </tr>
-            <tr>
-              <td class="mailbox-subject">
-                    -
-              </td>
-              <td>
-                  01/01/2020
-              </td>
-              <td class="mailbox-name">
-                  <a href="#" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
-                      Horário Vago
-                  </a>
-              </td>
-              <td class="mailbox-date">
-                  -
-              </td>
-              <td class="mailbox-date">
-                  <div class="modal-footer">
-                <button class="btn btn-warning btn-small" data-toggle="modal" data-target="#fecharLotacao2<?=$ArrEsp[idVariavelDesc]?>" >
-                    <i class="fa fa-calendar-check-o"></i> Agendar
-                </button>
-                <div class="modal fade" id="fecharLotacao2<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
-                  <div class="modal-dialog modal-md">
+            <?php foreach ($listaFolha as $value) {
+                $value[data] = dataHorabr($value[data]);
+                $value[data] = substr($value[data], 0, -5); 
+                ?>
+                <tr>
+                    <td>
+                        <h4><b><?=$value[periodo]?></b><h4>
+                    </td>
+                    <td>
+                        <?=$value[data]?>
+                    </td>
+                    <td>
+                        <b>Atendimentos: </b><?=$value[vagas]?>
+                    </td>
+               </tr>
+                <tr>
+                  <td class="mailbox-name">
+                       <i><b>Servidor</b></i>
+                  </td>
+                  <td class="mailbox-date">
+                      <i><b>Requerimento</b></i>
+                  </td>
+                  <td class="mailbox-date">
+                      <i><b>Ação</b></i>
+                  </td>
+                </tr>
+               <?php
+                    $ll = array('folha' => $value[idFolha]);
+                    $llinha = getRest('requerimento/getListarLinhasPorIdFolha',$ll);
+                    foreach ($llinha as $value2) {?>
 
-                    <div class="modal-content">
-                      <div class="modal-body">
-                            <div class="col-sm-12">
-                              <label>Servidor</label>
-                              <select id="agendaDia" class="form-control select2" style="width: 100%;">
-                                  <option value=""></option>
-                                  <option>2222-joao</option>
-                                  <option>2223-Reges</option>
-                                  <option>2224-Amauri</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-12"><br></div>
-                      </div>
-                      <div class="modal-footer">
-                            <button class="btn btn-primary" onclick="buscaAtendimentos('agendar',$('#agendaMedico').val(),$('#agendaDia').val())" type="button">
-                                Confirmar
-                            </button>
-                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-               </div>
-              </td>
-            </tr> 
-        </tbody>
-      </table>
-      <!-- /.table -->
+                               <?php if($value2[matriculaServidor] == 'VAGO'){ ?>
+                                <tr>
+                                    <td class="mailbox-name" colspan="2">
+                                      <center><i>Vago</i></center>
+                                  </td>
+                                    <td class="mailbox-date">
+                                      <div class="modal-footer">
+                                            <button class="btn btn-warning btn-small" data-toggle="modal" data-target="#fecharLotacao2<?=$ArrEsp[idVariavelDesc]?>" >
+                                                <i class="fa fa-calendar-check-o"></i>
+                                            </button>
+                                      </div>
+                                            <div class="modal fade" id="fecharLotacao2<?=$ArrEsp[idVariavelDesc]?>" role="dialog">
+                                              <div class="modal-dialog modal-md">
+
+                                                <div class="modal-content">
+                                                  <div class="modal-body">
+                                                        <div class="col-sm-12">
+                                                          <label>Servidor</label>
+                                                          <select id="agendaDia" class="form-control select2" style="width: 100%;">
+                                                              <option value=""></option>
+                                                              <option>2222-joao</option>
+                                                              <option>2223-Reges</option>
+                                                              <option>2224-Amauri</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-sm-12"><br></div>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                        <button class="btn btn-primary" onclick="buscaAtendimentos('agendar',$('#agendaMedico').val(),$('#agendaDia').val())" type="button">
+                                                            Confirmar
+                                                        </button>
+                                                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                    </td>
+                                    </tr>
+                                   <?php }else{ ?>
+                                    <tr>
+                                        <td class="mailbox-name">
+                                            <?=$value2[matriculaServidor]." - ".$value2[nomeServidor]?>
+                                        </td>
+                                        <td class="mailbox-date">
+                                             <?=$value2[requerimentoSolicitacao]?>
+                                        </td>
+                                          <td class="mailbox-date">
+                                            <div class="modal-footer">
+                                                <a href="#" class="btn btn-info btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                                  <button class="btn btn-info btn-small" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
+                                                      <i class="fa fa-calendar-check-o"></i>
+                                                  </button>
+                                                  <?php require_once '../sesmt/modalAgendar.php'; ?>
+                                            </div>
+                                          </td>
+                                    </tr>
+                               <?php }?>
+
+                    <?php }?>
+                    <!--<td colspan='5'>-->
+                        <?php
+                            //print_p($llinha);
+                        ?>
+                    <!--</td>-->
+               <?php }?>
+                <td class="mailbox-date">
+                    <div class="modal-footer">
+
+                 </div>
+                </td>
+              </tr> 
+          </tbody>
+        </table>
+        <!-- /.table -->
+      </div>
+      <!-- /.mail-box-messages -->
     </div>
-    <!-- /.mail-box-messages -->
-  </div>
-  <!-- /.box-body -->
-  <div class="box-footer no-padding">
-    <div class="mailbox-controls">
+    <!-- /.box-body -->
+    <div class="box-footer no-padding">
+      <div class="mailbox-controls">
+      </div>
     </div>
-  </div>
-</div>
-<div class="modal-footer">
-      <button class="btn btn-warning" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
-        <i class="fa fa-minus"></i> Remarcar Todos
-      </button>
-      <button class="btn btn-success" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
-        <i class="fa fa-plus"></i> Criar Vaga
-      </button>
-      <button class="btn btn-info" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
-        <i class="fa fa-print"></i> Imprimir
-      </button>
-</div>
-<?php if (!count($_SESSION[listaChamados])){ ?>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+          <i class="fa fa-minus"></i> Remarcar Todos
+        </button>
+        <button class="btn btn-success" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+          <i class="fa fa-plus"></i> Criar Vaga
+        </button>
+        <button class="btn btn-info" onclick="fecharEmSecretaria('fecharVariavelSecretaria','<?=$ArrEsp[idVariavelDesc]?>','<?=$ArrEsp[variaveisDesc]?>')" type="button">
+          <i class="fa fa-print"></i> Imprimir
+        </button>
+    </div>
+<?php }?>
+
+<?php if (!count($listaFolha) and ($respGet[acao] == 'buscaAtendimento')){ ?>
         <div class="col-lg-12 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
