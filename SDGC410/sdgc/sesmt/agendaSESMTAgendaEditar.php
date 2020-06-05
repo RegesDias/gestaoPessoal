@@ -6,7 +6,6 @@ require_once '../func/fModal.php';
         $statusAlterar = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim],'idRequerimentoMedico' => $respGet[idMedico], 'periodo' => $respGet[periodo]);
         $sa = array($statusAlterar);
         $executar = postRest('requerimento/postAbrirAgenda',$sa);
-        print_p($executar);
     }
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $listaMedico = getRest('requerimento/getListarRequerimentoMedicoAtivos');

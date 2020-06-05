@@ -52,80 +52,69 @@ session_start();
         <?php require_once '../sesmt/dadosMedico.php'; ?>
     </div>
     <div class="table-responsive mailbox-messages">
-        <h3>Atendimentos</h3>
-      <table class="table table-hover table-striped">
-        <tbody>
-            <?php foreach ($listaFolha as $value) {
-                $value[data] = dataHorabr($value[data]);
-                $value[data] = substr($value[data], 0, -5); 
-                ?>
-                <tr>
-                    <td>
-                        <h4><b><?=$value[periodo]?></b><h4>
-                    </td>
-                    <td>
-                        <?=$value[data]?>
-                    </td>
-                    <td>
-                        <b>Atendimentos: </b><?=$value[vagas]?>
-                    </td>
-               </tr>
-               <?php
+        <h3>Atendimentos</h3><?php 
+        foreach ($listaFolha as $value) {
+            if($value[periodo] == 'manha'){$value[periodo] = 'Manhã';}
+            if($value[periodo] == 'tarde'){$value[periodo] = 'Tarde';}
+            $value[data] = dataHorabr($value[data]);
+            $value[data] = substr($value[data], 0, -5);
+            if($dataAtual != $value[data]){?>
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <center><h3 class="box-title"><i class="fa fa-medkit"></i>  <?=$value[data]?></h3></center>
+                  </div>
+                <div><?php 
+                
+            }?>
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title"> <?=$value[periodo]?> total de <?=$value[vagas]?> atendimento(s)</h3>
+              </div>
+              <div class="box-body no-padding">
+                <table class="table table-condensed"><?php
                     $ll = array('folha' => $value[idFolha]);
                     $llinha = getRest('requerimento/getListarLinhasPorIdFolha',$ll);
-                    foreach ($llinha as $value2) {?>
-
-                               <?php if($value2[matriculaServidor] == 'VAGO'){ ?>
-                                <tr>
-                                    <td class="mailbox-name" colspan="2">
-                                      <center><i>Vago</i></center>
-                                  </td>
-                                    <td class="mailbox-date">
-                                            <button class="btn btn-warning btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp[idVariavelDesc]?>" >
-                                                <i class="fa fa-calendar-check-o"></i>
-                                            </button>
+                    foreach ($llinha as $value2) {
+                        if($value2[matriculaServidor] == 'VAGO'){ ?>
+                            <tr>
+                                <td colspan="2">
+                                    <center><span class="badge bg-yellow"> Vago </span></center>
+                                </td>
+                                <td>                  
+                                    <div class="pull-right">
+                                        <button class="btn btn-warning btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp[idVariavelDesc]?>" >
+                                            <i class="fa fa-calendar-check-o"></i>
+                                        </button>
                                         <?php require_once '../sesmt/modalAgendar.php'; ?>
-                                    </td>
-                                    </tr>
-                                   <?php }else{ ?>
-                                    <tr>
-                                        <td class="mailbox-name">
-                                            <?=$value2[matriculaServidor]." - ".$value2[nomeServidor]?>
-                                        </td>
-                                        <td class="mailbox-date">
-                                             <?=$value2[requerimentoSolicitacao]?>
-                                        </td>
-                                          <td class="mailbox-date">
-                                                <a href="#" class="btn btn-info btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
-                                                    <i class="fa fa-search"></i>
-                                                </a>
-                                                  <button class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp[idVariavelDesc]?>" >
-                                                      <i class="fa fa-calendar-check-o"></i>
-                                                  </button>
-                                                  <?php require_once '../sesmt/modalAgendar.php'; ?>
-                                          </td>
-                                    </tr>
-                               <?php }?>
+                                    </div>
+                                </td>
+                            </tr><?php        
+                        }else{ ?>
+                            <tr>
+                                <td class="mailbox-name">
+                                    <?=$value2[matriculaServidor]." - ".$value2[nomeServidor]?>
+                                </td>
+                                <td class="mailbox-date">
+                                     <?=$value2[requerimentoSolicitacao]?>
+                                </td>
+                                  <td class="mailbox-date">
+                                        <a href="#" class="btn btn-info btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$v[id]?>')">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                          <button class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp[idVariavelDesc]?>" >
+                                              <i class="fa fa-calendar-check-o"></i>
+                                          </button>
+                                          <?php require_once '../sesmt/modalAgendar.php'; ?>
+                                  </td>
+                            </tr><?php 
+                        }
+                    }?>
 
-                    <?php }?>
-                    <!--<td colspan='5'>-->
-                        <?php
-                            //print_p($llinha);
-                        ?>
-                    <!--</td>-->
-               <?php }?>
-                <td class="mailbox-date">
-                    <div class="modal-footer">
-
-                 </div>
-                </td>
-              </tr> 
-          </tbody>
-        </table>
-        <!-- /.table -->
-      </div>
-      <!-- /.mail-box-messages -->
-    </div>
+                </table>
+              </div>
+            </div><?php  
+            $dataAtual = $value[data];
+        }?>
     <!-- /.box-body -->
     <div class="box-footer no-padding">
       <div class="mailbox-controls">
