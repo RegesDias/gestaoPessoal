@@ -76,7 +76,14 @@ if ($value2[matriculaServidor] == 'VAGO') {
         listaIdLinha = arrayColumn(listaMapeada, 2);
 
         let listaDataFolhaPeriodo = listaDataFolha.map(function (elem, index) {
-            return elem + '-' + listaPeriodo[index];
+            listaPeriodo[index] = listaPeriodo[index].replace("manha", "Manhã");
+            listaPeriodo[index] = listaPeriodo[index].replace("tarde", "Tarde");
+            let data = elem.split('T')[0];
+            let dia = data.split('-')[2];
+            let mes = data.split('-')[1];
+            let ano = data.split('-')[0];
+            data = dia+'/'+mes+'/'+ano;
+            return data + ' (' + listaPeriodo[index]+')';
         });
 
         let selectAgenda = pegaElementoPorId('idLinha');
