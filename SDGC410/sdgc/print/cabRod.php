@@ -244,6 +244,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='contraCheque'){
     $matricula = $_SESSION['funcionalBusca']['matricula'];
     $cBusc = array($matricula, $mesAno, $tipo);
     $lista = getRest('relatorio/getRelContraCheque',$cBusc);
+    //print_p($lista);
 }
 // Se for previaFolha
 if(isset($respGet['acao']) && $respGet['acao']=='previaFolha'){
@@ -295,7 +296,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='folhapontoInicioFim'){
 }
 //FolhaPrevia
 if(isset($respGet['acao']) && $respGet['acao']=='getRelRevia'){
-   
+
     $data = $respGet['mesAnoInicial'];
     $idLotacao = $respGet['idSecretaria'];
     $cBusc = array($idLotacao, $data, $tipo);
@@ -303,6 +304,7 @@ if(isset($respGet['acao']) && $respGet['acao']=='getRelRevia'){
     $btnExportarCSV = true;
     $btnExportar = true;
 }
+
 //NSD
 if(isset($respGet['acao']) && $respGet['acao']=='getRelNsd'){
 

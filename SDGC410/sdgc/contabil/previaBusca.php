@@ -89,8 +89,14 @@ if ($_SESSION["totalLista"] >= 1){?>
                                     <button type="button" onclick="gerarRelPrevia('getRelRevia','<?=$dataCompleta?>', '<?=$valor[0]?>', true)" class='btn btn-default pull-right' value="Voltar">
                                         <img src="img/imprimir_ponto.png">
                                     </button>
+                                    <button id="idBtnExportarXlsPreviaFolha" type="button" class='btn btn-default pull-right' value="Voltar">
+                                        <img width="50" height="50" src="img/xls_icon.svg">
+                                    </button>
+                                
                               </div>
                             </div><?php
+                                $meAnoInicial = $dataCompleta;
+                                $idSecretaria = $valor[0];
                             }?>
                          </div>
                     </div>
@@ -110,3 +116,48 @@ if ($_SESSION["totalLista"] >= 1){?>
     postRestAjax('gerarRelPrevia','imprimir','print/info.php',$dados);
 
 ?>
+
+ <?php
+    //Obtem a URL do exel
+    $tipo = "xls";
+    $data = $meAnoInicial;
+    $idLotacao = $idSecretaria;
+    $cBusc = array($idLotacao, $data, $tipo);
+    $lista = getRest('relatorio/getRelFolhaPrevia',$cBusc);
+    //$btnExportarCSV = true;
+    //$btnExportar = true;
+    $_SESSION['listaUrl'] = $lista;
+    
+    //Obtem o base64 do XLS
+    $url = $_SESSION['listaUrl']['url'];
+    $arrFrom = array(".html?");
+    $arrTo = array(".xls?");
+    $url = str_replace($arrFrom, $arrTo, $url);
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HEADER, false);
+    $data = curl_exec($curl);
+    $base64Data = base64_encode($data);
+    curl_close($curl);
+    
+    session_start();
+?>
+
+<script>
+    $('#idBtnExportarXlsPreviaFolha').click(function (e) {
+        //defineFormato('xls');
+        
+        
+        var a = document.createElement('a');
+        var data_type = 'data:application/vnd.ms-excel;base64';
+        //var table_div = document.getElementById('dvData');
+        var table_html = '<?=$base64Data?>';
+        a.href = data_type + ',' + table_html;
+        a.download = 'Relatorio.xls';
+        a.click();
+        e.preventDefault();
+        
+
+    });
+</script>
