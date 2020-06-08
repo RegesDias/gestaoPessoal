@@ -35,14 +35,12 @@ if ($value2[matriculaServidor] == 'VAGO') {
                 <div class="modal-body">
                     <div class="col-sm-12">
                         <label>Médico</label>
-                        <select onchange="getAJAX(<?= "'" . $ajurl . "'"; ?>, 'requerimento/getListarLinhasVagasPorIdRequerimentoMedico/', this.value, selectAgendaDia)" id="agendaMedico" class="form-control select2" style="width: 100%;">
+                        <select onchange="getAJAX(<?="'".$ajurl."'";?>,'requerimento/getListarLinhasVagasPorIdRequerimentoMedico/',this.value,selectAgendaDia)" id="agendaMedico" class="form-control select2" style="width: 100%;">
                             <option value=""></option>
                             <?php
                             foreach ($listaMedicos as $medico) {
                                 ?>     
-
                                 <option value="<?= $medico[idRequerimentoMedico] ?>"><?= $medico[nomeMedico] ?></option>
-
                                 <?php
                             }
                             ?>
@@ -69,10 +67,7 @@ if ($value2[matriculaServidor] == 'VAGO') {
 <?php } ?>
 
 <script>
-
     function selectAgendaDia(lista) {
-
-        console.log(lista);
 
         var listaMapeada = lista.map(item => [item.dataFolha, item.periodo, item.idLinha]);
         let arrayColumn = (arr, n) => arr.map(x => x[n]);
@@ -87,6 +82,4 @@ if ($value2[matriculaServidor] == 'VAGO') {
         let selectAgenda = pegaElementoPorId('idAgendaDia');
         preencheSelect(selectAgenda, listaDataFolhaPeriodo, listaIdLinha);
     }
-
-
 </script>
