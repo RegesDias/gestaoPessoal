@@ -8,7 +8,6 @@ require_once '../func/fModal.php';
         $executar = postRest('requerimento/postAlterarStatusRequerimento',$agendar);
     }
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
-    print_p($ag);
 ?> 
 <script>
     configuraTela(); 

@@ -2,7 +2,6 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    print_p();
     if($respGet[acao] == 'agendarServidor'){
         $ag = array('idLinha' => $respGet[idLinha],'idRequerimentoFuncional' => $respGet[idRequerimentoFuncional]);
         $agendar = array($ag);

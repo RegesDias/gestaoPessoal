@@ -38,8 +38,6 @@ if($respGet[acao] == 'editarMedico'){
 }
 exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
-
-print_p($em);
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">

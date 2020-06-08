@@ -2,7 +2,6 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
-print_p();
 ?> 
 <div class="box box-primary">
     <div class="row">
