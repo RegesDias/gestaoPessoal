@@ -80,14 +80,13 @@
         //Abrir
         $dados = array('tipo');
         postRestAjax('agendaSESMTEntrada','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados);
-        
-        
         //pg
         $dados = array('acao', 'pg');
         postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados);  
         //Result
         $dados = array('acao','cpf','texto');
         postRestAjax('agendaSESMTEntradaResult','agendaSESMTCorpo','sesmt/agendaSESMTEntradaResult.php',$dados);  
+        
         //ATENDIMENTOS--------------------------------------------
         //--------------------------------------------------------
         $dados = array('tipo');
@@ -107,6 +106,10 @@
         //Ficha
         $dados = array('acao','idChamado','texto');
         postRestAjax('agendaSESMTAtendimentosFichaMedica','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosFichaMedica.php',$dados);
+        
+        //criarVaga
+        $dados = array('acao','idFolha','inicio','fim','medico');
+        postRestAjax('criarVaga','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosResult.php',$dados);   
 
         //BUSCAR--------------------------------------------
         //--------------------------------------------------
@@ -164,6 +167,10 @@
         //Alterar Status
         $dados = array('acao', 'id');
         postRestAjax('alterarStatusAcesso','agendaSESMTCorpo','sesmt/agendaSESMTAbrirAgenda.php',$dados);
+        //Agendar
+        $dados = array('acao','idLinha','idRequerimentoFuncional','medico');
+        $funcao = array('fecharModal();');
+        postRestAjax('agendaSESMTAgendar','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
         
   ?>
 <script>

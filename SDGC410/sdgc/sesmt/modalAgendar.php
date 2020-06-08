@@ -48,7 +48,7 @@ if ($value2[matriculaServidor] == 'VAGO') {
                     </div>
                     <div class="col-sm-12">
                         <label>Vaga</label>
-                        <select id="idAgendaDia" class="form-control select2" style="width: 100%;">
+                        <select id="idLinha" class="form-control select2" style="width: 100%;">
                             <option value=""></option>
                         </select>
                     </div>
@@ -56,7 +56,7 @@ if ($value2[matriculaServidor] == 'VAGO') {
                     <div class="col-sm-12"><br></div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" onclick="agendaSESMTAgendar('agendar', $('#agendaMedico').val(), $('#agendaDia').val(), $('#agendaPeriodo').val(), '1')" type="button">
+                    <button class="btn btn-primary" onclick="agendaSESMTAgendar('agendar', $('#idLinha').val(), '<?=$value[idRequerimentoFuncional]?>',$('#agendaMedico').val(),)" type="button">
                         Confirmar
                     </button>
                     <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
@@ -79,7 +79,7 @@ if ($value2[matriculaServidor] == 'VAGO') {
             return elem + '-' + listaPeriodo[index];
         });
 
-        let selectAgenda = pegaElementoPorId('idAgendaDia');
+        let selectAgenda = pegaElementoPorId('idLinha');
         preencheSelect(selectAgenda, listaDataFolhaPeriodo, listaIdLinha);
     }
 </script>
