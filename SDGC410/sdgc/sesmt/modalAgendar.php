@@ -35,7 +35,7 @@ if ($value2[matriculaServidor] == 'VAGO') {
                 <div class="modal-body">
                     <div class="col-sm-12">
                         <label>Médico</label>
-                        <select onchange="getAJAX(<?="'".$ajurl."'";?>,'requerimento/getListarLinhasVagasPorIdRequerimentoMedico/',this.value,selectAgendaDia)" id="agendaMedico" class="form-control select2" style="width: 100%;">
+                        <select onchange="getAJAX(<?="'".$ajurl."'";?>,'requerimento/getListarLinhasVagasPorIdRequerimentoMedico/',this.value,selectAgendaDia<?= $ArrEsp ?>)" id="agendaMedico<?= $ArrEsp ?>" class="form-control select2" style="width: 100%;">
                             <option value=""></option>
                             <?php
                             foreach ($listaMedicos as $medico) {
@@ -48,7 +48,7 @@ if ($value2[matriculaServidor] == 'VAGO') {
                     </div>
                     <div class="col-sm-12">
                         <label>Vaga</label>
-                        <select id="idLinha" class="form-control select2" style="width: 100%;">
+                        <select id="idLinha<?= $ArrEsp ?>" class="form-control select2" style="width: 100%;">
                             <option value=""></option>
                         </select>
                     </div>
@@ -64,10 +64,8 @@ if ($value2[matriculaServidor] == 'VAGO') {
             </div>
         </div>
     </div>
-<?php } ?>
-
 <script>
-    function selectAgendaDia(lista) {
+    function selectAgendaDia<?= $ArrEsp ?>(lista) {
 
         var listaMapeada = lista.map(item => [item.dataFolha, item.periodo, item.idLinha]);
         let arrayColumn = (arr, n) => arr.map(x => x[n]);
@@ -86,7 +84,9 @@ if ($value2[matriculaServidor] == 'VAGO') {
             return data + ' (' + listaPeriodo[index]+')';
         });
 
-        let selectAgenda = pegaElementoPorId('idLinha');
+        let selectAgenda = pegaElementoPorId('idLinha<?= $ArrEsp ?>');
         preencheSelect(selectAgenda, listaDataFolhaPeriodo, listaIdLinha);
     }
 </script>
+<?php } ?>
+
