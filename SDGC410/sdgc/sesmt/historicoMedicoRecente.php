@@ -15,13 +15,24 @@
                   </span><!-- /.username -->
                   <b>Protocolo:</b> <?=$value[protocolo]?>
             </div>
-            <?php if($value[idStatus] < 5){?>
             <div class="modal-footer">
-                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
-                    <i class="fa fa-calendar-check-o"></i> Agendar
-                </button>
+                <?php if($value[idStatus] == 4){?>
+                    <button class="btn btn-danger" onclick="alterarStatusRequerimento('alterarStatusRequerimento',<?=$value[id]?>,'<?=$respGet[cpf]?>','99')" >
+                       <i class="fa fa-calendar-times-o"></i> Cancelar
+                   </button>
+                    <button class="btn btn-warning" onclick="alterarStatusRequerimento('alterarStatusRequerimento',<?=$value[id]?>,'<?=$respGet[cpf]?>','97')">
+                       <i class="fa fa-calendar-times-o"></i> Não compareceu
+                   </button>
+                    <button class="btn btn-success" onclick="agendaSESMTAtendimentosFichaMedica('Agenda Alterar','<?=$value[id]?>','<?=$respGet[cpf]?>')" >
+                        <i class="fa fa-stethoscope"></i> Ficha Médica
+                    </button>
+                <?php }?>
+                <?php if($value[reAgenda] == true){?>
+                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
+                        <i class="fa fa-calendar-check-o"></i> Agendar
+                    </button>
+                <?php }?>
             </div>
-            <?php }?>
           </div>
         <?php require '../sesmt/modalAgendar.php'; ?>
       <?php }?>
