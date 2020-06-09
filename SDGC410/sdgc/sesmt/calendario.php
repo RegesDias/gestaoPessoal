@@ -27,7 +27,7 @@ require_once '../func/fModal.php';
 				<tr>
 					<td class="null">30</td>
 					<td class="null">31</td>
-					<td><a href="#">1</a></td>
+					<td><a href="#">1<i class="fa fa-user-md"></i></a></td>
 					<td><a href="#">2</a></td>
 					<td><a href="#">3</a></td>
 					<td><a href="#">4</a></td>
