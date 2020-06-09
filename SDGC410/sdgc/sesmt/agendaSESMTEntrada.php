@@ -7,7 +7,7 @@ session_start();
 ?> 
 <div class="box box-primary">
   <div class="box-header with-border">
-      <h3 class="box-title"><?=$respGet['tipo']?> <span class="label label-primary"><?=count($_SESSION[listaChamados])?></span></h3>
+      <h3 class="box-title">Entrada</h3>
   </div>
   <!-- /.box-header -->
   <div class="box-body no-padding">

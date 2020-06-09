@@ -5,6 +5,7 @@
 <h3>Histórico Médico Recente</h3>
 <div class="box-footer box-comments">
       <?php foreach ($listaHist as $value) {
+          print_p($value);
           $ArrEsp = $value[id];
           ?>
         <div class="box-comment">

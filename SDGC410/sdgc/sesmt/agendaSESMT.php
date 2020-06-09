@@ -177,7 +177,7 @@
         //Agendar
         $dados = array('acao','idLinha','idRequerimentoFuncional','medico');
         $funcao = array('fecharModal();');
-        postRestAjax('agendaSESMTAgendar','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
+        postRestAjax('agendaSESMTAtendimentoMarcar','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
         
   ?>
 <script>

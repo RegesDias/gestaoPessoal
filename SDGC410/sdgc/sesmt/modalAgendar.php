@@ -30,13 +30,13 @@ if ($value[matriculaServidor] == 'VAGO') {
         </div>
     </div>
 <?php } else { ?>   
-    <div class="modal fade" id="agenda<?= $ArrEsp ?>" role="dialog">
+    <div class="modal fade" id="agenda<?=$ArrEsp?>" role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="col-sm-12">
                         <label>Médico</label>
-                        <select onchange="getAJAX(<?="'".$ajurl."'";?>,'requerimento/getListarLinhasVagasPorIdRequerimentoMedico/',this.value,selectAgendaDia<?= $ArrEsp ?>)" id="agendaMedico<?= $ArrEsp ?>" class="form-control select2" style="width: 100%;">
+                        <select onchange="getAJAX(<?="'".$ajurl."'";?>,'requerimento/getListarLinhasVagasPorIdRequerimentoMedico/',this.value,selectAgendaDia<?= $ArrEsp ?>)" id="agendaMedico<?=$ArrEsp?>" class="form-control select2" style="width: 100%;">
                             <option value=""></option>
                             <?php
                             foreach ($listaMedicos as $medico) {
@@ -49,7 +49,7 @@ if ($value[matriculaServidor] == 'VAGO') {
                     </div>
                     <div class="col-sm-12">
                         <label>Vaga</label>
-                        <select id="idLinha<?= $ArrEsp ?>" class="form-control select2" style="width: 100%;">
+                        <select id="idLinha<?=$ArrEsp?>" class="form-control select2" style="width: 100%;">
                             <option value=""></option>
                         </select>
                     </div>
@@ -57,7 +57,7 @@ if ($value[matriculaServidor] == 'VAGO') {
                     <div class="col-sm-12"><br></div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" onclick="agendaSESMTAgendar('agendar', $('#idLinha').val(), '<?=$value[idRequerimentoFuncional]?>',$('#agendaMedico').val(),)" type="button">
+                    <button class="btn btn-primary" onclick="agendaSESMTAtendimentoMarcar('agendar', $('#idLinha<?=$ArrEsp?>').val(), '<?=$value[idRequerimentoFuncional]?>',$('#agendaMedico<?=$ArrEsp?>').val(),)" type="button">
                         Confirmar
                     </button>
                     <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>

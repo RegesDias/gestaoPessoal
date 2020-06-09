@@ -2,23 +2,20 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
+    print_p();
     if($respGet[acao] == 'agendarServidor'){
         $ag = array('idLinha' => $respGet[idLinha],'idRequerimentoFuncional' => $respGet[idRequerimentoFuncional]);
         $agendar = array($ag);
         $executar = postRest('requerimento/postMarcarServidor',$agendar);
-        $respGet[acao] = 'buscaAtendimento';  
+        $respGet[acao] = 'buscaAtendimento'; 
+        $msnTexto = "ao agendar Servidor. ".$executar['msn'].'.';
     }
     if($respGet[acao] == 'criarVaga'){
         $ag = array('idFolha' => $respGet[idFolha]);
         $agendar = array($ag);
         $executar = postRest('requerimento/postCriarVaga',$agendar);
-        $respGet[acao] = 'buscaAtendimento';  
-    }
-    if($respGet[acao] == 'criarVaga'){
-        $ag = array('idFolha' => $respGet[idFolha]);
-        $agendar = array($ag);
-        $executar = postRest('requerimento/postCriarVaga',$agendar);
-        $respGet[acao] = 'buscaAtendimento';  
+        $respGet[acao] = 'buscaAtendimento';
+        $msnTexto = "ao criar vaga. ".$executar['msn'].'.';
     }
     if($respGet[acao] == 'agendar'){
         $ag = array('idLinha' => $respGet[idLinha],'idRequerimentoFuncional' => $respGet[idRequerimentoFuncional]);
@@ -27,6 +24,7 @@ session_start();
         $l = array('idLinha' =>$respGet[idLinha]);
         $listadata =  getRest('requerimento/getDataFolhaPorIdLinha',$l);
         $respGet[acao] = 'buscaAtendimento';
+        $msnTexto = "ao agendar. ".$executar['msn'].'.';
     }
     if($respGet[acao] == 'buscaAtendimento'){
         if (isset($listadata)){
@@ -91,6 +89,12 @@ session_start();
             if($folha[periodo] == 'tarde'){$folha[periodo] = 'Tarde';}
             $folha[data] = dataHorabr($folha[data]);
             $folha[data] = substr($folha[data], 0, -5);
+            $dataHoje = date("d/m/Y");
+            if($folha[data] <= $dataHoje){
+                $btnStatus = 'disabled';
+            }else{
+                $btnStatus = '';
+            }
             if($dataAtual != $folha[data]){?>
                 <div class="box box-primary">
                   <div class="box-header">
@@ -108,8 +112,8 @@ session_start();
                     $ll = array('folha' => $folha[idFolha]);
                     $llinha = getRest('requerimento/getListarLinhasPorIdFolha',$ll);
                     foreach ($llinha as $value) {
-                        $ArrEsp = $value['idRequerimentoFuncional'];
-                        if($value[matriculaServidor] == 'VAGO'){ 
+                        if($value[matriculaServidor] == 'VAGO'){
+                            $ArrEsp = $value['idLinha'];
                             if($value[vagaExtra] == 'true'){
                                 $vaga = 'Vaga Extra';
                                 $btn = 'btn-danger';
@@ -119,17 +123,18 @@ session_start();
                             }?>
                             <tr>
                                 <td colspan="2">
-                                    <center><span class="badge <?=$btn?>"> <?=$vaga?> </span></center>
+                                    <a href="#" <?=$btnStatus?> ><center><span class="badge <?=$btn?>"> <?=$vaga?> </span></center></a>
                                 </td>
                                 <td>                  
                                     <div class="pull-right">
-                                        <button class="btn <?=$btn?> btn-small" data-toggle="modal" data-target="#agendaServidor<?=$ArrEsp?>" >
+                                        <button <?=$btnStatus?> class="btn <?=$btn?> btn-small" data-toggle="modal" data-target="#agendaServidor<?=$ArrEsp?>" >
                                             <i class="fa fa-calendar-check-o"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr><?php        
                         }else{
+                            $ArrEsp = $value['idRequerimentoFuncional'];
                             ?>
                             <tr>
                                 <td class="mailbox-name">
@@ -140,10 +145,10 @@ session_start();
                                 </td>
                                   <td>
                                       <div class="pull-right">
-                                            <a href="#" class="btn btn-success btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$value[cpfServidor]?>')">
+                                            <a href="#" <?=$btnStatus?> class="btn btn-success btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$value[cpfServidor]?>')">
                                                 <i class="fa fa-heartbeat"></i>
                                             </a>
-                                            <button class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
+                                            <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
                                                 <i class="fa fa-calendar-check-o"></i>
                                             </button>
                                       </div>
@@ -158,38 +163,38 @@ session_start();
               </div>
                 <div class="modal-footer">
                     <div class="pull-right">
-                        <button class="btn btn-primary" onclick="criarVaga('criarVaga','<?=$folha[idFolha]?>','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>')" type="button">
+                        <button <?=$btnStatus?> class="btn btn-primary" onclick="criarVaga('criarVaga','<?=$folha[idFolha]?>','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>')" type="button">
                                 <i class="fa fa-plus"></i> Criar Vaga
                         </button>
-                        <button class="btn btn-warning btn-small" data-toggle="modal" data-target="#criar<?=$value[idFolha]?>" >
+                        <button <?=$btnStatus?> class="btn btn-warning btn-small" data-toggle="modal" data-target="#criar<?=$value[idFolha]?>" >
                                 <i class="fa fa-calendar-check-o"></i> Remarcar Todos
                         </button>
-                        <div class="modal fade" id="criar<?=$value[idFolha]?>" role="dialog">
-                          <div class="modal-dialog modal-md">
-
-                            <div class="modal-content">
-                              <div class="modal-body">
-                                    <div class="col-sm-12">
-                                      <label>Servidor</label>
-                                      <select id="agendaDia" class="form-control select2" style="width: 100%;">
-                                          <option value=""></option>
-                                          <option>2222-joao</option>
-                                          <option>2223-Reges</option>
-                                          <option>2224-Amauri</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-12"><br></div>
-                              </div>
-                              <div class="modal-footer">
-                                    <button class="btn btn-primary" onclick="buscaAtendimentos('agendar',$('#agendaMedico').val(),$('#agendaDia').val())" type="button">
-                                        Confirmar
-                                    </button>
-                                    <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                     </div>
+                </div>
+                <div class="modal fade" id="criar<?=$value[idFolha]?>" role="dialog">
+                  <div class="modal-dialog modal-md">
+
+                    <div class="modal-content">
+                      <div class="modal-body">
+                            <div class="col-sm-12">
+                              <label>Servidor</label>
+                              <select id="agendaDia" class="form-control select2" style="width: 100%;">
+                                  <option value=""></option>
+                                  <option>2222-joao</option>
+                                  <option>2223-Reges</option>
+                                  <option>2224-Amauri</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12"><br></div>
+                      </div>
+                      <div class="modal-footer">
+                            <button class="btn btn-primary" onclick="buscaAtendimentos('agendar',$('#agendaMedico').val(),$('#agendaDia').val())" type="button">
+                                Confirmar
+                            </button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div><?php  
             $dataAtual = $value[data];
