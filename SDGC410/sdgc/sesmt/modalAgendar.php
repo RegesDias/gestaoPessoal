@@ -1,5 +1,5 @@
 <?php
-if ($value[matriculaServidor] == 'VAGO') {
+if (($value[matriculaServidor] == 'VAGO')AND ($remarcar == false) ) {
     ?>
     <div class="modal fade" id="agendaServidor<?=$ArrEsp?>" role="dialog">
         <div class="modal-dialog modal-md">
@@ -29,7 +29,7 @@ if ($value[matriculaServidor] == 'VAGO') {
             </div>
         </div>
     </div>
-<?php } else { ?>   
+<?php } else { ?>
     <div class="modal fade" id="agenda<?=$ArrEsp?>" role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -56,13 +56,23 @@ if ($value[matriculaServidor] == 'VAGO') {
 
                     <div class="col-sm-12"><br></div>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" onclick="agendaSESMTAtendimentoMarcar('agendar', $('#idLinha<?=$ArrEsp?>').val(), '<?=$value[idRequerimentoFuncional]?>',$('#agendaMedico<?=$ArrEsp?>').val(),)" type="button">
-                        Confirmar
-                    </button>
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                </div>
+                <?php if($remarcar == true){ ?>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="agendaSESMTAtendimentoRemarcar('remarcar', $('#idLinha<?=$ArrEsp?>').val(), '<?=$folha[idFolha]?>',$('#agendaMedico<?=$ArrEsp?>').val(),)" type="button">
+                            Remarcar
+                        </button>
+                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                    </div>
+                <?php }else{?>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="agendaSESMTAtendimentoMarcar('agendar', $('#idLinha<?=$ArrEsp?>').val(), '<?=$value[idRequerimentoFuncional]?>',$('#agendaMedico<?=$ArrEsp?>').val(),)" type="button">
+                            Confirmar
+                        </button>
+                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                    </div>
+                <?php }?>
             </div>
+            <?php $remarcar = false ?>
         </div>
     </div>
 <script>
@@ -90,4 +100,3 @@ if ($value[matriculaServidor] == 'VAGO') {
     }
 </script>
 <?php } ?>
-

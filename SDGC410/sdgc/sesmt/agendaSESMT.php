@@ -160,6 +160,11 @@
         $dados = array('acao', 'idMedico');
         postRestAjax('medicoStatus','agendaSESMTCorpo','sesmt/agendaSESMTMedico.php',$dados);
         
+        //conferirAgenda
+        $dados = array('acao', 'idMedico');
+        $funcao = array('fecharModal();');
+        postRestAjax('conferirAgenda','calendarioMedico','sesmt/calendario.php',$dados,'','',$funcao);
+        
         //AGENDA-------------------------------------------------------------
         //-------------------------------------------------------------------
         $dados = array('acao');
@@ -178,6 +183,10 @@
         $dados = array('acao','idLinha','idRequerimentoFuncional','medico');
         $funcao = array('fecharModal();');
         postRestAjax('agendaSESMTAtendimentoMarcar','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
+        //remacarEmLote
+        $dados = array('acao','idLinha','idFolhaOrigem','medico');
+        $funcao = array('fecharModal();');
+        postRestAjax('agendaSESMTAtendimentoRemarcar','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
         
   ?>
 <script>

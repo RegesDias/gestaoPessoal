@@ -155,11 +155,34 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
         $bdt = array($value[idRequerimentoMedico],'tarde');
         $listadiaManha = getRest('requerimento/getListarRequerimentoMedicoDias',$bdm);
         $listadiaTarde = getRest('requerimento/getListarRequerimentoMedicoDias',$bdt);
+        $ArrEsp =$em[0][CRM];
         ?>
           <div class="panel box box-primary">
             <div class="box-header with-border">
                   <div class="pull-right box-tools">
                       <div class="pull-right box-tools">
+                            <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#calendario<?=$ArrEsp?>" >
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                            <div class="modal fade" id="calendario<?=$ArrEsp?>" role="dialog">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="col-sm-12">
+                                                <label>Servidor</label>
+                                                <input type="month" id='mes' class="form-control"?>
+                                            </div>
+                                            <div class="col-sm-12"><br></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" onclick="conferirAgenda('agendarServidor', $('#agendaS<?=$ArrEsp?>').val(), '<?=$value[idLinha]?>','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>')" type="button">
+                                                Confirmar
+                                            </button>
+                                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                           <button class="btn btn-primary btn-small" onclick="medicoStatus('editarMedico', '<?=$value[idHistFunc]?>')" id="perfil<?=$value['id']?>" type="button">
                               <i class="fa fa-edit"></i>
                           </button>
@@ -251,11 +274,13 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
                       </div>
                     </div>
                 </section>
-
               </div>
             </div>
           </div>
     <?php }?>
+                <div id="calendarioMedico">
+                    <?php //require '../sesmt/calendario.php'; ?>
+                <div>
 </div>
 <script>
     configuraTela(); 

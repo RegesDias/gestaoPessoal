@@ -2,7 +2,6 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    print_p();
     if($respGet[acao] == 'agendarServidor'){
         $ag = array('idLinha' => $respGet[idLinha],'idRequerimentoFuncional' => $respGet[idRequerimentoFuncional]);
         $agendar = array($ag);
@@ -21,6 +20,19 @@ session_start();
         $ag = array('idLinha' => $respGet[idLinha],'idRequerimentoFuncional' => $respGet[idRequerimentoFuncional]);
         $agendar = array($ag);
         $executar = postRest('requerimento/postAgendar',$agendar);
+        $l = array('idLinha' =>$respGet[idLinha]);
+        $listadata =  getRest('requerimento/getDataFolhaPorIdLinha',$l);
+        $respGet[acao] = 'buscaAtendimento';
+        $msnTexto = "ao agendar. ".$executar['msn'].'.';
+    }
+    if($respGet[acao] == 'remarcar'){
+        $linhaDestino = array('idLinha' => $respGet[idLinha],$linhaDestino);
+        $idFolhaDestino = getRest('requerimento/getFolhaPorIdLinha',$linhaDestino);
+        $respGet[idFolhaDestino] = $idFolhaDestino[0][idFolha];
+        $ag = array('idFolhaOrigem' => $respGet[idFolhaOrigem],'idFolhaDestino' => $respGet[idFolhaDestino]);
+        print_p($ag);
+        $agendar = array($ag);
+        $executar = postRest('requerimento/postRemarcarAgenda',$agendar);
         $l = array('idLinha' =>$respGet[idLinha]);
         $listadata =  getRest('requerimento/getDataFolhaPorIdLinha',$l);
         $respGet[acao] = 'buscaAtendimento';
@@ -166,37 +178,17 @@ session_start();
                         <button <?=$btnStatus?> class="btn btn-primary" onclick="criarVaga('criarVaga','<?=$folha[idFolha]?>','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>')" type="button">
                                 <i class="fa fa-plus"></i> Criar Vaga
                         </button>
-                        <button <?=$btnStatus?> class="btn btn-warning btn-small" data-toggle="modal" data-target="#criar<?=$value[idFolha]?>" >
+                        <button <?=$btnStatus?> class="btn btn-warning btn-small" data-toggle="modal" data-target="#agenda<?="folha".$folha[idFolha]?>" >
                                 <i class="fa fa-calendar-check-o"></i> Remarcar Todos
                         </button>
                     </div>
                 </div>
-                <div class="modal fade" id="criar<?=$value[idFolha]?>" role="dialog">
-                  <div class="modal-dialog modal-md">
-
-                    <div class="modal-content">
-                      <div class="modal-body">
-                            <div class="col-sm-12">
-                              <label>Servidor</label>
-                              <select id="agendaDia" class="form-control select2" style="width: 100%;">
-                                  <option value=""></option>
-                                  <option>2222-joao</option>
-                                  <option>2223-Reges</option>
-                                  <option>2224-Amauri</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-12"><br></div>
-                      </div>
-                      <div class="modal-footer">
-                            <button class="btn btn-primary" onclick="buscaAtendimentos('agendar',$('#agendaMedico').val(),$('#agendaDia').val())" type="button">
-                                Confirmar
-                            </button>
-                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div><?php  
+            </div><?php
+            //remarcar todos
+            $remarcar = true;
+            $ArrEsp = "folha".$folha[idFolha];
+            require '../sesmt/modalAgendar.php';
+            //atualiza data atual
             $dataAtual = $value[data];
             
         }?>
