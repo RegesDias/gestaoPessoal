@@ -27,7 +27,7 @@ require_once '../func/fModal.php';
 				<tr>
 					<td class="null">30</td>
 					<td class="null">31</td>
-					<td><a href="#">1<i class="fa fa-user-md"></i></a></td>
+					<td><a href="#">1 <i class="fa fa-user-md"></i> <i class="fa fa-user-md"></i></a></td>
 					<td><a href="#">2</a></td>
 					<td><a href="#">3</a></td>
 					<td><a href="#">4</a></td>
@@ -59,7 +59,7 @@ require_once '../func/fModal.php';
 					<td><a href="#">20</a></td>
 					<td><a href="#">21</a></td>
 					<td><a href="#">22</a></td>
-					<td><a href="#">23</a></td>
+					<td><a href="#">23 <i class="fa fa-user-md"></i> <i class="fa fa-user-md"></i></a></td>
 					<td><a href="#">24</a></td>
 					<td><a href="#">25</a></td>
 					<td><a href="#">26</a></td>
