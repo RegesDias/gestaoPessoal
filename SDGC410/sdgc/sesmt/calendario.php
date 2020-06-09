@@ -6,87 +6,168 @@ require_once '../func/fModal.php';
     $mes;
 
 ?>         
-            <table>
-            <caption class="mes">Fevereiro 2011</caption>
-            <thead>
-                <tr>
-                    <td class="dia"><div class="semana">D</td>
-                    <td class="dia"><div class="semana">S</td>
-                    <td class="dia"><div class="semana">T</td>
-                    <td class="dia"><div class="semana">Q</td>
-                    <td class="dia"><div class="semana">Q</td>
-                    <td class="dia"><div class="semana">S</td>
-                    <td class="dia"><div class="semana">S</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="dia">1<span class="evento">2</span></td>
-                    <td class="dia">2<span class="evento">5</span></td>
-                    <td class="dia">3<span class="evento">3</span></td>
-                    <td class="dia">4</td>
-                    <td class="dia">5<span class="evento">1</span></td>
-                    <td class="dia">6</td>
-                    <td class="dia">7</td>
-                </tr>
-                <tr>
-                    <td class="dia">8<span class="evento">2</span></td>
-                    <td class="dia">9</td>
-                    <td class="dia">10</td>
-                    <td class="dia">11<span class="evento">5</span></td>
-                    <td class="dia">12</td>
-                    <td class="dia">13<span class="evento"></span></td>
-                    <td class="dia">14</td>
-                </tr>           
-                <tr>
-                    <td class="dia">15<span class="evento">2</span></td>
-                    <td class="dia">16</td>
-                    <td class="dia">17</td>
-                    <td class="dia">18<span class="evento">5</span></td>
-                    <td class="dia">19</td>
-                    <td class="dia">20<span class="evento"></span></td>
-                    <td class="dia">21</td>
-                </tr>
-                <tr>
-                    <td class="dia">22<span class="evento">2</span></td>
-                    <td class="dia">23</td>
-                    <td class="dia">24</td>
-                    <td class="dia">25<span class="evento">5</span></td>
-                    <td class="dia">26</td>
-                    <td class="dia">27<span class="evento"></span></td>
-                    <td class="dia">28</td>
-                </tr>
-            </tbody>
-        </table>
+<table summary="a calendar">
+			<caption>
+				<a href="#" rel="prev">&lt</a> March 2017 <a href="#" rel="next">&gt</a>
+			</caption>
+
+			<thead>
+				<tr>
+					<th scope="col">Sun</th>
+					<th scope="col">Mon</th>
+					<th scope="col">Tue</th>
+					<th scope="col">Wed</th>
+					<th scope="col">Tur</th>
+					<th scope="col">Fri</th>
+					<th scope="col">Sat</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td class="null">30</td>
+					<td class="null">31</td>
+					<td><a href="#">1</a></td>
+					<td><a href="#">2</a></td>
+					<td><a href="#">3</a></td>
+					<td><a href="#">4</a></td>
+					<td><a href="#">5</a></td>
+				</tr>
+
+				<tr>
+					<td><a href="#">6</a></td>
+					<td><a href="#">7</a></td>
+					<td><a href="#">8</a></td>
+					<td><a href="#">9</a></td>
+					<td><a href="#">10</a></td>
+					<td class="selected"><a href="#">11</a></td>
+					<td><a href="#">12</a></td>
+				</tr>
+
+				<tr>
+					<td><a href="#">13</a></td>
+					<td><a href="#">14</a></td>
+					<td><a href="#">15</a></td>
+					<td><a href="#">16</a></td>
+					<td><a href="#">17</a></td>
+					<td><a href="#">18</a></td>
+					<td><a href="#">19</a></td>
+				</tr>
+
+
+				<tr>
+					<td><a href="#">20</a></td>
+					<td><a href="#">21</a></td>
+					<td><a href="#">22</a></td>
+					<td><a href="#">23</a></td>
+					<td><a href="#">24</a></td>
+					<td><a href="#">25</a></td>
+					<td><a href="#">26</a></td>
+				</tr>
+
+				<tr>
+					<td><a href="#">27</a></td>
+					<td><a href="#">28</a></td>
+					<td><a href="#">29</a></td>
+					<td><a href="#">30</a></td>
+					<td><a href="#">31</a></td>
+					<td class="null">1</td>
+					<td class="null">2</td>
+				</tr>
+
+			</tbody>
+
+
+		</table>
+
 
         <style>
-            .mes {
-                font: bold 12px verdana;
-                background: #f5f5f5;
-                text-align: center;
-                line-height: 25px;               
-                height: 35px;
-                width: 280px;
-            }
-            .semana {
-                font: bold 12px verdana;
-                background: #f5f5f5;
-                text-align: center;
-                line-height: 25px;                           
-                height: 35px;
-                width: 40px;
-            }
-            .dia {
-                background: #f5f5f5;
-                font: 12px verdana;                   
-                text-align: center;
-                height: 35px;
-                width: 40px;
-            }
-            .evento {
-                position: relative;
-                font: 9px verdana;
-                color: #C30;
-                right: -7px;
-                top: -9px;     
+*{
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+html,body{
+	width: 100%;
+	height: 100%;
+  background: linear-gradient(to left, #212333, #432132);
+}
+
+caption{
+	background: blue;
+	height: 3em;
+	line-height: 3em;
+	box-shadow: 3px 0 2px black;
+	color: white;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+caption a{
+	color: white;
+}
+
+table{
+	background: #ddd;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	font-size: 20px;
+	border-collapse: collapse;
+	box-shadow: 3px 3px 2px black;
+}
+
+table,th,tr {
+	text-align: center;
+	vertical-align: middle;
+}
+
+table thead th{
+	border: solid 1px white; 
+	width: 3em;
+	height: 2em;
+	font-weight: 900;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+table tbody td{
+	border: solid 1px white;
+	height: 2.7em;
+}
+
+a{
+	text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+tbody a{
+	display: block;
+	height: 100%;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	color: black;
+  
+}
+
+
+tbody a:hover{
+	background: blue;
+	color: white;
+}
+
+.null{
+	color: gray;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.selected{
+	background: blue;
+}
+
+.selected a{
+	color: white;
+}
+
         </style>
