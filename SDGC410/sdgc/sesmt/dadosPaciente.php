@@ -1,5 +1,4 @@
 <?php
-    print_p();
     modalInicoFim('macacoesInicioFim', 'Marcações', 'print', 'info', 'macacoesInicioFim', '', 'frequencia');
 
     $dados = array('dado','acao','ver');
@@ -10,7 +9,6 @@
 ?>
 <div class="box-header with-border">
     <?php foreach ($listarServidor as $value){ 
-        print_p($value);
         ?>
         <div class="user-block">
           <img class="img-circle" src="<?=exibeFoto($value[cpf])?>" alt="User Image">

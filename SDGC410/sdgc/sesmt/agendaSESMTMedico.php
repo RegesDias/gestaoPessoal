@@ -169,7 +169,7 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <div class="col-sm-12">
-                                                <label>Servidor</label>
+                                                <label>Mês</label>
                                                 <input type="month" id='mes<?=$ArrEsp?>' class="form-control"?>
                                             </div>
                                             <div class="col-sm-12"><br></div>

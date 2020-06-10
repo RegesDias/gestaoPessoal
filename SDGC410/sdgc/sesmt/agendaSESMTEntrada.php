@@ -25,7 +25,7 @@ session_start();
 
                 <p class="message">
                   <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> Requisitado em <?=$ArrEsp?></small>
+                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> Requisitado em <?=$value['dataCriado']?></small>
                     <?=$value['matriculaServidor']?> - <?=$value['nomeServidor']?>
                   </a>
                 </p>

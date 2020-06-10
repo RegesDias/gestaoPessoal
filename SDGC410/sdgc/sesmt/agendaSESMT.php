@@ -105,6 +105,10 @@
         //status
         $dados = array('acao','idRequerimento','cpf','status');
         postRestAjax('alterarStatusRequerimento','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosResult.php',$dados);
+        //status modal
+        $dados = array('acao', 'inicio','fim','medico','idRequerimento','status');
+        $funcao = array('fecharModal();');
+        postRestAjax('alterarStatusRequerimentoModal','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
 
         //Ficha
         $dados = array('acao','idRequerimento','cpf');

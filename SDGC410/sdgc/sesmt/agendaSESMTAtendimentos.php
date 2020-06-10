@@ -30,13 +30,21 @@ session_start();
         $idFolhaDestino = getRest('requerimento/getFolhaPorIdLinha',$linhaDestino);
         $respGet[idFolhaDestino] = $idFolhaDestino[0][idFolha];
         $ag = array('idFolhaOrigem' => $respGet[idFolhaOrigem],'idFolhaDestino' => $respGet[idFolhaDestino]);
-        print_p($ag);
         $agendar = array($ag);
         $executar = postRest('requerimento/postRemarcarAgenda',$agendar);
         $l = array('idLinha' =>$respGet[idLinha]);
         $listadata =  getRest('requerimento/getDataFolhaPorIdLinha',$l);
         $respGet[acao] = 'buscaAtendimento';
         $msnTexto = "ao agendar. ".$executar['msn'].'.';
+    }
+    if($respGet[acao] == 'alterarStatusRequerimento'){
+        print_p();
+        $ag = array('id' => $respGet[idRequerimento],'idStatus' => $respGet[status]);
+        print_p($ag);
+        $agendar = array($ag);
+        $executar = postRest('requerimento/postAlterarStatusRequerimento',$agendar);
+        $msnTexto = "ao alterar status. ".$executar['msn'].'.';
+        $respGet[acao] = 'buscaAtendimento';
     }
     if($respGet[acao] == 'buscaAtendimento'){
         if (isset($listadata)){
@@ -157,7 +165,32 @@ session_start();
                                 </td>
                                   <td>
                                       <div class="pull-right">
-                                            <a href="#" <?=$btnStatus?> class="btn btn-success btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$value[cpfServidor]?>')">
+                                            <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#alterarStatus<?=$ArrEsp?>" >
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                            <div class="modal fade" id="alterarStatus<?=$ArrEsp?>" role="dialog">
+                                                <div class="modal-dialog modal-md">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <div class="col-sm-12">
+                                                                <label>Servidor</label>
+                                                                <select name="idStatus" size="1"  class="form-control select2" id='idStatus' style="width: 100%;">
+                                                                        <option value="97">Paciente não compareceu</option> 
+                                                                        <option value="95" selected>Médico Indisponivel</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-12"><br></div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button data-dismiss="modal" class="btn btn-primary" onclick="alterarStatusRequerimentoModal('alterarStatusRequerimento','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>','<?=$value[idRequerimento]?>',$('#idStatus').val())" type="button">
+                                                                Confirmar
+                                                            </button>
+                                                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="#" class="btn btn-success btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$value[cpfServidor]?>')">
                                                 <i class="fa fa-heartbeat"></i>
                                             </a>
                                             <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
@@ -178,7 +211,7 @@ session_start();
                         <button <?=$btnStatus?> class="btn btn-primary" onclick="criarVaga('criarVaga','<?=$folha[idFolha]?>','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>')" type="button">
                                 <i class="fa fa-plus"></i> Criar Vaga
                         </button>
-                        <button <?=$btnStatus?> class="btn btn-warning btn-small" data-toggle="modal" data-target="#agenda<?="folha".$folha[idFolha]?>" >
+                        <button class="btn btn-warning btn-small" data-toggle="modal" data-target="#agenda<?="folha".$folha[idFolha]?>" >
                                 <i class="fa fa-calendar-check-o"></i> Remarcar Todos
                         </button>
                     </div>
