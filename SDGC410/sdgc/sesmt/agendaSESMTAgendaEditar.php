@@ -41,12 +41,11 @@ require_once '../func/fModal.php';
         </div>
     </div>
     <div class="box-footer">
-        <button type="submit" id='enviarChamado' class="pull-right btn btn-primary" onclick="agendaSESMTAgendaSalvar('AbrirAgenda', $('#inicio').val(), $('#fim').val(), $('#idMedico').val(),$('#periodo').val())">
-            <i class="fa fa-envelope-o"></i> Liberar
+        <button type="submit" id='enviarChamadoasasas' class="pull-right btn btn-primary" onclick="conferirAgendaAbrir('CarregarCalendario', $('#inicio').val(), $('#fim').val(), $('#idMedico').val(),$('#periodo').val())">
+            <i class="fa fa-envelope-o"></i> Verificar
         </button>
-        <button type="reset" class="btn btn-default" onclick="agendaSESMTAgendaEditar('limpar')">
-            <i class="fa fa-times"></i> Descartar
-        </button>
+    </div>
+    <div id="calendarioMedico">
     </div>
 </div>
 <script>

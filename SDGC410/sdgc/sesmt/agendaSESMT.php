@@ -161,9 +161,14 @@
         postRestAjax('medicoStatus','agendaSESMTCorpo','sesmt/agendaSESMTMedico.php',$dados);
         
         //conferirAgenda
-        $dados = array('acao', 'idMedico');
+        $dados = array('acao', 'mes','idMedico');
         $funcao = array('fecharModal();');
         postRestAjax('conferirAgenda','calendarioMedico','sesmt/calendario.php',$dados,'','',$funcao);
+        
+        //conferirAgenda
+        $dados = array('acao', 'inicio','fim','idMedico','periodo');
+        $funcao = array('fecharModal();');
+        postRestAjax('conferirAgendaAbrir','calendarioMedico','sesmt/calendario.php',$dados,'','',$funcao);
         
         //AGENDA-------------------------------------------------------------
         //-------------------------------------------------------------------

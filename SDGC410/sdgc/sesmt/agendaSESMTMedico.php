@@ -155,7 +155,7 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
         $bdt = array($value[idRequerimentoMedico],'tarde');
         $listadiaManha = getRest('requerimento/getListarRequerimentoMedicoDias',$bdm);
         $listadiaTarde = getRest('requerimento/getListarRequerimentoMedicoDias',$bdt);
-        $ArrEsp =$em[0][CRM];
+        $ArrEsp = $value[idRequerimentoMedico];
         ?>
           <div class="panel box box-primary">
             <div class="box-header with-border">
@@ -170,12 +170,12 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
                                         <div class="modal-body">
                                             <div class="col-sm-12">
                                                 <label>Servidor</label>
-                                                <input type="month" id='mes' class="form-control"?>
+                                                <input type="month" id='mes<?=$ArrEsp?>' class="form-control"?>
                                             </div>
                                             <div class="col-sm-12"><br></div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-primary" onclick="conferirAgenda('agendarServidor', $('#agendaS<?=$ArrEsp?>').val(), '<?=$value[idLinha]?>','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>')" type="button">
+                                            <button data-dismiss="modal" class="btn btn-primary" onclick="conferirAgenda('buscaAtendimentos',$('#mes<?=$ArrEsp?>').val(),'<?=$value[idRequerimentoMedico]?>')" type="button">
                                                 Confirmar
                                             </button>
                                             <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
@@ -200,7 +200,7 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
                 <h4 class="box-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#abre<?=$value['idHistFunc']?>">
                       <div class="table-responsive mailbox-messages">
-                        <div class="box-body chat" id="chat-box">
+                        <div class="box-body chat" id="chat-box<?=$ArrEsp?>">
                             <div class="item">
                                 <img src="<?=exibeFoto($value[cpf])?>" alt="user image" class="online"> <?=$value[CRM]."-".$value[nomeMedico]?>
                             </div>
@@ -278,9 +278,8 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
             </div>
           </div>
     <?php }?>
-                <div id="calendarioMedico">
-                    <?php //require '../sesmt/calendario.php'; ?>
-                <div>
+    <div id="calendarioMedico">
+    <div>
 </div>
 <script>
     configuraTela(); 

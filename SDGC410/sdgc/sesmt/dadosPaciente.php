@@ -1,18 +1,20 @@
 <?php
+    print_p();
     modalInicoFim('macacoesInicioFim', 'Marcações', 'print', 'info', 'macacoesInicioFim', '', 'frequencia');
 
     $dados = array('dado','acao','ver');
     postRestAjax('relatorioEmGestao','imprimir','print/info.php',$dados);        
         
     $cBusc = array($respGet[nome],$respGet[matricula],$respGet[cpf]);
-    $listarServidor = getRest('funcionalws/getListarFuncionalPorNomeMatriculaCpf',$cBusc);
+    $listarServidor = getRest('requerimento/getListarRequerimentoPorNomeMatriculaCpf',$cBusc);
 ?>
 <div class="box-header with-border">
     <?php foreach ($listarServidor as $value){ 
+        print_p($value);
         ?>
         <div class="user-block">
           <img class="img-circle" src="<?=exibeFoto($value[cpf])?>" alt="User Image">
-          <span class="username"><a href="#"><?=$value[matricula]." - ".$value[nome]?></a></span>
+          <span class="username"><a href="#"><?=$value[matriculaServidor]." - ".$value[nomeServidor]?></a></span>
           <span class="description"><?=$value[cargo]?></span>
         </div>
         <div class="box-body">
