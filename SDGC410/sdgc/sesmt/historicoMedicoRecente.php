@@ -3,7 +3,6 @@
     $listaHist = getRest('requerimento/getListaRequerimentoPorFuncionalTodos',$histR);
 ?>
 <h3>Histórico Médico Recente</h3>
-<div class="box-footer box-comments">
       <?php foreach ($listaHist as $value) {
           $ArrEsp = $value[id];
           $value['protocolo'] = protocolo($value['protocolo']);
@@ -37,24 +36,48 @@
                     </button><?php 
                     }
                 }?>
+                <?php if($value[idStatus] > 3){?>
+                    <button <?=$btnStatus?> class="btn btn-small" data-toggle="modal" data-target="#alterarStatus<?=$ArrEsp?>" >
+                        <i class="fa fa-thumbs-o-down"></i>
+                    </button>
+
+                <?php }?>
+                   <button class="btn btn-success" onclick="buscaAtendimentos('buscaAtendimento','<?=$dataAgenda?>','<?=$dataAgenda?>','<?=$dataNew[0][idMedico]?>')" type="button">
+                        <i class="fa fa-stethoscope"></i>
+                    </button>
                 <?php if($value[reAgenda] == true){?>
-                    <button class="btn btn-info btn-sm" title="Agendar" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
+                    <button class="btn btn-info btn-small" title="Agendar" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
                         <i class="fa fa-calendar-check-o"></i>
                     </button>
                 <?php }?>
-                <?php if($value[idStatus] > 3){?>
-                    <button class="btn btn-info btn-sm" title="Paciente não compareceu" onclick="alterarStatusRequerimento('alterarStatusRequerimento',<?=$value[id]?>,'<?=$respGet[cpf]?>','97')">
-                       <i class="fa fa-user-times"></i> 
-                   </button>
-                    <button class="btn btn-info btn-sm" title="Médico Indisponível" onclick="alterarStatusRequerimento('alterarStatusRequerimento',<?=$value[id]?>,'<?=$respGet[cpf]?>','95')">
-                       <i class="fa  fa-user-md"></i>
-                   </button>
-                <?php }?>
-                    <button class="btn btn-danger btn-sm" title="Cancelar" onclick="alterarStatusRequerimento('alterarStatusRequerimento',<?=$value[id]?>,'<?=$respGet[cpf]?>','99')" >
+                    <button class="btn btn-danger btn-small" title="Cancelar" onclick="alterarStatusRequerimento('alterarStatusRequerimento',<?=$value[id]?>,'<?=$respGet[cpf]?>','99')" >
                        <i class="fa fa-times"></i>
                    </button>
+
             </div>
           </div>
+            <div class="modal fade" id="alterarStatus<?=$ArrEsp?>" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="col-sm-12">
+                                <label>Ações</label>
+                                <select name="idStatus" size="1"  class="form-control select2" id='idStatus' style="width: 100%;">
+                                    <option></option>
+                                    <option value="97">Paciente não compareceu</option> 
+                                    <option value="95">Médico Indisponivel</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12"><br></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-primary" onclick="alterarStatusRequerimento('alterarStatusRequerimento','<?=$value[id]?>','<?=$respGet[cpf]?>',$('#idStatus').val())" type="button">
+                                Confirmar
+                            </button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <?php require '../sesmt/modalAgendar.php'; ?>
       <?php }?>
-</div>

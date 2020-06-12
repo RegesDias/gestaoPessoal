@@ -19,90 +19,25 @@
             <div class="content-wrapper">
                 <div class="row box">
                     <div class="overlay hidden" id="idSpinAll">
-                                    <i class="fa fa-refresh fa-spin"></i>
+                        <i class="fa fa-refresh fa-spin"></i>
                     </div>
-                                
-                        <section class="content-header" id='idBoxCorpo'>
-                              <div class="box box-info" id='idBoxInfoCorpo'>
-
-                                <div class="box-header">
-                                    <i class="fa fa-database"></i>
-                                    <h3 class="box-title">Gestão Compartilhada</h3>
-                                    <div class="box-tools pull-right">
-                                            <!--<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>-->
-                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"id="btnCollapseBoxCorpo">
-                                                <i class="fa fa-minus" id="idIconBtnCollapse"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-box-tool" id='idIconBtnCloseCorpo'>
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                      <div class="col-md-12 bg-gray-light">
-                                            <section class="content-header">
-                                                <div id="corpo">
-                                                    <?php require_once "msn/principal.php"; ?>
-                                                </div>
-                                            </section>
-                                      </div>
-                                  </div>
-                              </div>
-                       </section>
-                        <section id='idBoxImprimir' class="content-header">
-                              <div class="box box-info" id='idBoxInfoImprimir'>
-       
-                                <div class="box-header">
-                                    <i class="fa fa-print"></i>
-                                    <h3 class="box-title">Opções de Geração de Relatório </h3>
-                                    <div class="pull-right box-tools">
-                                          <button id="btnCollapseBoxCorpo" type="button" class="btn btn-box-tool" data-widget="collapse">
-                                              <i class="fa fa-minus" id="idIconBtnCollapse"></i>
-                                          </button>
-                                          <button type="button" class="btn btn-box-tool" id='idIconBtnCloseImprimir'>
-                                              <i class="fa fa-times"></i>
-                                          </button>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                      <div class="col-md-12 bg-gray-light">
-                                            <section class="content-header">
-                                                <div id="imprimir">
-                                                </div>
-                                            </section>
-                                      </div>
-                                  </div>
-                              </div>
-                       </section>
-                        <section class="content-header collapsed-box" id='idBoxDados'>
-
-                              <div class="box box-info" id='idBoxInfoDados'>
-
-                                <div class="box-header">
-                                    <i class="fa fa-gears"></i>
-                                    <h3 class="box-title">Resultado</h3>
-
-                                    <div class="pull-right box-tools">
-                                          <button id="btnCollapseBoxCorpo" type="button" class="btn btn-box-tool" data-widget="collapse">
-                                              <i class="fa fa-minus" id="idIconBtnCollapse"></i>
-                                          </button>
-                                          <button type="button" class="btn btn-box-tool" id='idIconBtnCloseDados'>
-                                              <i class="fa fa-times"></i>
-                                          </button>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                      <div class="col-md-12">
-                                            <div class="col-md-12 bg-gray-light">
-                                                  <section class="content-header">
-                                                      <div id="dados">
-                                                      </div>
-                                                  </section>
-                                            </div>
-                                      </div>
-                                  </div>
-                              </div>
-                       </section>
+                    <div class="col-md-12 bg-gray-light">
+                        <div id="corpo">
+                            <?php require_once "msn/principal.php"; ?>
+                        </div>
+                    <div>
+                    <div class="col-md-12 bg-gray-light" id='idBoxImprimir'>
+                        <div id='idBoxInfoImprimir'>
+                            <div id="imprimir">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 bg-gray-light" id='idBoxDados'>
+                        <div id='idBoxInfoDados'>
+                            <div id="dados">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <?php

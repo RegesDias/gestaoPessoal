@@ -8,7 +8,7 @@
       <h1>
         Acompanhamento
         <?php if($btnChamadosAdm == true){ ?>
-            <!--<small><span class="label label-danger">12 abertos</span></small>-->
+
         <?php }?>
       </h1>
       <ol class="breadcrumb">
@@ -16,29 +16,22 @@
         <li class="active">Acompanhamento</li>
       </ol>
     </section>
-
-    <!-- Main content -->
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-<!--            <button class="btn btn-primary btn-block margin-bottom" onclick="agendaSESMTEscrever('escrever')"  type="button">
-                Escrever Chamado
-            </button>-->
           <div class="box box-solid">
             <div class="box-header with-border">
-              <!--<h3 class="box-title">Chamados</h3>-->
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
                 <li class="active">
                     <a href="#" onclick="agendaSESMTEntrada('Entrada')">
                         <i class="fa fa-ambulance"></i> Entrada
-                        
                     </a>
                 </li>
                 <li class="active">
                     <a href="#" onclick="agendaSESMTAtendimentos('Atendimentos')">
-                        <i class="fa fa-stethoscope"></i> Atendimentos
+                        <i class="fa fa-medkit"></i> Atendimentos
                         
                     </a>
                 </li>
@@ -50,14 +43,14 @@
                 </li>
                <?php if($btnChamadosAdm == true){ ?>
                     <li class="active">
-                        <a href="#" onclick="agendaSESMTMedico('Cadastrar Médicos')">
-                            <i class="fa fa-user-md"></i> Cadastrar Médicos
+                        <a href="#" onclick="agendaSESMTAgendaEditar('Agenda Alterar')">
+                            <i class="fa  fa-calendar-o"></i> Agenda
                             
                         </a>
                     </li>
                     <li class="active">
-                        <a href="#" onclick="agendaSESMTAgendaEditar('Agenda Alterar')">
-                            <i class="fa  fa-medkit"></i> Agenda
+                        <a href="#" onclick="agendaSESMTMedico('Cadastrar Médicos')">
+                            <i class="fa fa-stethoscope"></i> Cadastrar Médicos
                             
                         </a>
                     </li>
@@ -104,7 +97,8 @@
         postRestAjax('agendaSESMTAtendimentosResult','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosResult.php',$dados);
         //status
         $dados = array('acao','idRequerimento','cpf','status');
-        postRestAjax('alterarStatusRequerimento','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosResult.php',$dados);
+        $funcao = array('fecharModal();');
+        postRestAjax('alterarStatusRequerimento','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosResult.php',$dados,'','',$funcao);
         //status modal
         $dados = array('acao', 'inicio','fim','medico','idRequerimento','status');
         $funcao = array('fecharModal();');
@@ -167,7 +161,9 @@
         //conferirAgenda
         $dados = array('acao', 'mes','idMedico');
         $funcao = array('fecharModal();');
-        postRestAjax('conferirAgenda','calendarioMedico','sesmt/calendario.php',$dados,'','',$funcao);
+        $b2 = array('calendarioMedico','removeClass','hidden');
+        $beforeSend= array ($b2);
+        postRestAjax('conferirAgenda','calendarioMedico','sesmt/calendario.php',$dados,$beforeSend,'',$funcao);
         
         //conferirAgenda
         $dados = array('acao', 'inicio','fim','idMedico','periodo');

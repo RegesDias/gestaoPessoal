@@ -38,7 +38,6 @@ session_start();
         $msnTexto = "ao agendar. ".$executar['msn'].'.';
     }
     if($respGet[acao] == 'alterarStatusRequerimento'){
-        print_p();
         $ag = array('id' => $respGet[idRequerimento],'idStatus' => $respGet[status]);
         print_p($ag);
         $agendar = array($ag);
@@ -63,6 +62,7 @@ session_start();
   <div class="box-header with-border">
     <div class="col-sm-12">
         <h3 class="box-title">Atendimentos</h3>
+    </div>
     </div>
     <div class="col-sm-12">
         <div class="col-sm-6">
@@ -165,8 +165,8 @@ session_start();
                                 </td>
                                   <td>
                                       <div class="pull-right">
-                                            <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#alterarStatus<?=$ArrEsp?>" >
-                                                <i class="fa fa-calendar"></i>
+                                            <button <?=$btnStatus?> class="btn btn-small" data-toggle="modal" data-target="#alterarStatus<?=$ArrEsp?>" >
+                                                <i class="fa fa-thumbs-o-down"></i>
                                             </button>
                                             <div class="modal fade" id="alterarStatus<?=$ArrEsp?>" role="dialog">
                                                 <div class="modal-dialog modal-md">
@@ -191,7 +191,7 @@ session_start();
                                                 </div>
                                             </div>
                                             <a href="#" class="btn btn-success btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$value[cpfServidor]?>')">
-                                                <i class="fa fa-heartbeat"></i>
+                                                <i class="fa fa-user"></i>
                                             </a>
                                             <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
                                                 <i class="fa fa-calendar-check-o"></i>
