@@ -18,7 +18,6 @@ if($respGet[acao] == 'desativar'){
 }
 if($respGet[acao] == 'acessoSalvar'){
     $cadChamado = array('idUserLogin' => $respGet['idUserLogin'], 'idChamadoCategoria' => $respGet['idChamadoCategoria']);
-    print_p($cadChamado);
     $salvarChamado = array($cadChamado);
     $executar = postRest('chamadows/postSalvarChamadosAcesso',$salvarChamado);
     $msnTexto = "ao criar Chamado.";

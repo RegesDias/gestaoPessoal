@@ -5,7 +5,6 @@ modalInicoFimData('graficoAcesso', 'Grafico de Acessos', 'grafico', 'userAcesso'
 //teste
     $usuario = array('09487331794', $respGet[mesAnoInicial], $respGet[mesAnoFinal]);
     $ponto = getRest('ponto/getServidorPontoMarcacao',$usuario);
-    print_p($ponto);
     
 //fim teste
 if($respGet[acao] == 'userAcesso'){

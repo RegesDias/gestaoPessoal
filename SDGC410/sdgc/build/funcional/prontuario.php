@@ -1,7 +1,6 @@
 <?php
     //VERIFICAR NIVEL DE ACESSO
     foreach ($_SESSION["funcionalPerfil"]['permissoes'] as $valor) {
-        //print_p($_SESSION["funcionalPerfil"]['permissoes']);
         if (($valor['pasta'] == 'funcional') AND ($valor['arquivo'] == 'prontuario' AND ($valor['menuN1'] == 'Prontuário'))){ 
              $prmProntuario = $valor;
               break;

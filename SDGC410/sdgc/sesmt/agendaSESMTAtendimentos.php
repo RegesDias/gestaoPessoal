@@ -39,7 +39,6 @@ session_start();
     }
     if($respGet[acao] == 'alterarStatusRequerimento'){
         $ag = array('id' => $respGet[idRequerimento],'idStatus' => $respGet[status]);
-        print_p($ag);
         $agendar = array($ag);
         $executar = postRest('requerimento/postAlterarStatusRequerimento',$agendar);
         $msnTexto = "ao alterar status. ".$executar['msn'].'.';

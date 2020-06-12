@@ -42,7 +42,6 @@
         $_SESSION["variaveisLancadas"] = $variaveisLancadas;
         $planejamentoPerfil = getRest('planejamento/getListaPlanejamentoDescricao');
         $variavelPerfil = getRest('variaveis/getListaVariaveisDesc');
-        //print_p($variavelPerfil);
         $funcionalBusca = getRest('funcionalws/getUmFuncionalPorMatricula',$cBusc);
         session_start();
         $_SESSION["funcionalPerfil"] = $funcionalPerfil;

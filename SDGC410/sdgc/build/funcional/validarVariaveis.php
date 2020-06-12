@@ -604,7 +604,6 @@
           </div>
           <!-- /.box -->
         </div>
-     <?php //print_p($respGet);?>
 </div>
 <?php }?>
 <?php if(count($_SESSION[servidorVariavel])>0){?>

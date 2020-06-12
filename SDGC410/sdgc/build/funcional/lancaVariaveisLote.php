@@ -40,8 +40,6 @@ if ($respGet['acao'] == "lancarVariaveis") {
     $variaveisLancadas = getRest('variaveis/getListaVariaveisFuncionalPorId',$vPerfil);
     $_SESSION["variaveisLancadas"] = $variaveisLancadas;
 }
-//teste 
-//print_p($_SESSION["variaveisLancadas"]);
 ?>
 <div class="box box-primary">
     <div class="box-header">

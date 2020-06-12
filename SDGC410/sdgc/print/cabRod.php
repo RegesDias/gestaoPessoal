@@ -10,7 +10,6 @@ $key = array_search('semSetor', $respGet);
 if($key!==false){
     unset($respGet[$key]);
 }
-//print_p();
 //Se for um relatorio vindo da pasta relatorio
     //VER DEPOIS-------------------------------------------------------------------------------------------------
     if($respGet['menuN3'] == '5' AND $respGet['link'] == 'Listar' AND !isset($respGet['idSetor'])){
@@ -51,7 +50,6 @@ if($key!==false){
         $cargoGeral = $respGet['idCargoGeral'];
         $cBusc = array($cargoGeral, $tipo);
         $lista = getRest('relatorio/getRelServidoresPorCargo',$cBusc);
-        //print_p($lista);
     }
     if(isset($respGet['acao']) && $respGet['acao']=='ocoQuantitativo'){
         $selectSec = getJson2D($respGet['secretaria']);
@@ -244,7 +242,6 @@ if(isset($respGet['acao']) && $respGet['acao']=='contraCheque'){
     $matricula = $_SESSION['funcionalBusca']['matricula'];
     $cBusc = array($matricula, $mesAno, $tipo);
     $lista = getRest('relatorio/getRelContraCheque',$cBusc);
-    //print_p($lista);
 }
 // Se for previaFolha
 if(isset($respGet['acao']) && $respGet['acao']=='previaFolha'){

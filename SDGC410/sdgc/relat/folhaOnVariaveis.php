@@ -2,7 +2,6 @@
 session_start();
 require_once '../func/fPhp.php';
 $variaveis = getRest('variaveis/getListaVariaveisDesc');
-//print_p($variaveis);
 ?>
 <h1>
     Relatório

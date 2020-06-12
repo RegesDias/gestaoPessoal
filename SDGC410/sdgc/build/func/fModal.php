@@ -735,7 +735,6 @@ function modalEnviaSetorInicioFim($id, $title, $pst, $arq, $acao, $vpst=null, $v
 function modalEnviaSetorInicioCracha($id, $title, $pst, $arq, $acao, $vpst=null, $varq=null,$vtab=null, $cracharequisicao=null,$crachaAdm =null ,$idHistFunc=null ) {
     global $method;
     global $crachaTipo;
-    //print_p($cracharequisicao);
     ?>
     <div class="modal fade" id="<?= $id ?>">
         <div class="modal-dialog">
@@ -747,7 +746,6 @@ function modalEnviaSetorInicioCracha($id, $title, $pst, $arq, $acao, $vpst=null,
                 </div>
                     <form method='<?=$method?>' action='index.php'>
                         <?php 
-                            //print_p($cracharequisicao);
                             $dataHora = dataHoraBr ($cracharequisicao[dataHora]);
                             $status =  $cracharequisicao[status];
                             $idCrachaRequisicao =  $cracharequisicao[id];

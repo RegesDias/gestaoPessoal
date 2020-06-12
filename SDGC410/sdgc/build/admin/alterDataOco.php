@@ -9,7 +9,6 @@
         $executar = postRest('dataFrequenciaWs/postAlterarPeriodoOcorrencia',$dadosAlterData);
     }
    $dataOco = getRest('dataFrequenciaWs/getListaDataFrequencia');
-   //print_p($dataOco);
    $pAtual=substr($dataOco[4]['dataFrequencia'], 0, 7);
    $pNovo=substr($dataOco[0]['dataFrequencia'], 0, 7);
 
