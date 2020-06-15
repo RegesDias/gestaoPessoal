@@ -17,7 +17,7 @@
                require_once 'incl/menu.php';
             ?>
             <div class="content-wrapper">
-                <div class="row box">
+                <div class="row box espaco-esquerda">
                     <div class="overlay hidden" id="idSpinAll">
                         <i class="fa fa-refresh fa-spin"></i>
                     </div>
@@ -25,7 +25,7 @@
                         <div id="corpo">
                             <?php require_once "msn/principal.php"; ?>
                         </div>
-                    <div>
+                    </div>
                     <div class="col-md-12 bg-gray-light" id='idBoxImprimir'>
                         <div id='idBoxInfoImprimir'>
                             <div id="imprimir">

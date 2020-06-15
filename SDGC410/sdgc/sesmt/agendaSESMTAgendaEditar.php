@@ -10,43 +10,47 @@ require_once '../func/fModal.php';
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $listaMedico = getRest('requerimento/getListarRequerimentoMedicoAtivos');
 ?>
- <div class="tab-pane active" id="abrirAgenda">
+<div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Abrir Agenda</h3>
-    </div>
-    <div class="box-body">
-        <label for="exampleInputEmail1">Médico</label>
-        <select id='idMedico' class="form-control select2" style="width: 100%;">
-            <option></option>
-            <?php foreach ($listaMedico as $value) {
-                echo "<option value='$value[idRequerimentoMedico]'>$value[nomeMedico]</option>";
-            }?>
-        </select>
-        <label for="exampleInputEmail1">Período</label>
-            <select name="select" class="form-control select2" id="periodo">
-              <option value=""></option>
-              <option value="manha">Manhã</option> 
-              <option value="tarde">Tarde</option>
-            </select>
-        <label for="exampleInputEmail1">Intervalo</label>
-        <div class="form-group">
-            <div class="form-group">
-                <input type='date'  class="form-control" name='mes' id='inicio' style="width: 100%;">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-group">
-                <input type='date'  class="form-control" name='mes' id='fim' style="width: 100%;">
-            </div>
-        </div>
-    </div>
-    <div class="box-footer">
-        <button type="submit" id='enviarChamadoasasas' class="pull-right btn btn-primary" onclick="conferirAgendaAbrir('CarregarCalendario', $('#inicio').val(), $('#fim').val(), $('#idMedico').val(),$('#periodo').val())">
-            <i class="fa fa-envelope-o"></i> Verificar
-        </button>
-    </div>
-    <div id="calendarioMedico">
-    </div>
+        <div class="tab-pane active" id="abrirAgenda">
+           <div class="box-header with-border">
+               <h3 class="box-title">Abrir Agenda</h3>
+           </div>
+           <div class="box-body">
+               <label for="exampleInputEmail1">Médico</label>
+               <select id='idMedico' class="form-control select2" style="width: 100%;">
+                   <option></option>
+                   <?php foreach ($listaMedico as $value) {
+                       echo "<option value='$value[idRequerimentoMedico]'>$value[nomeMedico]</option>";
+                   }?>
+               </select>
+               <label for="exampleInputEmail1">Período</label>
+                   <select name="select" class="form-control select2" id="periodo">
+                     <option value=""></option>
+                     <option value="manha">Manhã</option> 
+                     <option value="tarde">Tarde</option>
+                   </select>
+               <label for="exampleInputEmail1">Intervalo</label>
+               <div class="form-group">
+                   <div class="form-group">
+                       <input type='date'  class="form-control" name='mes' id='inicio' style="width: 100%;">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <div class="form-group">
+                       <input type='date'  class="form-control" name='mes' id='fim' style="width: 100%;">
+                   </div>
+               </div>
+           </div>
+           <div class="box-footer">
+               <button type="submit" id='enviarChamadoasasas' class="pull-right btn btn-primary" onclick="conferirAgendaAbrir('CarregarCalendario', $('#inicio').val(), $('#fim').val(), $('#idMedico').val(),$('#periodo').val())">
+                   <i class="fa fa-envelope-o"></i> Verificar
+               </button>
+           </div>
+           <div id="calendarioMedico">
+           </div>
+       </div>
+    </div>          
 </div>
 <script>
     configuraTela(); 

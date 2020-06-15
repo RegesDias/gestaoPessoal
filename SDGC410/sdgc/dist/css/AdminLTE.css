@@ -5022,6 +5022,10 @@ table.text-center th {
     margin-right: 5px;
     margin-top: 5px;
 }
+.espaco-esquerda{
+    margin-left: 5px;
+    margin-top: 5px;
+}
 .link-button-menu-select {
   background: none;
   border: none;

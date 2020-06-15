@@ -182,11 +182,11 @@ function modalInicoFimData($id, $title, $acao, $user = null) {
                     <div class="modal-body col-md-12">
                         <div class="col-md-6">
                             <label>Data Inicial</label>
-                            <input id="idDataInicio<?= $id ?>" name="mesAnoInicial" class="form-control" type="date" value="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d') ?>">
+                            <input id="idDataInicio<?=$id?>" name="mesAnoInicial" class="form-control" type="date" value="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d') ?>">
                         </div>
                         <div class="col-md-6">
                             <label>Data Final</label>
-                            <input id="idDataFim<?= $id ?>" name="mesAnoFinal" class="form-control" type="date" value="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d') ?>">
+                            <input id="idDataFim<?=$id?>" name="mesAnoFinal" class="form-control" type="date" value="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d') ?>">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -195,8 +195,7 @@ function modalInicoFimData($id, $title, $acao, $user = null) {
 
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
                         
-                        <input type="submit" class="btn btn-primary" value='OK-a'>
-                        <button class="btn btn-primary" data-dismiss="modal" onclick="<?='post'.$acao?>('<?= $acao ?>','<?= $user ?>',$('#idMesAnoInicial<?= $id ?>').val(),$('#idDataFim<?= $id ?>').val(), true )" type="button">
+                        <button class="btn btn-primary" data-dismiss="modal" onclick="<?='post'.$acao?>('<?= $acao ?>','<?= $user ?>',$('#idDataInicio<?= $id ?>').val(),$('#idDataFim<?= $id ?>').val(), true )" type="button">
                              <b>OK</b>
                         </button>
                     </div>

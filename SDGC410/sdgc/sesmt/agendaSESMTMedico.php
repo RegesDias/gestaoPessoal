@@ -161,7 +161,7 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
             <div class="box-header with-border">
                   <div class="pull-right box-tools">
                       <div class="pull-right box-tools">
-                            <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#calendario<?=$ArrEsp?>" >
+                          <button <?=$btnStatus?> title="Ver Agenda" class="btn btn-info btn-small" data-toggle="modal" data-target="#calendario<?=$ArrEsp?>" >
                                 <i class="fa fa-calendar"></i>
                             </button>
                             <div class="modal fade" id="calendario<?=$ArrEsp?>" role="dialog">
@@ -183,15 +183,15 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
                                     </div>
                                 </div>
                             </div>
-                          <button class="btn btn-primary btn-small" onclick="medicoStatus('editarMedico', '<?=$value[idHistFunc]?>')" id="perfil<?=$value['id']?>" type="button">
+                          <button class="btn btn-primary btn-small" title='Editar' onclick="medicoStatus('editarMedico', '<?=$value[idHistFunc]?>')" id="perfil<?=$value['id']?>" type="button">
                               <i class="fa fa-edit"></i>
                           </button>
                           <?php if($value[ativo]){ ?>
-                                <button class="btn btn-success btn-small" onclick="medicoStatus('desativarMedico', '<?=$value[idRequerimentoMedico]?>')" id="perfil<?=$value['id']?>" type="button">
+                                <button class="btn btn-success btn-small" title='Alterar Status' onclick="medicoStatus('desativarMedico', '<?=$value[idRequerimentoMedico]?>')" id="perfil<?=$value['id']?>" type="button">
                                     <i class="fa fa-toggle-on"></i>
                                 </button>                    
                           <?php }else{ ?>
-                            <button class="btn btn-danger btn-small" onclick="medicoStatus('ativarMedico', '<?=$value[idRequerimentoMedico]?>')" id="perfil<?=$value['id']?>" type="button">
+                            <button class="btn btn-danger btn-small" title='Alterar Status' onclick="medicoStatus('ativarMedico', '<?=$value[idRequerimentoMedico]?>')" id="perfil<?=$value['id']?>" type="button">
                                 <i class="fa fa-toggle-off"></i>
                             </button>                  
                          <?php }?>

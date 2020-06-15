@@ -1,6 +1,10 @@
 <?php
+session_start();
+require_once '../func/fPhp.php';
+require_once '../func/fModal.php';
 $pst = 'grafico';
 $arq = 'userAcesso';
+print_p();
 modalInicoFimData('graficoAcesso', 'Grafico de Acessos', 'grafico', 'userAcesso', 'userAcesso', $padrao, $pst, $arq,'',$respGet[user]);
 //busca biometria
     $usuario = array($respGet[cpf], $respGet[mesAnoInicial], $respGet[mesAnoFinal]);
@@ -24,24 +28,6 @@ $mesAnoFinal =dataBr($respGet[mesAnoFinal]);
     <li><a href="#"><i class="fa fa-dashboard"></i> Folha Online</a></li>
     <li class="active">Carregar Variáveis</li>
 </ol>
-<div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-body">
-                <div class="row">
-                    <div class="form-group col-sm-12">
-                        <label>Filtrar por Tipo de Acesso</label> <sup><div id="lotacao" class="hide">!</div></sup>
-                        <div class="form-group">
-                            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#graficoAcesso">
-                                <i class="fa fa-calendar"></i> Redefinir Período
-                            </button>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
     <div class="row">
             <div class="col-md-12">
             <div class="box">
