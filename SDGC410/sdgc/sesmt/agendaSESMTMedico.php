@@ -41,7 +41,7 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Cadastro Médico</h3>
+        <h3 class="box-title"><i class="fa fa-stethoscope"></i> Cadastro Médico</h3>
     </div>
     <div class="box-body">
         <?php if($respGet[acao] != 'editarMedico'){ ?>

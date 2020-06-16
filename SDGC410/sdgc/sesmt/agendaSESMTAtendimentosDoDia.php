@@ -60,40 +60,31 @@ session_start();
 <div class="box box-primary">
   <div class="box-header with-border">
     <div class="col-sm-12">
-        <h3 class="box-title"><i class="fa fa-calendar"></i> Agenda</h3>
+        <h3 class="box-title"><i class="fa fa-medkit"></i> Atendimentos</h3>
     </div>
    </div>
     <div class="col-sm-12">
         <div class="col-sm-6">
-            <label for="exampleInputEmail1">Intervalo</label>
+            <label for="exampleInputEmail1">Início</label>
             <div class="form-group">
                 <div class="form-group">
                     <input type='date'  class="form-control" name='mes' id='inicio' style="width: 100%;">
                 </div>
             </div>
+        </div>
+        <div class="col-sm-6">
+            <label for="exampleInputEmail1">Fim</label>
             <div class="form-group">
                 <div class="form-group">
                     <input type='date'  class="form-control" name='mes' id='fim' style="width: 100%;">
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <label>Médico</label>
-            <select id='idMedico' class="form-control select2" style="width: 100%;">
-                <option></option>
-                <?php foreach ($listaMedicos as $value) {
-                    echo "<option value='$value[idRequerimentoMedico]'>$value[nomeMedico]</option>";
-                }?>
-            </select>
-        </div>
     </div>
     <div class="col-sm-12"><br></div>
     <div class="modal-footer">
-        <button class="btn btn-info " onclick="agendaSESMTAgendaEditar('Agenda Alterar',$('#inicio').val(),$('#fim').val(),$('#idMedico').val())" type="button">
-            <i class="fa fa-folder-open-o"></i> Abrir
-        </button>
         <button class="btn btn-primary" onclick="buscaAtendimentos('buscaAtendimento',$('#inicio').val(),$('#fim').val(),$('#idMedico').val())" type="button">
-            <i class="fa fa-search"></i> Buscar
+            <i class="fa fa-search"></i> Exibir
         </button>
     </div>
     <!-- /.box-tools -->

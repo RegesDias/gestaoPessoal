@@ -25,13 +25,18 @@
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
                 <li class="active">
+                    <a href="#" onclick="agendaSESMTAtendimentosDoDia('Atendimentos')">
+                        <i class="fa fa-medkit"></i> Atendimentos
+                    </a>
+                </li>
+                <li class="active">
                     <a href="#" onclick="agendaSESMTEntrada('Entrada')">
                         <i class="fa fa-ambulance"></i> Entrada
                     </a>
                 </li>
                 <li class="active">
                     <a href="#" onclick="agendaSESMTAtendimentos('Atendimentos')">
-                        <i class="fa fa-medkit"></i> Atendimentos
+                        <i class="fa fa-calendar"></i> Agenda
                         
                     </a>
                 </li>
@@ -43,15 +48,8 @@
                 </li>
                <?php if($btnChamadosAdm == true){ ?>
                     <li class="active">
-                        <a href="#" onclick="agendaSESMTAgendaEditar('Agenda Alterar')">
-                            <i class="fa  fa-calendar-o"></i> Agenda
-                            
-                        </a>
-                    </li>
-                    <li class="active">
                         <a href="#" onclick="agendaSESMTMedico('Cadastrar Médicos')">
                             <i class="fa fa-stethoscope"></i> Cadastrar Médicos
-                            
                         </a>
                     </li>
                 <?php }?>
@@ -84,6 +82,8 @@
         //--------------------------------------------------------
         $dados = array('tipo');
         postRestAjax('agendaSESMTAtendimentos','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados);
+        $dados = array('tipo');
+        postRestAjax('agendaSESMTAtendimentosDoDia','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosDoDia.php',$dados);        
         //pg
         $dados = array('acao', 'pg');
         postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados); 
@@ -172,11 +172,11 @@
         
         //AGENDA-------------------------------------------------------------
         //-------------------------------------------------------------------
-        $dados = array('acao');
-        postRestAjax('agendaSESMTAgendaEditar','agendaSESMTCorpo','sesmt/agendaSESMTAgendaEditar.php',$dados);
+        $dados = array('acao','inicio','fim','idMedico');
+        postRestAjax('agendaSESMTAgendaEditar','abrirAgenda','sesmt/agendaSESMTAgendaEditar.php',$dados);
         //salvar
         $dados = array('acao', 'inicio','fim','idMedico','periodo');
-        postRestAjax('agendaSESMTAgendaSalvar','agendaSESMTCorpo','sesmt/agendaSESMTAgendaEditar.php',$dados);
+        postRestAjax('agendaSESMTAgendaSalvar','abrirAgenda','sesmt/agendaSESMTAgendaEditar.php',$dados);
         //Alterar Status
         $dados = array('acao', 'id');
         postRestAjax('alterarStatusAcesso','agendaSESMTCorpo','sesmt/agendaSESMTAbrirAgenda.php',$dados);
@@ -195,5 +195,5 @@
         
   ?>
 <script>
-    window.onload = agendaSESMTEntrada('Entrada');
+    window.onload = agendaSESMTAtendimentosDoDia('Entrada');
 </script>

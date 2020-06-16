@@ -11,7 +11,7 @@ session_start();
 <div class="box box-primary">
   <div class="box-header with-border">
     <div class="col-sm-12">
-        <h3 class="box-title">Buscar</h3>
+        <h3 class="box-title"> <i class="fa fa-search"></i> Buscar</h3>
     </div>
     <div class="col-sm-12"><br></div>
     <div class="box-body">
