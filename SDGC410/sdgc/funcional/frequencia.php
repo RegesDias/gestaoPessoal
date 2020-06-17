@@ -15,7 +15,7 @@ foreach ($_SESSION["funcionalPerfil"]['permissoes'] as $valor) {
 
 foreach ($_SESSION["funcionalPerfil"]['permissoes'] as $valor) {
     if (($valor['menuN1'] == 'Frequência') AND ( $valor['menuN2'] == 'verificaColeta')AND ( $valor['listar'] == 1)) {
-        $prmVerificaColeta['listar'] = '1';
+        $prmVerificaColeta = $valor;
         break;
     }
 }
