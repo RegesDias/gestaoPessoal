@@ -288,3 +288,6 @@ $listaMedico = getRest('requerimento/getListarRequerimentoMedico');
 <?php
 require_once '../javascript/fBoxSecretariaSetor.php';
 ?>
+<script>
+    window.onload = limparResult('limpar');
+</script>

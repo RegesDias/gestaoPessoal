@@ -95,3 +95,6 @@ session_start();
 <script>
     configuraTela(); 
 </script>
+<script>
+    window.onload = limparResult('limpar');
+</script>

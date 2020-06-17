@@ -3,6 +3,9 @@
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
     $btnChamadosAdm = true;
+    //dataHoje
+    $toDay = date("Y-m-d");
+    $toDay = date("Y-m-d", strtotime($toDay . ' +1 day'));   
 ?> 
 <section class="content-header">
       <h1>
@@ -25,7 +28,7 @@
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
                 <li class="active">
-                    <a href="#" onclick="agendaSESMTAtendimentosDoDia('Atendimentos')">
+                    <a href="#" onclick="agendaSESMTAtendimentosDoDia('buscaAtendimento','<?=$toDay?>','<?=$toDay?>')">
                         <i class="fa fa-medkit"></i> Atendimentos
                     </a>
                 </li>
@@ -61,11 +64,15 @@
         <!-- /.col ------------------------------------------------------------------------->
         <div class="col-md-9" id="agendaSESMTCorpo">
         </div>
+        <div class="col-md-12" id="agendaSESMTResult">
         <!-- /.col -->
       </div>
       <!-- /.row -->
     </section>
   <?php
+        //Limpar
+        $dados = array('acao');
+        postRestAjax('limparResult','agendaSESMTResult','sesmt/limpar.php',$dados);   
         //ENTRADA--------------------------------------------
         //---------------------------------------------------     
         //Abrir
@@ -78,22 +85,25 @@
         $dados = array('acao','cpf','texto');
         postRestAjax('agendaSESMTEntradaResult','agendaSESMTCorpo','sesmt/agendaSESMTEntradaResult.php',$dados);  
         
+        
+        //ATENDIMENTOSdOdIA--------------------------------------------
+        //--------------------------------------------------------
+        $dados = array('acao','inicio','fim');
+        $funcao = array("buscaAtendimentosDoDia('buscaAtendimento','$toDay','$toDay');");
+        postRestAjax('agendaSESMTAtendimentosDoDia','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosDoDia.php',$dados,'','',$funcao);      
+        
+        $dados = array('acao','inicio','fim');
+        postRestAjax('buscaAtendimentosDoDia','agendaSESMTResult','sesmt/agendaSESMTAtendimentosDoDiaResult.php',$dados);         
+        
+        
         //ATENDIMENTOS--------------------------------------------
         //--------------------------------------------------------
         $dados = array('tipo');
-        postRestAjax('agendaSESMTAtendimentos','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados);
-        $dados = array('tipo');
-        postRestAjax('agendaSESMTAtendimentosDoDia','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosDoDia.php',$dados);        
-        //pg
-        $dados = array('acao', 'pg');
-        postRestAjax('pagUpDownList','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados); 
+        postRestAjax('agendaSESMTAtendimentos','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados);  
         
         //Buscar
         $dados = array('acao','inicio','fim','medico');
-        postRestAjax('buscaAtendimentos','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados);  
-        
-        $dados = array('acao','inicio','fim','medico');
-        postRestAjax('buscaAtendimentosDoDia','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosDoDia.php',$dados);  
+        postRestAjax('buscaAtendimentos','agendaSESMTResult','sesmt/agendaSESMTAtendimentosBuscar.php',$dados);  
         
         //Result
         $dados = array('acao','cpf');
@@ -105,7 +115,7 @@
         //status modal
         $dados = array('acao', 'inicio','fim','medico','idRequerimento','status');
         $funcao = array('fecharModal();');
-        postRestAjax('alterarStatusRequerimentoModal','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
+        postRestAjax('alterarStatusRequerimentoModal','agendaSESMTResult','sesmt/agendaSESMTAtendimentosBuscar.php',$dados,'','',$funcao);
 
         //Ficha
         $dados = array('acao','idRequerimento','cpf');
@@ -113,7 +123,7 @@
         
         //criarVaga
         $dados = array('acao','idFolha','inicio','fim','medico');
-        postRestAjax('criarVaga','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados);   
+        postRestAjax('criarVaga','agendaSESMTResult','sesmt/agendaSESMTAtendimentosBuscar.php',$dados);   
 
         //BUSCAR--------------------------------------------
         //--------------------------------------------------
@@ -186,17 +196,16 @@
         //AgendarServidor
         $dados = array('acao','idRequerimentoFuncional','idLinha','inicio','fim','medico');
         $funcao = array('fecharModal();');
-        postRestAjax('agendaSESMTAgendarServidor','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
+        postRestAjax('agendaSESMTAgendarServidor','agendaSESMTResult','sesmt/agendaSESMTAtendimentosBuscar.php',$dados,'','',$funcao);
         //Agendar
         $dados = array('acao','idLinha','idRequerimentoFuncional','medico');
         $funcao = array('fecharModal();');
-        postRestAjax('agendaSESMTAtendimentoMarcar','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
+        postRestAjax('agendaSESMTAtendimentoMarcar','agendaSESMTResult','sesmt/agendaSESMTAtendimentosBuscar.php',$dados,'','',$funcao);
         //remacarEmLote
         $dados = array('acao','idLinha','idFolhaOrigem','medico');
         $funcao = array('fecharModal();');
-        postRestAjax('agendaSESMTAtendimentoRemarcar','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados,'','',$funcao);
-        
+        postRestAjax('agendaSESMTAtendimentoRemarcar','agendaSESMTResult','sesmt/agendaSESMTAtendimentosBuscar.php',$dados,'','',$funcao);
   ?>
 <script>
-    window.onload = agendaSESMTAtendimentosDoDia('Entrada');
+    window.onload = agendaSESMTAtendimentosDoDia('agendaSESMTAtendimentosDoDia','<?=$toDay?>','<?=$toDay?>');
 </script>

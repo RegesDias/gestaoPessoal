@@ -98,3 +98,6 @@ session_start();
         postRestAjax('agendaSESMTAgendar','agendaSESMTCorpo','sesmt/agendaSESMTEntrada.php',$dados,'','',$funcao);
 
 }?>
+<script>
+    window.onload = limparResult('limpar');
+</script>
