@@ -50,7 +50,7 @@ session_start();
             $respGet[inicio] = $listadata[0][data];
             $respGet[fim] = $listadata[0][data];
         }
-        $lAtend = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim],'idRequerimentoMedico' => $respGet[medico]);
+        $lAtend = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim]);
         $listaFolha = getRest('requerimento/getListarFolhaPorPeriodoEMedico',$lAtend);
     }
     $listaMedicos = getRest('requerimento/getListarMedicoComVagasAbertas');
@@ -83,7 +83,7 @@ session_start();
     </div>
     <div class="col-sm-12"><br></div>
     <div class="modal-footer">
-        <button class="btn btn-primary" onclick="buscaAtendimentos('buscaAtendimento',$('#inicio').val(),$('#fim').val(),$('#idMedico').val())" type="button">
+        <button class="btn btn-primary" onclick="buscaAtendimentosDoDia('buscaAtendimento',$('#inicio').val(),$('#fim').val(),$('#idMedico').val())" type="button">
             <i class="fa fa-search"></i> Exibir
         </button>
     </div>
@@ -94,9 +94,6 @@ session_start();
   </div>
   <?php if((count($listaFolha) and $respGet[acao] == 'buscaAtendimento')){ ?>
   <div class="box-body no-padding">
-    <div class="mailbox-controls">
-        <?php require_once '../sesmt/dadosMedico.php'; ?>
-    </div>
     <div class="table-responsive mailbox-messages">
         <a href='#'>Atendimentos de <?=dataBr($respGet[inicio])." até ".dataBr($respGet[fim])?></a>
             <div class="box">
@@ -146,7 +143,7 @@ session_start();
                                   <div class="box-body">
                                     <div class="box-body no-padding">
                                       <table class="table table-condensed"><?php
-                                          $ll = array('folha' => $folha[idFolha]);
+                                          $ll = array('folha' => $folha[idFolha], 'notNull'=> 1);
                                           $llinha = getRest('requerimento/getListarLinhasPorIdFolha',$ll);
                                           foreach ($llinha as $value) {
                                                 if($value[matriculaServidor] == 'VAGO'){

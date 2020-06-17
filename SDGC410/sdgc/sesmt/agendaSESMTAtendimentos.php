@@ -54,7 +54,6 @@ session_start();
         $listaFolha = getRest('requerimento/getListarFolhaPorPeriodoEMedico',$lAtend);
     }
     $listaMedicos = getRest('requerimento/getListarMedicoComVagasAbertas');
-    $listaReqEntrada = getRest('requerimento/getRequerimentoEntrada');
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 ?> 
 <div class="box box-primary">
@@ -158,6 +157,7 @@ session_start();
                                           $ll = array('folha' => $folha[idFolha]);
                                           $llinha = getRest('requerimento/getListarLinhasPorIdFolha',$ll);
                                           foreach ($llinha as $value) {
+                                              print_p($value);
                                                 if($value[matriculaServidor] == 'VAGO'){
                                                   $ArrEsp = $value['idLinha'];
                                                   if($value[vagaExtra] == 'true'){
@@ -173,7 +173,7 @@ session_start();
                                                       </td>
                                                       <td>                  
                                                           <div class="pull-right">
-                                                                <button <?=$btnStatus?> class="btn <?=$btn?> btn-small" data-toggle="modal" data-target="#agendaServidor<?=$ArrEsp?>" >
+                                                                <button <?=$btnStatus?> title = 'Agendar' class="btn <?=$btn?> btn-small" data-toggle="modal" data-target="#agendaServidor<?=$ArrEsp?>" >
                                                                     <i class="fa fa-calendar-check-o"></i>
                                                                 </button>
                                                           </div>
@@ -221,6 +221,7 @@ session_start();
                                                                   <a href="#" class="btn btn-success btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$value[cpfServidor]?>')">
                                                                       <i class="fa fa-user"></i>
                                                                   </a>
+                                                                
                                                                   <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
                                                                       <i class="fa fa-calendar-check-o"></i>
                                                                   </button>

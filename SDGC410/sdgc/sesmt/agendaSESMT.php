@@ -90,7 +90,10 @@
         
         //Buscar
         $dados = array('acao','inicio','fim','medico');
-        postRestAjax('buscaAtendimentos','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados);    
+        postRestAjax('buscaAtendimentos','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentos.php',$dados);  
+        
+        $dados = array('acao','inicio','fim','medico');
+        postRestAjax('buscaAtendimentosDoDia','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosDoDia.php',$dados);  
         
         //Result
         $dados = array('acao','cpf');
