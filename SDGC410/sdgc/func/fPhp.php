@@ -17,7 +17,7 @@ $versaoSDGC = '4.1.2';
 $localBack = true;
 $localEndereco = false;
 $DBteste = false;
-$rodarLocal = false;
+$rodarLocal = true;
 $DBtestePort = '32796';
 //---DEFINIÇÃO DE PARAMETROS PARA TESTE DO SISTEMA
 //raphael
@@ -29,7 +29,7 @@ $DBtestePort = '32796';
 //reges
 //$ip = '97';
 //joao
-$ip = '89';
+//$ip = '89';
 //NoteREges
 //$ip = '51';
 //
@@ -123,7 +123,7 @@ function getRest($pf, $data = null, $adress= null) {
         $q = curl_escape($curl, $campos);
         $url = $url . '/' . $q;
     }
-   //echo_p($url);
+    //echo_p($url);
     $options = array(
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_URL => $url,

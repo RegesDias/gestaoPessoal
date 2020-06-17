@@ -29,6 +29,7 @@ if ($respGet['acao'] == "lancarOco") {
                     'obs' => $respGet['obsOco'],     
                     'idTipoOco' => $respGet['ocorrencia']        
                        );
+    print_p($lancarOco);
     $arquivoOco = array($lancarOco);
     $executar = postRest('OcorrenciaWs/postIncluirOcorrencia',$arquivoOco);
     $periodoOcoBusca = str_replace("/", "-", $periodoMes);
