@@ -192,9 +192,7 @@ function modalInicoFimData($id, $title, $acao, $user = null) {
                     <div class="modal-footer">
                         <input type="hidden" name="user" value="<?= $user ?>">
                         <input type="hidden" name="acao" value="<?= $acao ?>">
-
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
-                        
                         <button class="btn btn-primary" data-dismiss="modal" onclick="<?='post'.$acao?>('<?= $acao ?>','<?= $user ?>',$('#idDataInicio<?= $id ?>').val(),$('#idDataFim<?= $id ?>').val(), true )" type="button">
                              <b>OK</b>
                         </button>

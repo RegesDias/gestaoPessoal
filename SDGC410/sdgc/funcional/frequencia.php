@@ -12,13 +12,15 @@ foreach ($_SESSION["funcionalPerfil"]['permissoes'] as $valor) {
         break;
     }
 }
-
+//print_p($_SESSION["funcionalPerfil"]['permissoes']);
 foreach ($_SESSION["funcionalPerfil"]['permissoes'] as $valor) {
-    if (($valor['menuN1'] == 'Frequência') AND ( $valor['menuN2'] == 'verificaColeta')AND ( $valor['listar'] == 1)) {
-        $prmVerificaColeta = $valor;
+    $prmVerificaColeta['listar'] = '0';
+    if (($valor['menuN1'] == 'Frequência') AND ( $valor['menuN2'] == 'verificaColeta')) {
+        $prmVerificaColeta['listar'] = '1';
         break;
     }
 }
+print_p($prmVerificaColeta);
 
 if ($prmfrequencia['listar'] == '1') {
     $idModal = 'InicioFim';
@@ -51,8 +53,8 @@ $ponto = getRest('ponto/getServidorPontoMarcacao', $usuario);
                         <button type="button <?= permissaoAcesso($prmfrequencia['buscar'], 'hide') ?>" class="btn btn-info" data-toggle="modal" data-target="<?= '#macacoes' . $idModal ?>">
                             <i class="fa fa-print"></i> <b>Marcações</b>
                         </button>
-
-                        <button type="button <?= permissaoAcesso($prmVerificaColeta['buscar'], 'hide') ?>" class="btn btn-info" data-toggle="modal" data-target="#jevimBio">
+                        
+                        <button type="button" class="btn btn-info <?= permissaoAcesso($prmVerificaColeta['listar'], 'hide') ?>" data-toggle="modal" data-target="#jevimBio">
                             <i class="fa fa-eye"></i> <b>Verifica Coleta</b>
                         </button>
 
