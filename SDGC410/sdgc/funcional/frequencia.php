@@ -47,10 +47,10 @@ $ponto = getRest('ponto/getServidorPontoMarcacao', $usuario);
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-body">
-                        <button type="button <?= permissaoAcesso($prmfrequencia['buscar'], 'hide') ?>" class="btn btn-info" data-toggle="modal" data-target="<?= '#modalEnviaSetor' . $idModal ?>">
+                        <button type="button" class="btn btn-info <?= permissaoAcesso($prmfrequencia['buscar'], 'hide') ?>" data-toggle="modal" data-target="<?= '#modalEnviaSetor' . $idModal ?>">
                             <i class="fa fa-calendar"></i> <b>Folha de Ponto</b>
                         </button>
-                        <button type="button <?= permissaoAcesso($prmfrequencia['buscar'], 'hide') ?>" class="btn btn-info" data-toggle="modal" data-target="<?= '#macacoes' . $idModal ?>">
+                        <button type="button" class="btn btn-info <?= permissaoAcesso($prmfrequencia['buscar'], 'hide') ?>" data-toggle="modal" data-target="<?= '#macacoes' . $idModal ?>">
                             <i class="fa fa-print"></i> <b>Marcações</b>
                         </button>
                         
