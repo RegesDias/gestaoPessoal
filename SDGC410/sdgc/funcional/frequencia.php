@@ -20,7 +20,7 @@ foreach ($_SESSION["funcionalPerfil"]['permissoes'] as $valor) {
         break;
     }
 }
-print_p($prmVerificaColeta);
+//print_p($prmVerificaColeta);
 
 if ($prmfrequencia['listar'] == '1') {
     $idModal = 'InicioFim';
