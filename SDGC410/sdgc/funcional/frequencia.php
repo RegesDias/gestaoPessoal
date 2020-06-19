@@ -57,6 +57,10 @@ $ponto = getRest('ponto/getServidorPontoMarcacao', $usuario);
                         <button type="button" class="btn btn-info <?= permissaoAcesso($prmVerificaColeta['listar'], 'hide') ?>" data-toggle="modal" data-target="#jevimBio">
                             <i class="fa fa-eye"></i> <b>Verifica Coleta</b>
                         </button>
+                        
+                        <button onclick="postGrupoRep('verGrupoRep', true)" type="button" class="btn btn-info <?= permissaoAcesso($prmVerificaColeta['listar'], 'hide') ?>">
+                            <i class="fa fa-eye"></i> <b>Grupo REP</b>
+                        </button>
 
                     </div>
                 </div>
@@ -196,5 +200,10 @@ postRestAjax('postBuscarOcorrencia', 'ocorrenciaBusca', 'funcional/ocorrenciaBus
 $dados = array('acao', 'user', 'dataInicio', 'dataFim', 'ver');
 $funcao = array('fecharModal');
 postRestAjax('postverMarcacoesEmpresa', 'imprimir', 'jevinBio/bio.php', $dados, '', '', $funcao);
+
+//Grupo REP
+$dados = array('acao', 'ver');
+postRestAjax('postGrupoRep', 'imprimir', 'jevinBio/grupoRep.php', $dados);
+
 ?>
 
