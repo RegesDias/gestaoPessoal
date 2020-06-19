@@ -149,7 +149,13 @@ session_start();
                                                       </td>
                                                         <td>
                                                             <div class="pull-right">
-                                                                  <?php if($value[idStatus] < 90){?>
+                                                                <?php if(($value[idStatus] == 4) AND ($toDay <= $dataAgenda)){?>
+                                                                    <button class="btn btn-primary" title="Atendimento" onclick="agendaSESMTAtendimentosFichaMedica('Agenda Alterar','<?=$value[id]?>','<?=$value[cpfServidor]?>')" >
+                                                                        <i class="fa fa-heartbeat"></i>
+                                                                    </button><?php 
+                                                                
+                                                                }
+                                                                 if($value[idStatus] < 90){?>
                                                                     <button  class="btn btn-small" data-toggle="modal" data-target="#alterarStatus<?=$ArrEsp?>" >
                                                                         <i class="fa fa-thumbs-o-down"></i>
                                                                     </button>
@@ -180,10 +186,11 @@ session_start();
                                                                   <a href="#" class="btn btn-success btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$value[cpfServidor]?>')">
                                                                       <i class="fa fa-user"></i>
                                                                   </a>
-                                                                
+                                                                <?php if( $btnStatus != 'disabled'){ ?>
                                                                   <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
                                                                       <i class="fa fa-calendar-check-o"></i>
                                                                   </button>
+                                                                <?php }?>
                                                             </div>
                                                         </td>
                                                   </tr><?php 

@@ -39,7 +39,7 @@ if (($value[matriculaServidor] == 'VAGO')AND ($remarcar == false) ) {
                         <select onchange="getAJAX(<?="'".$ajurl."'";?>,'requerimento/getListarLinhasVagasPorIdRequerimentoMedico/',this.value,selectAgendaDia<?= $ArrEsp ?>)" id="agendaMedico<?=$ArrEsp?>" class="form-control select2" style="width: 100%;">
                             <option value=""></option>
                             <?php
-                            foreach ($listaMedicos as $medico) {
+                            foreach ($_SESSION[listaMedicos] as $medico) {
                                 ?>     
                                 <option value="<?= $medico[idRequerimentoMedico] ?>"><?= $medico[nomeMedico] ?></option>
                                 <?php

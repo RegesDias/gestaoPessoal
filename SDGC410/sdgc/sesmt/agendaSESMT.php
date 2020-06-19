@@ -122,7 +122,7 @@
 
         //Ficha
         $dados = array('acao','idRequerimento','cpf');
-        postRestAjax('agendaSESMTAtendimentosFichaMedica','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosFichaMedica.php',$dados);
+        postRestAjax('agendaSESMTAtendimentosFichaMedica','agendaSESMTResult','sesmt/agendaSESMTAtendimentosFichaMedica.php',$dados);
         
         //criarVaga
         $dados = array('acao','idFolha','inicio','fim','medico');

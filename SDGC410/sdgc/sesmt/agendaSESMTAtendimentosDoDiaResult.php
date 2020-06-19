@@ -46,7 +46,6 @@ session_start();
         $lAtend = array('dataInicio' => $respGet[inicio],'dataFim' => $respGet[fim]);
         $listaFolha = getRest('requerimento/getListarFolhaPorPeriodoEMedico',$lAtend);
     }
-    $listaMedicos = getRest('requerimento/getListarMedicoComVagasAbertas');
     $listaReqEntrada = getRest('requerimento/getRequerimentoEntrada');
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 ?> 

@@ -2,6 +2,7 @@
 session_start();
 require_once '../func/fPhp.php';
 require_once '../func/fModal.php';
+$_SESSION[listaMedicos] = getRest('requerimento/getListarMedicoComVagasAbertas');
 $diasemana = array(1=>'Domingo', 2=>'Segunda', 3=>'Terça', 4=>'Quarta', 5=>'Quinta', 6=>'Sexta', 7=>'Sabado');
 if($respGet[acao] == 'medicoSalvar'){
 

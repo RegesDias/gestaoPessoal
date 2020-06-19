@@ -2,7 +2,7 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    $listaMedicos = getRest('requerimento/getListarMedicoComVagasAbertas');
+    $_SESSION[listaMedicos] = getRest('requerimento/getListarMedicoComVagasAbertas');
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 ?> 
 <div class="box box-primary">
@@ -29,7 +29,7 @@ session_start();
             <label>Médico</label>
             <select id='idMedico' class="form-control select2" style="width: 100%;">
                 <option></option>
-                <?php foreach ($listaMedicos as $value) {
+                <?php foreach ( $_SESSION[listaMedicos] as $value) {
                     echo "<option value='$value[idRequerimentoMedico]'>$value[nomeMedico]</option>";
                 }?>
             </select>
