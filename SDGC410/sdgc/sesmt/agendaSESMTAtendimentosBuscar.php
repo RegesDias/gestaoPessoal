@@ -2,7 +2,6 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    print_p();
     if($respGet[acao] == 'agendarServidor'){
         $ag = array('idLinha' => $respGet[idLinha],'idRequerimentoFuncional' => $respGet[idRequerimentoFuncional]);
         $agendar = array($ag);
@@ -161,7 +160,7 @@ session_start();
                                                                               <div class="modal-body">
                                                                                   <div class="col-sm-12">
                                                                                       <label>Servidor</label>
-                                                                                      <select name="idStatus" size="1"  class="form-control select2" id='idStatus' style="width: 100%;">
+                                                                                      <select name="idStatus" size="1"  class="form-control select2" id='idStatus<?=$value[idLinha]?>' style="width: 100%;">
                                                                                             <option selected></option>
                                                                                             <option value="97" >Paciente não compareceu</option> 
                                                                                             <option value="95">Médico Indisponivel</option>
@@ -170,7 +169,7 @@ session_start();
                                                                                   <div class="col-sm-12"><br></div>
                                                                               </div>
                                                                               <div class="modal-footer">
-                                                                                  <button data-dismiss="modal" class="btn btn-primary" onclick="alterarStatusRequerimentoModal('alterarStatusRequerimento','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>','<?=$value[idRequerimento]?>',$('#idStatus').val())" type="button">
+                                                                                  <button data-dismiss="modal" class="btn btn-primary" onclick="alterarStatusRequerimentoModal('alterarStatusRequerimento','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>','<?=$value[idRequerimento]?>',$('#idStatus<?=$value[idLinha]?>').val())" type="button">
                                                                                       Confirmar
                                                                                   </button>
                                                                                   <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>

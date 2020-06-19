@@ -58,46 +58,15 @@ session_start();
         <a href='#'>Atendimentos de <?=dataBr($respGet[inicio])." até ".dataBr($respGet[fim])?></a>
             <div class="box">
                 <div class="box box-solid box-primary">
+                 <table class="table table-condensed">
                   <div class="panel"><?php 
-                    if(count($listaFolha) <= 2){
-                          $in = 'in';
-                    }
                     foreach ($listaFolha as $folha) {
                         if($folha[periodo] == 'manha'){$folha[periodo] = 'Manhã';}
                         if($folha[periodo] == 'tarde'){$folha[periodo] = 'Tarde';}
                         $folha[data] = dataHorabr($folha[data]);
                         $folha[data] = substr($folha[data], 0, -5);
                         $dataHoje = date("d/m/Y");?>
-                                <?php if($dataAtual != $folha[data]){?>
-                                        <div class="box-header with-border">
-                                          <h4 class="box-title box-primary">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$folha[idFolha]?>">
-                                                <i class="fa fa-medkit"></i> <?=$folha[data]?>
-                                            </a>
-                                          </h4>
-                                        </div>
-                                        <div class="box-header with-border">
-                                          <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" class='link-button-menu-left' href="#collapse<?=$folha[idFolha]?>">
-                                                <?=$folha[periodo]?> total de <?=$folha[vagas]?> atendimento(s)
-                                            </a>
-                                          </h4>
-                                        </div>
-                                        <?php 
-
-                                }else{ ?>
-                                        <div class="box-header with-border">
-                                          <h4 class="box-title box-primary">
-                                            <a data-toggle="collapse" data-parent="#accordion" class='link-button-menu-left' href="#collapse<?=$folha[idFolha]?>">
-                                                <?=$folha[periodo]?> total de <?=$folha[vagas]?> atendimento(s)
-                                            </a>
-                                          </h4>
-                                        </div>                                
-                                <?php }?>
-                                <div id="collapse<?=$folha[idFolha]?>" class="panel-collapse collapse <?=$in?>">
-                                  <div class="box-body">
-                                    <div class="box-body no-padding">
-                                      <table class="table table-condensed"><?php
+                                     <?php
                                           $ll = array('folha' => $folha[idFolha], 'notNull'=> 1);
                                           $llinha = getRest('requerimento/getListarLinhasPorIdFolha',$ll);
                                           foreach ($llinha as $value) {
@@ -114,78 +83,33 @@ session_start();
                                                         $btnStatus = '';
                                                     }else{
                                                         $btnStatus = 'disabled';
-                                                    }
-                                                  ?>
-                                                  <tr>
-                                                      <td colspan="3">
-                                                          <a href="#" <?=$btnStatus?> ><center><span class="badge <?=$btn?>"> <?=$vaga?> </span></center></a>
-                                                      </td>
-                                                      <td>                  
-                                                          <div class="pull-right">
-                                                                <button <?=$btnStatus?> class="btn <?=$btn?> btn-small" data-toggle="modal" data-target="#agendaServidor<?=$ArrEsp?>" >
-                                                                    <i class="fa fa-calendar-check-o"></i>
-                                                                </button>
-                                                          </div>
-                                                      </td>
-                                                  </tr><?php        
+                                                    }   
                                               }else{
                                                   $ArrEsp = $value['idRequerimentoFuncional'];?>
                                                   <tr>
                                                       <td class="mailbox-name">
+                                                          <?=$folha[data]?>
+                                                      </td>
+                                                      <td class="mailbox-date">
+                                                           <?=$folha[periodo]?>
+                                                      </td>
+                                                      <td class="mailbox-name">
                                                           <?=$value[matriculaServidor]." - ".$value[nomeServidor]?>
                                                       </td>
                                                       <td class="mailbox-date">
-                                                           <?=$value[requerimentoSolicitacao]?>
-                                                      </td>
-                                                      <td class="mailbox-date">
-                                                          <span class="text-muted pull-right label label-primary"><i class="fa fa-hourglass-2"></i> <?=$value[nomeStatus]?></span>
+                                                           <?=$folha[nomeMedico]?>
                                                       </td>
                                                         <td>
                                                             <div class="pull-right">
-                                                                  <?php if($value[idStatus] < 90){?>
-                                                                    <button  class="btn btn-small" data-toggle="modal" data-target="#alterarStatus<?=$ArrEsp?>" >
-                                                                        <i class="fa fa-thumbs-o-down"></i>
-                                                                    </button>
-                                                                  <?php }?>
-                                                                  <div class="modal fade" id="alterarStatus<?=$ArrEsp?>" role="dialog">
-                                                                      <div class="modal-dialog modal-md">
-                                                                          <div class="modal-content">
-                                                                              <div class="modal-body">
-                                                                                  <div class="col-sm-12">
-                                                                                      <label>Servidor</label>
-                                                                                      <select name="idStatus" size="1"  class="form-control select2" id='idStatus' style="width: 100%;">
-                                                                                              <option value="97">Paciente não compareceu</option> 
-                                                                                              <option value="95" selected>Médico Indisponivel</option>
-                                                                                      </select>
-                                                                                  </div>
-                                                                                  <div class="col-sm-12"><br></div>
-                                                                              </div>
-                                                                              <div class="modal-footer">
-                                                                                  <button data-dismiss="modal" class="btn btn-primary" onclick="alterarStatusRequerimentoModal('alterarStatusRequerimento','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>','<?=$value[idRequerimento]?>',$('#idStatus').val())" type="button">
-                                                                                      Confirmar
-                                                                                  </button>
-                                                                                  <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
-                                                                              </div>
-                                                                          </div>
-                                                                      </div>
-                                                                  </div>
                                                                   <a href="#" class="btn btn-success btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$value[cpfServidor]?>')">
                                                                       <i class="fa fa-user"></i>
                                                                   </a>
-                                                                  <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
-                                                                      <i class="fa fa-calendar-check-o"></i>
-                                                                  </button>
                                                             </div>
                                                         </td>
                                                   </tr><?php 
                                               }
                                               require '../sesmt/modalAgendar.php';
-                                          }?>
-                                      </table>
-                                    </div>
-
-                          </div>
-                        </div><?php
+                                          }
                         //remarcar todos
                         $remarcar = true;
                         $ArrEsp = "folha".$folha[idFolha];
@@ -193,6 +117,7 @@ session_start();
                         //atualiza data atual
                         $dataAtual = $folha[data];
                     }?>
+                      </table>
             <div class="box-footer no-padding">
               <div class="mailbox-controls">
               </div>

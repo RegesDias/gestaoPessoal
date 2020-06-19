@@ -16,12 +16,12 @@ session_start();
             <label for="exampleInputEmail1">Intervalo</label>
             <div class="form-group">
                 <div class="form-group">
-                    <input type='date'  class="form-control" name='mes' id='inicio' style="width: 100%;">
+                    <input type='date'  value ='<?=date('Y-m-d')?>'class="form-control" name='mes' id='inicio' style="width: 100%;">
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-group">
-                    <input type='date'  class="form-control" name='mes' id='fim' style="width: 100%;">
+                    <input type='date'  value ='<?=date('Y-m-d')?>' class="form-control" name='mes' id='fim' style="width: 100%;">
                 </div>
             </div>
         </div>
@@ -36,13 +36,13 @@ session_start();
         </div>
     </div>
     <div class="col-sm-12"><br></div>
-    <div class="modal-footer">
-        <button class="btn btn-info " onclick="agendaSESMTAgendaEditar('Agenda Alterar',$('#inicio').val(),$('#fim').val(),$('#idMedico').val())" type="button">
-            <i class="fa fa-folder-open-o"></i> Abrir
-        </button>
-        <button class="btn btn-primary" onclick="buscaAtendimentos('buscaAtendimento',$('#inicio').val(),$('#fim').val(),$('#idMedico').val())" type="button">
-            <i class="fa fa-search"></i> Buscar
-        </button>
+    <div class="box-footer">
+      <button class="btn btn-default " onclick="agendaSESMTAgendaEditar('Agenda Alterar',$('#inicio').val(),$('#fim').val(),$('#idMedico').val())" type="button">
+          <i class="fa fa-folder-open-o"></i> Abrir
+      </button>
+      <button class="btn btn-primary pull-right" onclick="buscaAtendimentos('buscaAtendimento',$('#inicio').val(),$('#fim').val(),$('#idMedico').val())" type="button">
+          <i class="fa fa-search"></i> Buscar
+      </button>
     </div>
     <!-- /.box-tools -->
   </div>

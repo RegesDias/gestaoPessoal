@@ -14,7 +14,7 @@ session_start();
             <label for="exampleInputEmail1">Início</label>
             <div class="form-group">
                 <div class="form-group">
-                    <input type='date'   class="form-control" name='mes' id='inicio' style="width: 100%;">
+                    <input type='date'  value='<?=date("Y-m-d")?>' class="form-control" name='mes' id='inicio' style="width: 100%;">
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@ session_start();
             <label for="exampleInputEmail1">Fim</label>
             <div class="form-group">
                 <div class="form-group">
-                    <input type='date'   class="form-control" name='mes' id='fim' style="width: 100%;">
+                    <input type='date'  value='<?=date("Y-m-d")?>' class="form-control" name='mes' id='fim' style="width: 100%;">
                 </div>
             </div>
         </div>
