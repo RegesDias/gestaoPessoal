@@ -112,11 +112,11 @@
         $dados = array('acao','cpf');
         postRestAjax('agendaSESMTAtendimentosResult','agendaSESMTResult','sesmt/agendaSESMTAtendimentosResult.php',$dados);
         //status
-        $dados = array('acao','idRequerimento','cpf','status');
+        $dados = array('acao','idRequerimento','cpf','status','idLinha');
         $funcao = array('fecharModal();');
-        postRestAjax('alterarStatusRequerimento','agendaSESMTCorpo','sesmt/agendaSESMTAtendimentosResult.php',$dados,'','',$funcao);
+        postRestAjax('alterarStatusRequerimento','agendaSESMTResult','sesmt/agendaSESMTAtendimentosResult.php',$dados,'','',$funcao);
         //status modal
-        $dados = array('acao', 'inicio','fim','medico','idRequerimento','status');
+        $dados = array('acao', 'inicio','fim','medico','idRequerimento','status','idLinha');
         $funcao = array('fecharModal();');
         postRestAjax('alterarStatusRequerimentoModal','agendaSESMTResult','sesmt/agendaSESMTAtendimentosBuscar.php',$dados,'','',$funcao);
 
@@ -201,11 +201,11 @@
         $funcao = array('fecharModal();');
         postRestAjax('agendaSESMTAgendarServidor','agendaSESMTResult','sesmt/agendaSESMTAtendimentosBuscar.php',$dados,'','',$funcao);
         //Agendar
-        $dados = array('acao','idLinha','idRequerimentoFuncional','medico');
+        $dados = array('acao','idLinha','idRequerimentoFuncional','medico','idLinhaOrigem');
         $funcao = array('fecharModal();');
         postRestAjax('agendaSESMTAtendimentoMarcar','agendaSESMTResult','sesmt/agendaSESMTAtendimentosBuscar.php',$dados,'','',$funcao);
         //remacarEmLote
-        $dados = array('acao','idLinha','idFolhaOrigem','medico');
+        $dados = array('acao','idLinha','idFolhaOrigem','medico','idLinhaOrigem');
         $funcao = array('fecharModal();');
         postRestAjax('agendaSESMTAtendimentoRemarcar','agendaSESMTResult','sesmt/agendaSESMTAtendimentosBuscar.php',$dados,'','',$funcao);
   ?>

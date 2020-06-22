@@ -2,8 +2,9 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
+    print_p();
     if($respGet[acao] == 'agendarServidor'){
-        $ag = array('idLinha' => $respGet[idLinha],'idRequerimentoFuncional' => $respGet[idRequerimentoFuncional]);
+        $ag = array('idLinha' => $respGet[idLinha],'idRequerimentoFuncional' => $respGet[idRequerimentoFuncional],'idLinhaOrigem' =>  $respGet[idLinhaOrigem]);
         $agendar = array($ag);
         $executar = postRest('requerimento/postMarcarServidor',$agendar);
         $respGet[acao] = 'buscaAtendimento'; 
@@ -17,7 +18,7 @@ session_start();
         $msnTexto = "ao criar vaga. ".$executar['msn'].'.';
     }
     if($respGet[acao] == 'agendar'){
-        $ag = array('idLinha' => $respGet[idLinha],'idRequerimentoFuncional' => $respGet[idRequerimentoFuncional]);
+        $ag = array('idLinha' => $respGet[idLinha],'idRequerimentoFuncional' => $respGet[idRequerimentoFuncional],'idLinhaOrigem' => $respGet[idLinhaOrigem]);
         $agendar = array($ag);
         $executar = postRest('requerimento/postAgendar',$agendar);
         $l = array('idLinha' =>$respGet[idLinha]);
@@ -38,7 +39,7 @@ session_start();
         $msnTexto = "ao agendar. ".$executar['msn'].'.';
     }
     if($respGet[acao] == 'alterarStatusRequerimento'){
-        $ag = array('id' => $respGet[idRequerimento],'idStatus' => $respGet[status]);
+        $ag = array('id' => $respGet[idRequerimento],'idStatus' => $respGet[status],'idLinha' => $respGet[idLinha]);
         $agendar = array($ag);
         $executar = postRest('requerimento/postAlterarStatusRequerimento',$agendar);
         $msnTexto = "ao alterar status. ".$executar['msn'].'.';
@@ -120,7 +121,11 @@ session_start();
                                                   }else{
                                                       $vaga = 'Vaga';
                                                       $btn = 'btn-warning';
-                                                  }?>
+                                                  }
+                                                  if($toDay > $dataAgenda){
+                                                      echo estatosAnterior;
+                                                  }
+                                                  ?>
                                                   <tr>
                                                       <td colspan="3">
                                                           <a href="#" <?=$btnStatus?> ><center><span class="badge <?=$btn?>"> <?=$vaga?> </span></center></a>
@@ -168,14 +173,16 @@ session_start();
                                                                                       <label>Servidor</label>
                                                                                       <select name="idStatus" size="1"  class="form-control select2" id='idStatus<?=$value[idLinha]?>' style="width: 100%;">
                                                                                             <option selected></option>
-                                                                                            <option value="97" >Paciente não compareceu</option> 
-                                                                                            <option value="95">Médico Indisponivel</option>
+                                                                                            <option value="97">Paciente não compareceu</option>
+                                                                                            <option value="94">Paciente Requisitou Remarcação</option>
+                                                                                            <option value="95">Médico Indisponível</option>
+                                                                                            <option value="93">Médico Requisitou Remarcação</option>
                                                                                       </select>
                                                                                   </div>
                                                                                   <div class="col-sm-12"><br></div>
                                                                               </div>
                                                                               <div class="modal-footer">
-                                                                                  <button data-dismiss="modal" class="btn btn-primary" onclick="alterarStatusRequerimentoModal('alterarStatusRequerimento','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>','<?=$value[idRequerimento]?>',$('#idStatus<?=$value[idLinha]?>').val())" type="button">
+                                                                                  <button data-dismiss="modal" class="btn btn-primary" onclick="alterarStatusRequerimentoModal('alterarStatusRequerimento','<?=$respGet[inicio]?>','<?=$respGet[fim]?>','<?=$respGet[medico]?>','<?=$value[idRequerimento]?>',$('#idStatus<?=$value[idLinha]?>').val(),'<?=$value[idLinha]?>')" type="button">
                                                                                       Confirmar
                                                                                   </button>
                                                                                   <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
@@ -186,7 +193,7 @@ session_start();
                                                                   <a href="#" class="btn btn-success btn-small" onclick="agendaSESMTAtendimentosResult('ler','<?=$value[cpfServidor]?>')">
                                                                       <i class="fa fa-user"></i>
                                                                   </a>
-                                                                <?php if( $btnStatus != 'disabled'){ ?>
+                                                                <?php if( $btnStatus != 'disabled'){?>
                                                                   <button <?=$btnStatus?> class="btn btn-info btn-small" data-toggle="modal" data-target="#agenda<?=$ArrEsp?>" >
                                                                       <i class="fa fa-calendar-check-o"></i>
                                                                   </button>

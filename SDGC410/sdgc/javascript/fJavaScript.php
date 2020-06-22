@@ -1,7 +1,7 @@
 <script type="text/javascript">
     document.cookie = "SameSite=None";
 
-    function limparHtmlDivPorId(var id) {
+    function limparHtmlDivPorId(id) {
         var elementoDiv = document.getElementById(id);
         elementoDiv.innerHTML = "";
     }

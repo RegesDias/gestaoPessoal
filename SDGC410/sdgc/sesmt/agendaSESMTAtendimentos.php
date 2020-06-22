@@ -2,7 +2,8 @@
 session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    $_SESSION[listaMedicos] = getRest('requerimento/getListarMedicoComVagasAbertas');
+    $_SESSION[listaMedicos] = getRest('requerimento/getListarRequerimentoMedicoAtivos');
+    $_SESSION[listaReqEntrada] = getRest('requerimento/getRequerimentoEntrada');
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
 ?> 
 <div class="box box-primary">

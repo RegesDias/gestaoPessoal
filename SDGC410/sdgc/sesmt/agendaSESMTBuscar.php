@@ -3,7 +3,7 @@ session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
     autoComplete($_SESSION["nomePessoas"], '#nome', '1');
-    $_SESSION[listaMedicos] = getRest('requerimento/getListarMedicoComVagasAbertas');
+    $_SESSION[listaMedicos] = getRest('requerimento/getListarRequerimentoMedicoAtivos');
 ?> 
 <div class="box box-primary">
     <div class="box-header with-border">
