@@ -16,49 +16,85 @@ require_once '../func/fModal.php';
     <div class="box-body">
         <div class="row" id="idBoxSelectSecretaria">
             <div class="col-md-12">
-                <label>dado 1</label>
-                <select name="idSecretaria" size="1"  class="form-control select2" id='idSecretaria' style="width: 100%;">
-
+                <label>CID</label>
+                <select name="cid-10" size="1"  class="form-control select2" id='idSecretaria' style="width: 100%;">
+                        <option value="valor1"></option> 
+                        <option value="valor1">Valor 1</option> 
+                        <option value="valor2" selected>Valor 2</option>
+                        <option value="valor3">Valor 3</option>
                 </select>
             </div>
         </div>
         <div class="row" id="idBoxSelectSetor">
             <div class="col-md-12">
-                <label>dado</label>
-                <select name="idSetor" size="1" class="form-control select2" id="idSetor" style="width: 100%;">
-
-                </select>
+                <label>Medicamentos</label>
+                <input type="text" class="form-control" >
             </div>
         </div>
-        <label for="exampleInputEmail1">dado</label>
-        <select  class="form-control select2" name='categoria' id='idCategoria' style="width: 100%;">
-             <option selected='selected' value='nulo'></option>
-            <?php foreach ($agendaSESMTsCategoria as $value) {
-                if($value[id] == $editarModelo[0][agendaSESMTCategoria][id]){
-                    $slc = 'selected';
-                }else{
-                    $slc = '';
-                }
-                ?>
-                <option <?=$slc?> value='<?=$value[id]?>'><?=$value[nome]?></option>
-            <?php }?>
-        </select>
-        <div class="row" id="idBoxSelectDiaSemana">
-            <div class="col-md-6">
-                <label>dado</label>
-                <select name="idSetor" size="1" multiple="multiple" class="form-control select2" id="idSetor" style="width: 100%;">
-                    <option>Segunda</option>
-                    <option>Terça</option>
-                    <option>Quarta</option>
-                    <option>Quinta</option>
-                    <option>Sexta</option>
-                    <option>Sabado</option>
-                    <option>Domingo</option>
-                </select>
+        <div class="col-md-6">
+          <label for="exampleInputEmail1">Evolução</label>
+            <div class="form-group">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="evolucao" id="evolucao" value="option1" >
+                  Em tratamento
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="evolucao" id="evolucao" value="option2">
+                  Curado
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="evolucao" id="evolucao" value="option3" >
+                  Melhorando (Crônica)
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="evolucao" id="evolucao" value="option3" >
+                  Melhorando (Aguda)
+                </label>
+              </div>
             </div>
-            <div class="col-md-6">
-                <label>dado</label>
-                <input type='number' class="form-control" style="width: 100%;">
+        </div>
+         <div class="col-md-6">
+          <label for="exampleInputEmail1">Retorno</label>
+            <div class="form-group">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="retorno" id="retorno" value="option1" >
+                  Sim
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="retorno" id="retorno" value="option2">
+                  Não
+                </label>
+              </div>
+            </div>
+        </div>
+            <script>
+                $(document).on("keydown", "#obsOco", function () {
+                    var caracteresRestantes = 499;
+                    var caracteresDigitados = parseInt($(this).val().length);
+                    var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+
+                    $(".caracteres").text(caracteresRestantes);
+                });
+            </script>
+            <div class="form-group col-sm-12">
+                <label>Observação<i><sub class="caracteres">500</sub> <sub>Restantes </sub></i></label> 
+                <textarea id="obsOco" name='ObsOco'class="form-control"  maxlength="500"rows="4"></textarea>
+            </div>
+            <div class="row" id="idBoxSelectSetor">
+                <div class="col-md-12">
+                    <label>Dias de Afastamento</label>
+                    <input type="text" class="form-control" >
+                </div>
             </div>
         </div>
     </div>
