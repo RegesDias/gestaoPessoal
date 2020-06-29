@@ -2,6 +2,7 @@
     session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
+    $_SESSION[listaCID10] = getRest('cid/getListCidCategoriaSub');
     $btnChamadosAdm = true;
     //dataHoje
     $toDay = date("Y-m-d");
@@ -169,6 +170,15 @@
         //salvar
         $dados = array('acao', 'diaManha','diaTarde','idHistFunc','atendimentosTarde','atendimentosManha','CRM');
         postRestAjax('medicoSalvar','agendaSESMTCorpo','sesmt/agendaSESMTMedico.php',$dados);
+
+        //salvaFichaMedica
+        $dados = array('acao');
+        postRestAjax('salvaFichaMedica','agendaSESMTResult','sesmt/agendaSESMTAtendimentosFichaMedica.php',$dados);
+        
+        //carregaDescricaocid10
+        $dados = array('acao','cid');
+        postRestAjax('descricaoCID10','dadosCid10','sesmt/descricaoCID10.php',$dados);
+        
         
         //ativar-desativar-editar
         $dados = array('acao', 'idMedico');

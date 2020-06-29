@@ -14,68 +14,70 @@ require_once '../func/fModal.php';
         <h3 class="box-title">Ficha Médica</h3>
     </div>
     <div class="box-body">
-        <div class="row" id="idBoxSelectSecretaria">
-            <div class="col-md-12">
-                <label>CID</label>
-                <select name="cid-10" size="1"  class="form-control select2" id='idSecretaria' style="width: 100%;">
-                        <option value="valor1"></option> 
-                        <option value="valor1">Valor 1</option> 
-                        <option value="valor2" selected>Valor 2</option>
-                        <option value="valor3">Valor 3</option>
-                </select>
-            </div>
+        <div class="form-group">
+            <label>CID</label>
+            <select name="cid-10" size="1"  multiple onchange="descricaoCID10('descricaoCID10',$('select#idCid10 option:selected').map(function() {return $(this).val();}).get(),)" class="form-control select2" id='idCid10' style="width: 100%;">
+                <option value="valor1"></option> 
+                <?php foreach ($_SESSION[listaCID10] as $value) {?>    
+                
+                
+                    <option value="<?=$value[id]?>"><?="$value[id] - $value[descricaoCidCategoriaSub]"?></option> 
+                <?php }?>
+            </select>
         </div>
-        <div class="row" id="idBoxSelectSetor">
-            <div class="col-md-12">
-                <label>Medicamentos</label>
-                <input type="text" class="form-control" >
-            </div>
+        <div id="dadosCid10">
         </div>
-        <div class="col-md-6">
-          <label for="exampleInputEmail1">Evolução</label>
-            <div class="form-group">
-              <div class="radio">
-                <label>
-                  <input type="radio" name="evolucao" id="evolucao" value="option1" >
-                  Em tratamento
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="evolucao" id="evolucao" value="option2">
-                  Curado
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="evolucao" id="evolucao" value="option3" >
-                  Melhorando (Crônica)
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="evolucao" id="evolucao" value="option3" >
-                  Melhorando (Aguda)
-                </label>
-              </div>
-            </div>
+        <div class="form-group">
+            <label>Medicamentos</label>
+            <input type="text" class="form-control" >
         </div>
-         <div class="col-md-6">
-          <label for="exampleInputEmail1">Retorno</label>
-            <div class="form-group">
-              <div class="radio">
-                <label>
-                  <input type="radio" name="retorno" id="retorno" value="option1" >
-                  Sim
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="retorno" id="retorno" value="option2">
-                  Não
-                </label>
-              </div>
+        <div class="form-group">
+            <div class="col-md-6">
+              <label for="exampleInputEmail1">Evolução</label>
+                <div class="form-group">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="evolucao" id="evolucao" value="option1" >
+                      Em tratamento
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="evolucao" id="evolucao" value="option2">
+                      Curado
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="evolucao" id="evolucao" value="option3" >
+                      Melhorando (Crônica)
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="evolucao" id="evolucao" value="option3" >
+                      Melhorando (Aguda)
+                    </label>
+                  </div>
+                </div>
             </div>
+            <div class="col-md-6">
+             <label for="exampleInputEmail1">Retorno</label>
+               <div class="form-group">
+                 <div class="radio">
+                   <label>
+                     <input type="radio" name="retorno" id="retorno" value="option1" >
+                     Sim
+                   </label>
+                 </div>
+                 <div class="radio">
+                   <label>
+                     <input type="radio" name="retorno" id="retorno" value="option2">
+                     Não
+                   </label>
+                 </div>
+               </div>
+           </div>
         </div>
             <script>
                 $(document).on("keydown", "#obsOco", function () {
@@ -104,7 +106,7 @@ require_once '../func/fModal.php';
         <button class="btn btn-success" data-toggle="modal" data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
             <i class="fa fa-check"></i> Finalizar
         </button>
-        <button class="btn btn-primary"  data-target="#fecharLotacao<?=$ArrEsp[idVariavelDesc]?>" >
+        <button class="btn btn-primary" onclick="salvaFichaMedica('salvaFichaMedica')" type="button">
             <i class="fa fa-save"></i> Salvar
         </button>
     </div>
