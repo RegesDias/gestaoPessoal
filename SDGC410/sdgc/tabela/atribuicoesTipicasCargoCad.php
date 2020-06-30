@@ -7,8 +7,22 @@
         $ag = array('idCargoGeral' => $respGet[id],'descricaoAtribuicao' => $respGet[desAtribuicao]);
         $agendar = array($ag);
         $executar = postRest('cargo/postIncluirAtribuicoesCargo',$agendar);
-        $msnTexto = "ao cadastrar atribuições. ".$executar['msn'].'.';
+        $msnTexto = "ao cadastrar atribuição. ".$executar['msn'].'.';
     }
+    if($respGet[acao] == 'alterar'){
+        $ag = array('idAtribuicao' => $respGet[idAtribuicao],'idCargoGeral' => $respGet[id],'descricaoAtribuicao' => $respGet[desAtribuicao]);
+        $agendar = array($ag);
+        $executar = postRest('cargo/postIncluirAtribuicoesCargo',$agendar);
+        $msnTexto = "ao alterar atribuição. ".$executar['msn'].'.';
+    }
+    if($respGet[acao] == 'apagar'){
+        print_p();
+        $ag = array('idAtribuicao' => $respGet[idAtribuicao]);
+        $agendar = array($ag);
+        $executar = postRest('cargo/postRemoverAtribuicoesCargo',$agendar);
+        $msnTexto = "ao remover atribuição. ".$executar['msn'].'.';
+    }
+    
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
     $lista = getRest('cargo/getListAtribuicoesCargoPorIdCargoGeral',$nome);
 ?>
@@ -21,14 +35,17 @@
         <?php foreach ($lista as $value) {?>
         <div class="box box-primary collapsed-box">
             <div class="box-header with-border">
-                idAtribuicao
-              <h3 class="box-title"><?=$value[descricaoAtribuicao]?></h3>
+              <h3 class="box-title">COD <?=$value[idAtribuicao]?></h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" onclick="cadastraAtribuicao('editar','<?=$respGet[id]?>','<?=$respGet[nome]?>','<?=$value[descricaoAtribuicao]?>','<?=$value[idAtribuicao]?>')">
                     <i class="fa fa-pencil"></i>
                 </button>
+                <button class="btn btn-box-tool" onclick="cadastraAtribuicao('apagar','<?=$respGet[id]?>','<?=$respGet[nome]?>','<?=$value[descricaoAtribuicao]?>','<?=$value[idAtribuicao]?>')">
+                    <i class="fa fa-times"></i>
+                </button>
               </div>
             </div>
+             <?=$value[descricaoAtribuicao]?>
         </div>
         <?php }?>
   </div>
@@ -58,7 +75,7 @@
                         Cadastrar
                     </button>
                  <?php }else{ ?>
-                    <button class="btn btn-info pull-right" onclick="cadastraAtribuicao('Alterar','<?=$respGet[id]?>','<?=$respGet[nome]?>',$('#atribuicao').val())">
+                    <button class="btn btn-info pull-right" onclick="cadastraAtribuicao('alterar','<?=$respGet[id]?>','<?=$respGet[nome]?>',$('#atribuicao').val(),'<?=$respGet[idAtribuicao]?>')">
                         Alterar
                     </button>
                  <?php }?>
