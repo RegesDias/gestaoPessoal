@@ -8,6 +8,7 @@
         $agendar = array($ag);
         $executar = postRest('cargo/postIncluirAtribuicoesCargo',$agendar);
         $msnTexto = "ao cadastrar atribuição. ".$executar['msn'].'.';
+        $respGet[desAtribuicao] = '';
     }
     if($respGet[acao] == 'alterar'){
         $ag = array('idAtribuicao' => $respGet[idAtribuicao],'idCargoGeral' => $respGet[id],'descricaoAtribuicao' => $respGet[desAtribuicao]);
@@ -21,6 +22,7 @@
         $agendar = array($ag);
         $executar = postRest('cargo/postRemoverAtribuicoesCargo',$agendar);
         $msnTexto = "ao remover atribuição. ".$executar['msn'].'.';
+        $respGet[desAtribuicao] = '';
     }
     
     exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar);
