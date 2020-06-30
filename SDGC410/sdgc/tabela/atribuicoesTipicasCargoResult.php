@@ -47,21 +47,6 @@
             <button class="btn" onclick="cadastraAtribuicao('buscaCargoGeral','<?=$valor[id]?>','<?=$valor[nome]?>')" type="submit">
               <i class="fa fa-pencil"></i>
             </button>
-            <form method="<?=$method?>" action="index.php" class="inline">
-                <input type="hidden" name="orby" value="<?=$respGet['orby']?>" />
-                <input type="hidden" name="dir" value="<?=$respGet['dir']?>" />
-                <input type="hidden" name="pst" value="<?=$pst?>"/>
-                <input type="hidden" name="arq" value="<?=$arq?>"/>
-                <input type="hidden" name="tabela" value="buscar" />
-                <input type="hidden" name="pg" value="<?=$respGet['pg']?>" />
-                <input type="hidden" name="id" value="<?=$valor['id']?>" />
-                <input type="hidden" name="nome" value="<?=$valor['nome']?>" />
-                <input type="hidden" name="horaSemanal" value="<?=$valor['horaSemanal']?>" />
-                <input type="hidden" name="tabela" value="remover" />
-                <button type="submit" class="btn btn-default">
-                  <i class="fa fa-trash"></i>
-                </button>
-            </form>
              </td>
         </tr><?php
     }?>
