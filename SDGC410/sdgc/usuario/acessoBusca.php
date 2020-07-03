@@ -57,7 +57,6 @@ require_once '../func/fModal.php';
                             }else{
                                 $pg=$respGet['pg']; 
                             }
-                            $vaiPerfil = "acao=buscar&pst=$pst&arq=perfil&cpf=$cpf&pg=$pg";
                         ?>
                         <div class="post">
                             <div class="row">
@@ -95,6 +94,11 @@ require_once '../func/fModal.php';
 </div>
 <?php }
 
-
-
+if(count($return['pgExb']) == 1){
+         ?>
+            <script>
+                perfilBusca('buscar','<?=$return['pgExb'][0]['cpf']?>');
+            </script>
+        <?php 
+}
 ?>

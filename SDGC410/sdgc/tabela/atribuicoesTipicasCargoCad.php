@@ -17,7 +17,6 @@
         $msnTexto = "ao alterar atribuição. ".$executar['msn'].'.';
     }
     if($respGet[acao] == 'apagar'){
-        print_p();
         $ag = array('idAtribuicao' => $respGet[idAtribuicao]);
         $agendar = array($ag);
         $executar = postRest('cargo/postRemoverAtribuicoesCargo',$agendar);

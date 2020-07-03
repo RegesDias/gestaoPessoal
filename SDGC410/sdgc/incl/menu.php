@@ -129,10 +129,6 @@
                                     });
                         }
                         function buscarNomeCPFMatricula(pst, arq, nomeCPFMatricula) {
-                            //O método $.ajax(); é o responsável pela requisição
-                            console.log(pst);
-                            console.log(arq);
-                            console.log(nomeCPFMatricula);
                             $.ajax
                                     ({
                                         //Configurações

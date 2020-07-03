@@ -661,16 +661,17 @@ if(isset($respGet['acao']) && $respGet['acao']=='laudoExameMedicoPericial'){
         $lista = getRest('relatorio/getRelLaudoExameMeidoPericial',$cBusc);   
 }
 if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
-
-        if($respGet[redap] == 'true'){$respGet[redap] = 1;}else{$respGet[redap] = 0;}
-        if($respGet[red1] == 'true'){$respGet[red1] = 1;}else{$respGet[red1] = 0;}
-        if($respGet[red2] == 'true'){$respGet[red2] = 1;}else{$respGet[red2] = 0;}
-        if($respGet[red3] == 'true'){$respGet[red3] = 1;}else{$respGet[red3] = 0;}
-        if($respGet[sol] == 'true'){$respGet[sol] = 1;}else{$respGet[sol] = 0;}
-        if($respGet[lemp] == 'true'){$respGet[lemp] = 1;}else{$respGet[lemp] = 0;}
+        if($respGet[gerarRelatorio] != TRUE){
+            if($respGet[redap] == 'true'){$respGet[redap] = 1;}else{$respGet[redap] = 0;}
+            if($respGet[red1] == 'true'){$respGet[red1] = 1;}else{$respGet[red1] = 0;}
+            if($respGet[red2] == 'true'){$respGet[red2] = 1;}else{$respGet[red2] = 0;}
+            if($respGet[red3] == 'true'){$respGet[red3] = 1;}else{$respGet[red3] = 0;}
+            if($respGet[sol] == 'true'){$respGet[sol] = 1;}else{$respGet[sol] = 0;}
+            if($respGet[lemp] == 'true'){$respGet[lemp] = 1;}else{$respGet[lemp] = 0;}
+        }
         $cBusc = array(
-                        $respGet['dado'],
-                        $respGet['matricula'],
+                        $respGet[dado],
+                        $respGet[matricula],
                         $respGet[redap],
                         $respGet[red1],
                         $respGet[red2],
@@ -867,6 +868,17 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                                 link,
                                 menuN3,
                                 menuN4,
+                                endereco,
+                                cidade,
+                                bairro,
+                                telefone,
+                                email,
+                                redap,
+                                red1,
+                                red2,
+                                red3,
+                                sol,
+                                lemp,
                                 gerarRelatorio){
         console.log('func formatosDeRelatorio:(tipo_relatorio): ');
         console.log(tipo_relatorio);
@@ -922,6 +934,17 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                         link:link,
                         menuN3:menuN3,
                         menuN4:menuN4,
+                        endereco:endereco,
+                        cidade:cidade,
+                        bairro:bairro,
+                        telefone:telefone,
+                        email:email,
+                        redap:redap,
+                        red1:red1,
+                        red2:red2,
+                        red3:red3,
+                        sol:sol,
+                        lemp:lemp,
                         gerarRelatorio:gerarRelatorio
                     }, //Dados para consulta
                     //função que será executada quando a solicitação for finalizada.
@@ -979,6 +1002,17 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                             '<?=$respGet[link]?>',
                             '<?=$respGet[menuN3]?>',
                             '<?=$respGet[menuN4]?>',
+                            '<?=$respGet[endereco]?>',
+                            '<?=$respGet[cidade]?>',
+                            '<?=$respGet[bairro]?>',
+                            '<?=$respGet[telefone]?>',
+                            '<?=$respGet[email]?>',
+                            '<?=$respGet[redap]?>',
+                            '<?=$respGet[red1]?>',
+                            '<?=$respGet[red2]?>',
+                            '<?=$respGet[red3]?>',
+                            '<?=$respGet[sol]?>',
+                            '<?=$respGet[lemp]?>',
                             'TRUE'
                 );
     }

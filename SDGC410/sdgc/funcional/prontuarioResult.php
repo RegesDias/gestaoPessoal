@@ -10,7 +10,6 @@ if(count($_SESSION["enderecoSESMIT"])>0){
 }
 //lançarProntuario
 if ($respGet['acao'] == "lancarProntuario") {
-    echo $respGet['idRequerimentoSolicitacao'];
     $vowels = array(")", "(", " ", "-");
     $respGet['teletone'] = str_replace($vowels, "", $respGet['teletone']);
     $respGet['celular'] = str_replace($vowels, "", $respGet['celular']);
@@ -81,7 +80,6 @@ if ($respGet['acao'] == "excluirRequisicaoProntuario") {
 }
 //concluir prontuario
 if ($respGet['acao'] == "concluirRequisicaoProntuario") {
-    echo 'teste';
     $lancarPlan = array(
                         'id' => $respGet['id']
                      );
@@ -168,8 +166,7 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar, 6000);
                                             <button class="btn btn-danger pull-right btn-sm espaco-direita" onclick="excluirRequisicaoProntuario('excluirRequisicaoProntuario', '<?=$value['id']?>')" type="button">
                                                  <i class="fa fa-trash"></i><b> Excluir</b>
                                             </button>
-                                            
-                                            <button class="btn btn-primary pull-right espaco-direita" onclick="requerimentoProtocoloGeral('requerimentoProtocoloGeral', '<?=$_SESSION['funcionalBusca']['pessoa']['cpf']?>', '<?=$_SESSION[enderecoSESMIT][0][endereco].$_SESSION[enderecoSESMIT][0][numero].$_SESSION[enderecoSESMIT][0][complemento]?>', '<?=$bce[0][cidade]?>','<?=$bce[0][bairro]?>','<?=$_SESSION[enderecoSESMIT][0][telefone]?>','<?=$_SESSION[enderecoSESMIT][0][email]?>', true)" type="button">
+                                            <button class="btn btn-primary pull-right espaco-direita" onclick="requerimentoProtocoloGeral('requerimentoProtocoloGeral', '<?=$_SESSION['funcionalBusca']['pessoa']['cpf']?>', '<?=$_SESSION[enderecoSESMIT][0][endereco].$_SESSION[enderecoSESMIT][0][numero].$_SESSION[enderecoSESMIT][0][complemento]?>', '<?=$bce[0][cidade]?>','<?=$bce[0][bairro]?>','<?=$_SESSION[enderecoSESMIT][0][celular]?>','<?=$_SESSION[enderecoSESMIT][0][email]?>', true)" type="button">
                                                 <i class="fa fa-print"></i><b> Requerimento</b>
                                             </button>
                                                 
@@ -249,15 +246,13 @@ exibeMsn($msnExibe,$msnTexto,$msnTipo,$executar, 6000);
 //    postRestAjax('lancarProtocolo','buscaProntuario','funcional/prontuarioResult.php',$dados);    
     
     //imprimirRequerimentoProtocoloGeral
-    $success= array ($s2); //não esconde a caixa de impressão, somente o spinloader
     $dados = array('acao','cpf', 'endereco','cidade','bairro','telefone','email', 'ver');
-    postRestAjax('requerimentoProtocoloGeral','imprimir','print/info.php',$dados, $beforeSend, $success);
+    postRestAjax('requerimentoProtocoloGeral','imprimir','print/info.php',$dados);
     
     //GerarGuia
-    $success= array ($s2); //não esconde a caixa de impressão, somente o spinloader
     $dados = array('acao','matricula', 'dado', 'redap', 'red1', 'red2', 'red3', 'sol', 'lemp', 'ver');
-    //$dados = array('acao','matricula', 'id', 'redap', 'ver');
-    postRestAjax('gerarGuia','imprimir','print/info.php',$dados, $beforeSend, $success);
+    postRestAjax('gerarGuia','imprimir','print/info.php',$dados);
+    
     
 ?>
 <script>
