@@ -13,11 +13,11 @@
     //$aeurl
     //
 //SISTEMA
-$versaoSDGC = '4.1.2';
+$versaoSDGC = '4.1.3';
 $localBack = true;
 $localEndereco = false;
 $DBteste = false;
-$rodarLocal = true;
+$rodarLocal = false;
 $DBtestePort = '32796';
 //---DEFINIÇÃO DE PARAMETROS PARA TESTE DO SISTEMA
 //raphael
@@ -27,7 +27,7 @@ $DBtestePort = '32796';
 //juliano
 //$ip = '113'; 
 //reges
-//$ip = '97';
+$ip = '97';
 //joao
 //$ip = '89';
 //NoteREges
@@ -106,6 +106,14 @@ function getJson2D($array){
         $return = $return.'-'.$valor;
     }
     $return = substr($return, 1);  
+    return $return;
+}
+
+function getRestArray($array) {
+    foreach ($array as $value) {
+        $return = $return.'-'.$value;
+    }
+    $return = substr($return, 1); 
     return $return;
 }
 
