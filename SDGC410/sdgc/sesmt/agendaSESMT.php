@@ -4,6 +4,7 @@
     require_once '../func/fModal.php';
     $_SESSION[evolucao] = getRest('requerimento/getListaRequerimentoEvolucao');
     $_SESSION[retorno] = getRest('requerimento/getListaRequerimentoRetorno');
+    $_SESSION[listaCID10] = getRest('cid/getListCidCategoriaSub');
     $btnChamadosAdm = true;
     //dataHoje
     $toDay = date("Y-m-d");
@@ -182,7 +183,7 @@
 
         //carregaDescAtribuicoes
         $dados = array('acao','id');
-        postRestAjax('mudaAtribuicao','descricaoAtribuicoes','sesmt/descricaoAtribuicoes.php',$dados);
+        postRestAjax('mudaAtribuicao','descricaoAtribuicoes','sesmt/descricaosAtribuicoes.php',$dados);
         
         $dados = array('acao','id');
         postRestAjax('mudaEvolucao','dadoRetorno','sesmt/descricaoRetorno.php',$dados);
