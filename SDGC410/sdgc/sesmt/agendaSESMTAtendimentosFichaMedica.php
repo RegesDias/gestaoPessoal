@@ -37,42 +37,24 @@ require_once '../func/fModal.php';
                         <div class="col-md-6">
                             <label for="exampleInputEmail1">Evolução</label>
                             <div class="form-group">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="evolucao" id="evolucao" value="option1" >
-                                        Em tratamento
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="evolucao" id="evolucao" value="option2">
-                                        Curado
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="evolucao" id="evolucao" value="option3" >
-                                        Melhorando (Crônica)
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="evolucao" id="evolucao" value="option3" >
-                                        Melhorando (Aguda)
-                                    </label>
-                                </div>
+                        <select name="evolucao" size="1" id="evolucao" onchange="mudaAtribuicao('atribuicao', $('#evolucao').val())" class="form-control select2" style="width: 100%;">
+                                    <option selected="selected"></option>
+                                    <?php foreach ($_SESSION[evolucao] as $value) {?>
+                                        <option value="<?=$value[id]."-".$value[atribuicoes]?>"><?=$value[descricao]?></option>
+                                    <?php }?>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="exampleInputEmail1">Retorno</label>
                             <div class="form-group">
-                                <select name="cid-10" size="1" class="form-control select2" id='idretorno' style="width: 100%;">
+                                <select name="retorno" size="1" id="retorno" onchange="mudaEvolucao('atribuicao', $('#retorno').val())" class="form-control select2" style="width: 100%;">
                                     <option selected="selected"></option>
-                                    <option value="1">Sim - Readaptação Provisoria</option>
-                                    <option value="2">Sim - Readaptação Definitiva</option>
-                                    <option value="3">Sim - Sem Restrição</option>
-                                    <option value="4">Sim - Prorogação com Alta</option>
-                                    <option value="4">Não - Nova Avaliação</option> 
+                                    <?php foreach ($_SESSION[retorno] as $value) {
+                                        if($value[retorna] == 1){$value[retorna] = 'Sim';}else{$value[retorna] = 'Não';}
+                                        ?>
+                                        <option value="<?=$value[id].'-'.$value[dias],'-',$value[calendario].'-'.$value[atribuicoes]?>"><?=$value[retorna]." - ".$value[descricao]?></option>
+                                    <?php }?>
                                 </select>
                             </div>
                         </div>
@@ -80,42 +62,10 @@ require_once '../func/fModal.php';
                     <div class="form-group">
                         <div class="col-md-6"></div>
                         <div class="col-md-6" id="dadoRetorno" >
-                            <label>Dias</label>
-                            <input type="text" class="form-control" >
                         </div>
                     </div>
 
-                        <div class="col-md-12">
-                        
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Atribuições do Cargo</h3>
-                        </div>
-                        <div class="box-body">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th style="width: 8px"></th>
-                                    <th style="width: 32px">Descrição</th>
-                                </tr>
-                                <?php
-                                $nome = array('00002');
-                                $lista = getRest('cargo/getListAtribuicoesCargoPorIdCargoGeral', $nome);
-                                foreach ($lista as $value) {
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <label>
-                                                <input type="checkbox" class="flat-red" checked>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <?= $value[descricaoAtribuicao] ?>
-                                        </td>
-
-                                    </tr>
-
-                                <?php } ?>
-                            </table>
-                        </div>
+                    <div id ='descricaoAtribuicoes'>
                     </div>
 
                     <script>
@@ -145,7 +95,7 @@ require_once '../func/fModal.php';
         <button class="btn btn-success" data-toggle="modal" data-target="#fecharLotacao<?= $ArrEsp[idVariavelDesc] ?>" >
             <i class="fa fa-check"></i> Finalizar
         </button>
-        <button class="btn btn-primary" onclick="salvaFichaMedica('salvaFichaMedica')" type="button">
+        <button class="btn btn-primary" onclick="salvaFichaMedica('salvaFichaMedica','<?=$respGet[cpf]?>')" type="button">
             <i class="fa fa-save"></i> Salvar
         </button>
     </div>

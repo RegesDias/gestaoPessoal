@@ -2,7 +2,8 @@
     session_start();
     require_once '../func/fPhp.php';
     require_once '../func/fModal.php';
-    $_SESSION[listaCID10] = getRest('cid/getListCidCategoriaSub');
+    $_SESSION[evolucao] = getRest('requerimento/getListaRequerimentoEvolucao');
+    $_SESSION[retorno] = getRest('requerimento/getListaRequerimentoRetorno');
     $btnChamadosAdm = true;
     //dataHoje
     $toDay = date("Y-m-d");
@@ -172,13 +173,19 @@
         postRestAjax('medicoSalvar','agendaSESMTCorpo','sesmt/agendaSESMTMedico.php',$dados);
 
         //salvaFichaMedica
-        $dados = array('acao');
+        $dados = array('acao','cpf');
         postRestAjax('salvaFichaMedica','agendaSESMTResult','sesmt/agendaSESMTAtendimentosFichaMedica.php',$dados);
         
         //carregaDescricaocid10
         $dados = array('acao','cid');
         postRestAjax('descricaoCID10','dadosCid10','sesmt/descricaoCID10.php',$dados);
+
+        //carregaDescAtribuicoes
+        $dados = array('acao','id');
+        postRestAjax('mudaAtribuicao','descricaoAtribuicoes','sesmt/descricaoAtribuicoes.php',$dados);
         
+        $dados = array('acao','id');
+        postRestAjax('mudaEvolucao','dadoRetorno','sesmt/descricaoRetorno.php',$dados);
         
         //ativar-desativar-editar
         $dados = array('acao', 'idMedico');
