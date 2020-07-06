@@ -63,7 +63,6 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">nome</label>
-
                   <div class="col-sm-10">
                     <input type="text" value="<?=$respGet[desAtribuicao]?>" class="form-control" id="atribuicao">
                   </div>
