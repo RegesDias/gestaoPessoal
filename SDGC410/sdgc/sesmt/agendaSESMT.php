@@ -183,7 +183,7 @@
 
         //carregaDescAtribuicoes
         $dados = array('acao','id');
-        postRestAjax('mudaAtribuicao','descricaoAtribuicoes','sesmt/descricaosAtribuicoes.php',$dados);
+        postRestAjax('mudaAtribuicao','descricaoAtribuicoes','sesmt/descricaoAtribuicoes.php',$dados);
         
         $dados = array('acao','id');
         postRestAjax('mudaEvolucao','dadoRetorno','sesmt/descricaoRetorno.php',$dados);
