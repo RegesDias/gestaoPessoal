@@ -31,7 +31,7 @@
         for (i = 0; i < vetNome.length; i++) {
             objSelect.options[i + offset] = new Option(vetNome[i]);
             objSelect.options[i + offset].value = vetValor[i];
-    }
+        }
     }
 
     function limpaSelect(objSelect) {
