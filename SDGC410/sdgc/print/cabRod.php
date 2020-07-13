@@ -26,7 +26,12 @@ if($key!==false){
         }else if($respGet['exibicao']=='biometria'){
             $lista = getRest('relatorio/getRelBiometriaCadastradaSecretaria',$cBusc);
         }
-    }    
+    }
+    //LancamentoIndividualPorPeriodo
+    if(isset($respGet['acao']) && $respGet['acao'] =='atribuicoesCargo'){
+        $cBusc = array($respGet['dado']);
+        $lista = getRest('relatorio/getRelAtribuicoesCargoPorFuncional',$cBusc);
+    }
     //Servidores Por Setor
     if($respGet['menuN3'] == '5' AND $respGet['link'] == 'Listar' AND isset($respGet['idSetor'])){
         $respGet['orby'] = nome;
@@ -61,7 +66,6 @@ if($key!==false){
 
     //LancamentoIndividualPorPeriodo
     if(isset($respGet['acao']) && $respGet['acao'] =='LancamentoIndividualPorPeriodo'){
-        
         $anoMes = $respGet['periodo'];
         $cpf = $respGet['cpf'];
         $cBusc = array($anoMes, $cpf, $tipo);

@@ -151,6 +151,9 @@ if($_SESSION["funcionalBusca"]['situacao']['nome'] == 'INATIVO'){
                             <button type="button" class="btn btn-info <?=permissaoAcesso($prmCracha['buscar'],'hide')?>" onclick="buscaCracha('abrir', '<?=$_SESSION['funcionalBusca']['id']?>','<?=$crachaAdm?>')">
                                 <i class="fa fa-calendar"></i> <b>Crachá</b>
                             </button>
+                            <button type="button" class="btn btn-info <?=permissaoAcesso($prmCracha['buscar'],'hide')?>"onclick="relatorioEmGestao('<?=$_SESSION['funcionalBusca']['id']?>','atribuicoesCargo',true)")">
+                                <i class="fa fa-calendar"></i> <b>Atribuições do Cargo</b>
+                            </button>
                         </div>
                     </div>
                 </div>
