@@ -93,7 +93,7 @@ require_once '../func/fModal.php';
                                 if(lista.length > 0){
                                     labelCarregaStatus.innerHTML = " Carregado";
                                 }else{
-                                    labelCarregaStatus.innerHTML = " Sem resltados";
+                                    labelCarregaStatus.innerHTML = " Sem resultados";
                                 }
                             }
                             
