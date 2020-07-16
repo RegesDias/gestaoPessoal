@@ -15,64 +15,95 @@ require_once '../func/fModal.php';
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label>CID <span id="idCarrega"></span> </label>
-                        <select name="cid-10" size="1"  multiple onchange="descricaoCID10('descricaoCID10', $('select#idCid10 option:selected').map(function () {
+                        
+                        
+                        <label>CID <span id="idCarregaStatusCid"></span> </label>
+                        <select tabindex="indice1" name="cid-10" size="1"  multiple onchange="descricaoCID10('descricaoCID10', $('select#idCid10 option:selected').map(function () {
                                     return $(this).val();
                                 }).get(), )" class="form-control select2" id='idCid10' style="width: 100%;">
                             <option value="A009">A009</option> 
-                            <?php //foreach ($_SESSION[listaCID10] as $value) { ?>    
-                                <!--<option value="<?= $value[id] ?>"><?= "$value[id] - $value[descricaoCidCategoriaSub]" ?></option>--> 
-                            <?php //} ?>
                         </select>
+                        
+                        <label>HPP <span id="idCarregaStatusHpp"></span> </label>
+                        <select tabindex="indice2" name="HPP" size="1"  multiple onchange="('descricaoCID10', $('select#idHPP option:selected').map(function () {
+                                    return $(this).val();
+                                }).get(), )" class="form-control select2" id='idHPP' style="width: 100%;">
+                            <option value="A009">A002</option> 
+                        </select>
+                        
+                        
                         <script>
-                            var labelCarrega = document.getElementById("idCarrega");
-                            $(document).on('keyup', 'input.select2-search__field', function (e) {
 
-                                let stringCapturada = $('.select2-search__field')[0].value;
+                            var labelCarregaStatusCid = document.getElementById("idCarregaStatusCid");
+                            var labelCarregaStatusHPP = document.getElementById("idCarregaStatusHpp");
+                            
+                            var listaDescricaoCid = [];
+                            var listaIdCid = [];
+                            var listaIdDescricaoCid = [] ;
+                            var selectAPreencher;
+                            var labelCarregaStatus;
+                            
+                            $(document).on('keyup', "input[tabindex='indice1'].select2-search__field", function (e) {
+                                let stringCapturada = $("input[tabindex='indice1'].select2-search__field")[0].value;
+                                labelCarregaStatus = labelCarregaStatusCid;
+                                selectAPreencher = document.getElementById("idCid10");
+                             
                                 if (stringCapturada.length > 3) {
-                                    getAJAX(<?= "'" . $ajurl . "'"; ?>, 'cid/getListCidCategoriaSubPorIdOuNome/', stringCapturada, preencheSelectCID10);
-                                    labelCarrega.innerHTML = " Carregando";
+                                    getAJAX(<?= "'" . $ajurl . "'"; ?>, 'cid/getListCidCategoriaSubPorIdOuNome/', stringCapturada, preencheSelectCID10ouHPP);
+                                    labelCarregaStatus.innerHTML = " Carregando";
                                 }else{
-                                    labelCarrega.innerHTML = "";
+                                    labelCarregaStatus.innerHTML = "";
                                 }
                                 
-                                
-
                             });
-
-                            function preencheSelectCID10(lista) {
+                            
+                            $(document).on('keyup', "input[tabindex='indice2'].select2-search__field", function (e) {
+                                let stringCapturada = $("input[tabindex='indice2'].select2-search__field")[0].value;
+                                labelCarregaStatus = labelCarregaStatusHPP; 
+                                selectAPreencher = document.getElementById("idHPP");
+                                if (stringCapturada.length > 3) {
+                                    getAJAX(<?= "'" . $ajurl . "'"; ?>, 'cid/getListCidCategoriaSubPorIdOuNome/', stringCapturada, preencheSelectCID10ouHPP);
+                                    labelCarregaStatus.innerHTML = " Carregando";
+                                }else{
+                                    labelCarregaStatus.innerHTML = "";
+                                }
+                                
+                            });
+                            
+                            function preencheSelectCID10ouHPP(lista) {
 
                                 var listaMapeada = lista.map(item => [item.descricao, item.id]);
                                 let arrayColumn = (arr, n) => arr.map(x => x[n]);
-                                let listaDescricaoCid = arrayColumn(listaMapeada, 0);
-                                let listaIdCid = arrayColumn(listaMapeada, 1);
+                                
+                                listaDescricaoCid = listaDescricaoCid.concat(arrayColumn(listaMapeada, 0));
+                                listaDescricaoCid = eliminaRepetidos(listaDescricaoCid);
+                                
+                                listaIdCid = listaIdCid.concat(arrayColumn(listaMapeada, 1)) ;
+                                listaIdCid = eliminaRepetidos(listaIdCid);
 
-                                let listaIdDescricaoCid = listaDescricaoCid.map(function (elem, index) {
+                                listaIdDescricaoCid = listaIdDescricaoCid.concat(
+                                    listaDescricaoCid.map(function (elem, index) {
                                     return listaIdCid[index] + ' - ' + elem;
-                                });
-
-                                let selectCid = document.getElementById("idCid10");
+                                })); 
+                                listaIdDescricaoCid = eliminaRepetidos(listaIdDescricaoCid);
+                                
+                                let selectCid = selectAPreencher;
                                 preencheSelect(selectCid, listaIdDescricaoCid, listaIdCid);
                                 
                                 if(lista.length > 0){
-                                    labelCarrega.innerHTML = " Carregado";
+                                    labelCarregaStatus.innerHTML = " Carregado";
                                 }else{
-                                    labelCarrega.innerHTML = " Sem resltados";
+                                    labelCarregaStatus.innerHTML = " Sem resltados";
                                 }
-                                
-                                
-                    
                             }
                             
-                            function clica(){
-                                window.setTimeout(function () {
-                                    $('.select2-search__field').trigger('click');
 
-                                }, 3000);
-                                
+                            function eliminaRepetidos(lista){
+                                return lista.filter(function(este, i) {
+                                    return lista.indexOf(este) === i;
+                                });
                             }
-
-
+                            
                         </script>
                     </div>
                     <div id="dadosCid10">
