@@ -21,14 +21,14 @@ require_once '../func/fModal.php';
                         <select tabindex="indice1" name="cid-10" size="1"  multiple onchange="descricaoCID10('descricaoCID10', $('select#idCid10 option:selected').map(function () {
                                     return $(this).val();
                                 }).get(), )" class="form-control select2" id='idCid10' style="width: 100%;">
-                            <option value="A009">A009</option> 
+                            <option value="0"> </option> 
                         </select>
                         
                         <label>HPP <span id="idCarregaStatusHpp"></span> </label>
                         <select tabindex="indice2" name="HPP" size="1"  multiple onchange="('descricaoCID10', $('select#idHPP option:selected').map(function () {
                                     return $(this).val();
                                 }).get(), )" class="form-control select2" id='idHPP' style="width: 100%;">
-                            <option value="A009">A002</option> 
+                            <option value="0"> </option> 
                         </select>
                         
                         
