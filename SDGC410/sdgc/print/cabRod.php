@@ -27,9 +27,9 @@ if($key!==false){
             $lista = getRest('relatorio/getRelBiometriaCadastradaSecretaria',$cBusc);
         }
     }
-    //LancamentoIndividualPorPeriodo
+    //Atribuição Cargo
     if(isset($respGet['acao']) && $respGet['acao'] =='atribuicoesCargo'){
-        $cBusc = array($respGet['dado']);
+        $cBusc = array($respGet['dado'], $tipo);
         $lista = getRest('relatorio/getRelAtribuicoesCargoPorFuncional',$cBusc);
     }
     //Servidores Por Setor
