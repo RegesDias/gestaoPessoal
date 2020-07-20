@@ -15,103 +15,165 @@ require_once '../func/fModal.php';
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        
-                        
-                        <label>CID <span id="idCarregaStatusCid"></span> </label>
-                        <select tabindex="indice1" name="cid-10" size="1"  multiple onchange="descricaoCID10('descricaoCID10', $('select#idCid10 option:selected').map(function () {
-                                    return $(this).val();
-                                }).get(), )" class="form-control select2" id='idCid10' style="width: 100%;">
-                            <option value="0"> </option> 
-                        </select>
-                        
-                        <label>HPP <span id="idCarregaStatusHpp"></span> </label>
-                        <select tabindex="indice2" name="HPP" size="1"  multiple onchange="('descricaoCID10', $('select#idHPP option:selected').map(function () {
-                                    return $(this).val();
-                                }).get(), )" class="form-control select2" id='idHPP' style="width: 100%;">
-                            <option value="0"> </option> 
-                        </select>
-                        
-                        
-                        <script>
-
-                            var labelCarregaStatusCid = document.getElementById("idCarregaStatusCid");
-                            var labelCarregaStatusHPP = document.getElementById("idCarregaStatusHpp");
-                            
-                            var listaDescricaoCid = [];
-                            var listaIdCid = [];
-                            var listaIdDescricaoCid = [] ;
-                            var selectAPreencher;
-                            var labelCarregaStatus;
-                            
-                            $(document).on('keyup', "input[tabindex='indice1'].select2-search__field", function (e) {
-                                let stringCapturada = $("input[tabindex='indice1'].select2-search__field")[0].value;
-                                labelCarregaStatus = labelCarregaStatusCid;
-                                selectAPreencher = document.getElementById("idCid10");
-                             
-                                if (stringCapturada.length > 3) {
-                                    getAJAX(<?= "'" . $ajurl . "'"; ?>, 'cid/getListCidCategoriaSubPorIdOuNome/', stringCapturada, preencheSelectCID10ouHPP);
-                                    labelCarregaStatus.innerHTML = " Carregando";
-                                }else{
-                                    labelCarregaStatus.innerHTML = "";
-                                }
-                                
-                            });
-                            
-                            $(document).on('keyup', "input[tabindex='indice2'].select2-search__field", function (e) {
-                                let stringCapturada = $("input[tabindex='indice2'].select2-search__field")[0].value;
-                                labelCarregaStatus = labelCarregaStatusHPP; 
-                                selectAPreencher = document.getElementById("idHPP");
-                                if (stringCapturada.length > 3) {
-                                    getAJAX(<?= "'" . $ajurl . "'"; ?>, 'cid/getListCidCategoriaSubPorIdOuNome/', stringCapturada, preencheSelectCID10ouHPP);
-                                    labelCarregaStatus.innerHTML = " Carregando";
-                                }else{
-                                    labelCarregaStatus.innerHTML = "";
-                                }
-                                
-                            });
-                            
-                            function preencheSelectCID10ouHPP(lista) {
-
-                                var listaMapeada = lista.map(item => [item.descricao, item.id]);
-                                let arrayColumn = (arr, n) => arr.map(x => x[n]);
-                                
-                                listaDescricaoCid = listaDescricaoCid.concat(arrayColumn(listaMapeada, 0));
-                                listaDescricaoCid = eliminaRepetidos(listaDescricaoCid);
-                                
-                                listaIdCid = listaIdCid.concat(arrayColumn(listaMapeada, 1)) ;
-                                listaIdCid = eliminaRepetidos(listaIdCid);
-
-                                listaIdDescricaoCid = listaIdDescricaoCid.concat(
-                                    listaDescricaoCid.map(function (elem, index) {
-                                    return listaIdCid[index] + ' - ' + elem;
-                                })); 
-                                listaIdDescricaoCid = eliminaRepetidos(listaIdDescricaoCid);
-                                
-                                let selectCid = selectAPreencher;
-                                preencheSelect(selectCid, listaIdDescricaoCid, listaIdCid);
-                                
-                                if(lista.length > 0){
-                                    labelCarregaStatus.innerHTML = " Carregado";
-                                }else{
-                                    labelCarregaStatus.innerHTML = " Sem resultados";
-                                }
-                            }
-                            
-
-                            function eliminaRepetidos(lista){
-                                return lista.filter(function(este, i) {
-                                    return lista.indexOf(este) === i;
-                                });
-                            }
-                            
-                        </script>
+                        <div class="col-md-3">
+                            <label>Busca CID <span></span> </label>
+                            <div class="input-group input-group-sm">
+                                <input id="idCampoBuscaCid" type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button onclick="buscarCid()" type="button" class="btn btn-info btn-flat">Buscar</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <label>CID <span style="color:red" id="idCarregaStatusCid"></span> </label>
+                            <div class="input-group input-group-sm">
+                                <select tabindex="indice1" name="cid-10" size="1" multiple onchange="" class="form-control select2" id='idCid10' style="width: 100%;">
+                                </select>
+                                <span class="input-group-btn">
+                                    <button onclick="descricaoCID10('descricaoCID10', $('select#idCid10 option:selected').map(function () {
+                                                return $(this).val();
+                                            }).get(), )" type="button" class="btn btn-info btn-flat">Selecionar</button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div id="dadosCid10">
-                    </div>
+
                     <div class="form-group">
-                        <label>Medicamentos</label>
-                        <input type="text" class="form-control" >
+                        <div class="col-md-12">
+                            <div id="dadosCid10">
+                            </div>
+                        </div>
                     </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Busca CID(HPP) <span></span> </label>
+                            <div class="input-group input-group-sm">
+                                <input id="idCampoBuscaHPP" type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button onclick="buscarHPP()" type="button" class="btn btn-info btn-flat">Buscar</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <label>CID(HPP) <span style="color:red" id="idCarregaStatusHpp"></span> </label>
+                            <div class="input-group input-group-sm">
+                                <select tabindex="indice1" name="HPP" size="1" multiple onchange="" class="form-control select2" id='idHPP' style="width: 100%;">
+                                </select>
+                                <span class="input-group-btn">
+                                    <button onclick="descricaoCID10HPP('descricaoCID10HPP', $('select#idHPP option:selected').map(function () {
+                                                    return $(this).val();
+                                                }).get(), )" type="button" class="btn btn-info btn-flat">Selecionar</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div id="dadosCid10HPP">
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+
+                        var labelCarregaStatusCid = document.getElementById("idCarregaStatusCid");
+                        var labelCarregaStatusHPP = document.getElementById("idCarregaStatusHpp");
+
+                        var selectAPreencher;
+                        var labelCarregaStatus;
+
+                        function buscarCid() {
+                            let stringCapturada = document.getElementById("idCampoBuscaCid").value;
+                            labelCarregaStatus = labelCarregaStatusCid;
+                            selectAPreencher = document.getElementById("idCid10");
+                            if (stringCapturada.length > 3) {
+                                getAJAX(<?= "'" . $ajurl . "'"; ?>, 'cid/getListCidCategoriaSubPorIdOuNome/', stringCapturada, preencheSelectCID10);
+                                labelCarregaStatus.innerHTML = " Carregando CIDs";
+                            } else {
+                                labelCarregaStatus.innerHTML = "";
+                            }
+                        }
+
+                        function buscarHPP() {
+                            let stringCapturada = document.getElementById("idCampoBuscaHPP").value;
+                            labelCarregaStatus = labelCarregaStatusHPP;
+                            selectAPreencher = document.getElementById("idHPP");
+                            if (stringCapturada.length > 3) {
+                                getAJAX(<?= "'" . $ajurl . "'"; ?>, 'cid/getListCidCategoriaSubPorIdOuNome/', stringCapturada, preencheSelectCID10HPP);
+                                labelCarregaStatus.innerHTML = " Carregando CIDs";
+                            } else {
+                                labelCarregaStatus.innerHTML = "";
+                            }
+                        }
+
+                        var listaDescricaoCid = [];
+                        var listaIdCid = [];
+                        var listaIdDescricaoCid = [];
+                        function preencheSelectCID10(lista) {
+                            var listaMapeada = lista.map(item => [item.descricao, item.id]);
+                            let arrayColumn = (arr, n) => arr.map(x => x[n]);
+                            listaDescricaoCid = listaDescricaoCid.concat(arrayColumn(listaMapeada, 0));
+                            listaDescricaoCid = eliminaRepetidos(listaDescricaoCid);
+                            listaIdCid = listaIdCid.concat(arrayColumn(listaMapeada, 1));
+                            listaIdCid = eliminaRepetidos(listaIdCid);
+                            listaIdDescricaoCid = listaIdDescricaoCid.concat(
+                                    listaDescricaoCid.map(function (elem, index) {
+                                        return listaIdCid[index] + ' - ' + elem;
+                                    }));
+                            listaIdDescricaoCid = eliminaRepetidos(listaIdDescricaoCid);
+                            let selectCid = selectAPreencher;
+                            preencheSelect(selectCid, listaIdDescricaoCid, listaIdCid);
+                            if (lista.length > 0) {
+                                labelCarregaStatus.innerHTML = " Selecione o(s) CID";
+                            } else {
+                                labelCarregaStatus.innerHTML = " Sem resultados";
+                            }
+                        }
+                        
+                        var listaDescricaoCidHPP = [];
+                        var listaIdCidHPP = [];
+                        var listaIdDescricaoCidHPP = [];
+                        function preencheSelectCID10HPP(lista) {
+                            var listaMapeadaHPP = lista.map(item => [item.descricao, item.id]);
+                            let arrayColumn = (arr, n) => arr.map(x => x[n]);
+                            listaDescricaoCidHPP = listaDescricaoCidHPP.concat(arrayColumn(listaMapeadaHPP, 0));
+                            listaDescricaoCidHPP = eliminaRepetidos(listaDescricaoCidHPP);
+                            listaIdCidHPP = listaIdCidHPP.concat(arrayColumn(listaMapeadaHPP, 1));
+                            listaIdCidHPP = eliminaRepetidos(listaIdCidHPP);
+                            listaIdDescricaoCidHPP = listaIdDescricaoCidHPP.concat(
+                                    listaDescricaoCidHPP.map(function (elem, index) {
+                                        return listaIdCidHPP[index] + ' - ' + elem;
+                                    }));
+                            listaIdDescricaoCidHPP = eliminaRepetidos(listaIdDescricaoCidHPP);
+                            let selectCidHPP = selectAPreencher;
+                            preencheSelect(selectCidHPP, listaIdDescricaoCidHPP, listaIdCidHPP);
+                            if (lista.length > 0) {
+                                labelCarregaStatus.innerHTML = " Selecione o(s) CID";
+                            } else {
+                                labelCarregaStatus.innerHTML = " Sem resultados";
+                            }
+                        }
+                        
+                        function eliminaRepetidos(lista) {
+                            return lista.filter(function (este, i) {
+                                return lista.indexOf(este) === i;
+                            });
+                        }
+                    </script>
+
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Medicamentos</label>
+                                <input type="text" class="form-control" >
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-md-6">
                             <label for="exampleInputEmail1">Evolução</label>
@@ -166,10 +228,15 @@ require_once '../func/fModal.php';
                         <textarea id="obsOco" name='ObsOco'class="form-control"  maxlength="500"rows="4"></textarea>
                     </div>
                     <div class="row" id="idBoxSelectSetor">
-                        <div class="col-md-12">
-                            <label>Dias de Afastamento</label>
-                            <input type="text" class="form-control" >
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label>Dias de Afastamento</label>
+                                    <input type="text" class="form-control" >
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>

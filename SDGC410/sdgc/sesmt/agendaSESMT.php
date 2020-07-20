@@ -179,7 +179,13 @@
         
         //carregaDescricaocid10
         $dados = array('acao','cid');
-        postRestAjax('descricaoCID10','dadosCid10','sesmt/descricaoCID10.php',$dados);
+        $funcao = array("apagarSelect('idCid10');");
+        postRestAjax('descricaoCID10','dadosCid10','sesmt/descricaoCID10.php',$dados,'','',$funcao);
+        
+        //carregaDescricaocid10HPP
+        $dados = array('acao','cid');
+        $funcao = array("apagarSelect('idHPP');");
+        postRestAjax('descricaoCID10HPP','dadosCid10HPP','sesmt/descricaoCID10HPP.php',$dados,'','',$funcao);
 
         //carregaDescAtribuicoes
         $dados = array('acao','id');
