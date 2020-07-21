@@ -14,8 +14,9 @@ require_once '../func/fModal.php';
                     <h3 class="box-title">Ficha Médica</h3>
                 </div>
                 <div class="box-body">
+
                     <div class="form-group">
-                        <div class="col-md-3">
+                        <div class="col-md-12">
                             <label>Busca CID <span></span> </label>
                             <div class="input-group input-group-sm">
                                 <input id="idCampoBuscaCid" type="text" class="form-control">
@@ -24,55 +25,88 @@ require_once '../func/fModal.php';
                                 </span>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <label>CID <span style="color:red" id="idCarregaStatusCid"></span> </label>
-                            <div class="input-group input-group-sm">
-                                <select tabindex="indice1" name="cid-10" size="1" multiple onchange="" class="form-control select2" id='idCid10' style="width: 100%;">
-                                </select>
-                                <span class="input-group-btn">
-                                    <button onclick="descricaoCID10('descricaoCID10', $('select#idCid10 option:selected').map(function () {
-                                                return $(this).val();
-                                            }).get(), )" type="button" class="btn btn-info btn-flat">Selecionar</button>
-                                </span>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>CID(s) <span style="color:red" id="idCarregaStatusCid">(0)</span> </label><br>
+                            <select name="cid-10" multiple class="form-contro" id='idCid10' style="border-color: rgb(211,211,211); width:100%">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button onclick="descricaoCID10('descricaoCID10', $('select#idCid10 option:selected').map(function () {
+                                        return $(this).val();
+                                    }).get(), )" type="button" class="btn btn-info btn-flat"><i class="fa fa-fw fa-hand-o-down"></i>Adicionar CID(s) Na Ficha</button>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-12">
                             <div id="dadosCid10">
+                                <div class="box">
+                                    <div class="box-header with-border">
+                                        <h4 class="box-title">CID(s) da Ficha Médica</h3>
+                                    </div>
+                                    <div class="box-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        <div>
+                     &nbsp;
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div>
+                                <label>Busca CID(HPP) <span></span> </label>
+                                <div class="input-group input-group-sm">
+                                    <input id="idCampoBuscaHPP" type="text" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button onclick="buscarHPP()" type="button" class="btn btn-info btn-flat">Buscar</button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
+                    
 
                     <div class="form-group">
-                        <div class="col-md-3">
-                            <label>Busca CID(HPP) <span></span> </label>
-                            <div class="input-group input-group-sm">
-                                <input id="idCampoBuscaHPP" type="text" class="form-control">
-                                <span class="input-group-btn">
-                                    <button onclick="buscarHPP()" type="button" class="btn btn-info btn-flat">Buscar</button>
-                                </span>
-                            </div>
+                        <div class="col-md-12">
+                            <label>CID(HPP) <span style="color:red" id="idCarregaStatusHpp">(0)</span> </label>
+
+                            <select name="HPP"  multiple class="form-contro" id='idHPP' style="border-color: rgb(211,211,211); width:100%">
+                            </select>
+
+
                         </div>
-                        <div class="col-md-9">
-                            <label>CID(HPP) <span style="color:red" id="idCarregaStatusHpp"></span> </label>
-                            <div class="input-group input-group-sm">
-                                <select tabindex="indice1" name="HPP" size="1" multiple onchange="" class="form-control select2" id='idHPP' style="width: 100%;">
-                                </select>
-                                <span class="input-group-btn">
-                                    <button onclick="descricaoCID10HPP('descricaoCID10HPP', $('select#idHPP option:selected').map(function () {
-                                                    return $(this).val();
-                                                }).get(), )" type="button" class="btn btn-info btn-flat">Selecionar</button>
-                                </span>
-                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button onclick="descricaoCID10HPP('descricaoCID10HPP', $('select#idHPP option:selected').map(function () {
+                                        return $(this).val();
+                                    }).get(), )" type="button" class="btn btn-info btn-flat"><i class="fa fa-fw fa-hand-o-down"></i>Adicionar CID(HPP) Na Ficha</button>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-12">
                             <div id="dadosCid10HPP">
+                                <div class="box">
+                                    <div class="box-header with-border">
+                                        <h4 class="box-title">CID(s) HPP da Ficha Médica</h3>
+                                    </div>
+                                    <div class="box-body">
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -84,6 +118,7 @@ require_once '../func/fModal.php';
 
                         var selectAPreencher;
                         var labelCarregaStatus;
+                        
 
                         function buscarCid() {
                             let stringCapturada = document.getElementById("idCampoBuscaCid").value;
@@ -113,6 +148,7 @@ require_once '../func/fModal.php';
                         var listaIdCid = [];
                         var listaIdDescricaoCid = [];
                         function preencheSelectCID10(lista) {
+
                             var listaMapeada = lista.map(item => [item.descricao, item.id]);
                             let arrayColumn = (arr, n) => arr.map(x => x[n]);
                             listaDescricaoCid = listaDescricaoCid.concat(arrayColumn(listaMapeada, 0));
@@ -127,16 +163,17 @@ require_once '../func/fModal.php';
                             let selectCid = selectAPreencher;
                             preencheSelect(selectCid, listaIdDescricaoCid, listaIdCid);
                             if (lista.length > 0) {
-                                labelCarregaStatus.innerHTML = " Selecione o(s) CID";
+                                labelCarregaStatus.innerHTML = "("+ listaIdDescricaoCid.length +")";
                             } else {
                                 labelCarregaStatus.innerHTML = " Sem resultados";
                             }
                         }
-                        
+
                         var listaDescricaoCidHPP = [];
                         var listaIdCidHPP = [];
                         var listaIdDescricaoCidHPP = [];
                         function preencheSelectCID10HPP(lista) {
+
                             var listaMapeadaHPP = lista.map(item => [item.descricao, item.id]);
                             let arrayColumn = (arr, n) => arr.map(x => x[n]);
                             listaDescricaoCidHPP = listaDescricaoCidHPP.concat(arrayColumn(listaMapeadaHPP, 0));
@@ -151,17 +188,19 @@ require_once '../func/fModal.php';
                             let selectCidHPP = selectAPreencher;
                             preencheSelect(selectCidHPP, listaIdDescricaoCidHPP, listaIdCidHPP);
                             if (lista.length > 0) {
-                                labelCarregaStatus.innerHTML = " Selecione o(s) CID";
+                                labelCarregaStatus.innerHTML = "("+ listaIdDescricaoCidHPP.length +")";
                             } else {
                                 labelCarregaStatus.innerHTML = " Sem resultados";
                             }
                         }
-                        
+
                         function eliminaRepetidos(lista) {
                             return lista.filter(function (este, i) {
                                 return lista.indexOf(este) === i;
                             });
                         }
+                        
+                        
                     </script>
 
 

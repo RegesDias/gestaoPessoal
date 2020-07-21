@@ -5,10 +5,13 @@
     $CIDsHPP = array(getRestArray($respGet[cid]));
     $listaHistHPP = getRest('cid/getListCidCategoriaSubMultiplosId',$CIDsHPP);
 ?> 
-<div class="box-footer box-comments">
-  <div class="box-comment">
+<div class="box">
+    <div class="box-header with-border">
+        <h4 class="box-title">CID(s) da Ficha Médica</h3>
+    </div>
+    <div class="box-body">
       <?php foreach ($listaHistHPP as $value) {?>
-    <div class="comment-text">
+    <div class="comment-text"  style="background-color: rgb(224,224,224); padding: 10px">
           <span class="username">
             <?=$value[id]?>
           </span><!-- /.username -->

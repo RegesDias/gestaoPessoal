@@ -14,10 +14,10 @@
     //
 //SISTEMA
 $versaoSDGC = '4.1.3';
-$localBack = false;
+$localBack = true;
 $localEndereco = false;
 $DBteste = false;
-$rodarLocal = false;
+$rodarLocal = true;
 $DBtestePort = '32796';
 //---DEFINIÇÃO DE PARAMETROS PARA TESTE DO SISTEMA
 //raphael
