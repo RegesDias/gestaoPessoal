@@ -28,7 +28,7 @@ require_once '../func/fModal.php';
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <label>CID(s) <span style="color:red" id="idCarregaStatusCid">(0)</span> </label><br>
+                            <label>CID(s) Encontrados:&nbsp;<span style="color:red" id="idCarregaStatusCid">(0)</span> </label><br>
                             <select name="cid-10" multiple class="form-contro" id='idCid10' style="border-color: rgb(211,211,211); width:100%">
                             </select>
                         </div>
@@ -79,7 +79,7 @@ require_once '../func/fModal.php';
 
                     <div class="form-group">
                         <div class="col-md-12">
-                            <label>CID(HPP) <span style="color:red" id="idCarregaStatusHpp">(0)</span> </label>
+                            <label>CID(HPP) Encontrados:&nbsp;<span style="color:red" id="idCarregaStatusHpp">(0)</span> </label>
 
                             <select name="HPP"  multiple class="form-contro" id='idHPP' style="border-color: rgb(211,211,211); width:100%">
                             </select>
@@ -124,7 +124,7 @@ require_once '../func/fModal.php';
                             let stringCapturada = document.getElementById("idCampoBuscaCid").value;
                             labelCarregaStatus = labelCarregaStatusCid;
                             selectAPreencher = document.getElementById("idCid10");
-                            if (stringCapturada.length > 3) {
+                            if (stringCapturada.length > 2) {
                                 getAJAX(<?= "'" . $ajurl . "'"; ?>, 'cid/getListCidCategoriaSubPorIdOuNome/', stringCapturada, preencheSelectCID10);
                                 labelCarregaStatus.innerHTML = " Carregando CIDs";
                             } else {
@@ -136,7 +136,7 @@ require_once '../func/fModal.php';
                             let stringCapturada = document.getElementById("idCampoBuscaHPP").value;
                             labelCarregaStatus = labelCarregaStatusHPP;
                             selectAPreencher = document.getElementById("idHPP");
-                            if (stringCapturada.length > 3) {
+                            if (stringCapturada.length > 2) {
                                 getAJAX(<?= "'" . $ajurl . "'"; ?>, 'cid/getListCidCategoriaSubPorIdOuNome/', stringCapturada, preencheSelectCID10HPP);
                                 labelCarregaStatus.innerHTML = " Carregando CIDs";
                             } else {
