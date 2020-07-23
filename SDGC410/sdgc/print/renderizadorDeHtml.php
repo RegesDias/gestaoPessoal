@@ -25,10 +25,11 @@ if($_SESSION['respGet']['tipo_relatorio']=='csv'){
    exit; // aborta pós-açõe
 }
 if($_SESSION['respGet']['tipo_relatorio']=='xls'){
-   $strUrlPdf = $_SESSION['listaUrl']['url'];
-   header("Content-type:application/excel");
-   header("Content-Disposition:attachment;filename=Relatorio".$_SESSION['respGet']['varq'].$_SESSION['respGet']['acao'].".xls");
-   readfile($strUrlPdf); // lê o arquivo
+ echo $_SESSION['listaUrl']['url'];
+//   $strUrlPdf = $_SESSION['listaUrl']['url'];
+//   header("Content-type:application/excel");
+//   header("Content-Disposition:attachment;filename=Relatorio".$_SESSION['respGet']['varq'].$_SESSION['respGet']['acao'].".xls");
+//   readfile($strUrlPdf); // lê o arquivo
    exit; // aborta pós-açõe
 }
 ?>

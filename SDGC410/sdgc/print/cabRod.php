@@ -312,6 +312,9 @@ if(isset($respGet['acao']) && $respGet['acao']=='getRelNsd'){
     $codNsd = $respGet['codNsd'];
     $cBusc = array($codNsd, $tipo);
     $lista = getRest('relatorio/getRelNsd',$cBusc);
+    if(!isset($respGet[tipo_relatorio])){
+        $respGet[semAcao] = 'true';
+    }
 }
 //NSDS
 if(isset($respGet['acao']) && $respGet['acao']=='getRelNsds'){
@@ -319,12 +322,18 @@ if(isset($respGet['acao']) && $respGet['acao']=='getRelNsds'){
     $codNsds = $respGet['codNsd'];
     $cBusc = array($codNsds, $tipo);
     $lista = getRest('relatorio/getRelNsds',$cBusc);
+    if(!isset($respGet[tipo_relatorio])){
+        $respGet[semAcao] = 'true';
+    }
 }
 //NSDA
 if(isset($respGet['acao']) && $respGet['acao']=='getRelNsda'){
     $codNsda = $respGet['codNsd'];
     $cBusc = array($codNsda, $tipo);
     $lista = getRest('relatorio/getRelNsda',$cBusc);
+    if(!isset($respGet[tipo_relatorio])){
+        $respGet[semAcao] = 'true';
+    }
 }
 //SinteticoMacprev
 if(isset($respGet['acao']) && $respGet['acao']=='empenhoSinteticoMacprev'){
@@ -771,7 +780,8 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
           </div>
           <div class="box-body">
           <?php 
-              if((isset($respGet['acao']) && $respGet['gerarRelatorio'] == "TRUE") || $respGet['ver'] == "true"){
+          if($respGet[semAcao] != 'true'){
+              if((isset($respGet['acao']) && $respGet['gerarRelatorio'] == "TRUE" ) || $respGet['ver'] == "true"){
                     if($respGet[tipo_relatorio] == '' || $respGet['ver'] == "true"){
                         $height = '600';
                         $width = '100%';
@@ -790,7 +800,25 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
                             }
                     </script>
                   <?php
-                }         
+                }?>
+                <script>
+                    $(document).ready(function () {
+                        //Só exibe a janela de impressão se o usuario não esta visualizando
+                        <?php
+                            if($respGet['gerarRelatorio'] != "TRUE" AND $respGet['ver'] != "true"){    
+                                echo "imprimeBase64('$base64Data ');";
+                            }
+                        ?>
+
+                    });
+                </script><?php    
+            }else{
+          ?>  
+                <script>
+                $("#idSpinFormImpressao").addClass("hidden");
+                </script>
+          <?php    
+            }
           ?>
           </div>
       </div>
@@ -798,17 +826,6 @@ if(isset($respGet['acao']) && $respGet['acao']=='todosProntuario'){
   <!-- /.col -->
 </div>
 <script>
-    $(document).ready(function () {
-        //Só exibe a janela de impressão se o usuario não esta visualizando
-        <?php
-            if($respGet['gerarRelatorio'] != "TRUE" and $respGet['ver'] != "true"){
-        ?>       
-                imprimeBase64('<?= $base64Data ?>');
-        <?php        
-            }
-        ?>
-        
-    });
     function voltarEmRelatorio(pst,arq,menuN3,menuN4,tab,pg){
         $.ajax
                 ({
